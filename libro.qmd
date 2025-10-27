@@ -1,0 +1,58 @@
+---
+title: "libro"
+format: html
+---
+
+---
+title: "Libro: *R para el análisis de datos de libre acceso*"
+format:
+  html:
+    toc: true
+    toc-title: "Contenido"
+---
+
+## Sobre el libro
+
+*R para el análisis de datos de libre acceso* es un libro introductorio orientado a las ciencias sociales, que busca enseñar **estadística aplicada y uso de R** de forma clara, práctica y accesible.  
+Combina explicaciones teóricas con ejemplos reproducibles, visualizaciones y ejercicios.
+
+El texto está diseñado para **estudiantes, docentes e investigadores** que desean incorporar R en su trabajo empírico, sin requerir formación matemática avanzada.
+
+---
+
+## Estructura general
+
+El libro está organizado en capítulos progresivos que abarcan desde fundamentos hasta análisis más avanzados:
+
+1. Fundamentos de la estadística  
+2. Fundamentos de R  
+3. Integración y manejo de datos  
+4. Estadística descriptiva  
+5. Probabilidad y distribuciones  
+6. Inferencia estadística  
+7. Comparando grupos  
+8. Regresión  
+9. Glosario de funciones útiles  
+
+Cada capítulo cierra con un resumen y ejercicios aplicados.
+
+---
+
+## Acceso al libro completo
+
+El libro está disponible en línea, de acceso totalmente libre:
+
+```{=html}
+<div class="libro-boton-container">
+  <a href="https://gonzaloalmendariz.github.io/rparaelanalisisdedatos/" 
+     class="boton-libro" 
+     target="_blank">
+     📘 Leer el libro completo
+  </a>
+</div>
+```
+
+
+
+
+

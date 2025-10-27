@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  title: "La Datafora Web"
+  navbar:
+    left:
+      - href: about.qmd
+        text: "Sobre el proyecto"
+      - href: libro.qmd
+        text: "Libro"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    toc-expand: true
+    smooth-scroll: true

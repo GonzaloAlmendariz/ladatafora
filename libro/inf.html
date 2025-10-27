@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Estadística inferencial – R para el análisis de datos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./comp.html" rel="next">
+<link href="./prob.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./inf.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estadística inferencial</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R para el análisis de datos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agradecimientos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructura del libro</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Fundamentos de la Estadística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fundamentosR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integración.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Integración</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statdesc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estadística descriptiva</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inf.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estadística inferencial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparando grupos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glosariofunciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glosario de funciones y operaciones útiles en R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solucionario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solucionario</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bilbiografía</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#estimación" id="toc-estimación" class="nav-link active" data-scroll-target="#estimación"><span class="header-section-number">6.1</span> Estimación</a>
+  <ul class="collapse">
+  <li><a href="#estimación-y-la-regla-empírica" id="toc-estimación-y-la-regla-empírica" class="nav-link" data-scroll-target="#estimación-y-la-regla-empírica"><span class="header-section-number">6.1.1</span> Estimación y la regla empírica</a></li>
+  <li><a href="#nivel-de-confianza-y-alfa" id="toc-nivel-de-confianza-y-alfa" class="nav-link" data-scroll-target="#nivel-de-confianza-y-alfa"><span class="header-section-number">6.1.2</span> Nivel de Confianza y Alfa</a></li>
+  <li><a href="#construcción-del-intervalo-de-confianza" id="toc-construcción-del-intervalo-de-confianza" class="nav-link" data-scroll-target="#construcción-del-intervalo-de-confianza"><span class="header-section-number">6.1.3</span> Construcción del Intervalo de Confianza</a></li>
+  <li><a href="#intervalo-de-confianza-para-una-media" id="toc-intervalo-de-confianza-para-una-media" class="nav-link" data-scroll-target="#intervalo-de-confianza-para-una-media"><span class="header-section-number">6.1.4</span> Intervalo de Confianza para una Media</a></li>
+  <li><a href="#intervalo-de-confianza-para-una-proporción" id="toc-intervalo-de-confianza-para-una-proporción" class="nav-link" data-scroll-target="#intervalo-de-confianza-para-una-proporción"><span class="header-section-number">6.1.5</span> Intervalo de Confianza para una Proporción</a></li>
+  </ul></li>
+  <li><a href="#contraste-de-hipótesis" id="toc-contraste-de-hipótesis" class="nav-link" data-scroll-target="#contraste-de-hipótesis"><span class="header-section-number">6.2</span> Contraste de hipótesis</a>
+  <ul class="collapse">
+  <li><a href="#pasos-del-contraste-de-hipótesis" id="toc-pasos-del-contraste-de-hipótesis" class="nav-link" data-scroll-target="#pasos-del-contraste-de-hipótesis"><span class="header-section-number">6.2.1</span> Pasos del Contraste de Hipótesis</a></li>
+  <li><a href="#contraste-de-hipótesis-para-una-media" id="toc-contraste-de-hipótesis-para-una-media" class="nav-link" data-scroll-target="#contraste-de-hipótesis-para-una-media"><span class="header-section-number">6.2.2</span> Contraste de Hipótesis para una Media</a></li>
+  <li><a href="#contraste-de-hipótesis-para-una-proporción" id="toc-contraste-de-hipótesis-para-una-proporción" class="nav-link" data-scroll-target="#contraste-de-hipótesis-para-una-proporción"><span class="header-section-number">6.2.3</span> Contraste de Hipótesis para una Proporción</a></li>
+  <li><a href="#tipos-de-error" id="toc-tipos-de-error" class="nav-link" data-scroll-target="#tipos-de-error"><span class="header-section-number">6.2.4</span> Tipos de error</a></li>
+  </ul></li>
+  <li><a href="#supuestos-en-la-inferencia" id="toc-supuestos-en-la-inferencia" class="nav-link" data-scroll-target="#supuestos-en-la-inferencia"><span class="header-section-number">6.3</span> Supuestos en la inferencia</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">6.4</span> Resumen del capítulo</a></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">6.5</span> Ejercicios</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estadística inferencial</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Ya hemos visto cómo el <strong>Teorema del Límite Central</strong> nos ayuda a entender el comportamiento de las medias de múltiples muestras aleatorias. En otras palabras, si extraemos muchas muestras de una población y calculamos sus medias, los valores obtenidos formarán una nueva distribución, conocida como <strong>distribución muestral de la media</strong>. A medida que aumentamos el número de muestras, esta distribución tenderá a parecerse cada vez más a una <strong>distribución normal</strong>, sin importar la forma de la distribución original de los datos.</p>
+<p>Si bien en el capítulo anterior utilizamos la <strong>media muestral</strong> como ejemplo, este mismo principio se extiende a otros estadísticos. Por ejemplo, si en lugar de calcular la media de cada muestra calculamos la <strong>proporción de individuos con una determinada característica</strong>, obtendremos una <strong>distribución muestral de proporciones</strong>, que también se aproxima a una distribución normal cuando el tamaño de la muestra es suficientemente grande. Del mismo modo, si calculamos la <strong>varianza</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Entender este concepto es clave para la estadística inferencial, la cual va a ser el tema central de este y los próximos capítulos. En base a lo que conocemos sobre la distribución muestral, podemos aplicar una serie de herramientas que nos ayuden a estimar características de la población.</p>
+<p>Puedes interactuar con este concepto en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Teorema del límite central</figcaption>
+</figure>
+</div>
+<p>Entre los métodos inferenciales que utilizamos están:</p>
+<ul>
+<li><p><strong>Estimación</strong>: Nos permite aproximar valores poblacionales desconocidos, como la media o la proporción, basándonos en una muestra (estadístico observado). La estimación esta conformada por un intervalo de confianza, que indica el rango dentro del cual esperamos que se encuentre el valor real de la población (parámetro).</p></li>
+<li><p><strong>Contraste de hipótesis</strong>: Nos permite evaluar afirmaciones o suposiciones sobre la población. Para ello, planteamos una hipótesis inicial (la hipótesis nula) y la comparamos con una hipótesis alternativa. Usamos los datos de nuestra muestra (estadístico observado) para decidir si tenemos evidencia suficiente para rechazar la hipótesis nula en favor de la alternativa.</p></li>
+</ul>
+<p>Ambos métodos aprovechan la idea de la distribución muestral. Gracias al Teorema del Límite Central, sabemos que al recolectar los estadísticos de múltiples muestras estos siguen una distribución aproximadamente normal, bajo ciertas condiciones <span class="citation" data-cites="casella2024inference">(<a href="references.html#ref-casella2024inference" role="doc-biblioref">Casella y Berger 2024</a>)</span>. En este capítulo, exploraremos cómo aplicar estas técnicas para extraer conclusiones sobre una población basándonos en una muestra aleatoria representativa.</p>
+<section id="estimación" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="estimación"><span class="header-section-number">6.1</span> Estimación</h2>
+<p>La estimación es el proceso mediante el cual <strong>intentamos aproximarnos al verdadero valor de un parámetro poblacional</strong>, como la media o la proporción, utilizando los estadísticos de una muestra. Dado que rara vez es posible observar a toda la población, la estimación nos permite hacer inferencias sobre sus características con base en una parte representativa de ella, la muestra. Gracias al Teorema del Límite Central, sabemos que, aunque los estadísticos obtenidos en distintas muestras pueden variar, con una muestra suficientemente grande, estos tienden a aproximarse al parámetro poblacional, siguiendo una distribución normal. Esta propiedad es fundamental en la estadística inferencial, ya que nos permite no solo obtener una estimación del parámetro desconocido, sino también <strong>medir la incertidumbre asociada a dicha estimación</strong>.</p>
+<p>Para cuantificar esta incertidumbre, utilizamos el <strong>intervalo de confianza</strong>, que nos proporciona un <strong>rango de valores dentro del cual esperamos que se encuentre el verdadero parámetro poblacional</strong> con un cierto nivel de certeza. Para ello, construimos una distribución normal alrededor del estadístico observado. Esta distribución refleja cómo variarían nuestras estimaciones si repitiéramos el muestreo múltiples veces, permitiéndonos delimitar un rango dentro del cual se encuentra el valor real del parámetro.</p>
+<section id="estimación-y-la-regla-empírica" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="estimación-y-la-regla-empírica"><span class="header-section-number">6.1.1</span> Estimación y la regla empírica</h3>
+<p>La estimación es el proceso de construir un intervalo que, a partir de un estadístico calculado en una muestra, nos permite aproximarnos al valor del parámetro poblacional desconocido. Gracias al Teorema del Límite Central (TLC), sabemos que, bajo ciertas condiciones, la distribución de este estadístico tenderá a seguir una distribución normal.</p>
+<p>Entonces, utilizando las características de la distribución normal podemos construir intervalos de confianza. En particular, la <strong>regla empírica (68-95-99.7)</strong> nos dice que aproximadamente el&nbsp;<strong>68%</strong>,&nbsp;<strong>95%</strong> y <strong>99.7%</strong>&nbsp;de los valores de una distribución normal se encuentran dentro de&nbsp;<strong>uno, dos o tres desviaciones estándar</strong>&nbsp;de la media, respectivamente (5.3). Utilizando esta información, podemos calcular intervalos que reflejen con un grado de confianza el rango en el que es probable que se encuentre el parámetro poblacional.</p>
+<p>Habíamos visto que, en la distribución muestral, la desviación estándar se convierte en el <strong>error estándar</strong>, por lo que debemos calcularlo primero. Su fórmula varía según el tipo de variable y el estadístico que estemos analizando.</p>
+<p>Para una <strong>media muestral</strong>, el error estándar se calcula dividiendo la desviación estándar de la población (<span class="math inline">\(\sigma\)</span>) entre la raíz cuadrada del tamaño de la muestra (<span class="math inline">\(n\)</span>):</p>
+<p><span class="math display">\[ \text{Error estándar} = \frac{\sigma}{\sqrt{n}}\]</span> donde:</p>
+<ul>
+<li><p>(<span class="math inline">\(\sigma\)</span>) es la desviación estándar de la población,</p></li>
+<li><p>(<span class="math inline">\(n\)</span>) es el tamaño de la muestra.</p></li>
+</ul>
+<p>Recuerda que en la mayoría de los casos no conocemos <span class="math inline">\(\sigma\)</span>, ya que es un parámetro poblacional desconocido, entonces: <strong>¿cómo podemos conocer la desviación estándar de la población si, en realidad, solo tenemos una muestra?</strong> Usando la desviación estándar de la muestra (<span class="math inline">\(s\)</span>) como una aproximación de <span class="math inline">\(\sigma\)</span>.</p>
+<p><span class="math display">\[
+\text{Error estándar} = \frac{s}{\sqrt{n}}
+\]</span></p>
+<p>Para una <strong>proporción</strong>, el error estándar se calcula distinto, ya que aquí estamos midiendo la variabilidad de una proporción (como el porcentaje de personas que apoyan un partido político, el porcentaje de personas con una característica particular, etc.). La fórmula del error estándar para una proporción (<span class="math inline">\(\hat{p}\)</span>) es:</p>
+<p><span class="math display">\[\text{Error estándar} = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\]</span></p>
+<p>donde:</p>
+<ul>
+<li><p><span class="math inline">\(\hat{p}\)</span> es la proporción observada en la muestra,</p></li>
+<li><p><span class="math inline">\(n\)</span> es el tamaño de la muestra.</p></li>
+</ul>
+<p>En ambos casos, el error estándar nos indica cuánto esperaríamos que varíe el estadístico muestral (ya sea la media o la proporción de una muestra) respecto al valor real del parámetro poblacional.</p>
+<p>Observa como el tamaño de la muestra (<span class="math inline">\(n\)</span>) aparece en el denominador de ambas fórmula. Esto significa que <strong>a medida que la muestra crece, el error estándar disminuye</strong>. En términos intuitivos, cuanto más grande sea la muestra, más información tendremos sobre la población, lo que reduce la variabilidad entre las estimaciones obtenidas a partir de diferentes muestras.</p>
+</section>
+<section id="nivel-de-confianza-y-alfa" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="nivel-de-confianza-y-alfa"><span class="header-section-number">6.1.2</span> Nivel de Confianza y Alfa</h3>
+<p>Cuando construimos un intervalo de confianza, elegimos un <strong>nivel de confianza</strong> para indicar cuánta certeza queremos tener de que el intervalo contiene el verdadero valor del parámetro poblacional. Por ejemplo, si elegimos un nivel de confianza del <strong>95%</strong>, estamos diciendo que, en el 95% de los casos, el intervalo construido incluirá el valor real de la población si repitiéramos el muestreo muchas veces. El <strong>nivel de confianza</strong> representa la probabilidad de que el intervalo contenga el verdadero valor.</p>
+<p>Al momento de seccionarlo tenemos que ser consciente que existe una relación inversa entre <strong>precisión</strong> y <strong>certeza</strong> en los intervalos de confianza. Cuanto mayor sea el nivel de confianza (y, por tanto, nuestra certeza de que el intervalo contiene el verdadero valor), más amplio será el intervalo y menor será la precisión. Esto se debe a que un nivel de confianza alto implica cubrir una mayor porción de la distribución, extendiendo el rango del intervalo para asegurar que se incluya el valor poblacional. Por el contrario, cuando optamos por un nivel de confianza menor (como el 90%), el intervalo se vuelve más estrecho, aumentando la precisión pero con menor certeza de que el intervalo incluya el verdadero valor poblacional.</p>
+<p>Esta relación inversa nos obliga a elegir un nivel de confianza que equilibre nuestras necesidades de precisión y certeza según el contexto del análisis. Comúnmente usamos niveles de confianza de:</p>
+<p><strong>90%</strong> (nos da un poco menos de certeza, con intervalos más estrechos),</p>
+<p><strong>95%</strong> (el más utilizado, balancea certeza y ancho del intervalo),</p>
+<p><strong>99%</strong> (mayor certeza, pero con un intervalo más amplio).</p>
+<p>Este nivel de confianza se relaciona directamente con <strong>alfa</strong> (<span class="math inline">\(\alpha\)</span>), que es el complemento del nivel de confianza. <span class="math inline">\(\alpha\)</span> representa la <strong>probabilidad de error</strong> o el <strong>riesgo de equivocación</strong> que estamos dispuestos a aceptar (ver <em>Tipos de error</em>)</p>
+<p><span class="math display">\[ \alpha = 1 - \text{Nivel de Confianza} \]</span></p>
+<p>Por ejemplo:</p>
+<ul>
+<li><p>Si tenemos un nivel de confianza del <strong>95%</strong>, entonces <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li><p>Si nuestro nivel de confianza es del <strong>90%</strong>, entonces <span class="math inline">\(\alpha = 0.10\)</span>.</p></li>
+<li><p>Si optamos por un nivel de confianza del <strong>99%</strong>, entonces <span class="math inline">\(\alpha = 0.01\)</span>.</p></li>
+</ul>
+<p>En el caso de un intervalo de confianza del 95%, <span class="math inline">\(\alpha = 0.05\)</span>, lo que significa que hay un 5% de probabilidad de que el intervalo calculado no contenga el verdadero valor poblacional. Este margen de error del 5% normalmente se reparte en ambos extremos de la distribución (2.5% a la izquierda y 2.5% a la derecha) pero en algunas pruebas también puede distribuirse a un solo lado.</p>
+<p>Para construir un <strong>intervalo de confianza</strong> al estimar una proporción, debemos determinar <strong>cuántos errores estándar</strong> debemos desplazarnos a la izquierda y a la derecha de la media de la distribución muestral para capturar un área de la distribución que corresponda al nivel de confianza seleccionado. ¿Recuerdas el <strong>valor z</strong> en la distribución normal? (8.5). La distribución de las proporciones muestrales sigue aproximadamente una <strong>distribución normal</strong>, lo que nos permite utilizar los <strong>valores críticos</strong> <span class="math inline">\(z\)</span> para definir los límites del intervalo.</p>
+<p>El valor <span class="math inline">\(z\)</span> representa <strong>cuántos errores estándar debemos alejarnos de la media</strong> a ambos lados para capturar la fracción deseada de la distribución. Es decir, nos permite establecer un rango dentro del cual se encuentra la verdadera proporción poblacional. Este valor crítico depende del <strong>nivel de confianza elegido</strong>, ya que cuanto mayor sea el nivel de confianza, más lejos debemos extender el intervalo para asegurarnos de que incluya el parámetro poblacional en la mayoría de los casos.</p>
+<p>Dependiendo del <strong>nivel de confianza</strong> elegido, los valores críticos <span class="math inline">\(z\)</span> más comunes son:</p>
+<ul>
+<li><strong>90% de confianza</strong>: <span class="math inline">\(z = 1.645\)</span><br>
+</li>
+<li><strong>95% de confianza</strong>: <span class="math inline">\(z = 1.96\)</span><br>
+</li>
+<li><strong>99% de confianza</strong>: <span class="math inline">\(z = 2.576\)</span></li>
+</ul>
+<p>Estos valores provienen de la <strong>distribución normal estándar</strong>, donde el área bajo la curva entre <span class="math inline">\(-z\)</span> y <span class="math inline">\(+z\)</span> corresponde al nivel de confianza seleccionado. Cuanto mayor sea el nivel de confianza, mayor será el valor crítico <span class="math inline">\(z\)</span>, lo que significa que el intervalo de confianza será más amplio para abarcar una mayor proporción de la distribución.</p>
+<p>Cuando en lugar de una <strong>proporción</strong> estamos realizando inferencias sobre la <strong>media poblacional</strong>, la situación cambia ligeramente. Si conociéramos la <strong>desviación estándar de la población</strong>, podríamos seguir utilizando la distribución normal de la población para construir el intervalo de confianza. Sin embargo,recuerda que en la mayoría de los casos, no contamos con ella, por lo que debemos estimarla a partir de la muestra (5.7).</p>
+<p>Esta estimación introduce <strong>incertidumbre adicional</strong>, lo que nos obliga a usar la <strong>distribución t de Student</strong> en lugar de la normal. La distribución t es similar a la normal, pero tiene <strong>colas más gruesas</strong>, lo que refleja la mayor variabilidad esperada cuando trabajamos con la desviación estándar muestral (<span class="math inline">\(s\)</span>) en lugar de la poblacional (<span class="math inline">\(\sigma\)</span>).</p>
+<p>La diferencia entre la distribución t y la normal es más notable en muestras pequeñas. A medida que el tamaño de la muestra aumenta, la estimación de la desviación estándar poblacional mejora, y la distribución t se aproxima cada vez más a la normal. Generalmente, cuando el tamaño muestral es mayor a <strong>30 observaciones</strong>, la diferencia entre ambas distribuciones es mínima.</p>
+<p>La forma de la distribución t está determinada por un parámetro llamado <strong>grados de libertad</strong> (<span class="math inline">\(df\)</span>, <strong>d</strong>egrees of <strong>f</strong>reedom), que refleja cuánta información útil tenemos en los datos para estimar la variabilidad. Los grados de libertad indican <strong>cuántos valores en la muestra pueden variar libremente antes de que el resto esté completamente determinado</strong>. Por ejemplo, si tenemos una muestra de <span class="math inline">\(n\)</span> datos <strong>solo</strong> <span class="math inline">\(n - 1\)</span> <strong>valores pueden tomar cualquier valor antes de que el último quede determinado automáticamente</strong>. Entonces, los grados de libertad se calculan como <span class="math inline">\(df = n - 1\)</span>.</p>
+<p>Cuando el número de grados de libertad es bajo, la distribución t tiene colas más gruesas que la normal, reflejando la mayor incertidumbre en la estimación de la variabilidad. A medida que los grados de libertad aumentan, la distribución t se estrecha y se parece más a la normal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.scribbr.com/statistics/t-distribution/"><img src="images/clipboard-1427679740.png" class="img-fluid figure-img" alt="Extraído de: https://www.scribbr.com/statistics/t-distribution/"></a></p>
+<figcaption>Extraído de: https://www.scribbr.com/statistics/t-distribution/</figcaption>
+</figure>
+</div>
+</section>
+<section id="construcción-del-intervalo-de-confianza" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="construcción-del-intervalo-de-confianza"><span class="header-section-number">6.1.3</span> Construcción del Intervalo de Confianza</h3>
+<p>Con el valor <span class="math inline">\(z\)</span> o <span class="math inline">\(t\)</span> correspondiente al nivel de confianza deseado, el intervalo de confianza para la media poblacional <span class="math inline">\(\mu\)</span> se construye alrededor de la media muestral <span class="math inline">\(\bar{x}\)</span> y el error estándar (<span class="math inline">\(\text{EE}\)</span>):</p>
+<p><span class="math display">\[ \text{Intervalo de Confianza} = \bar{x} \pm z \times \text{EE} \]</span></p>
+<p>ó</p>
+<p><span class="math display">\[ \text{Intervalo de Confianza} = \bar{x} \pm t \times \text{EE} \]</span></p>
+<p>donde:</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x}\)</span> es la media de la muestra,</p></li>
+<li><p><span class="math inline">\(z\)</span> o <span class="math inline">\(t\)</span> es el valor correspondiente al nivel de confianza deseado de la distribución normal (<span class="math inline">\(z\)</span>) o t de Student(<span class="math inline">\(t\)</span>),</p></li>
+<li><p><span class="math inline">\(\text{EE}\)</span> es el error estándar.</p></li>
+</ul>
+<p>Este intervalo nos da un rango dentro del cual esperamos que se encuentre la verdadera media poblacional con el nivel de confianza seleccionado. Por ejemplo, para una distribución normal.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En el caso de la <strong>distribución t</strong>, recuerda que su forma cambia en función de los <strong>grados de libertad</strong> (<span class="math inline">\(df\)</span>). A medida que los grados de libertad aumentan, la distribución se va estrechando y sus colas se hacen menos pronunciadas, acercándose cada vez más a la normal estándar. Veamos cómo varía la distribución t para un nivel de confianza del 95% en diferentes valores de <span class="math inline">\(df\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cuando el número de <strong>grados de libertad</strong> (<span class="math inline">\(df\)</span>) es pequeño, la estimación de la <strong>desviación estándar poblacional</strong> a partir de la muestra es menos precisa, lo que introduce una mayor variabilidad en la distribución de la media muestral. Para compensar esta incertidumbre, la distribución t tiene <strong>colas más gruesas</strong> y valores críticos (<span class="math inline">\(t\)</span>) más grandes, lo que significa que, para un mismo nivel de confianza, los intervalos de confianza deben ser más amplios. A medida que el tamaño de la muestra aumenta, la estimación de la desviación estándar poblacional se vuelve más precisa, reduciendo la variabilidad en la distribución muestral y haciendo que la distribución t se asemeje cada vez más a la normal estándar. Esto a larga hace que los valores críticos <span class="math inline">\(t\)</span> se acerquen a los valores <span class="math inline">\(z\)</span> de la distribución normal al punto en el que la diferencia es mínima.</p>
+<p>Por ejemplo, calculemos los valores críticos <span class="math inline">\(z\)</span> y <span class="math inline">\(t\)</span> para un <strong>nivel de confianza del 99%</strong>, comparando la distribución normal con la distribución t cuando los <strong>grados de libertad</strong> son <span class="math inline">\(df = 300\)</span>.</p>
+<p>Cuando calculamos los valores críticos para un <strong>nivel de confianza del 99%</strong>, normlamente dividimos la probabilidad restante (<span class="math inline">\(\alpha\)</span>) entre dos, ya que los intervalos de confianza <strong>van a ambos lados</strong>. Dado que el nivel de confianza es del <strong>99%</strong>, la probabilidad total en las colas de la distribución es:</p>
+<p><span class="math display">\[
+\alpha = 1 - 0.99 = 0.01
+\]</span></p>
+<p>Como el intervalo es <strong>simétrico</strong>, la cola izquierda contiene <span class="math inline">\(\alpha/2 = 0.005\)</span> y la cola derecha también <span class="math inline">\(alpha/2 = 0.005\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Observación-11.png" class="img-fluid figure-img"></p>
+<figcaption>Elaboración propia</figcaption>
+</figure>
+</div>
+<p>Por ello, para asegurarnos de que el intervalo de confianza abarque <strong>el 99% central de la distribución simétrica</strong>, debemos establecer un <strong>0.5% en cada cola</strong>.</p>
+<p>Por lo tanto, el valor crítico (<span class="math inline">\(z\)</span>) de la <strong>distribución normal</strong> se obtiene usando <code>qnorm()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.005</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.575829</code></pre>
+</div>
+</div>
+<p>Mientras que el valor crítico (<span class="math inline">\(t\)</span>) para <strong>df = 300</strong> se obtiene usando <code>qt()</code> definiendo <code>df</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.005</span>, <span class="at">df =</span> <span class="dv">300</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.592316</code></pre>
+</div>
+</div>
+<p>Como puedes ver, la diferencia con la distribución normal es mínima cuando los <span class="math inline">\(df\)</span> son mayores a 30.</p>
+</section>
+<section id="intervalo-de-confianza-para-una-media" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="intervalo-de-confianza-para-una-media"><span class="header-section-number">6.1.4</span> Intervalo de Confianza para una Media</h3>
+<p>Flor está estudiando la altura promedio de un grupo de personas y solo tiene acceso a una muestra de 350 individuos. Quiere calcular un intervalo de confianza para estimar la altura promedio de la población a partir de esta muestra.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'alturas.csv'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(muestra)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 350
+Columns: 1
+$ alturas &lt;dbl&gt; 164.3952, 167.6982, 185.5871, 170.7051, 171.2929, 187.1506, 17…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alturas)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"skyblue"</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de las alturas de la muestra"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Altura (cm)"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Describe la variable <code>altura</code> de nuestra muestra</p>
+<p>Tamaño de la muestra</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 350</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(n = 350\)</span></p>
+<p>Media de la muestra</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 170.2981</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\bar x \approx  170\)</span></p>
+<p>Desviación estándar de la muestra</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.569994</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(s = 9.57\)</span></p>
+<p>Define un nivel de confianza: Nivel de confianza = 95%</p>
+<p><strong>Paso 1: Determinar el valor t</strong></p>
+<p>Para un nivel de confianza del 95% (el 5% restante de divide en ambos lados). Por lo que el valor <span class="math inline">\(t\)</span> para cada lado será en el área que represente el 2.5%. En vez de usar <code>qnorm</code>, usa <code>qt</code> ya que hace uso de las distribución <span class="math inline">\(t\)</span>, especificando los grados de libertad.</p>
+<p>Define los grados de libertad (<span class="math inline">\(n - 1\)</span>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grad_lib <span class="ot">=</span> <span class="fu">length</span>(muestra<span class="sc">$</span>alturas) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>grad_lib</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 349</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df =</span> grad_lib)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.966785</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> grad_lib)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.966785</code></pre>
+</div>
+</div>
+<p>El valor <span class="math inline">\(t\)</span> correspondiente es aproximadamente <strong>1.96</strong> a cada lado. Este valor indica cuántos errores estándar abarcan el 95% de la distribución normal alrededor de la media, que es lo que necesitamos para construir el intervalo.</p>
+<p><strong>Paso 2: Calcular el Error Estándar</strong></p>
+<p>El error estándar (<span class="math inline">\(EE\)</span>) es la desviación estándar de la districuión muestral. Por ello nos indica cuánto esperaríamos que varíe la media muestral con respecto a la media poblacional. Es importante observar que el tamaño de la muestra (<span class="math inline">\(n\)</span>) se encuentra en el denominador de la fracción. Esto nos indica que, cuanto mayor sea el tamaño de la muestra, menor será el error estándar, lo cual hace que el intervalo de confianza sea más preciso.</p>
+<p>La fórmula para calcular el error estándar de la media es:</p>
+<p><span class="math display">\[ \text{EE} = \frac{s}{\sqrt{n}}\]</span> donde:</p>
+<ul>
+<li><p>s es la desviación estándar de la muestra (9.57cm), y</p></li>
+<li><p>n es el tamaño de la muestra (350).</p></li>
+</ul>
+<p>Sustituye los valores a la formula del cálculo del EE:</p>
+<p><span class="math display">\[\text{EE} = \frac{9.57}{\sqrt{350}} = \frac{9.57}{18.71} \approx 0.51\]</span></p>
+<p><strong>Paso 3: Calcular el Intervalo de Confianza</strong></p>
+<p>Con el error estándar (<span class="math inline">\(EE\)</span>) y el valor <span class="math inline">\(t\)</span>, es posible calcular el intervalo de confianza para la media poblacional. La fórmula general para el intervalo de confianza se expresa como:</p>
+<p><span class="math display">\[\text{IC} = \bar{x} \pm t \times \text{EE}\]</span></p>
+<p>El valor t indica cuántas desviaciones estándar (error estándar <span class="math inline">\(EE\)</span>) debemos alejarnos de la media muestral (<span class="math inline">\(\bar{x}\)</span>) hacia ambos lados para cubrir una proporción específica de la distribución, determinada por el nivel de confianza deseado. El término <span class="math inline">\(t \times EE\)</span> se denomina margen de error (<strong>ME</strong>) y determina la amplitud del intervalo.</p>
+<p>Sustituyendo los valores:</p>
+<p><span class="math display">\[\text{IC} = 170.29 \pm 1.96 \times 0.51\]</span> Entonces, el intervalo de confianza es:</p>
+<p>Si la media es 170.29, el intervalo de confianza se expresaría así:</p>
+<p><span class="math display">\[\text{IC} = 170.29 \pm 0.99 = [169.30, 171.28]\]</span></p>
+<p>es decir:</p>
+<p><span class="math display">\[\text{IC} = 169.30 \text{ hasta } 171.28\]</span></p>
+<p>Esto indica que, con un nivel de confianza del 95%, estimamos que la media poblacional se encuentra entre <strong>169.30</strong> y <strong>171.28</strong>.</p>
+<p><strong>Interpretación del resultado</strong></p>
+<p>Con un nivel de confianza del 95%, Flor estima que la altura promedio de la población está entre <strong>169.30 cm y 171.28 cm</strong>.</p>
+<p>La función <code>t.test()</code> en R realiza automáticamente el cálculo del intervalo de confianza para la media de una muestra, ajustándose según el tamaño de la muestra y asumiendo la <strong>distribución t de Student</strong></p>
+<p>Internamente, <code>t.test()</code> sigue los siguientes pasos para calcular el intervalo de confianza:</p>
+<p>1. <strong>Calcula la media de la muestra</strong> y la <strong>desviación estándar muestral</strong>.</p>
+<p>2. Determina el <strong>error estándar</strong>, que mide la variabilidad esperada de la media muestral con respecto a la media poblacional.</p>
+<p>3. <strong>Ajusta el valor</strong> <span class="math inline">\(t\)</span> de acuerdo con el nivel de confianza especificado. En este caso, para un nivel de confianza del 95%.</p>
+<p>4. <strong>Calcula el intervalo de confianza</strong> sumando y restando el margen de error (valor crítico multiplicado por el error estándar) a la media muestral.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prueba_t <span class="ot">=</span> <span class="fu">t.test</span>(muestra, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>prueba_t<span class="sc">$</span>conf.int</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 169.2921 171.3042
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>Gráficamente podemos visualizarlo así:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="intervalo-de-confianza-para-una-proporción" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="intervalo-de-confianza-para-una-proporción"><span class="header-section-number">6.1.5</span> Intervalo de Confianza para una Proporción</h3>
+<p>Ahora supongamos que está estudiando la intención de voto en una población y ha recolectado una muestra de 350 personas. De estas, 210 han manifestado que votarían por el partido A. Quiere calcular un intervalo de confianza para estimar la proporción de la población que votaría por el partido A.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>apoyo <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'apoyo.csv'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(apoyo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 350
+Columns: 2
+$ id    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 1…
+$ apoyo &lt;chr&gt; "A", "A", "A", "Otro", "A", "Otro", "Otro", "Otro", "Otro", "A",…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>apoyo <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> apoyo, <span class="at">fill =</span> apoyo)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de la intención de voto en la muestra"</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Opción de voto"</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Describe la variable <code>apoyo</code> en su muestra.</p>
+<p>Tamaño de la muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(apoyo<span class="sc">$</span>apoyo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 350</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(n = 350\)</span></p>
+<p>Proporción de la muestra (porcentaje que votaría por el partido A):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>prop_muestra <span class="ot">=</span> <span class="fu">mean</span>(apoyo<span class="sc">$</span>apoyo <span class="sc">==</span> <span class="st">"A"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>prop_muestra</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\hat{p} = 0.6\)</span></p>
+<p>Define un nivel de confianza: Nivel de confianza = 95%</p>
+<p><strong>Paso 1: Determinar el Valor Z</strong></p>
+<p>Al estimar una proporción no hay problema con que use la distribución normal por lo que el valor crítico es <span class="math inline">\(z\)</span> y lo puede calcular haciendo uso de <code>qnorm</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
+<p>Para un nivel de confianza del 95%, el valor <span class="math inline">\(z\)</span> correspondiente es aproximadamente <strong>1.96</strong>. Este valor indica cuántos errores estándar (z) abarcan el 95% de la distribución normal alrededor de la proporción muestral.</p>
+<p><strong>Paso 2: Calcular el Error Estándar</strong></p>
+<p>El error estándar (EE) nos indica cuánto esperaríamos que varíe la proporción muestral con respecto a la proporción poblacional. De la misma forma, cuanto mayor sea el tamaño de la muestra, menor será el error estándar, lo cual hace que el intervalo de confianza sea más preciso.</p>
+<p>La fórmula para calcular el error estándar de una proporción es:</p>
+<p><span class="math display">\[ \text{EE} = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \]</span></p>
+<p>donde:</p>
+<ul>
+<li><p><span class="math inline">\(\hat{p}\)</span> es la proporción de la muestra (0.6),</p></li>
+<li><p><span class="math inline">\(n\)</span> es el tamaño de la muestra (350).</p></li>
+</ul>
+<p>Sustituimos los valores en la fórmula para el cálculo del EE:</p>
+<p><span class="math display">\[\text{EE} = \sqrt{\frac{0.6 \times (1 - 0.6)}{350}} = \sqrt{\frac{0.6 \times 0.4}{350}} \approx 0.0252\]</span></p>
+<p><strong>Paso 3: Calcular el Intervalo de Confianza</strong></p>
+<p>Con el error estándar y el valor <span class="math inline">\(z\)</span>, ahora puede calcular el intervalo de confianza para la proporción poblacional. La fórmula general para el intervalo de confianza es:</p>
+<p><span class="math display">\[\text{IC} = \hat{p} \pm z \times \text{EE}\]</span></p>
+<p>Sustituyendo los valores:</p>
+<p><span class="math display">\[\text{IC} = 0.6 \pm 1.96 \times 0.0252\]</span></p>
+<p>Calculando el margen de error:</p>
+<p><span class="math display">\[1.96 \times 0.0252 \approx 0.0494\]</span></p>
+<p>Entonces, el intervalo de confianza es:</p>
+<p><span class="math display">\[\text{IC} = 0.6 \pm 0.0494 = [0.5506, 0.6494]\]</span></p>
+<p>es decir:</p>
+<p><span class="math display">\[\text{IC} = 0.5506 \text{ hasta } 0.6494\]</span></p>
+<p>Esto indica que, con un nivel de confianza del 95%, estimamos que la proporción de la población que votaría por el partido A se encuentra entre <strong>55.06%</strong> y <strong>64.94%</strong>.</p>
+<p><strong>Interpretación del Resultado</strong></p>
+<p>Con un nivel de confianza del 95%, Flor estima que entre el <strong>55.06% y el 64.94%</strong> de la población votaría por el partido A.</p>
+<p>Podemos calcular este intervalo de confianza en R directamente usando <code>prop.test()</code>, una función que facilita los cálculos de intervalos de confianza para proporciones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>prueba_prop <span class="ot">=</span> <span class="fu">prop.test</span>(<span class="dv">210</span>, <span class="dv">350</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>prueba_prop<span class="sc">$</span>conf.int</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5464154 0.6513532
+attr(,"conf.level")
+[1] 0.95</code></pre>
+</div>
+</div>
+<p>Gráficamente:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puedes interactuar con el conceptos del intervalo en confianza en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Intervalos de confianza</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="contraste-de-hipótesis" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="contraste-de-hipótesis"><span class="header-section-number">6.2</span> Contraste de hipótesis</h2>
+<p>El contraste de hipótesis es una herramienta estadística que nos permite decidir si un resultado observado en una muestra nos da suficiente evidencia para apoyar una afirmación sobre una población. Existen varias pruebas pero se caracterizan por ser todas un <strong>proceso organizado que nos ayuda a diferenciar entre resultados que podrían ocurrir solo por variación aleatoria y aquellos que son lo suficientemente inusuales como para indicar un efecto real</strong>.</p>
+<p>Aunque existen diversas pruebas, todas siguen un <strong>proceso estructurado y sistemático</strong> diseñado para diferenciar entre resultados que podrían ocurrir únicamente por variación aleatoria y aquellos que son <strong>estadísticamente significativos</strong>, es decir, lo suficientemente inusuales como para sugerir la presencia de un patrón o efecto real en la población.</p>
+<section id="pasos-del-contraste-de-hipótesis" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="pasos-del-contraste-de-hipótesis"><span class="header-section-number">6.2.1</span> Pasos del Contraste de Hipótesis</h3>
+<p><strong>I. Planteamiento de Hipótesis</strong>:</p>
+<p>Comenzamos formulando dos hipótesis opuestas:</p>
+<ul>
+<li>La <strong>hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>) representa la idea de “no hay efecto” o “no hay diferencia”. Es nuestra afirmación de partida y sugiere que cualquier variación que veamos es simplemente producto de la variación aleatoria inherente a nuestra muestra.<br>
+</li>
+<li>La <strong>hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>) representa la afirmación que queremos evaluar. Indica que sí hay un efecto o diferencia en la población.</li>
+</ul>
+<p>La hipótesis nula nos da un punto de referencia neutral contra el cual comparamos nuestros resultados para evaluar si son suficientemente distintos como para sugerir algo real.</p>
+<p>Dependiendo de la dirección en la que buscamos evidencia contra <span class="math inline">\(H_0\)</span> el análisis puede ser:</p>
+<ul>
+<li><p><strong>Prueba bilateral (de dos colas):</strong> Se usa cuando queremos evaluar si hay una diferencia sin importar la dirección. Por ejemplo, si estudiamos el impacto de una nueva política pública en la tasa de empleo, <span class="math inline">\(H_1\)</span> indicaría que la política cambia la tasa de empleo, ya sea aumentándola o reduciéndola. En este caso, consideramos ambos extremos de la distribución para determinar si el efecto observado es lo suficientemente inusual como para rechazar <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p><strong>Prueba unilateral (de una cola):</strong> Se usa cuando tenemos una expectativa clara sobre la dirección del efecto. Por ejemplo, si evaluamos si un programa de capacitación <strong>mejora</strong> las habilidades laborales, la hipótesis alternativa indicaría que el programa <strong>aumenta</strong> el nivel de habilidades (y no simplemente que lo cambia en cualquier dirección). Aquí, solo nos interesa una de las colas de la distribución.</p></li>
+</ul>
+<p><strong>II. Establecimiento de la Distribución Nula</strong></p>
+<p>Incluso si <span class="math inline">\(H_0\)</span> es cierta, los resultados de una muestra pueden fluctuar debido a la variación aleatoria. Sin embargo, estas fluctuaciones siguen un patrón: la mayoría de los valores observados estarán cerca de la media de la distribución nula, y conforme nos alejamos de esta media, los valores se vuelven menos probables. Esto significa que, en cualquier prueba de hipótesis, necesitamos un criterio que nos ayude a determinar <strong>cuándo un resultado es lo suficientemente diferente de lo esperado bajo</strong> <span class="math inline">\(H_0\)</span> <strong>como para considerarlo significativo</strong>. . Para hacer esta comparación, necesitamos una <strong>distribución de referencia</strong> que nos muestre cómo se comportaría nuestro estadístico (como la media o la proporción) <strong>si la hipótesis nula fuera verdadera</strong>.</p>
+<p>Al igual que podemos construir una distribución de posibles valores para el estadístico observado, podemos construir una <strong>distribución para la hipótesis nula</strong>. Recordando el Teorema del Límite Central (TLC), sabemos que, si tomamos muchas muestras de una población y calculamos su estadístico (como la media), los resultados tienden a seguir una distribución aproximadamente normal alrededor del valor supuesto por la hipótesis nula. Esta distribución para la hipótesis nula nos indica <strong>qué tan probable es obtener diferentes valores del estadístico bajo la suposición de que no hay efecto o diferencia real</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>III. Nivel de confianza y definición de la zonas criticas:</strong></p>
+<p>La esencia de un contraste de hipótesis radica en evaluar <strong>qué tan diferente o extremo debe ser un valor observado</strong> para poder afirmar que no es probable si la hipótesis nula (<span class="math inline">\(H_0\)</span>) fuera cierta, incluso considerando la variabilidad natural que ocurre por azar. En otras palabras, el contraste de hipótesis busca determinar si el resultado obtenido se desvía tanto de lo esperado bajo <span class="math inline">\(H_0\)</span> que podemos justificar su rechazo. Este proceso nos permite distinguir entre variaciones que pueden explicarse simplemente por la aleatoriedad inherente al muestreo y aquellas que son lo suficientemente inusuales como para sugerir que existe un efecto real o una diferencia <strong>significativa</strong>.</p>
+<p>Para evaluar si un resultado es lo suficientemente extremo como para considerarlo evidencia en contra de <span class="math inline">\(H_0\)</span>, necesitamos definir un umbral que nos ayude a tomar esta decisión. Este umbral se establece a través del <strong>nivel de confianza</strong> y el <strong>nivel de significancia</strong> (<span class="math inline">\(\alpha\)</span>).</p>
+<p>Sabiendo que:</p>
+<p><span class="math display">\[ \text{Nivel de confianza} = 1 - \alpha \]</span></p>
+<p>El nivel de significancia <span class="math inline">\(\alpha\)</span> nos dice cuánto estamos dispuestos a aceptar el riesgo de cometer un <strong>Error Tipo I</strong> (rechazar <span class="math inline">\(H_0\)</span> cuando en realidad es cierta). Si elegimos <span class="math inline">\(\alpha = 0.05\)</span>, estamos definiendo que solo el 5% de los valores más extremos de la distribución nula serán considerados “demasiado improbables” bajo <span class="math inline">\(H_0\)</span>.</p>
+<p>Por ejemplo, si elegimos un nivel de confianza del <strong>95%</strong>, significa que queremos estar seguros en un <strong>95%</strong> de que la conclusión que tomemos será correcta y aceptamos un <strong>5% de riesgo</strong> de cometer un <strong>Error Tipo I</strong> (rechazar <span class="math inline">\(H_0\)</span> cuando en realidad es cierta). Esto implica que el <strong>nivel de significancia</strong> en este caso es:</p>
+<p><span class="math display">\[ \alpha = 0.05 \]</span></p>
+<p>El valor de <span class="math inline">\(\alpha\)</span> nos ayuda a definir las <strong>zonas críticas</strong> de la distribución nula, que son las regiones donde un resultado se considerará lo suficientemente improbable como para rechazar <span class="math inline">\(H_0\)</span>. La ubicación exacta de estas zonas depende del tipo de prueba que estemos realizando:</p>
+<p>Si realizamos una <strong>prueba bilateral (de dos colas)</strong>, el nivel de significancia se divide en <strong>dos extremos</strong> de la distribución nula, dejando <span class="math inline">\(\frac{\alpha}{2}\)</span> <strong>en cada cola</strong>. Esto significa que rechazamos <span class="math inline">\(H_0\)</span> si el valor observado es <strong>demasiado grande o demasiado pequeño</strong> en comparación con lo que esperaríamos si <span class="math inline">\(H_0\)</span> fuera cierta.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si realizamos una <strong>prueba unilateral (de una cola)</strong>, todo el nivel de significancia <span class="math inline">\(\alpha\)</span> se coloca en una sola cola de la distribución, dependiendo de si estamos evaluando un efecto <strong>mayor</strong> o <strong>menor</strong>. En este caso, rechazamos <span class="math inline">\(H_0\)</span> solo si el resultado observado es <strong>significativamente mayor</strong> o <strong>significativamente menor</strong> de lo esperado bajo <span class="math inline">\(H_0\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para determinar qué tan extremo debe ser un resultado para considerarlo estadísticamente significativo, usamos el <strong>valor crítico</strong> (<span class="math inline">\(z\)</span> crítico o <span class="math inline">\(t\)</span> crítico) que determina la distancia en errores estándar de la media de la distribución.</p>
+<p>Por ejemplo, en una prueba basada en la distribución normal estándar, el <span class="math inline">\(z\)</span> crítico para <span class="math inline">\(\alpha = 0.05\)</span> en una prueba bilateral es el 2.5% más extremo a cada lado, por lo que aproximadamente <span class="math inline">\(\pm1.96\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.959964</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Esto que significa que cualquier estadístico que caiga fuera de este rango se considera lo suficientemente improbable bajo <span class="math inline">\(H_0\)</span> como para rechazarla. Además, recuerda que si la muestra es pequeña o la varianza es desconocida, usamos la distribución <span class="math inline">\(t\)</span> de Student, en cuyo caso el <span class="math inline">\(t\)</span> crítico dependerá del tamaño muestral y los grados de libertad.</p>
+<p><strong>IV. Comparación del Valor Observado con la Distribución Nula</strong></p>
+<p>Ya que escogimos <span class="math inline">\(\alpha = 0.05\)</span>, si el valor observado cae en el <strong>5% más extremo</strong> de la distribución nula (es decir, en las áreas menos probables), lo consideramos lo suficientemente inusual como para que no pueda explicarse únicamente por la variabilidad aleatoria bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>). En este caso, rechazamos <span class="math inline">\(H_0\)</span> y favorecemos la hipótesis alternativa (<span class="math inline">\(H_1\)</span>).</p>
+<p>Si el valor observado está dentro del <strong>95%</strong> de la distribución nula, significa que se encuentra dentro del rango esperado por variación natural. No es lo suficientemente inusual, por lo que <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span>. En cambio, si el valor observado cae en el <strong>5% más extremo</strong> de la distribución, consideramos que es <strong>lo suficientemente improbable</strong> bajo <span class="math inline">\(H_0\)</span>, por lo que tenemos suficiente evidencia para rechazarla en favor de <span class="math inline">\(H_1\)</span>.</p>
+<p>Utilizamos el valor <span class="math inline">\(t\)</span> y el valor <span class="math inline">\(z\)</span> para evaluar cuán lejos está un valor observado de lo que esperaríamos bajo la hipótesis nula.</p>
+<ul>
+<li>Para pruebas sobre una media: <span class="math display">\[
+t = \frac{\bar{x} - \mu_0}{\text{Error estándar}}, \quad \text{donde } \mu_0 \text{ es la media bajo } H_0.
+\]</span></li>
+<li>Para pruebas sobre una proporción: <span class="math display">\[
+z = \frac{\hat{p} - p_0}{\text{Error estándar}}, \quad \text{donde } p_0 \text{ es la proporción bajo } H_0.
+\]</span> No olvidar que los valores <span class="math inline">\(z\)</span> y <span class="math inline">\(t\)</span> representan distancia (en errores estándar) con respecto al centro de la distribución.</li>
+</ul>
+<p><strong>V. Decisión Basada en el Nivel de Significancia (</strong><span class="math inline">\(\alpha\)</span><strong>) y el p-valor:</strong></p>
+<p>El contraste de hipótesis, en esencia, usa una distribución nula para comparar los resultados observados con lo que esperaríamos bajo la hipótesis nula. Esto permite hacer una evaluación objetiva, decidiendo si el resultado es suficientemente extremo como para ser significativo o si podría explicarse simplemente por la variabilidad natural en los datos. Por lo que utilizamos nuestro estadístico observado y evaluamos si se encuentra en la zona crítica expresada en valores <span class="math inline">\(t\)</span> o <span class="math inline">\(z\)</span>.</p>
+<p><span class="math display">\[
+  \text{Región de rechazo: } |t| &gt; t_{\text{crítico}} \quad \text{o} \quad |z| &gt; z_{\text{crítico}}
+\]</span></p>
+<p>El valor <span class="math inline">\(t\)</span> o <span class="math inline">\(z\)</span> observado puede estar tanto a la izquierda como a la derecha, por ello su valor absoluto.</p>
+<p>Hay que ser cautelosos ya que con este proceso es que no estamos diciendo que <span class="math inline">\(H_0\)</span> sea absolutamente falsa, sino que el resultado observado en nuestra muestra es <strong>lo suficientemente improbable</strong> como para justificar dudar de ella y considerar que <span class="math inline">\(H_1\)</span> es más plausible.</p>
+<p>Otra forma de evaluar si el resultado es suficientemente extremo es mediante el <strong>p-valor</strong>, que representa la <strong>probabilidad de obtener un estadístico de prueba igual o más extremo que el observado, bajo la suposición de que</strong> <span class="math inline">\(H_0\)</span> <strong>es verdadera</strong>.</p>
+<p>Ambos enfoques (comparar el estadístico con el valor crítico o utilizar el p-valor) son dos caras de la misma moneda y llevan a la misma conclusión. Mientras que la comparación con el valor crítico permite establecer de manera directa si un resultado cae dentro de la región de rechazo, el p-valor ofrece una medida de cuán improbable es el resultado bajo <span class="math inline">\(H_0\)</span>.</p>
+<p>Para tomar una decisión utilizando el p-valor:</p>
+<ul>
+<li>Si <span class="math inline">\(p \leq \alpha\)</span> → Se rechaza <span class="math inline">\(H_0\)</span> ya que el resultado es demasiado improbable bajo la hipótesis nula.<br>
+</li>
+<li>Si <span class="math inline">\(p &gt; \alpha\)</span> → No se rechaza <span class="math inline">\(H_0\)</span> ya que el resultado no es lo suficientemente extremo como para concluir que hay una diferencia significativa.</li>
+</ul>
+<p>Este enfoque es especialmente útil porque <strong>las pruebas estadísticas en R reportan automáticamente el p-valor</strong>.</p>
+</section>
+<section id="contraste-de-hipótesis-para-una-media" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="contraste-de-hipótesis-para-una-media"><span class="header-section-number">6.2.2</span> Contraste de Hipótesis para una Media</h3>
+<p>Flor está investigando si la altura promedio de una población es diferente de 170 cm. Para ello ha recolectado una muestra de 350 individuos y pretende realizar una prueba de hipótesis.</p>
+<p><strong>Planteamiento de Hipótesis:</strong></p>
+<ul>
+<li><p><strong>Hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>): La altura promedio de la población es igual a 170 cm. <span class="math display">\[ H_0: \mu = 170 \]</span></p></li>
+<li><p><strong>Hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>): La altura promedio de la población es diferente de 170 cm. <span class="math display">\[ H_1: \mu \neq 170 \]</span></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'alturas.csv'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(muestra)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 350
+Columns: 1
+$ alturas &lt;dbl&gt; 164.3952, 167.6982, 185.5871, 170.7051, 171.2929, 187.1506, 17…</code></pre>
+</div>
+</div>
+<p>Describe la variable <code>altura</code> de nuestra muestra.</p>
+<p>Tamaño de la muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 350</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(n = 350\)</span></p>
+<p>Media de la muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 170.2981</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\bar{x} = 170.3\)</span></p>
+<p>Desviación estándar de la muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.569994</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(s = 9.57\)</span></p>
+<p>Define un nivel de significancia: <span class="math inline">\(\alpha = 0.05\)</span></p>
+<p><strong>Realización de la Prueba en R</strong></p>
+<p>Para realizar el contraste de hipótesis, utilizamos <code>t.test()</code> en R especificando el valor de la media poblacional bajo la hipótesis nula (<code>mu = 170</code>). El argumento <code>alternative</code> en la función t.test() en R permite definir el tipo de prueba de hipótesis que se realizará. Específicamente, determina si la prueba será bilateral (de dos colas) o unilateral (de una cola).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prueba t para una media con hipótesis de que la media poblacional es 170</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>prueba_t <span class="ot">=</span> <span class="fu">t.test</span>(muestra<span class="sc">$</span>alturas, </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">mu =</span> <span class="dv">170</span>, </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>prueba_t</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  muestra$alturas
+t = 0.58284, df = 349, p-value = 0.5604
+alternative hypothesis: true mean is not equal to 170
+95 percent confidence interval:
+ 169.2921 171.3042
+sample estimates:
+mean of x 
+ 170.2981 </code></pre>
+</div>
+</div>
+<p>Puedes llamar exclusivamente al p-valor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>prueba_t<span class="sc">$</span>p.value</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5603749</code></pre>
+</div>
+</div>
+<p>El p-valor es 0.56</p>
+<p><strong>Interpretación del Resultado</strong></p>
+<p>Si el p-valor es menor que <span class="math inline">\(\alpha = 0.05\)</span>, rechazamos la hipótesis nula y concluye que la altura promedio de la población es significativamente diferente de 170 cm. Si el p-valor es mayor que 0.05, no tendría suficiente evidencia para rechazar la hipótesis nula, y por lo tanto, no podría afirmar que la altura promedio sea diferente de 170 cm.</p>
+<p>Gráficamente:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este caso, la gráfica no muestra el intervalo de confianza de una estimación sino la <strong>distribución nula</strong>, que representa <strong>cómo se distribuirían las medias muestrales si la hipótesis nula fuera cierta</strong>. La línea negra en el centro marca el valor hipotético de la media <span class="math inline">\(\mu_0 = 170\)</span>, mientras que la línea verde indica la media muestral observada <span class="math inline">\(\bar{x} = 170.3\)</span>.</p>
+<p>Las regiones sombreadas en rojo representan las <strong>áreas de rechazo</strong>, es decir, los valores extremos donde, si la media muestral cayera dentro de estos rangos, consideraríamos que hay suficiente evidencia para rechazar <span class="math inline">\(H_0\)</span>. En nuestro ejemplo, los valores de corte para el rechazo están aproximadamente en <strong>168.99 y 171.01 cm</strong>.</p>
+<p>El <strong>p-valor obtenido es 0.5604</strong>, lo que indica que la media muestral observada <strong>no es lo suficientemente extrema</strong> para rechazar la hipótesis nula. En otras palabras, la diferencia entre la media muestral (<span class="math inline">\(\bar{x} = 170.3\)</span>) y la media hipotética (<span class="math inline">\(\mu_0 = 170\)</span>) no es suficientmente significativa para que Flor pueda afirmar que la media poblacional sea diferente de 170 cm.</p>
+</section>
+<section id="contraste-de-hipótesis-para-una-proporción" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="contraste-de-hipótesis-para-una-proporción"><span class="header-section-number">6.2.3</span> Contraste de Hipótesis para una Proporción</h3>
+<p>Ahora, supongamos que está investigando si la proporción de personas que votarían por el partido A en la población es diferente de 50%. Realizamos una encuesta con 350 personas, de las cuales 210 manifestaron que votarían por el partido A.</p>
+<p><strong>Planteamiento de Hipótesis:</strong></p>
+<ul>
+<li><p><strong>Hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>): La proporción de personas que votan por el partido A es igual a 60%. <span class="math display">\[ H_0: p = 0.6 \]</span></p></li>
+<li><p><strong>Hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>): La proporción de personas que votan por el partido A es diferente de 60%. <span class="math display">\[ H_1: p \neq 0.6 \]</span></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>apoyo <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">'apoyo.csv'</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(apoyo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 350
+Columns: 2
+$ id    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 1…
+$ apoyo &lt;chr&gt; "A", "A", "A", "Otro", "A", "Otro", "Otro", "Otro", "Otro", "A",…</code></pre>
+</div>
+</div>
+<p>Describe la variable <code>intencion</code> en su muestra.</p>
+<p>Tamaño de la muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(apoyo<span class="sc">$</span>apoyo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 350</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(n = 350\)</span></p>
+<p><strong>(cambiar por 0.62)</strong></p>
+<p>Proporción de la muestra (porcentaje que votaría por el partido A):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>prop_muestra <span class="ot">=</span> <span class="fu">mean</span>(apoyo<span class="sc">$</span>apoyo <span class="sc">==</span> <span class="st">"A"</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>prop_muestra</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\hat{p} = 0.6\)</span></p>
+<p>Definimos un nivel de significancia: <span class="math inline">\(\alpha = 0.05\)</span></p>
+<p><strong>Realización de la Prueba en R</strong></p>
+<p>Para realizar el contraste de hipótesis para una proporción, usamos <code>prop.test()</code> en R especificando la hipótesis nula de que la proporción poblacional es 0.6.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>prueba_prop <span class="ot">=</span> <span class="fu">prop.test</span>(<span class="dv">210</span>, </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">350</span>, </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">p =</span> <span class="fl">0.5</span>, </span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>prueba_prop</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    1-sample proportions test with continuity correction
+
+data:  210 out of 350, null probability 0.5
+X-squared = 13.603, df = 1, p-value = 0.0002258
+alternative hypothesis: true p is not equal to 0.5
+95 percent confidence interval:
+ 0.5464154 0.6513532
+sample estimates:
+  p 
+0.6 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>prueba_prop<span class="sc">$</span>p.value</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0002258415</code></pre>
+</div>
+</div>
+<p>El p-valor es 0.0002258415</p>
+<p><strong>Interpretación del Resultado</strong></p>
+<p>Si el p-valor es menor que <span class="math inline">\(\alpha = 0.05\)</span>, rechazaría la hipótesis nula y llegaría a la conclusión que la proporción de personas que votarían por el partido A es significativamente diferente de 60%. Si el p-valor es mayor que 0.05, no tendría suficiente evidencia para rechazar la hipótesis nula, por lo que no podría afirmar que la proporción de votantes por el partido A difiera de 60%.</p>
+<p>Gráficamente:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dado que la proporción muestral observada 0.6 está claramente fuera de esta región crítica, el p-valor es extremadamente pequeño (0.000226), lo que indica que es altamente improbable obtener una proporción muestral tan distante de 0.5 solo por azar.</p>
+</section>
+<section id="tipos-de-error" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="tipos-de-error"><span class="header-section-number">6.2.4</span> Tipos de error</h3>
+<p>Debemos ser conscientes de que al realizar una prueba estadística estamos <strong>tomando una decisión</strong>. Al generar una zona de rechazo, estamos marcando un límite que determina si los resultados son o no significativos. Esta decisión es dicotómica (si/no) y, por tanto, tiene sus <strong>limitaciones</strong>. Para empezar, muchas veces la realidad no es tan simple, y otras veces la intrínseca variabilidad aleatoria de nuestra muestra puede llevarnos a cometer errores al momento de tomar la decisión.</p>
+<p>Estos errores <strong>siempre están presentes</strong> y no podemos evadirlos. De hecho, la presencia de uno está <strong>inversamente relacionada</strong> con la presencia del otro. Es decir, debido a la <strong>variabilidad del muestreo</strong>, la decisión que tomemos siempre esta expuesta a determinada probabilidad de cometer un error. Existen <strong>cuatro escenarios posibles</strong>, dos en los que la decisión que se toma es correcta y dos en los que se comete un error. Empecemos con un <strong>ejemplo clásico</strong> primero y luego lo llevamos a nuestro campo.</p>
+<p><strong>Error Tipo I y Error Tipo II</strong></p>
+<p>Imagina que estamos ante un juicio sobre la culpabilidad de una persona. En este juicio:</p>
+<ul>
+<li>Nuestra (<span class="math inline">\(H_0\)</span>) es la opción conservadora: <em>el acusado es inocente</em>.<br>
+</li>
+<li>Nuestra (<span class="math inline">\(H_1\)</span>) es la que propone un cambio y sobre la cual buscamos evidencia: <em>el acusado es culpable</em>.</li>
+</ul>
+<p>Ahora, piensa en las <strong>cuatro posibles situaciones</strong> en las que se puede dar su veredicto:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Decisión tomada</strong></th>
+<th><strong>El acusado es realmente inocente (</strong><span class="math inline">\(H_0\)</span> es verdadera)</th>
+<th><strong>El acusado es realmente culpable (</strong><span class="math inline">\(H_1\)</span> es verdadera)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Declararlo culpable</strong> (rechazar <span class="math inline">\(H_0\)</span>)</td>
+<td><strong>Error Tipo I</strong> (<span class="math inline">\(\alpha\)</span>): Se condena a un inocente.</td>
+<td><strong>Correcto positivo</strong>: Se condena a un culpable. También llamado <strong>Poder</strong> (<span class="math inline">\(1 - \beta\)</span>).</td>
+</tr>
+<tr class="even">
+<td><strong>Declararlo inocente (no rechazar</strong> <span class="math inline">\(H_0\)</span>)</td>
+<td><strong>Correcto negativo</strong>: Se absuelve a un inocente.</td>
+<td><strong>Error Tipo II</strong> (<span class="math inline">\(\beta\)</span>): Se absuelve a un culpable.</td>
+</tr>
+</tbody>
+</table>
+<p>Para desglosar la tabla. En el veredicto pueden suceder <strong>cuatro situaciones distintas</strong>, dependiendo de la decisión tomada y la realidad sobre la culpabilidad del acusado. Estos escenarios tienen su equivalente en estadística cuando realizamos una prueba de hipótesis.</p>
+<ul>
+<li><p><strong>Error Tipo I (</strong><span class="math inline">\(\alpha\)</span>): Se condena a un inocente<br>
+Ocurre cuando se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) siendo esta verdadera. En el juicio, esto significa que el acusado es realmente inocente, pero la decisión tomada es declararlo culpable. En términos estadísticos, es un falso positivo, es decir, se detecta “culpabilidad” cuando en realidad no la hay.</p></li>
+<li><p><strong>Error Tipo II (</strong><span class="math inline">\(\beta\)</span>): Se absuelve a un culpable<br>
+Ocurre cuando no se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) siendo esta falsa. En el juicio, esto significa que el acusado es culpable, pero la decisión tomada es declararlo inocente. En términos estadísticos, es un falso negativo, lo que significa que no se detecta la culpabilidad cuando realmente existe.</p></li>
+<li><p><strong>Decisión correcta: Se condena a un culpable</strong><br>
+Ocurre cuando se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) y esta es falsa. En el juicio, esto significa que el acusado es culpable y la decisión tomada es declararlo culpable. En términos estadísticos, corresponde a un verdadero positivo y su probabilidad se conoce como <strong>poder de la prueba</strong> (<span class="math inline">\(1 - \beta\)</span>). <strong>El poder de la prueba representa la capacidad de la prueba estadística para rechazar correctamente la hipótesis nula cuando realmente es falsa</strong>. Un mayor poder implica una menor probabilidad de cometer un error tipo II.</p></li>
+<li><p><strong>Decisión correcta: Se absuelve a un inocente</strong><br>
+Ocurre cuando no se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) y esta es verdadera. En el juicio, esto significa que el acusado es realmente inocente y la decisión tomada es declararlo inocente. En términos estadísticos, corresponde a un verdadero negativo, lo que implica que no se comete un error.</p></li>
+</ul>
+<p>Existe una relación directa entre los tipos de error y el poder de la prueba. Si reducimos la probabilidad de cometer un error tipo I (<span class="math inline">\(\alpha\)</span>), generalmente aumentamos la probabilidad de cometer un error tipo II (<span class="math inline">\(\beta\)</span>), y viceversa. Recuerda que somos nosotros quienes elegimos el nivel de confianza que queremos tener y que <span class="math inline">\(1 - \text{Nivel de confianza} = \alpha\)</span>. Por lo que el nivel de confianza que escojamos también determina el nivel de error tipo I (<span class="math inline">\(\alpha\)</span>) que estamos dispuestos a aceptar.</p>
+<p>Podemos interpretarlo intuitivamente con nuestro ejemplo del juicio: <strong>establecer un umbral más estricto (mayor nivel de confianza) significa que seremos más exigentes con la evidencia antes de declarar culpable a alguien</strong>. Esto reduce la posibilidad de condenar a un inocente (error tipo I), pero también hace más probable que dejemos libres a algunos culpables (error tipo II). Por otro lado, si relajamos el criterio y aceptamos condenar con menos evidencia, <strong>disminuimos la probabilidad de absolver a culpables (error tipo II), pero corremos el riesgo de castigar a más personas inocentes (error tipo I).</strong></p>
+<p>Vayamos ahora con otro ejemplo. Imagina que en un país se está evaluando la viabilidad de aprobar un referéndum. La ley establece que para que una propuesta sea aprobada, al menos el <strong>60% de los votantes deben estar a favor</strong>. En este contexto, se realiza una encuesta para estimar el nivel de apoyo y determinar si hay suficiente respaldo antes de llevar el referéndum a votación. Aquí planteamos la prueba de hipótesis:</p>
+<ul>
+<li><strong>Hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>): El apoyo a la propuesta es del 60% o menos (<span class="math inline">\(p \leq 0.60\)</span>).<br>
+</li>
+<li><strong>Hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>): El apoyo a la propuesta es mayor al 60% (<span class="math inline">\(p &gt; 0.60\)</span>).</li>
+</ul>
+<p>Dado que queremos demostrar que el apoyo supera el 60%, realizamos <strong>una prueba a la derecha</strong>. Si los resultados de la encuesta proporcionan suficiente evidencia, rechazamos <span class="math inline">\(H_0\)</span> y concluimos que la propuesta tiene el respaldo necesario para ser aprobada en el referéndum.</p>
+<p>Este caso sigue la misma lógica que el juicio: <strong>debemos decidir entre rechazar o no la hipótesis nula, sabiendo que cualquiera de las dos decisiones puede llevarnos a cometer un error.</strong></p>
+<ul>
+<li><strong>Error Tipo I (</strong><span class="math inline">\(\alpha\)</span>): Concluir que la propuesta tiene más del 60% de apoyo cuando en realidad no lo tiene (un falso positivo).<br>
+</li>
+<li><strong>Error Tipo II (</strong><span class="math inline">\(\beta\)</span>): No detectar que la propuesta tiene suficiente apoyo cuando en realidad sí lo tiene (un falso negativo).</li>
+</ul>
+<p>Recuerda que al establecer un nivel de confianza, también definimos <span class="math inline">\(\alpha\)</span> como <span class="math inline">\(1 - \text{Nivel de confianza}\)</span>. En el contraste de hipótesis, <span class="math inline">\(\alpha\)</span> representa el área de rechazo, que puede ubicarse en un solo extremo si la prueba es <strong>unilateral</strong> (a la derecha o a la izquierda) o en ambos extremos si la prueba es <strong>bilateral</strong> (simétrica).</p>
+<p>Es importante entender que <span class="math inline">\(\alpha\)</span> no solo define el área de rechazo, sino que también representa el nivel de error tipo I que estamos dispuestos a aceptar. Es decir, <strong>la probabilidad de rechazar incorrectamente la hipótesis nula cuando en realidad es verdadera</strong>. Cuanto menor sea <span class="math inline">\(\alpha\)</span>, mayor será el nivel de confianza, lo que implica ser más cautelosos antes de rechazar <span class="math inline">\(H_0\)</span>.</p>
+<p>Incluso si la hipótesis nula fuese cierta, la variación aleatoria haría que los valores observados fluctúen alrededor de <span class="math inline">\(H_0\)</span>. Es decir, <strong>no todos los valores serán exactamente del 60%</strong>, pero la mayoría se acercará a este valor, ya sea ligeramente por debajo o por encima, formando la distribución nula que conocemos, aproximadamente normal.</p>
+<p>En nuestro caso, al realizar una prueba a la derecha, el área de rechazo <strong>se encuentra en la cola derecha</strong> de la distribución. Esto significa que, si nuestra proporción estimada cae dentro de esta región, rechazamos <span class="math inline">\(H_0\)</span> y asumimos que el apoyo supera el umbral del 60%. Sin embargo, <strong>esta decisión podría ser errónea si en realidad</strong> <span class="math inline">\(H_0\)</span> es verdadera, y en ese caso estaríamos cometiendo un error tipo I.</p>
+<p>Por tanto, cuanto menor sea <span class="math inline">\(\alpha\)</span>, menor será la zona de rechazo, lo que nos hace <strong>más cautelosos antes de rechazar</strong> <span class="math inline">\(H_0\)</span>. Sin embargo, esta mayor precaución tiene un costo: <strong>aumenta la probabilidad de cometer un error tipo II (</strong><span class="math inline">\(\beta\)</span>), es decir, no detectar que el apoyo realmente supera el 60% cuando en realidad lo hace.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pero esto también significa que <strong>seremos más exigentes con la evidencia</strong>, lo que <strong>aumenta la posibilidad de no detectar un cambio real</strong> (es decir, aumenta la probabilidad de cometer un error tipo II). Si en lugar de asumir que <span class="math inline">\(H_0\)</span> es cierta, definiéramos la distribución bajo <span class="math inline">\(H_1\)</span>, veríamos que hay una nueva curva desplazada a la derecha, correspondiente a la verdadera proporción en caso de que el apoyo realmente supere el 60%.</p>
+<p>Supongamos que, en realidad, la hipótesis alternativa <span class="math inline">\(H_1\)</span> es verdadera, es decir, que el verdadero apoyo a la propuesta sí supera el 60%. Si esto es cierto, entonces la proporción muestral que observamos no debería seguir la distribución bajo <span class="math inline">\(H_0\)</span>, sino una <strong>nueva distribución desplazada hacia la derecha</strong>, que representa los verdaderos valores posibles del apoyo. Esta nueva distribución es la que correspondería a <span class="math inline">\(H_1\)</span>, y nos muestra qué valores esperaríamos si efectivamente el apoyo ha aumentado. En este caso, la media de la muestra ya no estaría centrada en el 60%, sino en un valor mayor.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observa la línea roja en el gráfico. No olvidemos que esta línea marca el <strong>valor crítico</strong>, que define la región de rechazo de <span class="math inline">\(H_0\)</span>. En la distribución azul (<span class="math inline">\(H_0\)</span>), cualquier valor a la derecha de esta línea nos llevaba a rechazar la hipótesis nula, y la zona roja que ves representa <span class="math inline">\(\alpha\)</span> (error tipo I), es decir, los casos en los que rechazamos incorrectamente <span class="math inline">\(H_0\)</span> cuando en realidad era verdadera.</p>
+<p>Sin embargo, cuando consideramos la distribución verde (<span class="math inline">\(H_1\)</span>), <strong>lo que está a la izquierda de esta línea se vuelve importante</strong>. ¿Por qué? Porque ahora sabemos que <span class="math inline">\(H_1\)</span> es la verdadera distribución, y todos los valores que caen a la izquierda del valor crítico <strong>nos llevan a no rechazar</strong> <span class="math inline">\(H_0\)</span> <strong>cuando en realidad deberíamos hacerlo</strong>. Esta zona sombreada en verde en la distribución de <span class="math inline">\(H_1\)</span> es <strong>el error tipo II</strong> (<span class="math inline">\(\beta\)</span>), que representa la probabilidad de no detectar el verdadero aumento en el apoyo cuando en realidad existe.</p>
+<p>Es aquí donde vemos la relación inversa entre <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span>:</p>
+<ul>
+<li><p>Si movemos la línea de decisión hacia la derecha (disminuyendo <span class="math inline">\(\alpha\)</span>), la zona roja de error tipo I se reduce, pero <strong>la zona verde de error tipo II crece</strong>, lo que significa que seremos más propensos a no detectar un aumento real en el apoyo.<br>
+</p></li>
+<li><p>Si movemos la línea hacia la izquierda (aumentando <span class="math inline">\(\alpha\)</span>), seremos más propensos a detectar un cambio cuando lo hay, pero <strong>corremos más riesgo de cometer errores tipo I</strong>.</p></li>
+</ul>
+<p>Ahora, el <strong>poder de la prueba</strong> se define como <span class="math inline">\(1 - \beta\)</span>, es decir, <strong>la probabilidad de detectar correctamente un cambio real cuando este realmente existe</strong>. En nuestro caso, representa la capacidad de la prueba estadística para identificar que el apoyo supera el 60% cuando esto es cierto.</p>
+<p>Si observamos el gráfico, la <strong>curva azul</strong> representa la distribución bajo <span class="math inline">\(H_0\)</span>, donde asumimos que la proporción de apoyo no supera el 60%. La <strong>curva verde</strong>, en cambio, representa la distribución bajo <span class="math inline">\(H_1\)</span>, la cual refleja la verdadera proporción de apoyo si en realidad es mayor al 60%.</p>
+<p>Por tanto, el <strong>poder de la prueba (</strong><span class="math inline">\(1 - \beta\)</span>) es la fracción de la distribución de <span class="math inline">\(H_1\)</span> que cae dentro de la <strong>región de rechazo de</strong> <span class="math inline">\(H_0\)</span>, es decir, la parte de la curva verde que <strong>no está sombreada en verde oscuro</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Parámetros en los tipos de error</strong></p>
+<p>La razón por la cual la desviación estándar, el tamaño de la muestra y el valor observado son tan importantes en un contraste de hipótesis es porque <strong>determinan nuestra capacidad para detectar diferencias reales y afectan la probabilidad de cometer errores tipo I y II</strong>. Estos factores influyen directamente en la forma en que las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se comportan.</p>
+<p>Recuerda que, para inferir sobre una media, la <strong>desviación estándar</strong> (<span class="math inline">\(s\)</span>) representa la variabilidad de los datos en la muestra y está directamente relacionada con el <strong>error estándar</strong> (<span class="math inline">\(SE\)</span>), dado por la fórmula <span class="math inline">\(SE = \frac{s}{\sqrt{n}}\)</span>. Si <span class="math inline">\(\sigma\)</span> es grande, el error estándar también será mayor, lo que implica que las medias muestrales estarán más dispersas, aumentando la superposición entre ambas distribuciones y, en consecuencia, incrementando la probabilidad de cometer un <strong>error tipo II</strong> (<span class="math inline">\(\beta\)</span>). Por el contrario, si <span class="math inline">\(s\)</span> es pequeña, el error estándar se reduce, las medias muestrales estarán más concentradas, lo que facilita la detección de diferencias estadísticamente significativas y <strong>aumenta el poder de la prueba</strong> (<span class="math inline">\(1 - \beta\)</span>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>De la misma forma, el <strong>tamaño de la muestra (</strong><span class="math inline">\(n\)</span>) afecta la precisión de nuestras estimaciones, ya que está inversamente relacionado con el <strong>error estándar (</strong><span class="math inline">\(SE\)</span>) a través de la misma fórmula <span class="math inline">\(SE = \frac{\sigma}{\sqrt{n}}\)</span>. Cuando <span class="math inline">\(n\)</span> es grande, el error estándar disminuye, lo que significa que las medias muestrales estarán menos dispersas, reduciendo la superposición entre las distribuciones de <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>, lo que facilita la detección de diferencias significativas y <strong>disminuye la probabilidad de cometer un error tipo II</strong> (<span class="math inline">\(\beta\)</span>), <strong>aumentando así el poder de la prueba</strong> (<span class="math inline">\(1 - \beta\)</span>). En cambio, si el tamaño de la muestra es pequeño, el error estándar será mayor, lo que provoca que las distribuciones sean más anchas y se solapen más, dificultando la diferenciación entre <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>, aumentando la incertidumbre y reduciendo la capacidad de detectar efectos reales cuando estos existen.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El valor observado, que determina la posición de la media bajo la hipótesis alternativa (<span class="math inline">\(H_1\)</span>) con respecto a la hipótesis nula (<span class="math inline">\(H_0\)</span>) también influye en la probabilidad de cometer errores y en la capacidad de detectar un efecto real. Cuando la diferencia entre <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> es pequeña, las distribuciones se superponen significativamente, lo que dificulta distinguir entre ambas y <strong>aumenta la probabilidad de cometer un error tipo II</strong> (<span class="math inline">\(\beta\)</span>), es decir, no rechazar <span class="math inline">\(H_0\)</span> cuando en realidad <span class="math inline">\(H_1\)</span> es verdadera. En este caso, el poder de la prueba (<span class="math inline">\(1 - \beta\)</span>) es menor, lo que significa que la prueba tiene menos capacidad para detectar cambios reales. En contraste, cuando la media de <span class="math inline">\(H_1\)</span> está más alejada de <span class="math inline">\(H_0\)</span>, la superposición entre las distribuciones disminuye, facilitando la detección de diferencias y <strong>reduciendo la probabilidad de error tipo II</strong>, aumentando así el poder de la prueba.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="inf_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puedes interactuar con los tipos de error en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Correlación</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Ilustración_sin_título-2.png" class="img-fluid figure-img" width="526"></p>
+<figcaption>Entender la relación entre nivel de confianza y los tipos de error es la clave para una interpretación adecuada</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="supuestos-en-la-inferencia" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="supuestos-en-la-inferencia"><span class="header-section-number">6.3</span> Supuestos en la inferencia</h2>
+<p>Todo esto suena muy bien, pero cuidado: <strong>Hacer inferencia estadística implica asumir ciertos supuestos sobre los datos y la forma en que fueron recolectados</strong>. Estos supuestos no son simples formalidades, sino condiciones necesarias para que los métodos sean válidos y los resultados confiables. Si alguno de estos supuestos no se cumple, las conclusiones pueden ser erróneas o, peor aún, engañosas.</p>
+<p><strong>Muestreo aleatorio e independencia de las observaciones</strong></p>
+<p>Cada individuo de la población tiene la misma probabilidad de ser seleccionado en la muestra y que las observaciones son independientes unas de otras, es decir, el valor de una observación no influye en el valor de las demás. La independencia es crucial porque garantiza que los resultados de la muestra sean representativos de la población. Si este supuesto se viola, los resultados pueden estar sesgados, y las inferencias serán poco confiables. Es importante revisar cuidadosamente cómo se recolectaron los datos y verificar que no existan patrones obvios de dependencia entre las observaciones.</p>
+<p><strong>Tamaño suficiente de la muestra</strong></p>
+<p>Recordarás que una muestra pequeña puede introducir una alta variabilidad en las estimaciones, lo que dificulta obtener resultados confiables. El Teorema del Límite Central (TLC), que permite que la distribución muestral sea aproximadamente normal, pero esto es solo es válido cuando el tamaño de la muestra es suficientemente grande. En general, se recomienda que (<span class="math inline">\(n &gt; 30\)</span>) para confiabilidad en análisis basados en el TLC. Para proporciones, cada categoría debe tener al menos cinco observaciones para asegurar una buena aproximación. Si el tamaño de la muestra es insuficiente, los resultados pueden ser demasiado inestables.</p>
+<p><strong>Normalidad de la Distribución</strong></p>
+<p>Inferir sobre la media puede ser complicado en ciertos casos. Si recuerdas el capítulo de estadística descriptiva, la media no siempre es un valor robusto, especialmente cuando la distribución de los datos es asimétrica o presenta valores extremos. En distribuciones con colas pesadas o sesgo pronunciado, la media puede estar fuertemente influenciada por valores atípicos, lo que afecta la validez de los resultados inferenciales. Si bien el Teorema del Límite Central permite aproximar la distribución de los estadísticos a una normal bajo ciertas condiciones, asumir su aplicación sin verificar la naturaleza de los datos puede llevar a estimaciones sesgadas o poco representativas.</p>
+<p>Sin embargo, en la práctica, muchas variables no siguen una distribución normal exacta, lo que puede afectar la validez de los resultados si se aplican pruebas paramétricas sin verificar este supuesto. Para evaluar si los datos cumplen con la normalidad, utilizamos pruebas estadísticas como la <strong>prueba de Shapiro-Wilk</strong>, que nos permite detectar desviaciones significativas respecto a la distribución normal. Esta prueba se basa en la comparación de los datos observados con los valores esperados bajo normalidad y plantea las siguientes hipótesis:</p>
+<ul>
+<li><strong>Hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>): Los datos siguen una distribución normal.<br>
+</li>
+<li><strong>Hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>): Los datos no siguen una distribución normal.</li>
+</ul>
+<p>Si el p-valor resultante de la prueba es menor que 0.05, se rechaza la hipótesis nula, indicando que los datos no presentan una distribución normal. En estos casos, puede ser preferible emplear métodos no paramétricos que no dependan de la normalidad, como pruebas basadas en la mediana o en los cuantiles, lo que permite realizar inferencias más robustas y menos sensibles a distribuciones atípicas.</p>
+<p>Por ejemplo para los datos que recolectó de las alturas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(muestra<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  muestra$alturas
+W = 0.99242, p-value = 0.07237</code></pre>
+</div>
+</div>
+<p>El p-valor es 0.07, por no se rechaza la hipótesis nula. Esto significa que no hay suficiente evidencia para concluir que los datos no son normales. Es decir, la prueba no detecta una desviación significativa de la normalidad, por lo que se puede asumir que la variable alturas sigue una distribución normal.</p>
+<p>Ahora, en caso la prueba de Shapiro-Wilk indica que los datos no siguen una distribución normal, una alternativa es utilizar una prueba no parametrica. La pruebas no paramétricas no asumen normalidad en la distribución de tu muestra y cada prueba tiene una versión no paramétrica (7.6). En el caso de una prueba para una media, la <strong>prueba de los rangos con signo de Wilcoxon</strong> en lugar de la <strong>prueba t</strong>.</p>
+<p>Lo que evalúa es lo mismo:</p>
+<ul>
+<li><strong>Hipótesis nula</strong> (<span class="math inline">\(H_0\)</span>): La mediana de la población es igual a un valor específico (<span class="math inline">\(mu_0\)</span>).<br>
+</li>
+<li><strong>Hipótesis alternativa</strong> (<span class="math inline">\(H_1\)</span>)**: La mediana de la población es diferente de ese valor.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(muestra<span class="sc">$</span>alturas,</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">mu =</span> <span class="dv">170</span>, </span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank test with continuity correction
+
+data:  muestra$alturas
+V = 30851, p-value = 0.9419
+alternative hypothesis: true location is not equal to 170</code></pre>
+</div>
+</div>
+<p>El p-valor indica 0.9419, por lo que es mucho mayor que 0.05 y por tanto no se rechaza la hipótesis nula. Esto significa que no hay suficiente evidencia estadística para concluir que la mediana de las alturas es significativamente diferente de 170 cm.</p>
+<p>A diferencia de la prueba t, que evalúa diferencias en la media, la prueba de Wilcoxon analiza diferencias en la <strong>mediana</strong>, lo que la hace robusta a la presencia de valores atípicos o distribuciones sesgadas (recuerda las propiedad de la mediana el el capítulo 4)</p>
+</section>
+<section id="resumen-del-capítulo" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">6.4</span> Resumen del capítulo</h2>
+<p>La estadística inferencial permite hacer estimaciones y contrastes sobre una población a partir de muestras. Su fundamento es el Teorema del Límite Central, que establece que, al tomar múltiples muestras de una población, la distribución de sus estadísticos se aproximará a una normal conforme el tamaño de la muestra sea suficientemente grande.</p>
+<p>La estimación es un método inferencial que busca aproximar parámetros desconocidos, como la media o la proporción poblacional, utilizando los estadísticos de la muestra. La incertidumbre en la estimación se mide a través del intervalo de confianza, que se construye considerando el error estándar y un valor crítico, determinado por el nivel de confianza elegido. A medida que el tamaño de la muestra aumenta, el error estándar disminuye, lo que genera estimaciones más precisas.</p>
+<p>El contraste de hipótesis permite evaluar afirmaciones sobre una población al comparar una hipótesis nula con una hipótesis alternativa. Para ello, se establece un umbral de significancia (<span class="math inline">\(\alpha\)</span>) que define las regiones de rechazo de <span class="math inline">\(H_0\)</span>. Dependiendo de la dirección del análisis, las pruebas pueden ser bilaterales, cuando buscan detectar diferencias en cualquier sentido, o unilaterales, cuando solo se considera un extremo de la distribución. El resultado de la prueba se evalúa mediante valores críticos y p-valores, que indican la probabilidad de obtener un resultado igual o más extremo bajo la suposición de que <span class="math inline">\(H_0\)</span> es cierta.</p>
+<p>El error tipo I se comete cuando se rechaza una hipótesis nula verdadera, mientras que el error tipo II ocurre cuando no se rechaza una hipótesis nula falsa. Existe una relación inversa entre ambos: reducir la probabilidad de cometer un error tipo I aumenta la probabilidad de cometer un error tipo II y viceversa. La capacidad de detectar un efecto real cuando este existe se conoce como poder de la prueba y depende del tamaño de la muestra, la variabilidad de los datos y la distancia entre <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>. A medida que la muestra es mayor o la diferencia entre la media nula y la alternativa es más grande, el poder de la prueba aumenta y la probabilidad de error tipo II disminuye.</p>
+<p>La validez de estos métodos depende del cumplimiento de ciertos supuestos, como la aleatoriedad en el muestreo y la independencia de las observaciones. Además, la normalidad de los datos es esencial en pruebas paramétricas, por lo que se utiliza la prueba de Shapiro-Wilk para verificar este supuesto. Si los datos no siguen una distribución normal, se pueden emplear métodos no paramétricos, como la prueba de los rangos con signo de Wilcoxon, que no asumen una distribución específica.</p>
+</section>
+<section id="ejercicios" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">6.5</span> Ejercicios</h2>
+<p><strong>1: El Teorema del Límite Central (TLC) es un principio fundamental en la estadística inferencial. Hemos visto que tiene una amplia aplicabilidad en el análisis de muestras y la estimación de parámetros poblacionales. ¿Cuál es la principal utilidad del Teorema del Límite Central?</strong></p>
+<ol type="A">
+<li><p>Permite conocer la distribución de los datos originales.</p></li>
+<li><p>Garantiza que cualquier muestra siga una distribución normal.</p></li>
+<li><p>Explica que la distribución de ciertas estadísticas muestrales tiende a la normalidad conforme aumenta el tamaño de la muestra.</p></li>
+<li><p>Se usa exclusivamente para contrastes de hipótesis.</p></li>
+</ol>
+<p><strong>2: Para estimar la media poblacional con un intervalo de confianza a partir de una única muestra, recordemos que un intervalo se construye tomando la estimación puntual más un margen de error. En este caso, el error estándar depende de la variabilidad dentro de la muestra y el tamaño muestral, y el valor crítico ¿Cuál de las siguientes expresiones es la correcta?</strong></p>
+<ol type="A">
+<li><p><span class="math inline">\(\hat{p} \pm t \times \sqrt{\frac{\hat{p} (1 - \hat{p})}{n}}\)</span></p></li>
+<li><p><span class="math inline">\(\bar{X} \pm t \times \frac{s}{\sqrt{n}}\)</span></p></li>
+<li><p><span class="math inline">\(\sqrt{\frac{s^2}{n}}\)</span></p></li>
+<li><p><span class="math inline">\(\bar{X} \pm z \times \frac{\sigma}{\sqrt{n}}\)</span></p></li>
+</ol>
+<p><strong>3: Si queremos estimar una proporción poblacional con un intervalo de confianza, la fórmula del error estándar es:</strong><br>
+A) <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span><br>
+B) <span class="math inline">\(\sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\)</span><br>
+C) <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span><br>
+D) <span class="math inline">\(\hat{p} \pm z \times \text{EE}\)</span></p>
+<p><strong>4: Cuando construimos un intervalo de confianza, el nivel de confianza refleja la certeza con la que estimamos el parámetro poblacional. Si aumentamos el nivel de confianza de un intervalo (por ejemplo, de 95% a 99%), ¿qué efecto tendrá sobre el intervalo de confianza?</strong></p>
+<ol type="A">
+<li><p>Más estrecho.</p></li>
+<li><p>Más amplio.</p></li>
+<li><p>No cambiará.</p></li>
+<li><p>Dependerá de la desviación estándar.</p></li>
+</ol>
+<p><strong>5: ¿Cuál de las siguientes afirmaciones es correcta sobre el valor crítico</strong> <span class="math inline">\(t\)</span> <strong>en comparación con el valor crítico</strong> <span class="math inline">\(z\)</span>?<br>
+A) El valor <span class="math inline">\(t\)</span> es mayor que <span class="math inline">\(z\)</span> cuando la muestra es pequeña.<br>
+B) El valor <span class="math inline">\(t\)</span> siempre es menor que <span class="math inline">\(z\)</span>.<br>
+C) Los valores <span class="math inline">\(t\)</span> y <span class="math inline">\(z\)</span> son idénticos si <span class="math inline">\(n &lt; 30\)</span>.<br>
+D) El valor <span class="math inline">\(t\)</span> solo se usa para pruebas de proporciones.</p>
+<p><strong>6: En una prueba de hipótesis bilateral con un nivel de significancia del 5%, el área total de las colas de la distribución es 0.05, lo que implica que cada cola contiene un 2.5% de la probabilidad. Si la muestra es pequeña y se usa la distribución</strong> <span class="math inline">\(t\)</span> <strong>con un determinado número de grados de libertad, ¿cuál sería el valor crítico</strong> <span class="math inline">\(t\)</span> <strong>aproximado?</strong></p>
+<ol type="A">
+<li><p>1.645</p></li>
+<li><p>1.96</p></li>
+<li><p>2.576</p></li>
+<li><p>Depende de los grados de libertad</p></li>
+</ol>
+<p><strong>7: En el contexto de un contraste de hipótesis, ¿qué representa el p-valor?</strong></p>
+<ol type="A">
+<li><p>La probabilidad de que <span class="math inline">\(H_0\)</span> sea verdadera, dado el resultado observado.</p></li>
+<li><p>La media de la distribución muestral bajo la hipótesis nula.</p></li>
+<li><p>El valor crítico de la prueba de hipótesis, que determina el umbral de rechazo.</p></li>
+<li><p>La probabilidad de obtener un resultado tan extremo como el observado, dado que <span class="math inline">\(H_0\)</span> sea cierta.</p></li>
+</ol>
+<p><strong>8: Si el p-valor obtenido en una prueba de hipótesis bilateral es 0.07 y usamos un nivel de significancia de 0.05, la decisión correcta sería:</strong><br>
+A) Rechazar <span class="math inline">\(H_0\)</span>.<br>
+B) No rechazar <span class="math inline">\(H_0\)</span>.<br>
+C) El p-valor se acerca a 0.05 por lo que Rechazar <span class="math inline">\(H_0\)</span>. D) No se puede tomar una decisión sin conocer la desviación estándar.</p>
+<p><strong>9: Si cometemos un Error Tipo I, significa que:</strong></p>
+<ol type="A">
+<li><p>Rechazamos <span class="math inline">\(H_0\)</span> cuando en realidad <span class="math inline">\(H_0\)</span> es verdadera.</p></li>
+<li><p>No rechazamos <span class="math inline">\(H_0\)</span> cuando en realidad <span class="math inline">\(H_0\)</span> es falsa.</p></li>
+<li><p>El p-valor es mayor que <span class="math inline">\(\alpha\)</span>.</p></li>
+<li><p>Nuestro intervalo de confianza es demasiado estrecho.</p></li>
+</ol>
+<p><strong>10: Si aumentamos el tamaño de la muestra en un contraste de hipótesis, ¿qué sucede con la probabilidad de cometer un Error Tipo II</strong> (<span class="math inline">\(\beta\)</span>)?<br>
+A) Aumenta.<br>
+B) Disminuye.<br>
+C) Se mantiene igual.<br>
+D) Depende del nivel de confianza.</p>
+<p><strong>11: Flor está evaluando si un programa de reciclaje en una ciudad ha tenido un impacto en la cantidad promedio de basura reciclada por hogar. El programa fue implementado hace 6 meses y está interesada en comparar la cantidad promedio de basura reciclada antes y después de su implementación. Si el valor</strong> <span class="math inline">\(p\)</span> o<strong>btenido en la prueba es</strong> <span class="math inline">\(0.04\)</span> <strong>y el nivel de significancia es</strong> <span class="math inline">\(\alpha = 0.05\)</span>, <strong>¿cuál es la interpretación correcta?</strong></p>
+<ol type="A">
+<li><p>No hay evidencia suficiente para rechazar la hipótesis nula, lo que sugiere que el programa no ha tenido impacto.</p></li>
+<li><p>Se rechaza la hipótesis nula, lo que sugiere que el programa ha tenido un impacto significativo en la cantidad de basura reciclada.</p></li>
+<li><p>El valor <span class="math inline">\(p\)</span> indica que la diferencia es irrelevante y no afecta el resultado de la prueba.</p></li>
+<li><p>No se puede concluir nada porque no se conoce el tamaño de la muestra.</p></li>
+</ol>
+<p><strong>12: En un estudio sobre el consumo de energía en hogares de una ciudad, un investigador quiere saber si la proporción de hogares que utilizan energía renovable es diferente de un</strong> 30%. <strong>Después de aplicar una prueba de hipótesis sobre una única proporción, obtiene un valor</strong> <span class="math inline">\(p\)</span> de <span class="math inline">\(0.03\)</span> <strong>y el nivel de significancia es</strong> <span class="math inline">\(\alpha = 0.05\)</span>. <strong>¿Cuál es la conclusión correcta?</strong></p>
+<ol type="A">
+<li><p>No hay evidencia suficiente para rechazar la hipótesis nula, por lo que la proporción de hogares con energía renovable es igual al 30%.</p></li>
+<li><p>Se rechaza la hipótesis nula, lo que indica que la proporción de hogares con energía renovable es significativamente diferente de 30%.</p></li>
+<li><p>El valor <span class="math inline">\(p\)</span> no es suficientemente pequeño como para rechazar la hipótesis nula.</p></li>
+<li><p>La hipótesis nula no puede ser rechazada sin realizar más pruebas estadísticas.</p></li>
+</ol>
+<p><strong>13: Un economista está evaluando el impacto de un cambio en la política fiscal sobre el ingreso promedio de los hogares en un país. El economista realiza una prueba de hipótesis sobre una media para determinar si el ingreso promedio ha cambiado significativamente después de la reforma fiscal. Si el valor</strong> <span class="math inline">\(p\)</span> <strong>obtenido es</strong> <span class="math inline">\(0.06\)</span> <strong>y el nivel de significancia es</strong> <span class="math inline">\(\alpha = 0.05\)</span>, <strong>¿cuál es la conclusión correcta?</strong></p>
+<ol type="A">
+<li><p>Se rechaza la hipótesis nula, indicando que el cambio en la política fiscal ha tenido un impacto significativo.</p></li>
+<li><p>El valor <span class="math inline">\(p\)</span> indica que el impacto es extremadamente relevante y debe considerarse.</p></li>
+<li><p>Se concluye que el cambio en la política fiscal no ha tenido impacto en los ingresos promedio.</p></li>
+<li><p>No se rechaza la hipótesis nula, ya que el valor <span class="math inline">\(p\)</span> es mayor que el nivel de significancia.</p></li>
+</ol>
+<p><strong>14: Un politólogo está estudiando si el porcentaje de votantes en favor de un candidato presidencial es mayor al 40%. El investigador realiza una prueba de hipótesis sobre una proporción. ¿Cuál es el planteamiento adecuado para las hipótesis nula y alternativa? El nivel de significancia es</strong> <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol type="A">
+<li><p><span class="math inline">\(H_0\)</span>: La proporción de votantes a favor del candidato es menor o igual al 40%. &nbsp; <span class="math inline">\(H_a\)</span>: La proporción de votantes a favor del candidato es mayor al 40%.</p></li>
+<li><p><span class="math inline">\(H_0\)</span>: La proporción de votantes a favor del candidato es exactamente el 40%. &nbsp; <span class="math inline">\(H_a\)</span>: La proporción de votantes a favor del candidato es mayor al 40%.</p></li>
+<li><p><span class="math inline">\(H_0\)</span>: La proporción de votantes a favor del candidato es igual al 40%. &nbsp; <span class="math inline">\(H_a\)</span>: La proporción de votantes a favor del candidato es diferente al 40%.</p></li>
+<li><p><span class="math inline">\(H_0\)</span>: La proporción de votantes a favor del candidato es mayor al 40%. &nbsp; <span class="math inline">\(H_a\)</span>: La proporción de votantes a favor del candidato es menor o igual al 40%.</p></li>
+</ol>
+<p><strong>15: Un sociólogo está investigando si la media de horas dedicadas al trabajo voluntario por mes ha cambiado significativamente después de la implementación de una nueva ley en una comunidad. Para ello, realiza una prueba</strong> <span class="math inline">\(t\)</span> <strong>sobre una única media con los datos obtenidos antes y después de la implementación de la ley. Si el valor</strong> <span class="math inline">\(p\)</span> <strong>obtenido es</strong> <span class="math inline">\(0.04\)</span> <strong>y el nivel de significancia es</strong> <span class="math inline">\(\alpha = 0.05\)</span>, <strong>¿cuál es la interpretación correcta?</strong></p>
+<ol type="A">
+<li><p>No se puede rechazar la hipótesis nula, ya que el valor <span class="math inline">\(p\)</span> es mayor que el nivel de significancia.</p></li>
+<li><p>Se rechaza la hipótesis nula, lo que sugiere que el cambio en la ley ha tenido un impacto significativo en las horas dedicadas al trabajo voluntario.</p></li>
+<li><p>El valor <span class="math inline">\(p\)</span> indica que el resultado no es estadísticamente significativo, por lo que no hay evidencia suficiente para rechazar la hipótesis nula.</p></li>
+<li><p>La hipótesis nula no puede ser rechazada sin realizar más pruebas estadísticas.</p></li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-casella2024inference" class="csl-entry" role="listitem">
+Casella, George, y Roger W. Berger. 2024. <em>Statistical Inference</em>. CRC Press.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<button id="toc-toggle-btn" aria-label="Abrir contenido">Contenido ▤</button>
+<script>
+  (function () {
+    const btn = document.getElementById('toc-toggle-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      document.body.classList.toggle('toc-open');
+    });
+    // Cierra el drawer al tocar fuera del panel (móviles)
+    document.addEventListener('click', function (e) {
+      const panel = document.getElementById('quarto-margin-sidebar');
+      if (!panel) return;
+      const clickedInside = panel.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside && document.body.classList.contains('toc-open')) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./prob.html" class="pagination-link" aria-label="Probabilidad">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./comp.html" class="pagination-link" aria-label="Comparando grupos">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparando grupos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Probabilidad – R para el análisis de datos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./inf.html" rel="next">
+<link href="./statdesc.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R para el análisis de datos</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agradecimientos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introducción</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Estructura del libro</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fundamentos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Fundamentos de la Estadística</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fundamentosR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos de R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./integración.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Integración</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statdesc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estadística descriptiva</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prob.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estadística inferencial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./comp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Comparando grupos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regresión</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glosariofunciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Glosario de funciones y operaciones útiles en R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solucionario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solucionario</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bilbiografía</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#fundamentos-de-probabilidad" id="toc-fundamentos-de-probabilidad" class="nav-link active" data-scroll-target="#fundamentos-de-probabilidad"><span class="header-section-number">5.1</span> Fundamentos de Probabilidad</a>
+  <ul class="collapse">
+  <li><a href="#la-probabilidad-como-frecuencia-relativa-a-largo-plazo" id="toc-la-probabilidad-como-frecuencia-relativa-a-largo-plazo" class="nav-link" data-scroll-target="#la-probabilidad-como-frecuencia-relativa-a-largo-plazo"><span class="header-section-number">5.1.1</span> La probabilidad como frecuencia relativa a largo plazo</a></li>
+  </ul></li>
+  <li><a href="#distribuciones-de-probabilidad" id="toc-distribuciones-de-probabilidad" class="nav-link" data-scroll-target="#distribuciones-de-probabilidad"><span class="header-section-number">5.2</span> Distribuciones de probabilidad</a>
+  <ul class="collapse">
+  <li><a href="#distribución-binomial" id="toc-distribución-binomial" class="nav-link" data-scroll-target="#distribución-binomial"><span class="header-section-number">5.2.1</span> Distribución Binomial</a></li>
+  <li><a href="#distribución-de-poisson" id="toc-distribución-de-poisson" class="nav-link" data-scroll-target="#distribución-de-poisson"><span class="header-section-number">5.2.2</span> Distribución de Poisson</a></li>
+  <li><a href="#distribución-normal" id="toc-distribución-normal" class="nav-link" data-scroll-target="#distribución-normal"><span class="header-section-number">5.2.3</span> Distribución Normal</a></li>
+  </ul></li>
+  <li><a href="#la-distribución-normal-en-detalle" id="toc-la-distribución-normal-en-detalle" class="nav-link" data-scroll-target="#la-distribución-normal-en-detalle"><span class="header-section-number">5.3</span> La distribución normal en detalle</a></li>
+  <li><a href="#funciones-para-distribuciones-de-probabilidad" id="toc-funciones-para-distribuciones-de-probabilidad" class="nav-link" data-scroll-target="#funciones-para-distribuciones-de-probabilidad"><span class="header-section-number">5.4</span> Funciones para distribuciones de probabilidad</a></li>
+  <li><a href="#probabilidades-y-valor-z" id="toc-probabilidades-y-valor-z" class="nav-link" data-scroll-target="#probabilidades-y-valor-z"><span class="header-section-number">5.5</span> Probabilidades y valor z</a></li>
+  <li><a href="#distribución-muestral" id="toc-distribución-muestral" class="nav-link" data-scroll-target="#distribución-muestral"><span class="header-section-number">5.6</span> Distribución muestral</a></li>
+  <li><a href="#teorema-del-límite-central" id="toc-teorema-del-límite-central" class="nav-link" data-scroll-target="#teorema-del-límite-central"><span class="header-section-number">5.7</span> Teorema del límite central</a></li>
+  <li><a href="#flor-y-el-uso-de-las-redes-sociales" id="toc-flor-y-el-uso-de-las-redes-sociales" class="nav-link" data-scroll-target="#flor-y-el-uso-de-las-redes-sociales"><span class="header-section-number">5.8</span> Flor y el uso de las redes sociales</a></li>
+  <li><a href="#resumen-del-capítulo" id="toc-resumen-del-capítulo" class="nav-link" data-scroll-target="#resumen-del-capítulo"><span class="header-section-number">5.9</span> Resumen del capítulo</a></li>
+  <li><a href="#ejercicios" id="toc-ejercicios" class="nav-link" data-scroll-target="#ejercicios"><span class="header-section-number">5.10</span> Ejercicios</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probabilidad</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Luego de abordar los elementos descriptivos del análisis de datos, el siguiente paso es introducir la inferencia estadística. Este enfoque permite extender los resultados obtenidos en una muestra hacia afirmaciones más generales sobre una población.</p>
+<p>Aunque suele estar presente en estudios de opinión pública o análisis de tendencias electorales, la <strong>inferencia estadística</strong> cumple un rol fundamental en una amplia variedad de contextos empíricos. En áreas como la educación, la salud o el desarrollo social, permite identificar patrones consistentes y contrastar hipótesis sobre desigualdades, brechas o dinámicas estructurales. Por ejemplo, si una muestra aleatoria de estudiantes de secundaria revela una diferencia significativa en el rendimiento entre zonas rurales y urbanas, una prueba estadística permite evaluar si esa diferencia es suficientemente consistente como para generalizarla al sistema educativo. De ser así, el hallazgo podría respaldar decisiones de política pública, como priorizar intervenciones específicas en determinadas regiones.</p>
+<p><br>
+En este capítulo, sin embargo, no aplicaremos directamente técnicas inferenciales, sino que nos detendremos en los <strong>fundamentos conceptuales y matemáticos</strong> que las hacen posibles. Estos elementos son esenciales para aplicar con criterio las herramientas estadísticas que exploraremos más adelante (y evitar el uso automático de funciones en R sin comprender plenamente su significado).</p>
+<section id="fundamentos-de-probabilidad" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="fundamentos-de-probabilidad"><span class="header-section-number">5.1</span> Fundamentos de Probabilidad</h2>
+<p>Para analizar datos con criterio estadístico y formular conclusiones que vayan más allá de lo observado, es fundamental comprender qué implica hablar de <strong>probabilidad</strong>. Aunque su origen precede al desarrollo formal de la estadística, la probabilidad se ha convertido en uno de los pilares fundamentales para interpretar fenómenos aleatorios, cuantificar la incertidumbre y construir modelos que permitan realizar inferencias válidas a partir de una muestra.</p>
+<p>En su libro <em>Probability, Statistics, and Data: A Fresh Approach Using R</em>, <span class="citation" data-cites="speegle2021probability">Speegle y Clair (<a href="references.html#ref-speegle2021probability" role="doc-biblioref">2021</a>)</span> proponen una definición precisa:</p>
+<blockquote class="blockquote">
+<p>“La probabilidad de un evento es un número entre cero y uno que describe la proporción de veces que se espera que dicho evento ocurra.”</p>
+</blockquote>
+<p>Este enfoque es frecuentista, es decir: entiende la probabilidad como un valor que resume lo que se espera en el largo plazo si un experimento se repite muchas veces.</p>
+<p>De ahí que presenten tres <strong>axiomas fundamentales</strong> que toda probabilidad válida debe cumplir:</p>
+<ol type="1">
+<li><strong>No negatividad</strong>: Para cualquier evento <span class="math inline">\(E\)</span>, su probabilidad es mayor o igual que cero: <span class="math inline">\(P(E) \geq 0\)</span>.</li>
+<li><strong>Totalidad</strong>: La probabilidad del espacio muestral completo es uno: <span class="math inline">\(P(S) = 1\)</span>.</li>
+<li><strong>Aditividad</strong>: Si <span class="math inline">\(A_1, A_2, \dots\)</span> son eventos mutuamente excluyentes (es decir, no pueden ocurrir al mismo tiempo), entonces la probabilidad de su unión es la suma de sus probabilidades individuales:<br>
+<span class="math display">\[P\left( \bigcup_{n=1}^{\infty} A_n \right) = \sum_{n=1}^{\infty} P(A_n)\]</span></li>
+</ol>
+<p>Sin embargo, en un texto introductorio como este, lo más valioso es adoptar una forma intuitiva y operativa de pensar la probabilidad que sirva como base. En ese sentido, sugiero partamos de una noción algo más accesible: la <strong>probabilidad como proporción</strong>. Esta idea sugiere que hablar de la probabilidad de un evento es cuantificar cuán probable es su ocurrencia, comparada con todos los resultados posibles. Al lanzar una moneda, la probabilidad de obtener sello es de <span class="math inline">\(\frac{1}{2}\)</span>, lo que equivale a 0.5 o al 50%. Esta proporción puede visualizarse como una fracción de veces que se espera que ocurra el evento a lo largo de múltiples repeticiones del experimento.</p>
+<p>Podemos visualizar la probabilidad de este evento como una <strong>barra</strong> que representa el resultado del la moneda que nos interesa, en relación con el total de resultados posibles.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ambas barras representan la <strong>proporción</strong> del total de posibles resultados. En términos gráficos, la <strong>altura de la barra</strong> muestra la probabilidad de que ocurra cada resultado.</p>
+<p>Aquí es donde el concepto de <strong>área</strong> tiene relevancia. La probabilidad de cada número puede visualizarse como el <strong>área</strong> de la barra en un gráfico, en comparación con el área total que representan todos los posibles resultados. Para la moneda, la probabilidad de obtener un sello es <span class="math inline">\(\frac{1}{2}\)</span>, lo que significa que la barra para el resultado sello ocupa la mitad del área total del gráfico.</p>
+<p>Pero, ¿qué pasa cuando no estamos tratando con eventos discretos, como el lanzamiento de una modena, sino con variables que pueden tomar un <strong>rango infinito</strong> de valores? Por ejemplo, si quisiéramos saber la probabilidad de que la altura de una persona esté entre 160 cm y 170 cm, no podemos representar esta situación con barras, porque los valores posibles son infinitos (puede haber alturas de 160.1 cm, 160.2 cm, etc.).</p>
+<p>En estos casos, la probabilidad la representamos con una <strong>curva</strong>. Al igual que con las barras, el <strong>área bajo la curva</strong> nos muestra la probabilidad, pero en este caso, la probabilidad se calcula para un <strong>rango de valores</strong>. La idea sigue siendo la misma: la probabilidad es el área, pero ahora estamos mirando el área bajo una curva en lugar de barras separadas.</p>
+<p>Por ejemplo, si estamos interesados en la probabilidad de que una altura esté entre 160 cm y 170 cm, esa probabilidad sería el área bajo la curva entre esos dos puntos. Mientras que en el caso de las barras sabíamos exactamente cuántos resultados posibles había, en el caso de la curva no tenemos un número fijo de resultados, sino un rango, y el área debajo de ese rango nos da la probabilidad de que el valor caiga ahí.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="la-probabilidad-como-frecuencia-relativa-a-largo-plazo" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="la-probabilidad-como-frecuencia-relativa-a-largo-plazo"><span class="header-section-number">5.1.1</span> La probabilidad como frecuencia relativa a largo plazo</h3>
+<p>En situaciones sencillas, el proceso es completamente conocido y la probabilidad puede estimarse de forma intuitiva. Imaginemos un escenario básico: un dado de seis caras numeradas del 1 al 6, y el objetivo es calcular la probabilidad de obtener un 3 al lanzarlo.</p>
+<p>Sabemos que el dado tiene seis caras y que cada una tiene la misma probabilidad de aparecer, asumiendo que no está cargado. Si definimos el evento de interés como “obtener un 3”, entonces existe <strong>una única cara favorable</strong> entre <strong>seis posibles resultados</strong>.</p>
+<p>Por tanto, la probabilidad de obtener un 3 en un solo lanzamiento de dado se puede calcular como:</p>
+<p><span class="math display">\[
+P(\text{Sacar un 3}) = \frac{\text{Número de resultados favorables}}{\text{Número total de resultados posibles}} = \frac{1}{6}
+\]</span></p>
+<p>Es decir</p>
+<p><span class="math display">\[P(3) = \frac{1}{6} \approx 0.1667\]</span></p>
+<p>Esto significa que, sin necesidad de hacer un solo lanzamiento, <strong>ya sabemos</strong> que la probabilidad de sacar un 3 es <span class="math inline">\(\frac{1}{6}\)</span> o aproximadamente 16.67%.</p>
+<p>Lo importante aquí es entender que estamos trabajando con un sistema en el que todas las posibles opciones son igualmente probables y están perfectamente definidas. En el caso de un dado de seis caras, ya <strong>conocemos todos los posibles resultados</strong> y <strong>sabemos que no hay ninguna razón para que una cara sea más probable que otra</strong>. De la misma forma se puede aplicar a otros casos como:</p>
+<ul>
+<li><p>Si lanzas una moneda, hay dos posibles resultados (cara o cruz), por lo que la probabilidad de obtener “cara” es <span class="math inline">\(\frac{1}{2}\)</span>.</p></li>
+<li><p>Si sacas una carta de una baraja estándar de 52 cartas, la probabilidad de obtener un as es <span class="math inline">\(\frac{4}{52}\)</span>, porque hay 4 ases en total entre las 52 cartas posibles.</p></li>
+</ul>
+<p>En algunos casos, calcular la probabilidad teórica puede ser bastante sencillo, <strong>siempre que sepamos con certeza cuáles son todos los resultados posibles y que estos tengan probabilidades conocidas o igual de probables</strong>.</p>
+<p>Volviendo al ejemplo de los dados, sabemos que tiene seis caras y que cada una de ellas tiene la misma probabilidad de salir. Esto significa que, en promedio, uno de cada seis lanzamientos del dado debería resultar en un 3. Esta es la expectativa teórica que calculamos partiendo del hecho de que conocemos el proceso fisico en su totalidad.</p>
+<p>Sin embargo, en la vida real, y especialmente en áreas como las ciencias sociales, muchas veces no tenemos claro cuáles son todos los posibles resultados o no sabemos con precisión sus probabilidades. En estos casos, no podemos calcular directamente la probabilidad teórica porque nos falta información. Debemos encontrar la forma de aproximarnos a ella con la <strong>probabilidad experimental</strong></p>
+<p>Imagina que tienes dudas sobre si el dado es justo o está trucado. Tal vez sospechas que el dado está manipulado para que el 3 salga con más frecuencia que los otros números. En este caso, no puedes simplemente asumir que la probabilidad de sacar un 3 es <span class="math inline">\(\frac{1}{6}\)</span>, porque no sabes con certeza si todas las caras tienen la misma probabilidad de aparecer. Aquí, la <strong>probabilidad teórica</strong> se vuelve difícil de calcular, porque no conoces las probabilidades exactas de cada cara. <strong>Podemos realizar un experimento</strong> y usar la <strong>probabilidad experimental</strong> para averiguar si el dado realmente está trucado o no.</p>
+<p>La <strong>probabilidad experimental</strong> te permite aproximar lo que podría ser la probabilidad real observando los resultados de muchos lanzamientos del dado. Si lanzas el dado una sola vez y obtienes un 3, no puedes concluir nada. Pero, si lanzas el dado muchas veces, puedes empezar a contar cuántas veces sale cada número y <strong>aproximar</strong> la probabilidad de que salga un 3.</p>
+<p>Podemos empezar con algo sencillo: <strong>simular 10 lanzamientos</strong> de un dado y ver cuántas veces sale un 3. Para hacerlo, podemos utilizar la función <code>sample</code>, que nos permite generar valores aleatorios dentro de un rango. Usamos <code>set.seed()</code> para <strong>establecer un punto de partida fijo en la generación de números aleatorios</strong>, de no poner esto se generarían nuevos números aleatorios cada vez que corramos el código. Y finalmente usamos <code>replace = TRUE</code> para permitir que cada lanzamiento del dado sea independiente, permitiendo que cada número (1 a 6) pueda repetirse, tal como ocurre al lanzar un dado real en cada tirada.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fijamos una semilla para asegurar que los resultados sean reproducibles</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulamos 10 lanzamientos de un dado</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>lanzamientos_10 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>lanzamientos_10</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 3 6 3 2 2 6 3 5 4 6</code></pre>
+</div>
+</div>
+<p>Podemos ver los resultados de los 10 lanzamientos. Por ejemplo, si 3 salió tres veces, podemos calcular la <strong>probabilidad experimental</strong> de obtener un 3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos la probabilidad experimental de obtener un 3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(lanzamientos_10 <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3</code></pre>
+</div>
+</div>
+<p>Esto nos da la proporción de veces que apareció el 3, que es nuestra <strong>probabilidad experimental</strong> para esta simulación con 10 lanzamientos.</p>
+<p>Incluso podemos graficar los resultados en un gráfico de barras usando <code>ggplot2</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos los resultados a un data frame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_10 <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(lanzamientos_10))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_10, <span class="fu">aes</span>(<span class="at">x =</span> lanzamientos_10, <span class="at">y =</span> Freq)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Número del dado"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si el dado no estuviese trucado, esperaríamos que todas las barras fueran más o menos del mismo tamaño, lo que significaría que todos los números del dado tienen la misma probabilidad de salir. Sin embargo, con solo 10 lanzamientos, es probable que algunas barras sean más altas que otras debido a la variabilidad que puede surgir con pocas muestras.</p>
+<p>Ahora probemos lanzando el dado <strong>100 veces</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulamos 100 lanzamientos de un dado</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lanzamientos_100 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos la probabilidad experimental de obtener un 3</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(lanzamientos_100 <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">100</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.15</code></pre>
+</div>
+</div>
+<p>Podemos observar que la probabilidad experimental se empieza a cercar a la teórica. Vamos a graficar estos resultados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos los resultados a un data frame</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_100 <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(lanzamientos_100))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos los resultados</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_100, <span class="fu">aes</span>(<span class="at">x =</span> lanzamientos_100, <span class="at">y =</span> Freq)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Número del dado"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con 100 lanzamientos, los resultados son más consistentes. Aunque todavía puede haber algo de variación, la frecuencia de aparición de cada número tiende a ser más uniforme y la probabilidad experimental de obtener un 3 debería aproximarse más <span class="math inline">\(0.1667\)</span>, la probabilidad teórica.</p>
+<p>Vamos a realizar <strong>10,000 lanzamientos</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulamos 10,000 lanzamientos de un dado</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lanzamientos_10000 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos la probabilidad experimental de obtener un 3</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(lanzamientos_10000 <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">/</span> <span class="dv">10000</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1669</code></pre>
+</div>
+</div>
+<p>En este punto, la probabilidad experimental de obtener un 3 debería estar cerca de <span class="math inline">\(\frac{1}{6}\)</span> o aproximadamente <span class="math inline">\(0.1667\)</span> y las barras más uniformes. Graficamos nuevamente los resultados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertimos los resultados a un data frame</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_10000 <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(lanzamientos_10000))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficamos los resultados</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_10000, <span class="fu">aes</span>(<span class="at">x =</span> lanzamientos_10000, <span class="at">y =</span> Freq)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Número del dado"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Con 10,000 lanzamientos, la variabilidad aleatoria debería haberse reducido considerablemente, y las frecuencias de aparición de cada número deberían estar bastante equilibradas. La probabilidad experimental de obtener un 3 ahora debería acercarse mucho a la probabilidad teórica de <span class="math inline">\(\frac{1}{6}\)</span>.</p>
+<p><strong>Analicemos los resultados:</strong></p>
+<ul>
+<li><strong>Pocos lanzamientos (10)</strong>: La probabilidad experimental puede variar bastante debido a que el número de lanzamientos es pequeño y el azar tiene un mayor impacto. En este caso, podríamos ver que algunos números aparecen con más frecuencia de lo esperado simplemente por casualidad.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Lanzamientos moderados (100)</strong>: Con más lanzamientos, la probabilidad experimental comienza a estabilizarse y se acerca más a la probabilidad teórica, aunque todavía puede haber cierta variación.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Muchos lanzamientos (10,000)</strong>: Con un gran número de lanzamientos, la probabilidad experimental tiende a estabilizarse muy cerca de la probabilidad teórica de <span class="math inline">\(\frac{1}{6}\)</span>.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La <strong>función principal de la probabilidad experimental</strong> es <strong>aproximar la probabilidad teórica</strong> cuando no estamos seguros de cuál es, o cuando no podemos asumir que todos los resultados son igualmente probables. En este ejemplo, como no estábamos seguros de si el dado estaba trucado o no, usamos los resultados de las simulaciones (los lanzamientos del dado) para aproximar la probabilidad real de obtener un 3.</p>
+<p>La probabilidad experimental te da una <strong>estimación</strong> basada en la observación de lo que ocurre en el mundo real. <strong>Cuantas más veces repitas el experimento</strong>, más precisa será la aproximación de la probabilidad teórica verdadera. Este proceso se guía por la <strong>Ley de los Grandes Números</strong>, que establece que mientras más veces realizas un experimento, más cerca estarán los resultados observados de las probabilidades verdaderas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.statology.org/law-of-large-numbers/"><img src="images/clipboard-862067606.png" class="img-fluid figure-img" alt="Extraído de: https://www.statology.org/law-of-large-numbers/"></a></p>
+<figcaption>Extraído de: https://www.statology.org/law-of-large-numbers/</figcaption>
+</figure>
+</div>
+<p>En otras palabras, <strong>la precisión de la estimación depende del tamaño de la muestra</strong> (el número de lanzamientos). A medida que el tamaño de la muestra aumenta, es decir, lanzamos el dado más veces, la probabilidad experimental se acerca más a la probabilidad teórica. Esto no solo mejora la precisión de nuestra estimación, sino que también aumenta nuestra confianza en que la probabilidad observada es cercana a la real. Un tamaño de muestra mayor reduce la variabilidad y nos permite hacer inferencias más seguras sobre la probabilidad verdadera, ya que la incertidumbre disminuye con más datos. Comprender esto es fundamental para aventurarnos al núcleo de los siguientes capítulos sobre la estadística inferencial, donde usamos una muestra para estimar parámetros desconocidos de una población más grande.</p>
+<p>Puedes interactuar con este concepto en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Ley de los grandes números</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="distribuciones-de-probabilidad" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="distribuciones-de-probabilidad"><span class="header-section-number">5.2</span> Distribuciones de probabilidad</h2>
+<p>A medida que realizamos estos lanzamientos del dado y analizamos los resultados, hemos visto que los resultados pueden variar. Sin embargo, con suficientes lanzamientos, empezamos a notar ciertos patrones. En el caso de los dados, por ejemplo, la distribución teórica es <strong>uniforme</strong>, lo que significa que cada evento (cada cara del dado) tiene la misma probabilidad de ocurrir. Esto es lo que esperamos en un dado justo: que a lo largo de muchos lanzamientos, cada número salga aproximadamente la misma cantidad de veces. Lo mismo ocurre cuando lanzamos una moneda o sacamos una carta de un mazo: cada resultado tiene la misma probabilidad de ocurrencia. A este tipo de distribución la llamamos <strong>distribución uniforme</strong>, y básicamente indica que, a largo plazo, todos los eventos tienen la misma probabilidad de aparecer.</p>
+<p>Podemos visualizar una <strong>distribución uniforme</strong> en R con el siguiente código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_uniforme <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>), </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_uniforme, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución uniforme: lanzamiento de un dado"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Resultados del dado"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probabilidad teórica"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Esta gráfica nos muestra cómo, en un dado justo, cada cara tiene una probabilidad del 16.67% de aparecer.</p>
+<p>Sin embargo, no todos los fenómenos que observamos en la realidad presentan resultados con igual probabilidad de ocurrencia. De hecho, en muchos casos, ciertos eventos son más frecuentes o más esperados que otros. A estas formas de representar la incertidumbre alrededor de un fenómeno las llamamos: <strong>distribuciones de probabilidad</strong>. A través de estas distribuciones, la probabilidad se convierte en una herramienta para <strong>describir y comprender el comportamiento de fenómenos en contextos diversos</strong>, desde encuestas sociales hasta procesos naturales.</p>
+<p>Dependiendo de lo que estemos midiendo, las distribuciones pueden adoptar distintas formas. En algunos casos, los valores tienden a agruparse en torno a un punto central (como en la distribución <strong>normal</strong>), mientras que en otros interesa contar la frecuencia de eventos dentro de intervalos (como ocurre con la <strong>distribución de Poisson</strong>) o calcular probabilidades de éxito en ensayos repetidos (como en la <strong>binomial</strong>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1725739171.png" class="img-fluid figure-img"></p>
+<figcaption>Extraído de: https://www.geeksforgeeks.org/probability-distribution/</figcaption>
+</figure>
+</div>
+<p>Cada una de estas distribuciones posee propiedades que las hacen adecuadas para representar distintos tipos de fenómenos reales. Una diferencia clave que se refleja también en sus gráficos es si la variable aleatoria es discreta o continua.</p>
+<ul>
+<li><p>Las <strong>distribuciones discretas</strong> se aplican cuando los resultados posibles son finitos y contables, como en el caso de los lanzamientos de un dado.</p></li>
+<li><p>En contraste, las <strong>distribuciones continuas</strong> modelan situaciones en las que los resultados pueden tomar cualquier valor dentro de un rango, como al medir la temperatura o el tiempo entre eventos.</p></li>
+</ul>
+<p>En las distribuciones discretas, los resultados están representados por barras individuales que muestran la frecuencia de cada resultado específico, mientras que en las distribuciones continuas, los resultados se agrupan en rangos y se muestran como una curva. Esto se debe a que, en una distribución continua, los resultados pueden tomar infinitos valores dentro de un intervalo, y en lugar de asignar una probabilidad exacta a un solo valor, calculamos la probabilidad de que un valor caiga dentro de un rango determinado.</p>
+<p>En las distribuciones discretas, la probabilidad de cada evento se puede calcular como la <strong>altura de la barra</strong> en su correspondiente gráfico. En el caso de las distribuciones continuas, la probabilidad de un rango de valores se calcula como el <strong>área bajo la curva</strong> entre esos valores.</p>
+<p>Puedes interactuar con algunas de ellas en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Distribuciones de probabilidad</figcaption>
+</figure>
+</div>
+<section id="distribución-binomial" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="distribución-binomial"><span class="header-section-number">5.2.1</span> Distribución Binomial</h3>
+<p>La <strong>distribución binomial</strong> es una distribución discreta que modela el número de éxitos en una serie de experimentos independientes donde cada uno tiene dos posibles resultados (éxito o fracaso). Por ejemplo, podríamos estar interesados en saber cuántas veces sale “cara” al lanzar una moneda 10 veces. Esta distribución es útil para situaciones en las que repetimos un experimento varias veces bajo las mismas condiciones.</p>
+<p>La fórmula para la probabilidad binomial es:</p>
+<p><span class="math display">\[ P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k} \]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> es el número de intentos (lanzamientos, ensayos).</p></li>
+<li><p><span class="math inline">\(k\)</span> es el número de éxitos.</p></li>
+<li><p><span class="math inline">\(p\)</span> es la probabilidad de éxito en cada intento.</p></li>
+</ul>
+<p>Aquí <span class="math inline">\(\binom{n}{k}\)</span> es el <strong>coeficiente binomial</strong>, que representa el número de formas en que se pueden elegir <span class="math inline">\(k\)</span> éxitos entre <span class="math inline">\(n\)</span> ensayos.</p>
+<p>En R, podemos simular la distribución binomial de la siguiente manera:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cada barra muestra la frecuencia con la que se obtuvo un número específico de éxitos (de 0 a 10) en 1,000 simulaciones de una distribución binomial con 10 intentos y probabilidad de éxito 0.5.</p>
+<p>Podemos observar cómo cambia la forma de la distribución en función de la probabilidad de éxito:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos ver claramente cómo la forma de la distribución cambia con la probabilidad de éxito <span class="math inline">\(p\)</span>. Con valores bajos de <span class="math inline">\(p\)</span> (cercanos a 0.1), la mayor parte de los ensayos tienen pocos éxitos, lo que genera una distribución sesgada hacia la izquierda. A medida que <span class="math inline">\(p\)</span> aumenta, la distribución se vuelve más simétrica, y con valores altos (cercanos a 0.9), la distribución se concentra en el extremo de mayores éxitos.</p>
+<p>La <strong>distribución binomial</strong> es ideal para modelar el número de éxitos en experimentos como encuestas, pruebas de productos o cualquier proceso donde haya dos posibles resultados (sí/no, éxito/fracaso).</p>
+</section>
+<section id="distribución-de-poisson" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="distribución-de-poisson"><span class="header-section-number">5.2.2</span> Distribución de Poisson</h3>
+<p>La <strong>distribución de Poisson</strong> es una distribución discreta que modela el número de eventos que ocurren en un intervalo de tiempo o espacio dado, bajo el supuesto de que estos eventos ocurren de manera independiente y con una tasa constante. Un ejemplo clásico de su uso es el número de llamadas que recibe una central telefónica en una hora.</p>
+<p>La fórmula para la probabilidad de Poisson es:</p>
+<p><span class="math display">\[
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(\lambda\)</span> es la tasa promedio de ocurrencia de eventos en un intervalo (número promedio de eventos por unidad de tiempo).</p></li>
+<li><p><span class="math inline">\(k\)</span> es el número de eventos que queremos calcular la probabilidad de que ocurran.</p></li>
+</ul>
+<p>En R, podemos simular la distribución de Poisson de la siguiente manera:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cada barra representa la frecuencia de ocurrencia de un número específico de eventos (cuántas veces ocurrió) en 1,000 simulaciones de una distribución de Poisson con un valor promedio de lambda = 3.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos realizar la comparación de la forma de la distribución de Poisson según diferentes valores de <span class="math inline">\(\lambda\)</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos ver cómo la <strong>distribución de Poisson</strong> cambia según el valor de <span class="math inline">\(\lambda\)</span>. Para valores pequeños de <span class="math inline">\(\lambda\)</span>, la mayor parte de los eventos ocurren en el rango de pocos sucesos (por ejemplo, entre 0 y 2). A medida que <span class="math inline">\(\lambda\)</span> aumenta, la distribución se desplaza hacia valores mayores, reflejando que ocurren más eventos en ese intervalo.</p>
+</section>
+<section id="distribución-normal" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="distribución-normal"><span class="header-section-number">5.2.3</span> Distribución Normal</h3>
+<p>La <strong>distribución normal</strong>, también conocida como la “curva de campana”, es una distribución continua que describe cómo se distribuyen los datos alrededor de un valor central (la media). Se caracteriza por ser simétrica alrededor de la media, con valores más probables cercanos a la media, y menos probables a medida que nos alejamos de ella. Es una de las distribuciones más importantes en estadística.</p>
+<p>La fórmula para la <strong>distribución normal</strong> es:</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+\]</span></p>
+<p>Tenemos dos valores que modifican el comportamiento de la distribución:</p>
+<ul>
+<li><p><span class="math inline">\(\mu\)</span> es la media de la distribución, donde se agrupan los datos.</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> es la desviación estándar, que describe la dispersión de los valores con respecto a la media.</p></li>
+</ul>
+<p>Hay varias situaciones que suelen describirse bajo una distribución normal, debido a que muchos fenómenos naturales y procesos en la vida cotidiana tienden a agruparse alrededor de un valor promedio, con menos casos en los extremos.</p>
+<ul>
+<li><p><strong>Altura de personas en una población</strong>: En una muestra grande de personas, la altura suele distribuirse normalmente. La mayoría de las personas estarán cerca de la altura promedio, con pocas personas siendo extremadamente altas o bajas.</p></li>
+<li><p><strong>Puntajes de exámenes</strong>: En pruebas como exámenes de admisión, los puntajes suelen seguir una distribución normal, con la mayoría de los estudiantes obteniendo puntajes cercanos al promedio y menos estudiantes con puntajes muy altos o muy bajos.</p></li>
+<li><p><strong>Peso de frutas y verduras</strong>: En un lote grande de frutas o verduras (por ejemplo, manzanas), el peso de cada pieza tiende a distribuirse normalmente debido a las variaciones naturales en el crecimiento de los alimentos.</p></li>
+<li><p><strong>Peso de productos producidos en masa</strong>: En una fábrica, el peso de productos como latas de refresco o paquetes de alimentos tiende a seguir una distribución normal debido a pequeñas variaciones en el proceso de producción.</p></li>
+<li><p><strong>Temperatura corporal</strong>: La temperatura corporal humana (aproximadamente 37°C) en una población sana sigue una distribución aproximadamente normal, con la mayoría de los individuos cercanos a la media y menos en los valores extremos.</p></li>
+</ul>
+<p>Podemos representarla de forma gráfica:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Comparación de la forma de la distribución normal según diferentes medias y desviaciones estándar:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A medida que observamos las tres distribuciones normales, podemos notar cómo la media y la desviación estándar afectan su forma. La media determina el centro de la curva, es decir, el valor alrededor del cual se agrupan los datos. En los gráficos, vemos cómo la media se desplaza de 0 a 10, moviendo el pico de la distribución hacia la derecha.</p>
+<p>Por otro lado, la desviación estándar controla la dispersión de los datos: una desviación estándar baja (SD = 1) concentra los valores cerca de la media, mientras que una desviación estándar mayor (SD = 5) extiende la curva, creando una distribución más ancha y plana. A pesar de estos cambios, todas las distribuciones permanecen simétricas, característica fundamental de la distribución normal.</p>
+</section>
+</section>
+<section id="la-distribución-normal-en-detalle" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="la-distribución-normal-en-detalle"><span class="header-section-number">5.3</span> La distribución normal en detalle</h2>
+<p>Si nos vamos a embarcar en la inferencia, sin lugar a duda la distribución más importante es la distribución normal y por ello merece su propio apartado en donde describamos sus características.</p>
+<p>Su forma es simétrica y tiene apariencia de campana. Esta distribución se define por dos parámetros clave: la media (<span class="math inline">\(\mu\)</span>) y la desviación estándar (<span class="math inline">\(\sigma\)</span>). La media es el valor central donde la mayor parte de los datos se agrupan, mientras que la desviación estándar mide qué tan dispersos están los datos alrededor de la media.</p>
+<p>La media (<span class="math inline">\(\mu\)</span>) determina la posición de la curva en el eje horizontal. Si la media cambia, la curva simplemente se desplaza hacia la derecha o izquierda, pero su forma permanece igual. Por otro lado, la desviación estándar (<span class="math inline">\(\sigma\)</span>) afecta la forma de la curva. Una desviación estándar mayor produce una curva más ancha y baja, lo que indica que los datos están más dispersos. En cambio, una desviación estándar menor hace que la curva sea más estrecha y alta, lo que refleja que los datos están más concentrados alrededor de la media.</p>
+<p>Una propiedad fundamental de la distribución normal es que, sin importar los valores específicos de la media y la desviación estándar, las probabilidades de encontrar datos dentro de ciertos rangos de desviaciones estándar desde la media son siempre las mismas. Lo denominamos la regla empírica:</p>
+<p><strong>Aproximadamente el 68% de los datos se encuentran dentro de 1 desviación estándar de la media (</strong><span class="math inline">\(\mu \pm 2 \sigma\)</span><strong>) el 95% dentro de 2 desviaciones estándar (</strong><span class="math inline">\(\mu \pm 2 \sigma\)</span><strong>) 99.7% dentro de 3 desviaciones estándar (</strong><span class="math inline">\(\mu \pm 3 \sigma\)</span><strong>).</strong></p>
+<p>Lo característico de la <strong>regla empírica</strong> es que se cumple consistentemente en cualquier <strong>distribución normal</strong>, sin importar los valores específicos de la media o la desviación estándar. Ya sea que la media sea 5 o 50, o que la dispersión sea mayor o menor, la proporción de datos que se concentra dentro de 1, 2 o 3 desviaciones estándar alrededor de la media se mantiene aproximadamente constante. Aproximadamente:</p>
+<ul>
+<li><p><strong>68%</strong> de los datos estarán dentro de 1 desviación estándar de la media.</p></li>
+<li><p><strong>95%</strong> dentro de 2 desviaciones estándar.</p></li>
+<li><p><strong>99.7%</strong> dentro de 3 desviaciones estándar.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Puedes interactuar con la distribución normal en la <strong>Datáfora Interactiva</strong>: [<a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/">Click Aquí</a>]</p>
+<p>O usa el QR:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/QR_Code_1745519927.png" class="img-fluid figure-img" width="85"></p>
+<figcaption>Dirígete a la pestaña Distribución normal</figcaption>
+</figure>
+</div>
+</section>
+<section id="funciones-para-distribuciones-de-probabilidad" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="funciones-para-distribuciones-de-probabilidad"><span class="header-section-number">5.4</span> Funciones para distribuciones de probabilidad</h2>
+<p>Cuando realizamos análisis estadístico, es común trabajar con estas distribuciones de probabilidad. Al fin y al cabo, estas distribuciones buscan modelar fenómenos reales, como la altura de las personas, el número de clientes que llegan a un restaurante o el número de éxitos en una serie de intentos. Las funciones <code>dxxx</code>, <code>pxxx</code>, <code>qxxx</code> y <code>rxxx</code> en <strong>R</strong> permiten explorar estas distribuciones, cada una respondiendo a preguntas estadísticas fundamentales:</p>
+<ul>
+<li><strong><code>dxxx</code></strong>: Calcula la densidad de probabilidad o probabilidad exacta de un valor.</li>
+<li><strong><code>pxxx</code></strong>: Calcula la probabilidad acumulada, es decir, la probabilidad de observar valores menores o iguales a un valor dado.</li>
+<li><strong><code>qxxx</code></strong>: Encuentra el valor (cuantil) asociado a una probabilidad acumulada.</li>
+<li><strong><code>rxxx</code></strong>: Genera números aleatorios que siguen una distribución específica.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3684905616.png" class="img-fluid figure-img"></p>
+<figcaption>Extraído de: https://diggingdeeperwithstats.wordpress.com/2021/05/21/visual-guide-to-pnorm-dnorm-qnorm-and-rnorm-functions-in-r/</figcaption>
+</figure>
+</div>
+<p>No te preocupes si esto resulta particularmente complejo, lo es. Pero interna entender y poner en practica los siguiente ejemplos.</p>
+<p>Como ya sabes, la distribución normal describe fenómenos continuos simétricos. En la vida real, puede modelar características como la <strong>altura de las personas</strong>.</p>
+<p>Imaginemos que las altura de los hombres adultos en una región siguen una distribución normal con media de 175 cm y desviación estándar de 10 cm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">=</span> <span class="dv">175</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sd <span class="ot">=</span> <span class="dv">10</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li><strong>¿Qué tan común es encontrar a alguien que mide exactamente 180 cm? (<code>dnorm</code>)</strong> La densidad de probabilidad nos dice cuán probable es observar una altura cercana a 180 cm.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">180</span>  <span class="co"># Altura específica</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Densidad de probabilidad</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(x, <span class="at">mean =</span> mean, <span class="at">sd =</span> sd)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03520653</code></pre>
+</div>
+</div>
+<p>El valor es 0.035 lo que indica que es menos probable encontrar esta altura comparada con valores más cercanos a la media (175 cm).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>¿Qué porcentaje de hombres miden menos de 180 cm? (<code>pnorm</code>)</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilidad acumulada</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(x, <span class="at">mean =</span> mean, <span class="at">sd =</span> sd)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6914625</code></pre>
+</div>
+</div>
+<p>La probabilidad acumulada hasta <span class="math inline">\(x = 180\)</span> es, aproximadamente, 69.15%. Esto significa que aproximadamente el 69.15% de los hombres tienen una altura menor o igual a 180 cm.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este porcentaje se calcula sumando todas las probabilidades desde el extremo más bajo de la distribución (por ejemplo, 140 cm o menos) hasta los 180 cm. Es importante entender que esto no es una probabilidad puntual como la que obtendríamos con dnorm, sino una acumulación de probabilidades. El gráfico muestra cómo las probabilidades se acumulan a medida que aumentamos la altura. En el eje horizontal tenemos los valores de altura (en cm), y en el eje vertical, las probabilidades acumuladas. A medida que las alturas aumentan, la probabilidad acumulada también crece, lo que refleja que estamos “acumulando” más población bajo ese umbral. En 180 cm, el punto destacado en el gráfico, la probabilidad acumulada es aproximadamente 69.15%, lo que significa que el 69.15% de las personas mide 180 cm o menos.</p>
+<ol start="3" type="1">
+<li><strong>¿Qué altura corresponde al percentil 90? (<code>qnorm</code>)</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Percentil 90</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>probabilidad <span class="ot">=</span> <span class="fl">0.90</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(probabilidad, <span class="at">mean =</span> mean, <span class="at">sd =</span> sd)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 187.8155</code></pre>
+</div>
+</div>
+<p>El percentil 90 corresponde a una altura, por ejemplo, de 187.81 cm. Esto significa que el 90% de los hombres en esta muestra mide menos de 187.81 cm, y solo el 10% mide más.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>¿Cómo generar una muestra simulada de 100 alturas? (<code>rnorm</code>)</strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar alturas aleatorias</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>alturas <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mean, <span class="at">sd =</span> sd)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(alturas)  <span class="co"># Muestra las primeras 6 alturas simuladas</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 183.1663 181.8145 189.9282 160.4299 170.1698 186.0007</code></pre>
+</div>
+</div>
+<p>El conjunto generado contiene alturas simuladas de una muestra de 100 personas, todas siguiendo una distribución normal con media de 175 cm y desviación estándar de 10 cm.</p>
+<p>Aunque nos estamos centrando en la distribución normal, las funciones dxxx, pxxx, qxxx y rxxx son igualmente aplicables a otras distribuciones importantes como la binomial (dbinom, pbinom, qbinom, y rbinom) o la poisson (dpois, ppois, qpois, y rpois).</p>
+<p>Para sintetizar:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Función</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Pregunta que Responde</strong></th>
+<th><strong>Argumentos en R</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>dnorm</code></strong></td>
+<td>Calcula la densidad de probabilidad en un valor dado.</td>
+<td>¿Qué tan común es observar este valor específico?</td>
+<td><code>dnorm(x, mean, sd)</code><br><code>x</code>: valor<br><code>mean</code>: media<br><code>sd</code>: desviación estándar</td>
+</tr>
+<tr class="even">
+<td><strong><code>pnorm</code></strong></td>
+<td>Calcula la probabilidad acumulada hasta un valor específico.</td>
+<td>¿Qué porcentaje de la población está por debajo de este valor?</td>
+<td><code>pnorm(q, mean, sd)</code><br><code>q</code>: valor cuantil<br><code>mean</code>: media<br><code>sd</code>: desviación estándar</td>
+</tr>
+<tr class="odd">
+<td><strong><code>qnorm</code></strong></td>
+<td>Devuelve el valor asociado a una probabilidad acumulada dada.</td>
+<td>¿Qué valor corresponde a este percentil o probabilidad acumulada?</td>
+<td><code>qnorm(p, mean, sd)</code><br><code>p</code>: probabilidad acumulada<br><code>mean</code>: media<br><code>sd</code>: desviación estándar</td>
+</tr>
+<tr class="even">
+<td><strong><code>rnorm</code></strong></td>
+<td>Genera números aleatorios que siguen una distribución normal con parámetros definidos.</td>
+<td>¿Cómo puedo simular datos que sigan esta distribución?</td>
+<td><code>rnorm(n, mean, sd)</code><br><code>n</code>: número de valores<br><code>mean</code>: media<br><code>sd</code>: desviación estándar</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="probabilidades-y-valor-z" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="probabilidades-y-valor-z"><span class="header-section-number">5.5</span> Probabilidades y valor z</h2>
+<p>En una <strong>distribución normal</strong>, la probabilidad de que un valor caiga en un cierto rango está representada por el <strong>área bajo la curva</strong>. Por ejemplo, la probabilidad de que un valor esté por debajo de la media es del <strong>50%</strong>, ya que la curva normal es simétrica alrededor de la media.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora bien, en estadística, muchas veces necesitamos medir <strong>cuán lejos está un valor de la media</strong> en términos de <strong>desviaciones estándar</strong>. A esto lo llamamos <strong>valor z</strong>. El valor z nos indica cuántas desviaciones estándar por encima o por debajo de la media se encuentra un dato específico en la distribución normal sin importar la media o la disviación estandar que tengan.</p>
+<p>Así, el valor z es simplemente una forma de estandarizar los datos en una distribución normal. Nos dice cuántas desviaciones estándar (<span class="math inline">\(\sigma\)</span>) está un valor (<span class="math inline">\(x\)</span>) por encima o por debajo de la media (<span class="math inline">\(\mu\)</span>). La fórmula es:</p>
+<p><span class="math display">\[z = \frac{x - \mu}{\sigma}\]</span></p>
+<ul>
+<li>Si el valor z es positivo, significa que el valor está <strong>por encima de la media</strong>.</li>
+<li>Si el valor z es negativo, el valor está <strong>por debajo de la media</strong>.</li>
+</ul>
+<p>Por ejemplo, si un valor tiene un <strong>z = 1</strong>, significa que está una desviación estándar por encima de la media; si tiene un <strong>z = -2</strong>, está dos desviaciones estándar por debajo de la media.</p>
+<p>Recordemos que las áreas bajo la curva normal corresponden a probabilidades. Por ejemplo:</p>
+<ul>
+<li><p>El área total bajo la curva es igual a 1 (o el 100%).</p></li>
+<li><p>El área a la izquierda de (z = 0) (la media) es 0.5, lo que significa que el 50% de los datos están por debajo de la media.</p></li>
+</ul>
+<p>Cuando queremos encontrar el <strong>valor z</strong> para una probabilidad dada, estamos básicamente preguntando: <em>“¿Cuántas desviaciones estándar debo alejarme de la media para que el área acumulada bajo la curva normal sea igual a una probabilidad específica?”</em></p>
+<p>Pongamos un ejemplo. Supongamos que queremos encontrar el valor z que corresponde a una probabilidad específica. Queremos encontrar cuántas desviaciones estándar necesitamos movernos desde la media para que el <strong>95% de los datos</strong> queden a la izquierda de ese valor. Usamos la función <code>qnorm()</code> en R, que toma como argumento una probabilidad y devuelve el valor z correspondiente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.95</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.644854</code></pre>
+</div>
+</div>
+<p>El resultado será un valor z positivo (aproximadamente 1.645), que indica que el 95% de los datos están por debajo de aproximadamente 1.645 desviaciones estándar por encima de la media.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora, supongamos que queremos el valor z para una probabilidad del 5%, es decir, queremos saber cuántas desviaciones estándar hay entre la media y un punto que deja el 5% de los datos a la izquierda (en la cola izquierda de la distribución). Para esto usamos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.644854</code></pre>
+</div>
+</div>
+<p>Este valor z será negativo (aproximadamente -1.645), lo que indica que este punto está a 1.645 desviaciones estándar <strong>por debajo de la media</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Recordemos que la curva normal es símetrica. Entocnes, si queremos encontrar los valores z que dejan un <strong>95% de los datos en el centro</strong> de la distribución, dejamos un 2.5% en cada cola (5% dividido entre 2). Calculamos ambos extremos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>)  <span class="co"># Para el límite inferior</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.959964</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)  <span class="co"># Para el límite superior</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.959964</code></pre>
+</div>
+</div>
+<p>Los resultados serán aproximadamente -1.96 y 1.96, lo que significa que el 95% de los datos se encuentran entre -1.96 y 1.96 desviaciones estándar de la media.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El valor <span class="math inline">\(z\)</span> es una medida que nos dice cuántas desviaciones estándar está un dato de la media en una distribución normal. Para encontrar un valor z que corresponda a una probabilidad específica (o área bajo la curva). Usando esta lógica también podemos dar un valor e identificar la probabilidad de encontrarnos un mayor o menor valor.</p>
+<p>Imagina que estamos trabajando con las alturas de personas y sabemos que las alturas siguen una distribución normal con una <strong>media</strong> (<span class="math inline">\(\mu\)</span>) de 170 cm y una <strong>desviación estándar</strong> (<span class="math inline">\(\sigma\)</span>) de 10 cm.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este caso, queremos saber la probabilidad de que una persona mida menos de 180 cm. Lo que necesitamos es calcular el área bajo la curva normal desde la izquierda hasta 180 cm.</p>
+<p>Primero, podemos calcular el valor z, que indica cuántas desviaciones estándar está esa altura de la media: <span class="math display">\[z = \frac{x - \mu}{\sigma}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(x = 180\)</span> cm,</p></li>
+<li><p><span class="math inline">\(\mu = 170\)</span> cm,</p></li>
+<li><p><span class="math inline">\(\sigma = 10\)</span> cm.</p></li>
+</ul>
+<p>Entonces:</p>
+<p><span class="math display">\[z = \frac{180 - 170}{10}\]</span> <span class="math display">\[z = 1\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Al ser <span class="math inline">\(z = 1\)</span>. En R, puedes hacer todo el cálculo con la función <code>pnorm()</code> , que directamente te da la <strong>probabilidad acumulada</strong> para un valor <span class="math inline">\(x\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">1</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8413447</code></pre>
+</div>
+</div>
+<p>También podemos especificar la media y las desviación estándar y el valor deseado, dándonos el mismo resultado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">180</span>, <span class="at">mean=</span><span class="dv">170</span>, <span class="at">sd=</span><span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8413447</code></pre>
+</div>
+</div>
+<p>Es decir, una probabilidad del 84.13%</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Si ahora queremos saber la probabilidad de que alguien mida <strong>más de 190 cm</strong>, hacemos lo siguiente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">190</span>, <span class="at">mean=</span><span class="dv">170</span>, <span class="at">sd=</span><span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02275013</code></pre>
+</div>
+</div>
+<p>Aquí restamos de 1 porque <code>pnorm()</code> nos da la probabilidad de estar <strong>por debajo</strong> de 190 cm, pero queremos saber la probabilidad de estar <strong>por encima</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Para calcular la probabilidad de que alguien esté dentro de un rango, en este caso entre 160 cm y 180 cm, necesitamos calcular la probabilidad acumulada hasta 180 cm y restarle la probabilidad acumulada hasta 160 cm:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">180</span>, <span class="at">mean=</span><span class="dv">170</span>, <span class="at">sd=</span><span class="dv">10</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">160</span>, <span class="at">mean=</span><span class="dv">170</span>, <span class="at">sd=</span><span class="dv">10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6826895</code></pre>
+</div>
+</div>
+<p>Esto nos dará la <strong>probabilidad de que una persona mida entre 160 cm y 180 cm</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="distribución-muestral" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="distribución-muestral"><span class="header-section-number">5.6</span> Distribución muestral</h2>
+<p>Perfecto, ahora que ya entendemos las bases de la probabilidad y la distribución normal, es momento de ponernos manos a la obra y ver como podemos integrarlo en la inferencia.</p>
+<p>Recuerdas que vimos en el capítulo anterior que cuando extraemos una muestra de una población, calculamos resúmenes numéricos como la media, la desviación estándar o la proporción, que nos dan información sobre el comportamiento de nuestras variables. Sin embargo, como nuestras muestras representan solo una fracción de la población, es natural que las métricas obtenidas de diferentes muestras varíen. Debemos ser capaces de poder representar esa variación, para ello tenemos la <strong>distribución muestral</strong>: se refiere a la distribución de un estadístico (por ejemplo, la media o la proporción) calculado a partir de múltiples muestras extraídas de la misma población.</p>
+<p><img src="images/clipboard-4066337643.png" class="img-fluid"></p>
+<p>El propósito de una distribución muestral es comprender cómo varía un estadístico (como la media) cuando repetimos el proceso de muestreo múltiples veces. En estadística, pocas veces tenemos acceso a toda la población, por lo que, en la práctica, trabajamos con muestras para hacer inferencias sobre esa población completa. Sin embargo, al tomar solo una muestra, no tenemos la certeza de que su media sea exactamente la media de la población, ya que siempre existirá cierta variación entre diferentes muestras. Aquí es donde la <strong>Ley de los Grandes Números</strong> nos recuerda que, a medida que aumentamos el número de muestras, la media muestral tenderá a acercarse a la media poblacional.</p>
+<p>La <strong>distribución muestral de la media</strong> nos permite entender y cuantificar esta variabilidad al analizar cómo se distribuyen las medias de muchas muestras extraídas de la misma población. Al observar cómo se comportan las medias de múltiples muestras, podemos obtener una visión más precisa y confiable de la <strong>media poblaciona</strong>l.</p>
+<p>Empecemos simulando una recolección de datos a partir de una muestra inicial de la población y calculando su media:</p>
+<p>Imaginemos que hemos recolectado datos de una primera muestra de 120 personas, obteniendo sus alturas en centímetros.&nbsp;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(muestra1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  observación  alturas
+1           1 168.9787
+2           2 160.7019
+3           3 158.7101
+4           4 150.2094
+5           5 174.0059
+6           6 171.2548</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>muestra1 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alturas)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Muestra 1"</span>, <span class="at">x =</span> <span class="st">"Altura (cm)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos extraer la media de esta muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muestra1<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 170.7429</code></pre>
+</div>
+</div>
+<p>Podemos recolectar otros 120 datos</p>
+<p>Imaginemos que hemos recolectado datos de una primera muestra de 120 personas, obteniendo sus alturas en centímetros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(muestra2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  observación  alturas
+1           1 136.5332
+2           2 174.1863
+3           3 155.8392
+4           4 176.0232
+5           5 155.6674
+6           6 165.3986</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>muestra2 <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> alturas)) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Muestra 2"</span>, <span class="at">x =</span> <span class="st">"Altura (cm)"</span>, <span class="at">y =</span> <span class="st">"Densidad"</span>) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Podemos extraer la media de esta muestra:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(muestra2<span class="sc">$</span>alturas)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 169.9448</code></pre>
+</div>
+</div>
+<p>Podemos repetir este proceso de muestreo muchas veces para obtener múltiples muestras y así calcular la media de cada una. Esto nos permitirá observar cómo varía la media muestral de muestra en muestra y construir la distribución muestral de la media.</p>
+<p>En este ejemplo, he generado 50 muestras de 120 personas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>medias_muestrales</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 170.1544 169.7380 170.8635 170.2356 170.0972 168.8613 170.4026 171.4058
+ [9] 170.5223 169.9030 169.7423 169.8366 171.3686 170.6401 169.9608 170.8007
+[17] 170.6227 168.1252 168.7881 170.4628 170.0155 170.7018 168.4767 170.6914
+[25] 170.7898 169.2718 169.7811 169.9039 170.5217 170.1457 169.6884 168.1856
+[33] 171.6336 169.2822 169.7794 169.8715 170.4480 169.5733 170.2067 169.4459
+[41] 169.6532 169.0059 170.2424 170.2214 169.6113 170.8416 169.7628 171.1970
+[49] 170.1087 171.0459</code></pre>
+</div>
+</div>
+<p>Finalmente, lo podemos graficar.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Este gráfico muestra la distribución muestral de la media, es decir, cómo se distribuyen las medias de las 50 muestras alrededor de la media de la población (170 cm). Es importante no confundir este histograma con uno que representa la distribución de la variable original (las alturas individuales). En este caso, el histograma no representa las alturas de cada persona, sino las medias de diferentes muestras de 120 personas cada una.</p>
+<p>¿Notas algo particular? Aunque aun son muy pocas las muestras tomadas, puedes observar que la concentración de estas medias en torno a un valor central donde, aunque cada muestra puede variar, las medias tienden a agruparse alrededor de la media poblacional.</p>
+<p>Ahora con 1000 muestras.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>¿No te recuerda a una distribución normal?</p>
+</section>
+<section id="teorema-del-límite-central" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="teorema-del-límite-central"><span class="header-section-number">5.7</span> Teorema del límite central</h2>
+<p>Exacto, lo que estamos observando es un fenómeno descrito por el <strong>Teorema del Límite Central</strong> (TLC). Este teorema afirma que, si tomamos suficientes muestras grandes de una población, la distribución de sus medias tenderá a ser aproximadamente normal, independientemente de la forma de la distribución original de los datos.</p>
+<p>Aquí es donde el TLC es especialmente valioso. En la práctica, los datos de una población pueden tener cualquier forma: podrían ser altamente asimétricos, como los ingresos de una población, donde la mayoría de las personas tiene ingresos bajos y unos pocos tienen ingresos muy altos. También podríamos encontrarnos con distribuciones con múltiples picos o incluso distribuciones muy sesgadas en una dirección. Sin embargo, el TLC nos asegura que, <strong>aunque la forma original de los datos sea irregular o no normal, la distribución de las medias de muchas muestras grandes se aproximará a una distribución normal</strong>.</p>
+<p>Pero te preguntarás, ¿por qué hemos hecho tantas simulaciones de muestras? ¿No es que, en la práctica, solo tenemos acceso a una única muestra? La razón es que este ejercicio con múltiples muestras nos permite visualizar y comprender cómo se comportaría la media muestral si pudiéramos repetir el proceso de muestreo muchas veces, aunque en la realidad usualmente solo tengamos una muestra.</p>
+<p>El Teorema del Límite Central nos da la seguridad de que, <strong>con una muestra suficientemente grande, la media de esa única muestra se aproximará razonablemente bien a la media de la población</strong>, sin necesidad de repetir el muestreo varias veces. Esta teoría es la base de muchas herramientas estadísticas que usamos para hacer inferencias sobre las características de la población (parámetros) a partir de la información de las muestras (estadísticos). En esencia, nos evita tener que recolectar múltiples muestras en la práctica, porque sabemos (gracias al TLC) que el promedio de nuestra muestra es un estimador confiable de la media poblacional.</p>
+<p>Así, aunque en este ejercicio hicimos simulaciones para observar el proceso y entender cómo se construye la distribución muestral, el Teorema del Límite Central nos permite inferir el comportamiento de la población completa usando solo una muestra.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://www.allmath.com/central-limit-theorem-calculator.php"><img src="images/clipboard-2157553371.png" class="img-fluid figure-img" alt="Extraído de: https://www.allmath.com/central-limit-theorem-calculator.php"></a></p>
+<figcaption>Extraído de: https://www.allmath.com/central-limit-theorem-calculator.php</figcaption>
+</figure>
+</div>
+<p>Este conocimiento abre la puerta a una serie de herramientas estadísticas que se basan en la suposición de que la distribución de nuestras estimaciones (como la media muestral) tiende a una forma normal cuando el tamaño de la muestra es suficientemente grande.</p>
+<p>Gracias al <strong>Teorema del Límite Central</strong>, podemos aplicar métodos de inferencia estadística, como los <strong>intervalos de confianza</strong> y las <strong>pruebas de hipótesis</strong>, para hacer estimaciones sobre parámetros poblacionales. Estos métodos se basan en <strong>la aproximación de la distribución muestral a una distribución normal</strong> cuando el tamaño de la muestra es suficientemente grande. Esto nos permite determinar intervalos de confianza y regiones de rechazo en pruebas de hipótesis (más sobre esto en el próximo capítulo).</p>
+<p>Sabemos que la distribución normal está definida por dos parámetros fundamentales: la <strong>media</strong> y la <strong>desviación estándar</strong>, representadas como <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>, respectivamente. La media <span class="math inline">\(\mu\)</span> indica el centro de la distribución, mientras que la desviación estándar <span class="math inline">\(\sigma\)</span> mide la dispersión de los datos alrededor de esa media. Cuando realizamos múltiples simulaciones de muestras y calculamos sus estadísticas (como la media muestral <span class="math inline">\(\bar{x}\)</span>), observamos que estas estadísticas siguen una <strong>distribución muestral</strong>.</p>
+<p>Aquí tienes una versión mejorada y más clara del párrafo, con un tono más explicativo y fluido:</p>
+<p>En este contexto, es importante comprender la diferencia entre la <strong>media de la población</strong> (<span class="math inline">\(\mu\)</span>) y la <strong>media muestral</strong> (<span class="math inline">\(\bar{x}\)</span>). La media poblacional <span class="math inline">\(\mu\)</span> es un valor fijo y desconocido que queremos estimar, mientras que la media muestral <span class="math inline">\(\bar{x}\)</span> es el promedio de los datos en una muestra y puede variar de una muestra a otra. Sin embargo, gracias al <strong>Teorema del Límite Central</strong>, sabemos que si tomamos muchas muestras y calculamos sus medias, estas medias muestrales (<span class="math inline">\(\bar{x}\)</span>) seguirán una distribución en torno a <span class="math inline">\(\mu\)</span>. En otras palabras, aunque cada muestra pueda producir una media ligeramente diferente, <strong>en promedio, la media muestral estará muy cerca de la media poblacional</strong>.</p>
+<p>Pero, ¿qué tan cerca está realmente <span class="math inline">\(\bar{x}\)</span> de <span class="math inline">\(\mu\)</span> en cada caso? Para responder a eso usamos el concepto de <strong>error estándar</strong>. El error estándar no es más que la <strong>desviación estándar</strong> de la distribución de <span class="math inline">\(\bar{x}\)</span>, y nos dice <strong>qué tan dispersas están las medias muestrales</strong> alrededor de la media poblacional. Se calcula así:</p>
+<p><span class="math display">\[
+\text{Error estándar} = \frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>si conocemos la desviación estándar de la población (<span class="math inline">\(\sigma\)</span>).</p>
+<p>Sin embargo, en la mayoría de los casos <strong>no conocemos</strong> <span class="math inline">\(\sigma\)</span>, ya que es un parámetro poblacional desconocido. En estos casos, usamos la <strong>desviación estándar de la muestra</strong> (<span class="math inline">\(s\)</span>) como una aproximación de <span class="math inline">\(\sigma\)</span>. Al hacer esto, estamos introduciendo una pequeña incertidumbre adicional, porque ahora nuestra estimación depende de dos valores estimados: la media muestral (<span class="math inline">\(\bar{x}\)</span>) y la desviación estándar muestral (<span class="math inline">\(s\)</span>). En este caso, el error estándar se calcula como:</p>
+<p><span class="math display">\[
+\text{Error estándar} = \frac{s}{\sqrt{n}}
+\]</span></p>
+<p>Por tanto, el error estándar nos ayuda a entender <strong>qué tanta variabilidad hay en las medias muestrales</strong> y, por lo tanto, <strong>qué tan confiable es nuestra estimación de</strong> <span class="math inline">\(\mu\)</span> usando <span class="math inline">\(\bar{x}\)</span>. Un error estándar más pequeño significa que nuestras medias muestrales están más agrupadas alrededor de <span class="math inline">\(\mu\)</span>, lo que nos da mayor confianza en nuestra estimación.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En los próximos capítulos, exploraremos cómo aplicar estas herramientas estadísticas en diferentes contextos.</p>
+</section>
+<section id="flor-y-el-uso-de-las-redes-sociales" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="flor-y-el-uso-de-las-redes-sociales"><span class="header-section-number">5.8</span> Flor y el uso de las redes sociales</h2>
+<p>Flor está interesada en analizar cuántas horas a la semana dedica un peruano adulto al uso de redes sociales. Para llevar a cabo este análisis, utilizó los resultados de una encuesta aplicada a 2000 personas, cuyos datos se encuentran en un archivo llamado <code>internet.csv</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Primero, Flor carga todas las librerías necesarias para su análisis e importa el archivo en R. Verifica las primeras filas para asegurarse de que los datos están organizados correctamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>internet <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"internet.csv"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(internet)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  tiempo
+   &lt;dbl&gt;
+1     18
+2     28
+3     13
+4     21
+5     32
+6     23</code></pre>
+</div>
+</div>
+<p>Cada fila del archivo representa el tiempo (en horas por semana) que una persona dedica a redes sociales. Las primeras respuestas observadas fueron: <strong>18, 28, 13, 21, 32 y 23 horas</strong>.</p>
+<p>Luego, procede a calcular estadísticas descriptivas que resumen los datos:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(internet<span class="sc">$</span>tiempo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   vars    n  mean   sd median trimmed  mad min max range skew kurtosis   se
+X1    1 2000 21.75 5.84     21   21.23 5.93  11  53    42 1.01     1.66 0.13</code></pre>
+</div>
+</div>
+<p>Los resultados muestran lo siguiente:</p>
+<p>- <strong>Promedio</strong> (<span class="math inline">\(\bar{x}\)</span>): ( 21.75 ) horas/semana. En promedio, un adulto peruano dedica 21.75 horas semanales a redes sociales.</p>
+<p>- <strong>Desviación estándar (</strong><span class="math inline">\(s\)</span>): ( 5.84 ) horas. Esto indica cuánto varían las respuestas en torno al promedio.</p>
+<p>- <strong>Mediana:</strong> (21) horas. Esto significa que la mitad de los encuestados dedica menos de 21 horas a las redes sociales, y la otra mitad más.</p>
+<p>- <strong>Mínimo y máximo:</strong> Los valores oscilan entre (11 y (53) horas, con un rango de ( 42 ) horas.</p>
+<p>- <strong>Asimetría positiva:</strong> La asimetría (<span class="math inline">\(skew = 1.01\)</span>) indica que algunos encuestados pasan muchas más horas que el promedio en redes sociales.</p>
+<p>Flor utiliza un histograma para comprender mejor la distribución de las horas dedicadas a redes sociales:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(internet, <span class="fu">aes</span>(<span class="at">x =</span> tiempo)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill=</span><span class="st">"skyblue"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución de horas/semana en el uso de redes sociales"</span>,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Horas a la semana"</span>,</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Frecuencia"</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El histograma revela que la distribución es <strong>asimétrica hacia la derecha</strong>, con más personas concentradas en valores cercanos al promedio, pero con algunos valores altos que extienden la cola hacia la derecha.</p>
+<p>Para enfatizar esta asimetría, Flor añade líneas que marcan el promedio y la mediana:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(internet, <span class="fu">aes</span>(<span class="at">x =</span> tiempo)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">fill=</span><span class="st">"skyblue"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(internet<span class="sc">$</span>tiempo), </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>, </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">median</span>(internet<span class="sc">$</span>tiempo), </span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"purple"</span>, </span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-67-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La línea roja (promedio) está ligeramente por encima de la línea púrpura (mediana), confirmando la <strong>asimetría positiva</strong>.</p>
+<p>Flor sabe que, según el Teorema del Límite Central, si se toman muchas muestras de un tamaño lo suficientemente alto (<span class="math inline">\(n = 2000\)</span>) con respecto a la población, las medias de esas muestras seguirán una distribución aproximadamente normal, incluso si los datos originales (en este caso, las horas semanales dedicadas a redes sociales) no tienen una distribución normal. Es decir, aunque las respuestas individuales puedan variar y estar distribuidas de forma asimétrica, las medias de múltiples muestras tenderán a concentrarse cerca de un valor central.</p>
+<p>Para entender mejor esta idea y calcular cuánta variación esperaríamos en estas medias si repitiera el estudio, Flor necesita calcular el error estándar. El error estándar es la medida que nos dice cuánto podría variar la media de una muestra debido a la aleatoriedad de los datos. Se calcula utilizando la fórmula:</p>
+<p><span class="math display">\[
+\text{Error estándar (EE)} = \frac{s}{\sqrt{n}}
+\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(s = 5.84\)</span> es la desviación estándar.</p></li>
+<li><p><span class="math inline">\(n = 2000\)</span> es el tamaño de la muestra.</p></li>
+</ul>
+<p>En R, Flor utiliza:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>ee <span class="ot">=</span> <span class="fu">sd</span>(internet<span class="sc">$</span>tiempo) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(internet<span class="sc">$</span>tiempo))</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>ee</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1306164</code></pre>
+</div>
+</div>
+<p>El error estándar resultante es <strong>0.13 horas</strong>. Esto significa que si Flor repitiera esta encuesta muchas veces, las medias de cada muestra variarían en promedio <span class="math inline">\(0.13\)</span> horas alrededor del valor verdadero.</p>
+<p>Para ilustrar el concepto del Teorema del Límite Central, Flor simula la distribución de las medias muestrales. En R, utiliza la función <code>rnorm</code> para generar 10,000 medias muestrales basadas en: - <span class="math inline">\(\text{mean} = 21.75\)</span>, el promedio muestral. - <span class="math inline">\(\text{sd} = 0.13\)</span>, el error estándar de la media.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dist_muestral <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medias =</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n     =</span> <span class="dv">10000</span>, </span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean  =</span> <span class="fu">mean</span>(internet<span class="sc">$</span>tiempo), </span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd    =</span> ee</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para ello, utiliza rnorm, en el cual: - <code>n = 10000</code>: Genera 10,000 valores simulados. - <code>mean = 21.75</code>: La media esperada. - <code>sd = 0.13</code>: El error estándar, que representa la variación esperada de las medias muestrales.</p>
+<p>Flor luego visualiza esta distribución de medias muestrales:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dist_muestral <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> medias)) <span class="sc">+</span> </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">30</span>, <span class="at">fill=</span><span class="st">"lightgreen"</span>, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución muestral (aprox.) de la media"</span>,</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x     =</span> <span class="st">"Media (horas/sem)"</span>,</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y     =</span> <span class="st">"Frecuencia"</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob_files/figure-html/unnamed-chunk-70-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>El histograma resultante muestra una <strong>distribución normal</strong> centrada en <span class="math inline">\(21.75\)</span> horas con una dispersión reducida (<span class="math inline">\(0.13\)</span> horas).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Ilustración_sin_título 5.png" class="img-fluid figure-img" width="472"></p>
+<figcaption>La probabilidad representa la base fundamental de la estadística inferenical</figcaption>
+</figure>
+</div>
+</section>
+<section id="resumen-del-capítulo" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="resumen-del-capítulo"><span class="header-section-number">5.9</span> Resumen del capítulo</h2>
+<p>La inferencia estadística permite ir más allá del análisis descriptivo y realizar generalizaciones sobre una población a partir de una muestra. Esto se logra aplicando la probabilidad para modelar la incertidumbre en los datos y predecir comportamientos futuros. La probabilidad puede entenderse como una proporción que mide la frecuencia esperada de un evento en relación con el total de posibles resultados. Por ejemplo, en un lanzamiento de moneda, la probabilidad de obtener cara es <span class="math inline">\(\frac{1}{2}\)</span>, lo que equivale al 50%.</p>
+<p>La probabilidad también se puede interpretar en términos de frecuencia relativa a largo plazo, lo que significa que la estimación de la probabilidad mejora conforme se repite un experimento muchas veces. En un dado justo, cada cara tiene la misma probabilidad de salir, pero si se lanza un número reducido de veces, la frecuencia observada puede diferir de la probabilidad teórica. Sin embargo, a medida que el número de lanzamientos aumenta, la frecuencia relativa de cada resultado se aproxima a su probabilidad teórica. Este comportamiento se conoce como la <strong>Ley de los Grandes Números</strong> y fundamenta la validez de los cálculos probabilísticos en situaciones reales.</p>
+<p>Las distribuciones de probabilidad describen cómo se comportan los resultados de un experimento aleatorio. En el caso de una distribución <strong>uniforme</strong>, cada resultado tiene la misma probabilidad de ocurrir, como en un dado no trucado. Sin embargo, en muchos casos los eventos no tienen probabilidades iguales, lo que lleva a distribuciones más complejas como la <strong>binomial</strong>, que modela el número de éxitos en una serie de ensayos independientes con dos posibles resultados (éxito o fracaso), y la <strong>distribución de Poisson</strong>, que describe la frecuencia con la que ocurren eventos en un intervalo de tiempo o espacio.</p>
+<p>Entre todas las distribuciones, la <strong>normal</strong> tiene una importancia fundamental. Su forma de campana es simétrica y se caracteriza por dos parámetros: la <strong>media</strong> (<span class="math inline">\(\mu\)</span>), que indica el centro de la distribución, y la <strong>desviación estándar</strong> (<span class="math inline">\(\sigma\)</span>), que mide la dispersión de los valores alrededor de la media. La <strong>regla empírica</strong> establece que aproximadamente el 68% de los valores se encuentran dentro de una desviación estándar de la media, el 95% dentro de dos desviaciones y el 99.7% dentro de tres.</p>
+<p>Existen funciones específicas en R para trabajar con distribuciones de probabilidad. Las funciones <code>dxxx</code>, <code>pxxx</code>, <code>qxxx</code> y <code>rxxx</code> permiten, respectivamente, calcular densidades de probabilidad, probabilidades acumuladas, valores críticos y generar datos aleatorios de una distribución dada. Por ejemplo, en la distribución normal, <code>pnorm(x, mean, sd)</code> permite calcular la probabilidad de obtener un valor menor o igual a <span class="math inline">\(x\)</span>, mientras que <code>qnorm(p, mean, sd)</code> encuentra el valor que corresponde a un percentil específico dentro de la distribución.</p>
+<p>El <strong>valor z</strong> es una medida estandarizada que permite comparar valores de distintas distribuciones. Se calcula como la diferencia entre un valor y la media, dividida por la desviación estándar:</p>
+<p><span class="math display">\[
+z = \frac{x - \mu}{\sigma}
+\]</span></p>
+<p>Un valor z positivo indica que el dato está por encima de la media, mientras que un valor negativo indica que está por debajo. Gracias a la simetría de la distribución normal, se pueden usar tablas de valores z o funciones en R para calcular probabilidades acumuladas y valores críticos, lo que resulta útil en pruebas de hipótesis y análisis inferenciales.</p>
+<p>Cuando se trabaja con muestras extraídas de una población, la <strong>distribución muestral</strong> describe la variabilidad de un estadístico como la media. Aunque diferentes muestras pueden producir medias distintas, estas siguen un patrón predecible, lo que permite hacer inferencias sobre la población. Aquí entra en juego el <strong>Teorema del Límite Central</strong>, que establece que, independientemente de la forma de la distribución original, la distribución de las medias muestrales tiende a una distribución normal cuando el tamaño de la muestra es suficientemente grande. Este principio es crucial porque justifica el uso de métodos estadísticos basados en la normalidad, incluso cuando los datos individuales no siguen una distribución normal.</p>
+<p>El error estándar permite cuantificar la variación de la distribución muestral y es fundamental para la consutrucción de herrmaientas inferenciales como la estimación y el contraste de hipó. Se calcula como la desviación estándar dividida por la raíz del tamaño de la muestra:</p>
+<p><span class="math display">\[
+\text{Error estándar} = \frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>Este valor indica la variabilidad esperada en la media muestral si se tomaran múltiples muestras de la misma población. Un error estándar pequeño sugiere que la media muestral es un buen estimador de la media poblacional. En la práctica, cuando la desviación estándar de la población es desconocida, se usa la desviación estándar de la muestra (<span class="math inline">\(s\)</span>) como una aproximación.</p>
+<p>En estudios aplicados, la inferencia estadística se basa en la distribución muestral para estimar parámetros poblacionales y hacer afirmaciones sobre una población a partir de una muestra. Gracias al <strong>Teorema del Límite Central</strong>, se puede asumir que la distribución de las medias muestrales es aproximadamente normal, lo que permite calcular intervalos de confianza y realizar pruebas de hipótesis con fundamentos matemáticos sólidos.</p>
+</section>
+<section id="ejercicios" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="ejercicios"><span class="header-section-number">5.10</span> Ejercicios</h2>
+<p><strong>1. Se lanza un dado justo de seis caras. Queremos calcular la probabilidad de obtener un número mayor a 4 en un solo lanzamiento. ¿Cuál es la probabilidad de este evento?</strong></p>
+<ol type="A">
+<li><span class="math inline">\(\frac{4}{6}\)</span> (0.6667)<br>
+</li>
+<li><span class="math inline">\(\frac{2}{6}\)</span> (0.3333)<br>
+</li>
+<li><span class="math inline">\(\frac{1}{6}\)</span> (0.1667)<br>
+</li>
+<li><span class="math inline">\(\frac{3}{6}\)</span> (0.5000)</li>
+</ol>
+<p><strong>2. En una población donde las alturas de los adultos siguen una distribución normal con media</strong> <span class="math inline">\(\mu = 170\text{ cm}\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 10\text{ cm}\)</span>, <strong>¿entre qué valores se encuentra aproximadamente el 68% de las alturas según la Regla Empírica?</strong></p>
+<ol type="A">
+<li>150 cm y 190 cm</li>
+<li>165 cm y 175 cm</li>
+<li>160 cm y 180 cm<br>
+</li>
+<li>155 cm y 185 cm</li>
+</ol>
+<p><strong>3. Si una distribución normal tiene media</strong> <span class="math inline">\(\mu = 150\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 20\)</span>, <strong>¿qué porcentaje de los datos se encuentra por debajo de</strong> <span class="math inline">\(x = 90\)</span><strong>? Usa la Regla Empírica y considera la acumulación de probabilidades a ambos lados.</strong></p>
+<ol type="A">
+<li>0.3%<br>
+</li>
+<li>0.13%<br>
+</li>
+<li>2.5%<br>
+</li>
+<li>5%</li>
+</ol>
+<p><strong>4. Las alturas de los hombres adultos en una región siguen una distribución normal con media</strong> <span class="math inline">\(\mu = 175\text{ cm}\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 10\text{ cm}\)</span>. <strong>¿Cuál es la probabilidad de que un hombre seleccionado al azar mida menos de 165 cm?</strong></p>
+<ol type="A">
+<li>0.1587 (15.87%)<br>
+</li>
+<li>0.3413 (34.13%)<br>
+</li>
+<li>0.5000 (50.00%)<br>
+</li>
+<li>0.8413 (84.13%)</li>
+</ol>
+<p><strong>5. En una distribución normal con media</strong> <span class="math inline">\(\mu = 175\text{ cm}\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 10\text{ cm}\)</span><strong>, ¿qué altura corresponde al percentil 95, es decir, el valor por debajo del cual se encuentra el 95% de la población?</strong></p>
+<ol type="A">
+<li>185.25 cm<br>
+</li>
+<li>190.45 cm<br>
+</li>
+<li>195.30 cm<br>
+</li>
+<li>200.75 cm</li>
+</ol>
+<p><strong>6. Flor realizó una encuesta a 2000 personas para medir el tiempo promedio que pasan en redes sociales. El promedio fue de 21.75 horas por semana, con una desviación estándar muestral de</strong> <span class="math inline">\(s = 5.84\)</span> <strong>horas. ¿Cuál es el error estándar de la media en esta encuesta? Recuerda que el error estándar de la media se calcula como</strong> <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span>.</p>
+<ol type="A">
+<li>0.10 horas<br>
+</li>
+<li>0.30 horas</li>
+<li>0.25 horas<br>
+</li>
+<li>0.13 horas</li>
+</ol>
+<p><strong>7. Se simulan 1000 muestras de tamaño</strong> <span class="math inline">\(n = 30\)</span><strong>, provenientes de una población con media</strong> <span class="math inline">\(\mu = 50\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 10\)</span><strong>. Según el Teorema del Límite Central, ¿cómo se comportará la distribución de las medias muestrales?</strong></p>
+<ol type="A">
+<li>Tendrá una media de 50 y una desviación estándar de 10.<br>
+</li>
+<li>Tendrá una media de 50 y una desviación estándar de <span class="math inline">\(\frac{10}{\sqrt{30}}\)</span>.<br>
+</li>
+<li>Tendrá una media de 50 y una desviación estándar de <span class="math inline">\(\sqrt{30}\)</span>.<br>
+</li>
+<li>No se puede determinar sin más información.</li>
+</ol>
+<p><strong>8. Si las puntuaciones de un examen de matemáticas siguen una distribución normal con media</strong> <span class="math inline">\(\mu = 75\)</span> <strong>y desviación estándar</strong> <span class="math inline">\(\sigma = 8\)</span><strong>, ¿qué porcentaje de estudiantes obtienen una puntuación entre 67 y 83 puntos?</strong></p>
+<ol type="A">
+<li>34.13%<br>
+</li>
+<li>68.26%<br>
+</li>
+<li>84.13%<br>
+</li>
+<li>95.44%</li>
+</ol>
+<p><strong>9. Dos estudiantes realizan pruebas en diferentes universidades. En la universidad de Ana, la media de los puntajes es 500 con una desviación estándar de 100, mientras que en la universidad de Juan, la media es 75 con una desviación estándar de 10. Si Ana obtiene 650 y Juan obtiene 85, ¿quién tuvo un desempeño relativamente mejor en su universidad? Recuerda usar la puntuación estandarizada:</strong> <span class="math inline">\(z = \frac{x - \mu}{\sigma}\)</span>.</p>
+<ol type="A">
+<li>Ana<br>
+</li>
+<li>Juan<br>
+</li>
+<li>Ambos tuvieron el mismo desempeño relativo<br>
+</li>
+<li>No se puede determinar sin más información</li>
+</ol>
+<p><strong>10. ¿Cuál de las siguientes afirmaciones describe mejor el principio de la Ley de los Grandes Números?</strong></p>
+<ol type="A">
+<li>A medida que aumenta el número de repeticiones de un experimento aleatorio, la frecuencia relativa de un evento se aproxima a su probabilidad teórica.<br>
+</li>
+<li>Si un evento ocurre varias veces seguidas, su probabilidad de ocurrencia en el siguiente intento disminuye.<br>
+</li>
+<li>Una muestra grande siempre sigue una distribución normal, sin importar la distribución original.<br>
+</li>
+<li>La probabilidad de un evento se mantiene constante sin importar cuántas veces se repita el experimento.</li>
+</ol>
+<p><strong>11. El número de autos que llegan a una estación de servicio en una hora sigue una distribución de Poisson con una media de 5 autos por hora. ¿Cuál es la probabilidad de que en la próxima hora lleguen exactamente 3 autos?</strong></p>
+<ol type="A">
+<li>0.1404<br>
+</li>
+<li>0.2650<br>
+</li>
+<li>0.6159<br>
+</li>
+<li>0.8571</li>
+</ol>
+<p><strong>12.¿Cuál de los siguientes ejemplos se modela mejor con una distribución discreta?</strong></p>
+<ol type="A">
+<li>La cantidad de estudiantes que llegan tarde a clase en un día.<br>
+</li>
+<li>La temperatura promedio diaria en una ciudad.<br>
+</li>
+<li>La cantidad de lluvia caída en un mes en milímetros.<br>
+</li>
+<li>La distancia recorrida por un atleta en una maratón.</li>
+</ol>
+<p><strong>13. Un semáforo permanece en luz verde durante 40 segundos, luego cambia a rojo por otros 40 segundos. Si una persona llega a un semáforo en un momento aleatorio del ciclo, ¿cuál es la probabilidad de que deba esperar?</strong></p>
+<ol type="A">
+<li>0.25<br>
+</li>
+<li>0.50<br>
+</li>
+<li>0.75<br>
+</li>
+<li>1.00</li>
+</ol>
+<p><strong>14. ¿Cuál de los siguientes eventos se modela mejor con una distribución binomial?</strong></p>
+<ol type="A">
+<li>El tiempo de espera en una fila del banco.</li>
+<li>La cantidad de clientes que llegan a una tienda en una hora.<br>
+</li>
+<li>La variación en la velocidad del viento en un día.<br>
+</li>
+<li>El número de respuestas correctas en un examen de opción múltiple con 10 preguntas.</li>
+</ol>
+<p><strong>15. Si un estudiante obtiene una calificación de 85 en un examen donde la media es 75 y la desviación estándar es 5, ¿cuál es su puntaje en valor z?</strong></p>
+<ol type="A">
+<li>1.00<br>
+</li>
+<li>2.00<br>
+</li>
+<li>-1.00<br>
+</li>
+<li>-2.00</li>
+</ol>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-speegle2021probability" class="csl-entry" role="listitem">
+Speegle, Deborah, y Benjamin Clair. 2021. <em>Probability, Statistics, and Data: A Fresh Approach Using R</em>. Boca Raton, FL: CRC Press.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<button id="toc-toggle-btn" aria-label="Abrir contenido">Contenido ▤</button>
+<script>
+  (function () {
+    const btn = document.getElementById('toc-toggle-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      document.body.classList.toggle('toc-open');
+    });
+    // Cierra el drawer al tocar fuera del panel (móviles)
+    document.addEventListener('click', function (e) {
+      const panel = document.getElementById('quarto-margin-sidebar');
+      if (!panel) return;
+      const clickedInside = panel.contains(e.target) || btn.contains(e.target);
+      if (!clickedInside && document.body.classList.contains('toc-open')) {
+        document.body.classList.remove('toc-open');
+      }
+    });
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./statdesc.html" class="pagination-link" aria-label="Estadística descriptiva">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estadística descriptiva</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./inf.html" class="pagination-link" aria-label="Estadística inferencial">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estadística inferencial</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

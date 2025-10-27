@@ -1,0 +1,245 @@
+/* ============================================================
+   La Datafora — estilo refinado y coherente (layout intacto)
+   ============================================================ */
+
+/* ---------- Paleta base y tipografía ---------- */
+:root {
+  --bg:        #f9f7f3;   /* fondo crema */
+  --bg-soft:   #f6f3ef;   /* panel suave */
+  --text:      #2b2b2b;   /* texto principal */
+  --accent:    #8a5a44;   /* marrón principal */
+  --accent2:   #c7a47a;   /* arena suave */
+  --link:      #4a5d68;   /* azul grisáceo elegante */
+  --border:    #e0dcd5;   /* borde suave */
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-family: "Inter", "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Literata", "Georgia", serif;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   ENLACES GLOBALES
+   ============================================================ */
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color .2s ease, background-color .2s ease;
+}
+a:hover,
+a:focus {
+  color: #fff !important;
+  background-color: var(--accent);
+  border-radius: 4px;
+}
+
+/* ============================================================
+   NAVBAR (más sutil, sin hover agresivo)
+   ============================================================ */
+.navbar,
+.navbar-dark,
+.navbar-light {
+  background-color: var(--bg-soft) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar a.nav-link {
+  color: var(--text) !important;
+  transition: color .2s ease, background-color .2s ease;
+  border-radius: 4px;
+}
+
+.navbar a.nav-link:hover,
+.navbar a.nav-link:focus {
+  background-color: var(--accent);
+  color: #fff !important;
+}
+
+/* ============================================================
+   TOC GLOBAL (sidebar izquierda)
+   ============================================================ */
+.sidebar {
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+}
+
+.sidebar nav a {
+  display: block;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--accent);
+  color: #fff !important;
+  transform: translateX(2px);
+}
+
+.sidebar nav a:hover *,
+.sidebar nav a.active * {
+  color: #fff !important;
+}
+
+/* ============================================================
+   TOC DEL CAPÍTULO (sidebar derecha)
+   ============================================================ */
+#quarto-margin-sidebar {
+  background: var(--bg-soft);
+  border-left: 1px solid var(--border);
+}
+
+#quarto-margin-sidebar #TOC { padding: .75rem; }
+
+#quarto-margin-sidebar #TOC a {
+  display: block;
+  color: var(--text) !important;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+#quarto-margin-sidebar #TOC a:hover,
+#quarto-margin-sidebar #TOC a.active {
+  background: var(--accent);
+  color: #fff !important;
+  transform: translateX(2px);
+}
+
+#quarto-margin-sidebar #TOC a:hover *,
+#quarto-margin-sidebar #TOC a.active * {
+  color: #fff !important;
+}
+
+/* ============================================================
+   TEXTO Y FIGURAS
+   ============================================================ */
+main.content p,
+.page-columns .content p,
+.section p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+h1, h2, h3, h4, h5,
+figcaption, pre, code, blockquote {
+  text-align: left;
+}
+
+.quarto-figure { text-align: center; }
+.quarto-figure img, img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.quarto-figure figcaption {
+  font-size: .9rem;
+  color: #6a6a6a;
+  font-style: italic;
+  margin-top: .35rem;
+}
+
+/* ============================================================
+   CÓDIGO Y BLOQUES
+   ============================================================ */
+pre.sourceCode,
+pre code {
+  background: #f1eee9;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  font-size: .9rem;
+}
+
+/* ============================================================
+   TOC DERECHO COMO DRAWER EN MÓVIL
+   ============================================================ */
+#toc-toggle-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1001;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 991.98px){
+  #quarto-margin-sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 85vw;
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -8px 0 20px rgba(0,0,0,.15);
+  }
+  body.toc-open #quarto-margin-sidebar{ transform: translateX(0); }
+
+  #toc-toggle-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+
+/* ---- Botón del libro ---- */
+.libro-boton-container {
+  text-align: center;
+  margin: 3em 0;
+}
+
+.boton-libro {
+  background-color: #8B5E3C;     /* marrón cálido */
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.2s ease;
+  display: inline-block;
+  outline: none;                 /* evita borde azul al hacer clic */
+}
+
+.boton-libro:hover,
+.boton-libro:focus {
+  background-color: #a56b45;     /* un tono más claro */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  transform: translateY(-2px);
+  color: #fff;
+  border-radius: 12px;           /* mantiene curvatura constante */
+  outline: none;
+}
+
+.boton-libro:active {
+  transform: translateY(0);      /* efecto de presión */
+}
+
