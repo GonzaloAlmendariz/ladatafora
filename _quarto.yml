@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs   # ← clave para GitHub Pages (main / docs)
 
 website:
   title: "La Datafora Web"
