@@ -1,5 +1,9 @@
 ---
-title: "LaDataforaWeb"
+title: "La Datafora"
+page-layout: full
+format:
+  html:
+    toc: false
 ---
 
 This is a Quarto website.

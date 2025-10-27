@@ -1,14 +1,9 @@
 ---
-title: "libro"
-format: html
----
-
----
-title: "Libro: *R para el análisis de datos de libre acceso*"
+title: "Libro: R para el análisis de datos"
+page-layout: full
 format:
   html:
-    toc: true
-    toc-title: "Contenido"
+    toc: false
 ---
 
 ## Sobre el libro

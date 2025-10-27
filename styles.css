@@ -243,3 +243,28 @@ pre code {
   transform: translateY(0);      /* efecto de presión */
 }
 
+
+/* ---- Iframe pantalla completa (sin romper Quarto) ---- */
+.iframe-fullpage {
+  position: relative;
+  width: 100%;
+  height: 90vh;            /* ocupa el 90% de la altura visible */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.iframe-fullpage iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+
+

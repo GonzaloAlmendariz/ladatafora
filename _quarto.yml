@@ -1,15 +1,29 @@
 project:
   type: website
-  output-dir: docs   # ← clave para GitHub Pages (main / docs)
+  output-dir: docs  
 
 website:
-  title: "La Datafora Web"
+  title: "La Datafora"
   navbar:
     left:
       - href: about.qmd
         text: "Sobre el proyecto"
+
       - href: libro.qmd
         text: "Libro"
+
+      - href: dataforaint.qmd
+        text: "La Datafora Interactiva"
+
+      - href: main_proyectos.qmd
+        text: "Proyectos"
+
+      - text: "Paquetes"
+        menu:
+          - text: "Prosecnur"
+            href: paquetes/prosecnur/
+          - text: "IncoreR"
+            href: paquetes/incorer/
 
 format:
   html:

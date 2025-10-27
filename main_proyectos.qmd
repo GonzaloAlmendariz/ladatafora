@@ -1,0 +1,194 @@
+---
+title: "Proyectos"
+format:
+  html:
+    theme: cosmo
+editor: visual
+---
+
+# Presentación
+
+Especializado en análisis de datos y programación estadística aplicados a las ciencias sociales, combino competencias técnicas en R, Python y SQL con una sólida formación en investigación social y análisis político. He desarrollado proyectos de procesamiento y visualización de datos, análisis estadístico avanzado, y modelado de texto, aplicando técnicas de limpieza, normalización y análisis de variables demográficas y cualitativas.
+
+## Voces para el Futuro - PNUD CAF
+
+```{=html}
+<div style="display:flex; flex-direction:column; align-items:center; gap:30px; margin:40px 0;">
+
+  <!-- Proyecto 1 -->
+  <a href="proyecto_pnud.qmd" style="text-decoration:none; width:100%; max-width:1200px; color: inherit;">
+    <div class="proyecto-card" style="
+        display:flex; 
+        align-items:center;    /* centra la imagen verticalmente */
+        gap:20px; 
+        border:1px solid #ccc; 
+        border-radius:10px; 
+        padding:20px; 
+        box-shadow:2px 4px 12px rgba(0,0,0,0.15); 
+        transition: transform 0.2s, box-shadow 0.2s;
+        background-color:#fff;
+        overflow:hidden;
+    ">
+      <img src="images/proyecto_pnud.jpg" alt="Voces para el Futuro" style="
+          width:40%; 
+          height:100%; 
+          border-radius:6px; 
+          object-fit:cover;
+          flex-shrink:0;
+      ">
+      <div style="
+          flex:1; 
+          display:flex; 
+          flex-direction:column; 
+          justify-content:center;  /* centra verticalmente el texto */
+          overflow:auto;
+      ">
+        <h3 style="margin-top:0; text-align:center;">Objetivos</h3>
+        <p style="line-height:1.5; margin-bottom:0; text-align:justify;">
+          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta.
+        </p>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<style>
+.proyecto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 8px 20px rgba(0,0,0,0.2);
+}
+
+/* La imagen no cambia en hover */
+.proyecto-card img:hover {
+  transform: none;
+}
+
+/* Quita cambio de color de link */
+a {
+  color: inherit;
+}
+</style>
+```
+
+## Diabetes
+
+```{=html}
+<div style="display:flex; flex-direction:column; align-items:center; gap:30px; margin:40px 0;">
+
+  <!-- Proyecto 1 -->
+  <a href="proyecto_pnud.qmd" style="text-decoration:none; width:100%; max-width:1200px; color: inherit;">
+    <div class="proyecto-card" style="
+        display:flex; 
+        align-items:center;    /* centra la imagen verticalmente */
+        gap:20px; 
+        border:1px solid #ccc; 
+        border-radius:10px; 
+        padding:20px; 
+        box-shadow:2px 4px 12px rgba(0,0,0,0.15); 
+        transition: transform 0.2s, box-shadow 0.2s;
+        background-color:#fff;
+        overflow:hidden;
+    ">
+      <img src="images/proyecto_pnud.jpg" alt="Voces para el Futuro" style="
+          width:40%; 
+          height:100%; 
+          border-radius:6px; 
+          object-fit:cover;
+          flex-shrink:0;
+      ">
+      <div style="
+          flex:1; 
+          display:flex; 
+          flex-direction:column; 
+          justify-content:center;  /* centra verticalmente el texto */
+          overflow:auto;
+      ">
+        <h3 style="margin-top:0; text-align:center;">Objetivos</h3>
+        <p style="line-height:1.5; margin-bottom:0; text-align:justify;">
+          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta.
+        </p>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<style>
+.proyecto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 8px 20px rgba(0,0,0,0.2);
+}
+
+/* La imagen no cambia en hover */
+.proyecto-card img:hover {
+  transform: none;
+}
+
+/* Quita cambio de color de link */
+a {
+  color: inherit;
+}
+</style>
+```
+
+## Proyecto 3
+
+```{=html}
+<div style="display:flex; flex-direction:column; align-items:center; gap:30px; margin:40px 0;">
+
+  <!-- Proyecto 1 -->
+  <a href="proyecto_pnud.qmd" style="text-decoration:none; width:100%; max-width:1200px; color: inherit;">
+    <div class="proyecto-card" style="
+        display:flex; 
+        align-items:center;    /* centra la imagen verticalmente */
+        gap:20px; 
+        border:1px solid #ccc; 
+        border-radius:10px; 
+        padding:20px; 
+        box-shadow:2px 4px 12px rgba(0,0,0,0.15); 
+        transition: transform 0.2s, box-shadow 0.2s;
+        background-color:#fff;
+        overflow:hidden;
+    ">
+      <img src="images/proyecto_pnud.jpg" alt="Voces para el Futuro" style="
+          width:40%; 
+          height:100%; 
+          border-radius:6px; 
+          object-fit:cover;
+          flex-shrink:0;
+      ">
+      <div style="
+          flex:1; 
+          display:flex; 
+          flex-direction:column; 
+          justify-content:center;  /* centra verticalmente el texto */
+          overflow:auto;
+      ">
+        <h3 style="margin-top:0; text-align:center;">Objetivos</h3>
+        <p style="line-height:1.5; margin-bottom:0; text-align:justify;">
+          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta.
+        </p>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<style>
+.proyecto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 8px 20px rgba(0,0,0,0.2);
+}
+
+/* La imagen no cambia en hover */
+.proyecto-card img:hover {
+  transform: none;
+}
+
+/* Quita cambio de color de link */
+a {
+  color: inherit;
+}
+</style>
+```

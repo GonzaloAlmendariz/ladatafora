@@ -2,43 +2,78 @@
   {
     "objectID": "libro.html",
     "href": "libro.html",
-    "title": "Libro: R para el análisis de datos de libre acceso",
+    "title": "Libro: R para el análisis de datos",
     "section": "",
     "text": "R para el análisis de datos de libre acceso es un libro introductorio orientado a las ciencias sociales, que busca enseñar estadística aplicada y uso de R de forma clara, práctica y accesible.\nCombina explicaciones teóricas con ejemplos reproducibles, visualizaciones y ejercicios.\nEl texto está diseñado para estudiantes, docentes e investigadores que desean incorporar R en su trabajo empírico, sin requerir formación matemática avanzada."
   },
   {
     "objectID": "libro.html#sobre-el-libro",
     "href": "libro.html#sobre-el-libro",
-    "title": "Libro: R para el análisis de datos de libre acceso",
+    "title": "Libro: R para el análisis de datos",
     "section": "",
     "text": "R para el análisis de datos de libre acceso es un libro introductorio orientado a las ciencias sociales, que busca enseñar estadística aplicada y uso de R de forma clara, práctica y accesible.\nCombina explicaciones teóricas con ejemplos reproducibles, visualizaciones y ejercicios.\nEl texto está diseñado para estudiantes, docentes e investigadores que desean incorporar R en su trabajo empírico, sin requerir formación matemática avanzada."
   },
   {
     "objectID": "libro.html#estructura-general",
     "href": "libro.html#estructura-general",
-    "title": "Libro: R para el análisis de datos de libre acceso",
+    "title": "Libro: R para el análisis de datos",
     "section": "Estructura general",
     "text": "Estructura general\nEl libro está organizado en capítulos progresivos que abarcan desde fundamentos hasta análisis más avanzados:\n\nFundamentos de la estadística\n\nFundamentos de R\n\nIntegración y manejo de datos\n\nEstadística descriptiva\n\nProbabilidad y distribuciones\n\nInferencia estadística\n\nComparando grupos\n\nRegresión\n\nGlosario de funciones útiles\n\nCada capítulo cierra con un resumen y ejercicios aplicados."
   },
   {
     "objectID": "libro.html#acceso-al-libro-completo",
     "href": "libro.html#acceso-al-libro-completo",
-    "title": "Libro: R para el análisis de datos de libre acceso",
+    "title": "Libro: R para el análisis de datos",
     "section": "Acceso al libro completo",
     "text": "Acceso al libro completo\nEl libro está disponible en línea, de acceso totalmente libre:\n\n  \n     📘 Leer el libro completo"
   },
   {
+    "objectID": "main_proyectos.html",
+    "href": "main_proyectos.html",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Especializado en análisis de datos y programación estadística aplicados a las ciencias sociales, combino competencias técnicas en R, Python y SQL con una sólida formación en investigación social y análisis político. He desarrollado proyectos de procesamiento y visualización de datos, análisis estadístico avanzado, y modelado de texto, aplicando técnicas de limpieza, normalización y análisis de variables demográficas y cualitativas.\n\n\n\n\n  \n  \n    \n      \n      \n        \n        \n          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta.\n        \n      \n    \n  \n\n\n\n\n\n\n\n\n\n  \n  \n    \n      \n      \n        \n        \n          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta.\n        \n      \n    \n  \n\n\n\n\n\n\n\n\n\n  \n  \n    \n      \n      \n        \n        \n          Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta."
+  },
+  {
+    "objectID": "main_proyectos.html#voces-para-el-futuro---pnud-caf",
+    "href": "main_proyectos.html#voces-para-el-futuro---pnud-caf",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta."
+  },
+  {
+    "objectID": "main_proyectos.html#diabetes",
+    "href": "main_proyectos.html#diabetes",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta."
+  },
+  {
+    "objectID": "main_proyectos.html#proyecto-3",
+    "href": "main_proyectos.html#proyecto-3",
+    "title": "Proyectos",
+    "section": "",
+    "text": "Organizada por el PNUD y la CAF, la encuesta buscaba identificar patrones en las percepciones ciudadanas sobre desarrollo y gobernanza en América Latina y el Caribe. Se aplicaron técnicas de limpieza y normalización de texto, análisis descriptivo de variables demográficas y métodos de procesamiento de lenguaje natural, incluyendo modelos estructurales de temas (STM), para explorar el contenido de las respuestas abiertas y clasificar los principales enfoques discursivos presentes en la consulta."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "LaDataforaWeb",
+    "title": "La Datafora",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Sobre el sitio",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "dataforaint.html",
+    "href": "dataforaint.html",
+    "title": "La Datafora Interactiva",
+    "section": "",
+    "text": "La Datáfora Interactiva es una extensión digital del libro R para el Análisis de Datos, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.\nCada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos."
   }
 ]

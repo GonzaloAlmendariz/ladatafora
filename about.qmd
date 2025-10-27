@@ -1,5 +1,9 @@
 ---
-title: "About"
+title: "Sobre el sitio"
+page-layout: full
+format:
+  html:
+    toc: false
 ---
 
 About this site
