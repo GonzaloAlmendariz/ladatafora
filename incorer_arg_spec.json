@@ -1,0 +1,2992 @@
+[
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "alpha_puntos",
+    "requerido": false,
+    "default": "0.8",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Alpha puntos"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "indicadores",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "metodo",
+    "requerido": false,
+    "default": "c(\"spearman\", \"pearson\")",
+    "control": "selectInput-multiple",
+    "choices": "spearman|pearson",
+    "label": "Metodo"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "paleta_cor",
+    "requerido": false,
+    "default": "c(\"rb\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "rb|viridis",
+    "label": "Paleta cor"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_correlaciones",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "color_mono",
+    "requerido": false,
+    "default": "\"#3B5B92\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color mono"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "highlight_color",
+    "requerido": false,
+    "default": "\"#D7301F\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Highlight color"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "highlight_regiones",
+    "requerido": false,
+    "default": "character(0)",
+    "control": "textInput",
+    "choices": "",
+    "label": "Highlight regiones"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "ind_x",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ind x"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "ind_y",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ind y"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "modo",
+    "requerido": false,
+    "default": "c(\"normal\", \"resaltar\")",
+    "control": "selectInput-multiple",
+    "choices": "normal|resaltar",
+    "label": "Modo"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\", \"mono\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis|mono",
+    "label": "Paleta"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_dispersion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "col_x",
+    "requerido": false,
+    "default": "\"#355C7D\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Col x"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "col_y",
+    "requerido": false,
+    "default": "\"#35B778\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Col y"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "ind_x",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ind x"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "ind_y",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ind y"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "bivalores",
+    "funcion": "bivalor_largo",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_barras",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "jitter_height",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter height"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "jitter_width",
+    "requerido": false,
+    "default": "0.08",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter width"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "mostrar_promedio",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar promedio"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "pilares",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilares"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "promedio_color",
+    "requerido": false,
+    "default": "\"black\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Promedio color"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "promedio_fill",
+    "requerido": false,
+    "default": "\"white\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Promedio fill"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "promedio_shape",
+    "requerido": false,
+    "default": "23",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Promedio shape"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "promedio_size",
+    "requerido": false,
+    "default": "3.5",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Promedio size"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_dispersion_pilares",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "jitter",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Jitter"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "linea_promedio",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Linea promedio"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "modo",
+    "requerido": false,
+    "default": "c(\"pilares\", \"general\")",
+    "control": "selectInput-multiple",
+    "choices": "pilares|general",
+    "label": "Modo"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "tipo",
+    "requerido": false,
+    "default": "c(\"boxplot\", \"violin\")",
+    "control": "selectInput-multiple",
+    "choices": "boxplot|violin",
+    "label": "Tipo"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_distribucion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "anotar",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Anotar"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "ordenar",
+    "requerido": false,
+    "default": "c(\"ninguno\", \"por_ultimo\", \"por_promedio\")",
+    "control": "selectInput-multiple",
+    "choices": "ninguno|por_ultimo|por_promedio",
+    "label": "Ordenar"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\", \"magma\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis|magma",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_heatmap",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "modo",
+    "requerido": false,
+    "default": "c(\"general\", \"pilares\")",
+    "control": "selectInput-multiple",
+    "choices": "general|pilares",
+    "label": "Modo"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "mostrar_puntos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar puntos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "pilares",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilares"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_largo",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "etiquetas",
+    "requerido": false,
+    "default": "c(\"repel\", \"texto\", \"ninguna\")",
+    "control": "selectInput-multiple",
+    "choices": "repel|texto|ninguna",
+    "label": "Etiquetas"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "expand_zoom",
+    "requerido": false,
+    "default": "0.04",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Expand zoom"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "mapa_sf",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Mapa sf"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"greens\", \"viridis\", \"cividis\", \"divergente\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|greens|viridis|cividis|divergente",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "simplificar",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Simplificar"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_mapa",
+    "argumento": "zoom",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Zoom"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "color_abajo",
+    "requerido": false,
+    "default": "\"#D7301F\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color abajo"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "color_arriba",
+    "requerido": false,
+    "default": "\"#2C7FB8\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color arriba"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "color_mono",
+    "requerido": false,
+    "default": "\"#3B5B92\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color mono"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "esquema",
+    "requerido": false,
+    "default": "c(\"binario\", \"divergente\", \"semaforo\", \"region\", \"monocromo\")",
+    "control": "selectInput-multiple",
+    "choices": "binario|divergente|semaforo|region|monocromo",
+    "label": "Esquema"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "paleta_region",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta region"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "promedio_nacional",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Promedio nacional"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_media",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "alpha",
+    "requerido": false,
+    "default": "0.25",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Alpha"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "etiquetas_pilares",
+    "requerido": false,
+    "default": "c(\"corto\", \"largo\")",
+    "control": "selectInput-multiple",
+    "choices": "corto|largo",
+    "label": "Etiquetas pilares"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "max_regiones",
+    "requerido": false,
+    "default": "6",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Max regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "mostrar_puntos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar puntos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"AUTO3\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_radar",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_tabla",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_tabla",
+    "argumento": "gt",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Gt"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_tabla",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_tabla",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "general",
+    "funcion": "general_tabla",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "incorer_set_region_groups",
+    "argumento": "groups",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Groups"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "incorer_set_region_groups",
+    "argumento": "replace",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Replace"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "gt",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Gt"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "largo",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Largo"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "modo",
+    "requerido": false,
+    "default": "c(\"general\", \"pilares\")",
+    "control": "selectInput-multiple",
+    "choices": "general|pilares",
+    "label": "Modo"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "ind_tabla",
+    "argumento": "verbose",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Verbose"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "indicador",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_barras",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "jitter_height",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter height"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "jitter_width",
+    "requerido": false,
+    "default": "0.08",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter width"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "mostrar_promedio",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar promedio"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "promedio_color",
+    "requerido": false,
+    "default": "\"black\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Promedio color"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "promedio_fill",
+    "requerido": false,
+    "default": "\"white\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Promedio fill"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "promedio_shape",
+    "requerido": false,
+    "default": "23",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Promedio shape"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "promedio_size",
+    "requerido": false,
+    "default": "3.5",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Promedio size"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_dispersion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "jitter",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Jitter"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "linea_promedio",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Linea promedio"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "tipo",
+    "requerido": false,
+    "default": "c(\"boxplot\", \"violin\")",
+    "control": "selectInput-multiple",
+    "choices": "boxplot|violin",
+    "label": "Tipo"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_distribucion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "anotar",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Anotar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "edicion",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "ediciones",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "indicador",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "modo",
+    "requerido": false,
+    "default": "c(\"indicadores\", \"tiempo\")",
+    "control": "selectInput-multiple",
+    "choices": "indicadores|tiempo",
+    "label": "Modo"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "ordenar",
+    "requerido": false,
+    "default": "c(\"ninguno\", \"por_ultimo\", \"por_promedio\")",
+    "control": "selectInput-multiple",
+    "choices": "ninguno|por_ultimo|por_promedio",
+    "label": "Ordenar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\", \"magma\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis|magma",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_heatmap",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "facet_label_nombre",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Facet label nombre"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "facetear",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Facetear"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "mostrar_puntos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar puntos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_largo",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "etiquetas",
+    "requerido": false,
+    "default": "c(\"repel\", \"texto\", \"ninguna\")",
+    "control": "selectInput-multiple",
+    "choices": "repel|texto|ninguna",
+    "label": "Etiquetas"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "expand_zoom",
+    "requerido": false,
+    "default": "0.04",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Expand zoom"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "indicador",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "mapa_sf",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Mapa sf"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"greens\", \"viridis\", \"cividis\", \"magma\", \"divergente\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|greens|viridis|cividis|magma|divergente",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "simplificar",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Simplificar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "subtitulo_nombre",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Subtitulo nombre"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_mapa",
+    "argumento": "zoom",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Zoom"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "color_abajo",
+    "requerido": false,
+    "default": "\"#D7301F\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color abajo"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "color_arriba",
+    "requerido": false,
+    "default": "\"#2C7FB8\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color arriba"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "color_mono",
+    "requerido": false,
+    "default": "\"#3B5B92\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Color mono"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "esquema",
+    "requerido": false,
+    "default": "c(\"binario\", \"divergente\", \"semaforo\", \"region\", \"monocromo\")",
+    "control": "selectInput-multiple",
+    "choices": "binario|divergente|semaforo|region|monocromo",
+    "label": "Esquema"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "indicador",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "paleta_region",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta region"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "subtitulo_nombre",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Subtitulo nombre"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_media",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "alpha",
+    "requerido": false,
+    "default": "0.25",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Alpha"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "etiquetas_indicadores",
+    "requerido": false,
+    "default": "c(\"codigo\", \"nombre\")",
+    "control": "selectInput-multiple",
+    "choices": "codigo|nombre",
+    "label": "Etiquetas indicadores"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "max_regiones",
+    "requerido": false,
+    "default": "6",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Max regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "mostrar_puntos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar puntos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"AUTO3\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_radar",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "gt",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Gt"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "largo",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Largo"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "indicadores",
+    "funcion": "indc_tabla",
+    "argumento": "verbose",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Verbose"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "agregar_codigos",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Agregar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "anio",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Anio"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "edicion",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "hoja",
+    "requerido": false,
+    "default": "1",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Hoja"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "indicador",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "region",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Region"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "ruta",
+    "requerido": false,
+    "default": "\"https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ruta"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_incore",
+    "argumento": "verbose",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Verbose"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "anio",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Anio"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "edicion",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "hoja",
+    "requerido": false,
+    "default": "1",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Hoja"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "indicador",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "region",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Region"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "ruta",
+    "requerido": false,
+    "default": "\"https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ruta"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "unidad",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Unidad"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "leer_total",
+    "argumento": "verbose",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Verbose"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "mapa_peru",
+    "argumento": "path",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Path"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "mapa_peru",
+    "argumento": "simplificar",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Simplificar"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "mapa_peru",
+    "argumento": "version",
+    "requerido": false,
+    "default": "\"4.1\"",
+    "control": "textInput",
+    "choices": "",
+    "label": "Version"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "resolver_regiones_grupos",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "resolver_regiones_grupos",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "traducir_codigo",
+    "argumento": "dic",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Dic"
+  },
+  {
+    "familia": "utilidades",
+    "funcion": "traducir_codigo",
+    "argumento": "x",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "X"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "indicador",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "label_indicador",
+    "requerido": false,
+    "default": "c(\"nombre\", \"cod\")",
+    "control": "selectInput-multiple",
+    "choices": "nombre|cod",
+    "label": "Label indicador"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_barras",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "jitter_height",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter height"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "jitter_width",
+    "requerido": false,
+    "default": "0.08",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Jitter width"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_dispersion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "jitter",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Jitter"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "linea_promedio",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Linea promedio"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "tipo",
+    "requerido": false,
+    "default": "c(\"boxplot\", \"violin\")",
+    "control": "selectInput-multiple",
+    "choices": "boxplot|violin",
+    "label": "Tipo"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_distribucion",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "facetear",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Facetear"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "label_indicador",
+    "requerido": false,
+    "default": "c(\"codigo\", \"nombre\")",
+    "control": "selectInput-multiple",
+    "choices": "codigo|nombre",
+    "label": "Label indicador"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "mostrar_puntos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar puntos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_largo",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "edicion",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Edicion"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "etiquetas",
+    "requerido": false,
+    "default": "c(\"repel\", \"texto\", \"ninguna\")",
+    "control": "selectInput-multiple",
+    "choices": "repel|texto|ninguna",
+    "label": "Etiquetas"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "expand_zoom",
+    "requerido": false,
+    "default": "0.04",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Expand zoom"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "indicador",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "mapa_sf",
+    "requerido": false,
+    "default": "NULL",
+    "control": "textInput",
+    "choices": "",
+    "label": "Mapa sf"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"blues\", \"viridis\", \"cividis\", \"magma\")",
+    "control": "selectInput-multiple",
+    "choices": "blues|viridis|cividis|magma",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "pilar",
+    "requerido": false,
+    "default": "NULL",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "simplificar",
+    "requerido": false,
+    "default": "0",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Simplificar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "subtitulo_nombre",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Subtitulo nombre"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_mapa",
+    "argumento": "zoom",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Zoom"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "indicador",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicador"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "mostrar_leyenda",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Mostrar leyenda"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "paleta",
+    "requerido": false,
+    "default": "c(\"ipe\", \"okabe_ito\", \"viridis\")",
+    "control": "selectInput-multiple",
+    "choices": "ipe|okabe_ito|viridis",
+    "label": "Paleta"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "rel_min_height",
+    "requerido": false,
+    "default": "0.001",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Rel min height"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "scale",
+    "requerido": false,
+    "default": "1.1",
+    "control": "numericInput",
+    "choices": "",
+    "label": "Scale"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_ridgeline",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "ediciones",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "textInput",
+    "choices": "",
+    "label": "Ediciones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "gt",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Gt"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "incluir_peru",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Incluir peru"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "indicadores",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Indicadores"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "largo",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Largo"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "pilar",
+    "requerido": true,
+    "default": "<requerido>",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Pilar"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "regiones",
+    "requerido": false,
+    "default": "\"ALL\"",
+    "control": "selectInput",
+    "choices": "",
+    "label": "Regiones"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "usar_codigos",
+    "requerido": false,
+    "default": "TRUE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Usar codigos"
+  },
+  {
+    "familia": "valores",
+    "funcion": "valor_tabla",
+    "argumento": "verbose",
+    "requerido": false,
+    "default": "FALSE",
+    "control": "checkboxInput",
+    "choices": "",
+    "label": "Verbose"
+  }
+]

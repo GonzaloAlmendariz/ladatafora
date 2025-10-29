@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs  
+  output-dir: docs
 
 website:
   title: "La Datafora"
@@ -18,12 +18,17 @@ website:
       - href: main_proyectos.qmd
         text: "Proyectos"
 
-      - text: "Paquetes"
+      - text: "IncoreR"
         menu:
-          - text: "Prosecnur"
-            href: paquetes/prosecnur/
-          - text: "IncoreR"
-            href: paquetes/incorer/
+          - text: "Introducción al paquete"
+            href: incorer/intro.qmd
+          - text: "Manual para R"
+            href: incorer/Manual.qmd
+          - text: "IncoreR en el navegador"
+            href: incorer/incorerweb.qmd
+
+      - text: "Prosecnur"
+        href: prosecnur/
 
 format:
   html:

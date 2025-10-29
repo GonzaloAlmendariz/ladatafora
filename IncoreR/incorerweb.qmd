@@ -1,0 +1,48 @@
+---
+title: "IncoreR en la Web"
+page-layout: full
+format:
+  html:
+    toc: false
+---
+
+El módulo **IncoreRWeb** permite explorar visualmente los resultados del Índice de Competitividad Regional (INCORE) mediante una interfaz interactiva desarrollada en Shiny.  
+Desde esta aplicación pueden consultarse puntajes por región y edición, visualizar mapas de calor y analizar los distintos pilares que componen el índice.
+
+La versión web de IncoreR complementa el paquete en R, facilitando la exploración intuitiva de los datos sin necesidad de programación.
+
+```{=html}
+<style>
+  .btn-ldf {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    transition: all 0.25s ease-in-out;
+  }
+  .btn-ldf:hover {
+    background-color: #a56b45;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+</style>
+
+<div class="btn-center">
+  <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank">
+    🌐 Explora IncoreRWeb
+  </a>
+</div>
+```

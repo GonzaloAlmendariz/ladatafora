@@ -1,0 +1,300 @@
+familia,funcion,argumento,requerido,default,control,choices,label
+bivalores,bivalor_correlaciones,alpha_puntos,FALSE,0.8,numericInput,,Alpha puntos
+bivalores,bivalor_correlaciones,edicion,TRUE,<requerido>,textInput,,Edicion
+bivalores,bivalor_correlaciones,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+bivalores,bivalor_correlaciones,indicadores,TRUE,<requerido>,selectInput,,Indicadores
+bivalores,bivalor_correlaciones,metodo,FALSE,"c(""spearman"", ""pearson"")",selectInput-multiple,spearman|pearson,Metodo
+bivalores,bivalor_correlaciones,paleta_cor,FALSE,"c(""rb"", ""viridis"")",selectInput-multiple,rb|viridis,Paleta cor
+bivalores,bivalor_correlaciones,regiones,FALSE,"""ALL""",selectInput,,Regiones
+bivalores,bivalor_correlaciones,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+bivalores,bivalor_dispersion,color_mono,FALSE,"""#3B5B92""",textInput,,Color mono
+bivalores,bivalor_dispersion,edicion,TRUE,<requerido>,textInput,,Edicion
+bivalores,bivalor_dispersion,highlight_color,FALSE,"""#D7301F""",textInput,,Highlight color
+bivalores,bivalor_dispersion,highlight_regiones,FALSE,character(0),textInput,,Highlight regiones
+bivalores,bivalor_dispersion,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+bivalores,bivalor_dispersion,ind_x,TRUE,<requerido>,textInput,,Ind x
+bivalores,bivalor_dispersion,ind_y,TRUE,<requerido>,textInput,,Ind y
+bivalores,bivalor_dispersion,modo,FALSE,"c(""normal"", ""resaltar"")",selectInput-multiple,normal|resaltar,Modo
+bivalores,bivalor_dispersion,mostrar_leyenda,FALSE,TRUE,checkboxInput,,Mostrar leyenda
+bivalores,bivalor_dispersion,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"", ""mono"")",selectInput-multiple,ipe|okabe_ito|viridis|mono,Paleta
+bivalores,bivalor_dispersion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+bivalores,bivalor_dispersion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+bivalores,bivalor_largo,col_x,FALSE,"""#355C7D""",textInput,,Col x
+bivalores,bivalor_largo,col_y,FALSE,"""#35B778""",textInput,,Col y
+bivalores,bivalor_largo,ediciones,TRUE,<requerido>,textInput,,Ediciones
+bivalores,bivalor_largo,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+bivalores,bivalor_largo,ind_x,TRUE,<requerido>,textInput,,Ind x
+bivalores,bivalor_largo,ind_y,TRUE,<requerido>,textInput,,Ind y
+bivalores,bivalor_largo,regiones,FALSE,"""ALL""",selectInput,,Regiones
+bivalores,bivalor_largo,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_barras,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_barras,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+general,general_barras,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+general,general_barras,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+general,general_barras,pilar,FALSE,NULL,selectInput,,Pilar
+general,general_barras,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_barras,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_dispersion_pilares,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_dispersion_pilares,jitter_height,FALSE,0,numericInput,,Jitter height
+general,general_dispersion_pilares,jitter_width,FALSE,0.08,numericInput,,Jitter width
+general,general_dispersion_pilares,mostrar_promedio,FALSE,TRUE,checkboxInput,,Mostrar promedio
+general,general_dispersion_pilares,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+general,general_dispersion_pilares,pilares,FALSE,"""ALL""",selectInput,,Pilares
+general,general_dispersion_pilares,promedio_color,FALSE,"""black""",textInput,,Promedio color
+general,general_dispersion_pilares,promedio_fill,FALSE,"""white""",textInput,,Promedio fill
+general,general_dispersion_pilares,promedio_shape,FALSE,23,numericInput,,Promedio shape
+general,general_dispersion_pilares,promedio_size,FALSE,3.5,numericInput,,Promedio size
+general,general_dispersion_pilares,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_dispersion_pilares,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_distribucion,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_distribucion,jitter,FALSE,FALSE,checkboxInput,,Jitter
+general,general_distribucion,linea_promedio,FALSE,TRUE,checkboxInput,,Linea promedio
+general,general_distribucion,modo,FALSE,"c(""pilares"", ""general"")",selectInput-multiple,pilares|general,Modo
+general,general_distribucion,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+general,general_distribucion,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"")",selectInput-multiple,blues|viridis|cividis,Paleta
+general,general_distribucion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_distribucion,tipo,FALSE,"c(""boxplot"", ""violin"")",selectInput-multiple,boxplot|violin,Tipo
+general,general_distribucion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_heatmap,anotar,FALSE,FALSE,checkboxInput,,Anotar
+general,general_heatmap,ediciones,TRUE,<requerido>,textInput,,Ediciones
+general,general_heatmap,mostrar_leyenda,FALSE,TRUE,checkboxInput,,Mostrar leyenda
+general,general_heatmap,ordenar,FALSE,"c(""ninguno"", ""por_ultimo"", ""por_promedio"")",selectInput-multiple,ninguno|por_ultimo|por_promedio,Ordenar
+general,general_heatmap,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",selectInput-multiple,blues|viridis|cividis|magma,Paleta
+general,general_heatmap,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_heatmap,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_largo,ediciones,TRUE,<requerido>,textInput,,Ediciones
+general,general_largo,modo,FALSE,"c(""general"", ""pilares"")",selectInput-multiple,general|pilares,Modo
+general,general_largo,mostrar_puntos,FALSE,TRUE,checkboxInput,,Mostrar puntos
+general,general_largo,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+general,general_largo,pilares,FALSE,NULL,selectInput,,Pilares
+general,general_largo,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_largo,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_mapa,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_mapa,etiquetas,FALSE,"c(""repel"", ""texto"", ""ninguna"")",selectInput-multiple,repel|texto|ninguna,Etiquetas
+general,general_mapa,expand_zoom,FALSE,0.04,numericInput,,Expand zoom
+general,general_mapa,mapa_sf,FALSE,NULL,textInput,,Mapa sf
+general,general_mapa,paleta,FALSE,"c(""blues"", ""greens"", ""viridis"", ""cividis"", ""divergente"")",selectInput-multiple,blues|greens|viridis|cividis|divergente,Paleta
+general,general_mapa,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_mapa,simplificar,FALSE,0,numericInput,,Simplificar
+general,general_mapa,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_mapa,zoom,FALSE,FALSE,checkboxInput,,Zoom
+general,general_media,color_abajo,FALSE,"""#D7301F""",textInput,,Color abajo
+general,general_media,color_arriba,FALSE,"""#2C7FB8""",textInput,,Color arriba
+general,general_media,color_mono,FALSE,"""#3B5B92""",textInput,,Color mono
+general,general_media,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_media,esquema,FALSE,"c(""binario"", ""divergente"", ""semaforo"", ""region"", ""monocromo"")",selectInput-multiple,binario|divergente|semaforo|region|monocromo,Esquema
+general,general_media,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+general,general_media,paleta_region,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta region
+general,general_media,pilar,FALSE,NULL,selectInput,,Pilar
+general,general_media,promedio_nacional,FALSE,FALSE,checkboxInput,,Promedio nacional
+general,general_media,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_media,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_radar,alpha,FALSE,0.25,numericInput,,Alpha
+general,general_radar,edicion,TRUE,<requerido>,textInput,,Edicion
+general,general_radar,etiquetas_pilares,FALSE,"c(""corto"", ""largo"")",selectInput-multiple,corto|largo,Etiquetas pilares
+general,general_radar,max_regiones,FALSE,6,numericInput,,Max regiones
+general,general_radar,mostrar_puntos,FALSE,TRUE,checkboxInput,,Mostrar puntos
+general,general_radar,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+general,general_radar,regiones,FALSE,"""AUTO3""",selectInput,,Regiones
+general,general_radar,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+general,general_tabla,ediciones,TRUE,<requerido>,textInput,,Ediciones
+general,general_tabla,gt,FALSE,FALSE,checkboxInput,,Gt
+general,general_tabla,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+general,general_tabla,regiones,FALSE,"""ALL""",selectInput,,Regiones
+general,general_tabla,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+utilidades,incorer_set_region_groups,groups,TRUE,<requerido>,textInput,,Groups
+utilidades,incorer_set_region_groups,replace,FALSE,FALSE,checkboxInput,,Replace
+utilidades,ind_tabla,ediciones,TRUE,<requerido>,textInput,,Ediciones
+utilidades,ind_tabla,gt,FALSE,FALSE,checkboxInput,,Gt
+utilidades,ind_tabla,largo,FALSE,FALSE,checkboxInput,,Largo
+utilidades,ind_tabla,modo,FALSE,"c(""general"", ""pilares"")",selectInput-multiple,general|pilares,Modo
+utilidades,ind_tabla,regiones,FALSE,"""ALL""",selectInput,,Regiones
+utilidades,ind_tabla,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+utilidades,ind_tabla,verbose,FALSE,FALSE,checkboxInput,,Verbose
+indicadores,indc_barras,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_barras,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+indicadores,indc_barras,indicador,FALSE,NULL,selectInput,,Indicador
+indicadores,indc_barras,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+indicadores,indc_barras,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+indicadores,indc_barras,pilar,FALSE,NULL,selectInput,,Pilar
+indicadores,indc_barras,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_barras,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_dispersion,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_dispersion,jitter_height,FALSE,0,numericInput,,Jitter height
+indicadores,indc_dispersion,jitter_width,FALSE,0.08,numericInput,,Jitter width
+indicadores,indc_dispersion,mostrar_leyenda,FALSE,TRUE,checkboxInput,,Mostrar leyenda
+indicadores,indc_dispersion,mostrar_promedio,FALSE,TRUE,checkboxInput,,Mostrar promedio
+indicadores,indc_dispersion,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+indicadores,indc_dispersion,pilar,TRUE,<requerido>,selectInput,,Pilar
+indicadores,indc_dispersion,promedio_color,FALSE,"""black""",textInput,,Promedio color
+indicadores,indc_dispersion,promedio_fill,FALSE,"""white""",textInput,,Promedio fill
+indicadores,indc_dispersion,promedio_shape,FALSE,23,numericInput,,Promedio shape
+indicadores,indc_dispersion,promedio_size,FALSE,3.5,numericInput,,Promedio size
+indicadores,indc_dispersion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_dispersion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_distribucion,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_distribucion,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+indicadores,indc_distribucion,jitter,FALSE,FALSE,checkboxInput,,Jitter
+indicadores,indc_distribucion,linea_promedio,FALSE,TRUE,checkboxInput,,Linea promedio
+indicadores,indc_distribucion,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+indicadores,indc_distribucion,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"")",selectInput-multiple,blues|viridis|cividis,Paleta
+indicadores,indc_distribucion,pilar,TRUE,<requerido>,selectInput,,Pilar
+indicadores,indc_distribucion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_distribucion,tipo,FALSE,"c(""boxplot"", ""violin"")",selectInput-multiple,boxplot|violin,Tipo
+indicadores,indc_distribucion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_heatmap,anotar,FALSE,FALSE,checkboxInput,,Anotar
+indicadores,indc_heatmap,edicion,FALSE,NULL,textInput,,Edicion
+indicadores,indc_heatmap,ediciones,FALSE,NULL,textInput,,Ediciones
+indicadores,indc_heatmap,indicador,FALSE,NULL,selectInput,,Indicador
+indicadores,indc_heatmap,modo,FALSE,"c(""indicadores"", ""tiempo"")",selectInput-multiple,indicadores|tiempo,Modo
+indicadores,indc_heatmap,mostrar_leyenda,FALSE,TRUE,checkboxInput,,Mostrar leyenda
+indicadores,indc_heatmap,ordenar,FALSE,"c(""ninguno"", ""por_ultimo"", ""por_promedio"")",selectInput-multiple,ninguno|por_ultimo|por_promedio,Ordenar
+indicadores,indc_heatmap,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",selectInput-multiple,blues|viridis|cividis|magma,Paleta
+indicadores,indc_heatmap,pilar,FALSE,NULL,selectInput,,Pilar
+indicadores,indc_heatmap,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_heatmap,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_largo,ediciones,TRUE,<requerido>,textInput,,Ediciones
+indicadores,indc_largo,facet_label_nombre,FALSE,TRUE,checkboxInput,,Facet label nombre
+indicadores,indc_largo,facetear,FALSE,TRUE,checkboxInput,,Facetear
+indicadores,indc_largo,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+indicadores,indc_largo,mostrar_puntos,FALSE,TRUE,checkboxInput,,Mostrar puntos
+indicadores,indc_largo,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+indicadores,indc_largo,pilar,TRUE,<requerido>,selectInput,,Pilar
+indicadores,indc_largo,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_largo,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_mapa,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_mapa,etiquetas,FALSE,"c(""repel"", ""texto"", ""ninguna"")",selectInput-multiple,repel|texto|ninguna,Etiquetas
+indicadores,indc_mapa,expand_zoom,FALSE,0.04,numericInput,,Expand zoom
+indicadores,indc_mapa,indicador,TRUE,<requerido>,selectInput,,Indicador
+indicadores,indc_mapa,mapa_sf,FALSE,NULL,textInput,,Mapa sf
+indicadores,indc_mapa,paleta,FALSE,"c(""blues"", ""greens"", ""viridis"", ""cividis"", ""magma"", ""divergente"")",selectInput-multiple,blues|greens|viridis|cividis|magma|divergente,Paleta
+indicadores,indc_mapa,pilar,FALSE,NULL,selectInput,,Pilar
+indicadores,indc_mapa,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_mapa,simplificar,FALSE,0,numericInput,,Simplificar
+indicadores,indc_mapa,subtitulo_nombre,FALSE,TRUE,checkboxInput,,Subtitulo nombre
+indicadores,indc_mapa,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_mapa,zoom,FALSE,FALSE,checkboxInput,,Zoom
+indicadores,indc_media,color_abajo,FALSE,"""#D7301F""",textInput,,Color abajo
+indicadores,indc_media,color_arriba,FALSE,"""#2C7FB8""",textInput,,Color arriba
+indicadores,indc_media,color_mono,FALSE,"""#3B5B92""",textInput,,Color mono
+indicadores,indc_media,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_media,esquema,FALSE,"c(""binario"", ""divergente"", ""semaforo"", ""region"", ""monocromo"")",selectInput-multiple,binario|divergente|semaforo|region|monocromo,Esquema
+indicadores,indc_media,indicador,TRUE,<requerido>,selectInput,,Indicador
+indicadores,indc_media,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+indicadores,indc_media,paleta_region,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta region
+indicadores,indc_media,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_media,subtitulo_nombre,FALSE,TRUE,checkboxInput,,Subtitulo nombre
+indicadores,indc_media,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_radar,alpha,FALSE,0.25,numericInput,,Alpha
+indicadores,indc_radar,edicion,TRUE,<requerido>,textInput,,Edicion
+indicadores,indc_radar,etiquetas_indicadores,FALSE,"c(""codigo"", ""nombre"")",selectInput-multiple,codigo|nombre,Etiquetas indicadores
+indicadores,indc_radar,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+indicadores,indc_radar,max_regiones,FALSE,6,numericInput,,Max regiones
+indicadores,indc_radar,mostrar_puntos,FALSE,TRUE,checkboxInput,,Mostrar puntos
+indicadores,indc_radar,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+indicadores,indc_radar,pilar,TRUE,<requerido>,selectInput,,Pilar
+indicadores,indc_radar,regiones,FALSE,"""AUTO3""",selectInput,,Regiones
+indicadores,indc_radar,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_tabla,ediciones,TRUE,<requerido>,textInput,,Ediciones
+indicadores,indc_tabla,gt,FALSE,FALSE,checkboxInput,,Gt
+indicadores,indc_tabla,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+indicadores,indc_tabla,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+indicadores,indc_tabla,largo,FALSE,FALSE,checkboxInput,,Largo
+indicadores,indc_tabla,pilar,TRUE,<requerido>,selectInput,,Pilar
+indicadores,indc_tabla,regiones,FALSE,"""ALL""",selectInput,,Regiones
+indicadores,indc_tabla,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+indicadores,indc_tabla,verbose,FALSE,FALSE,checkboxInput,,Verbose
+utilidades,leer_incore,agregar_codigos,FALSE,FALSE,checkboxInput,,Agregar codigos
+utilidades,leer_incore,anio,FALSE,NULL,textInput,,Anio
+utilidades,leer_incore,edicion,FALSE,NULL,textInput,,Edicion
+utilidades,leer_incore,hoja,FALSE,1,numericInput,,Hoja
+utilidades,leer_incore,indicador,FALSE,NULL,selectInput,,Indicador
+utilidades,leer_incore,pilar,FALSE,NULL,selectInput,,Pilar
+utilidades,leer_incore,region,FALSE,NULL,textInput,,Region
+utilidades,leer_incore,ruta,FALSE,"""https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx""",textInput,,Ruta
+utilidades,leer_incore,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+utilidades,leer_incore,verbose,FALSE,TRUE,checkboxInput,,Verbose
+utilidades,leer_total,anio,FALSE,NULL,textInput,,Anio
+utilidades,leer_total,edicion,FALSE,NULL,textInput,,Edicion
+utilidades,leer_total,hoja,FALSE,1,numericInput,,Hoja
+utilidades,leer_total,indicador,FALSE,NULL,selectInput,,Indicador
+utilidades,leer_total,pilar,FALSE,NULL,selectInput,,Pilar
+utilidades,leer_total,region,FALSE,NULL,textInput,,Region
+utilidades,leer_total,ruta,FALSE,"""https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx""",textInput,,Ruta
+utilidades,leer_total,unidad,FALSE,"""ALL""",textInput,,Unidad
+utilidades,leer_total,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+utilidades,leer_total,verbose,FALSE,TRUE,checkboxInput,,Verbose
+utilidades,mapa_peru,path,FALSE,NULL,textInput,,Path
+utilidades,mapa_peru,simplificar,FALSE,0,numericInput,,Simplificar
+utilidades,mapa_peru,version,FALSE,"""4.1""",textInput,,Version
+utilidades,resolver_regiones_grupos,regiones,FALSE,"""ALL""",selectInput,,Regiones
+utilidades,resolver_regiones_grupos,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+utilidades,traducir_codigo,dic,TRUE,<requerido>,textInput,,Dic
+utilidades,traducir_codigo,x,TRUE,<requerido>,textInput,,X
+valores,valor_barras,edicion,TRUE,<requerido>,textInput,,Edicion
+valores,valor_barras,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+valores,valor_barras,indicador,FALSE,NULL,selectInput,,Indicador
+valores,valor_barras,label_indicador,FALSE,"c(""nombre"", ""cod"")",selectInput-multiple,nombre|cod,Label indicador
+valores,valor_barras,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+valores,valor_barras,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+valores,valor_barras,pilar,FALSE,NULL,selectInput,,Pilar
+valores,valor_barras,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_barras,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_dispersion,edicion,TRUE,<requerido>,textInput,,Edicion
+valores,valor_dispersion,jitter_height,FALSE,0,numericInput,,Jitter height
+valores,valor_dispersion,jitter_width,FALSE,0.08,numericInput,,Jitter width
+valores,valor_dispersion,mostrar_leyenda,FALSE,TRUE,checkboxInput,,Mostrar leyenda
+valores,valor_dispersion,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+valores,valor_dispersion,pilar,TRUE,<requerido>,selectInput,,Pilar
+valores,valor_dispersion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_dispersion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_distribucion,edicion,TRUE,<requerido>,textInput,,Edicion
+valores,valor_distribucion,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+valores,valor_distribucion,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+valores,valor_distribucion,jitter,FALSE,FALSE,checkboxInput,,Jitter
+valores,valor_distribucion,linea_promedio,FALSE,TRUE,checkboxInput,,Linea promedio
+valores,valor_distribucion,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+valores,valor_distribucion,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"")",selectInput-multiple,blues|viridis|cividis,Paleta
+valores,valor_distribucion,pilar,TRUE,<requerido>,selectInput,,Pilar
+valores,valor_distribucion,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_distribucion,tipo,FALSE,"c(""boxplot"", ""violin"")",selectInput-multiple,boxplot|violin,Tipo
+valores,valor_distribucion,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_largo,ediciones,TRUE,<requerido>,textInput,,Ediciones
+valores,valor_largo,facetear,FALSE,TRUE,checkboxInput,,Facetear
+valores,valor_largo,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+valores,valor_largo,label_indicador,FALSE,"c(""codigo"", ""nombre"")",selectInput-multiple,codigo|nombre,Label indicador
+valores,valor_largo,mostrar_puntos,FALSE,TRUE,checkboxInput,,Mostrar puntos
+valores,valor_largo,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+valores,valor_largo,pilar,TRUE,<requerido>,selectInput,,Pilar
+valores,valor_largo,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_largo,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_mapa,edicion,TRUE,<requerido>,textInput,,Edicion
+valores,valor_mapa,etiquetas,FALSE,"c(""repel"", ""texto"", ""ninguna"")",selectInput-multiple,repel|texto|ninguna,Etiquetas
+valores,valor_mapa,expand_zoom,FALSE,0.04,numericInput,,Expand zoom
+valores,valor_mapa,indicador,TRUE,<requerido>,selectInput,,Indicador
+valores,valor_mapa,mapa_sf,FALSE,NULL,textInput,,Mapa sf
+valores,valor_mapa,paleta,FALSE,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",selectInput-multiple,blues|viridis|cividis|magma,Paleta
+valores,valor_mapa,pilar,FALSE,NULL,selectInput,,Pilar
+valores,valor_mapa,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_mapa,simplificar,FALSE,0,numericInput,,Simplificar
+valores,valor_mapa,subtitulo_nombre,FALSE,TRUE,checkboxInput,,Subtitulo nombre
+valores,valor_mapa,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_mapa,zoom,FALSE,FALSE,checkboxInput,,Zoom
+valores,valor_ridgeline,ediciones,TRUE,<requerido>,textInput,,Ediciones
+valores,valor_ridgeline,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+valores,valor_ridgeline,indicador,TRUE,<requerido>,selectInput,,Indicador
+valores,valor_ridgeline,mostrar_leyenda,FALSE,FALSE,checkboxInput,,Mostrar leyenda
+valores,valor_ridgeline,paleta,FALSE,"c(""ipe"", ""okabe_ito"", ""viridis"")",selectInput-multiple,ipe|okabe_ito|viridis,Paleta
+valores,valor_ridgeline,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_ridgeline,rel_min_height,FALSE,0.001,numericInput,,Rel min height
+valores,valor_ridgeline,scale,FALSE,1.1,numericInput,,Scale
+valores,valor_ridgeline,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_tabla,ediciones,TRUE,<requerido>,textInput,,Ediciones
+valores,valor_tabla,gt,FALSE,FALSE,checkboxInput,,Gt
+valores,valor_tabla,incluir_peru,FALSE,FALSE,checkboxInput,,Incluir peru
+valores,valor_tabla,indicadores,FALSE,"""ALL""",selectInput,,Indicadores
+valores,valor_tabla,largo,FALSE,FALSE,checkboxInput,,Largo
+valores,valor_tabla,pilar,TRUE,<requerido>,selectInput,,Pilar
+valores,valor_tabla,regiones,FALSE,"""ALL""",selectInput,,Regiones
+valores,valor_tabla,usar_codigos,FALSE,TRUE,checkboxInput,,Usar codigos
+valores,valor_tabla,verbose,FALSE,FALSE,checkboxInput,,Verbose

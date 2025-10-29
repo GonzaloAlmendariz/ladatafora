@@ -1,0 +1,300 @@
+funcion,argumento,default_txt,requerido,clase_default
+incorer_set_region_groups,groups,,TRUE,missing
+incorer_set_region_groups,replace,FALSE,FALSE,logical
+general_radar,edicion,,TRUE,missing
+general_radar,regiones,"""AUTO3""",FALSE,character
+general_radar,usar_codigos,TRUE,FALSE,logical
+general_radar,max_regiones,6,FALSE,numeric
+general_radar,alpha,0.25,FALSE,numeric
+general_radar,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+general_radar,mostrar_puntos,TRUE,FALSE,logical
+general_radar,etiquetas_pilares,"c(""corto"", ""largo"")",FALSE,character
+leer_total,ruta,"""https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx""",FALSE,character
+leer_total,hoja,1,FALSE,numeric
+leer_total,edicion,NULL,FALSE,NULL
+leer_total,anio,NULL,FALSE,NULL
+leer_total,pilar,NULL,FALSE,NULL
+leer_total,indicador,NULL,FALSE,NULL
+leer_total,region,NULL,FALSE,NULL
+leer_total,unidad,"""ALL""",FALSE,character
+leer_total,usar_codigos,TRUE,FALSE,logical
+leer_total,verbose,TRUE,FALSE,logical
+bivalor_largo,ediciones,,TRUE,missing
+bivalor_largo,ind_x,,TRUE,missing
+bivalor_largo,ind_y,,TRUE,missing
+bivalor_largo,regiones,"""ALL""",FALSE,character
+bivalor_largo,usar_codigos,TRUE,FALSE,logical
+bivalor_largo,incluir_peru,FALSE,FALSE,logical
+bivalor_largo,col_x,"""#355C7D""",FALSE,character
+bivalor_largo,col_y,"""#35B778""",FALSE,character
+indc_largo,ediciones,,TRUE,missing
+indc_largo,pilar,,TRUE,missing
+indc_largo,indicadores,"""ALL""",FALSE,character
+indc_largo,regiones,"""ALL""",FALSE,character
+indc_largo,usar_codigos,TRUE,FALSE,logical
+indc_largo,facetear,TRUE,FALSE,logical
+indc_largo,facet_label_nombre,TRUE,FALSE,logical
+indc_largo,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+indc_largo,mostrar_puntos,TRUE,FALSE,logical
+resolver_regiones_grupos,regiones,"""ALL""",FALSE,character
+resolver_regiones_grupos,usar_codigos,TRUE,FALSE,logical
+valor_largo,ediciones,,TRUE,missing
+valor_largo,pilar,,TRUE,missing
+valor_largo,indicadores,"""ALL""",FALSE,character
+valor_largo,regiones,"""ALL""",FALSE,character
+valor_largo,usar_codigos,TRUE,FALSE,logical
+valor_largo,facetear,TRUE,FALSE,logical
+valor_largo,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+valor_largo,mostrar_puntos,TRUE,FALSE,logical
+valor_largo,label_indicador,"c(""codigo"", ""nombre"")",FALSE,character
+general_barras,edicion,,TRUE,missing
+general_barras,pilar,NULL,FALSE,NULL
+general_barras,regiones,"""ALL""",FALSE,character
+general_barras,usar_codigos,TRUE,FALSE,logical
+general_barras,incluir_peru,FALSE,FALSE,logical
+general_barras,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+general_barras,mostrar_leyenda,FALSE,FALSE,logical
+general_distribucion,edicion,,TRUE,missing
+general_distribucion,modo,"c(""pilares"", ""general"")",FALSE,character
+general_distribucion,regiones,"""ALL""",FALSE,character
+general_distribucion,usar_codigos,TRUE,FALSE,logical
+general_distribucion,tipo,"c(""boxplot"", ""violin"")",FALSE,character
+general_distribucion,jitter,FALSE,FALSE,logical
+general_distribucion,paleta,"c(""blues"", ""viridis"", ""cividis"")",FALSE,character
+general_distribucion,linea_promedio,TRUE,FALSE,logical
+general_distribucion,mostrar_leyenda,FALSE,FALSE,logical
+valor_tabla,ediciones,,TRUE,missing
+valor_tabla,pilar,,TRUE,missing
+valor_tabla,indicadores,"""ALL""",FALSE,character
+valor_tabla,regiones,"""ALL""",FALSE,character
+valor_tabla,usar_codigos,TRUE,FALSE,logical
+valor_tabla,incluir_peru,FALSE,FALSE,logical
+valor_tabla,largo,FALSE,FALSE,logical
+valor_tabla,gt,FALSE,FALSE,logical
+valor_tabla,verbose,FALSE,FALSE,logical
+indc_heatmap,modo,"c(""indicadores"", ""tiempo"")",FALSE,character
+indc_heatmap,pilar,NULL,FALSE,NULL
+indc_heatmap,indicador,NULL,FALSE,NULL
+indc_heatmap,edicion,NULL,FALSE,NULL
+indc_heatmap,ediciones,NULL,FALSE,NULL
+indc_heatmap,regiones,"""ALL""",FALSE,character
+indc_heatmap,usar_codigos,TRUE,FALSE,logical
+indc_heatmap,ordenar,"c(""ninguno"", ""por_ultimo"", ""por_promedio"")",FALSE,character
+indc_heatmap,paleta,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",FALSE,character
+indc_heatmap,anotar,FALSE,FALSE,logical
+indc_heatmap,mostrar_leyenda,TRUE,FALSE,logical
+leer_incore,ruta,"""https://incore-spaces.nyc3.digitaloceanspaces.com/documents/1752079464_INCORE_2025_OpenData_1752079464.xlsx""",FALSE,character
+leer_incore,hoja,1,FALSE,numeric
+leer_incore,edicion,NULL,FALSE,NULL
+leer_incore,anio,NULL,FALSE,NULL
+leer_incore,pilar,NULL,FALSE,NULL
+leer_incore,indicador,NULL,FALSE,NULL
+leer_incore,region,NULL,FALSE,NULL
+leer_incore,usar_codigos,TRUE,FALSE,logical
+leer_incore,agregar_codigos,FALSE,FALSE,logical
+leer_incore,verbose,TRUE,FALSE,logical
+bivalor_dispersion,edicion,,TRUE,missing
+bivalor_dispersion,ind_x,,TRUE,missing
+bivalor_dispersion,ind_y,,TRUE,missing
+bivalor_dispersion,regiones,"""ALL""",FALSE,character
+bivalor_dispersion,usar_codigos,TRUE,FALSE,logical
+bivalor_dispersion,incluir_peru,FALSE,FALSE,logical
+bivalor_dispersion,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"", ""mono"")",FALSE,character
+bivalor_dispersion,color_mono,"""#3B5B92""",FALSE,character
+bivalor_dispersion,modo,"c(""normal"", ""resaltar"")",FALSE,character
+bivalor_dispersion,highlight_regiones,character(0),FALSE,character
+bivalor_dispersion,highlight_color,"""#D7301F""",FALSE,character
+bivalor_dispersion,mostrar_leyenda,TRUE,FALSE,logical
+bivalor_correlaciones,edicion,,TRUE,missing
+bivalor_correlaciones,indicadores,,TRUE,missing
+bivalor_correlaciones,regiones,"""ALL""",FALSE,character
+bivalor_correlaciones,usar_codigos,TRUE,FALSE,logical
+bivalor_correlaciones,incluir_peru,FALSE,FALSE,logical
+bivalor_correlaciones,metodo,"c(""spearman"", ""pearson"")",FALSE,character
+bivalor_correlaciones,paleta_cor,"c(""rb"", ""viridis"")",FALSE,character
+bivalor_correlaciones,alpha_puntos,0.8,FALSE,numeric
+indc_distribucion,edicion,,TRUE,missing
+indc_distribucion,pilar,,TRUE,missing
+indc_distribucion,indicadores,"""ALL""",FALSE,character
+indc_distribucion,regiones,"""ALL""",FALSE,character
+indc_distribucion,usar_codigos,TRUE,FALSE,logical
+indc_distribucion,tipo,"c(""boxplot"", ""violin"")",FALSE,character
+indc_distribucion,jitter,FALSE,FALSE,logical
+indc_distribucion,paleta,"c(""blues"", ""viridis"", ""cividis"")",FALSE,character
+indc_distribucion,linea_promedio,TRUE,FALSE,logical
+indc_distribucion,mostrar_leyenda,FALSE,FALSE,logical
+general_dispersion_pilares,edicion,,TRUE,missing
+general_dispersion_pilares,regiones,"""ALL""",FALSE,character
+general_dispersion_pilares,pilares,"""ALL""",FALSE,character
+general_dispersion_pilares,usar_codigos,TRUE,FALSE,logical
+general_dispersion_pilares,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+general_dispersion_pilares,mostrar_promedio,TRUE,FALSE,logical
+general_dispersion_pilares,promedio_shape,23,FALSE,numeric
+general_dispersion_pilares,promedio_size,3.5,FALSE,numeric
+general_dispersion_pilares,promedio_color,"""black""",FALSE,character
+general_dispersion_pilares,promedio_fill,"""white""",FALSE,character
+general_dispersion_pilares,jitter_width,0.08,FALSE,numeric
+general_dispersion_pilares,jitter_height,0,FALSE,numeric
+valor_ridgeline,indicador,,TRUE,missing
+valor_ridgeline,ediciones,,TRUE,missing
+valor_ridgeline,regiones,"""ALL""",FALSE,character
+valor_ridgeline,usar_codigos,TRUE,FALSE,logical
+valor_ridgeline,incluir_peru,FALSE,FALSE,logical
+valor_ridgeline,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+valor_ridgeline,scale,1.1,FALSE,numeric
+valor_ridgeline,rel_min_height,0.001,FALSE,numeric
+valor_ridgeline,mostrar_leyenda,FALSE,FALSE,logical
+indc_mapa,edicion,,TRUE,missing
+indc_mapa,indicador,,TRUE,missing
+indc_mapa,pilar,NULL,FALSE,NULL
+indc_mapa,regiones,"""ALL""",FALSE,character
+indc_mapa,usar_codigos,TRUE,FALSE,logical
+indc_mapa,mapa_sf,NULL,FALSE,NULL
+indc_mapa,paleta,"c(""blues"", ""greens"", ""viridis"", ""cividis"", ""magma"", ""divergente"")",FALSE,character
+indc_mapa,simplificar,0,FALSE,numeric
+indc_mapa,zoom,FALSE,FALSE,logical
+indc_mapa,expand_zoom,0.04,FALSE,numeric
+indc_mapa,etiquetas,"c(""repel"", ""texto"", ""ninguna"")",FALSE,character
+indc_mapa,subtitulo_nombre,TRUE,FALSE,logical
+general_tabla,ediciones,,TRUE,missing
+general_tabla,regiones,"""ALL""",FALSE,character
+general_tabla,usar_codigos,TRUE,FALSE,logical
+general_tabla,incluir_peru,FALSE,FALSE,logical
+general_tabla,gt,FALSE,FALSE,logical
+valor_barras,edicion,,TRUE,missing
+valor_barras,pilar,NULL,FALSE,NULL
+valor_barras,indicador,NULL,FALSE,NULL
+valor_barras,regiones,"""ALL""",FALSE,character
+valor_barras,usar_codigos,TRUE,FALSE,logical
+valor_barras,incluir_peru,FALSE,FALSE,logical
+valor_barras,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+valor_barras,mostrar_leyenda,FALSE,FALSE,logical
+valor_barras,label_indicador,"c(""nombre"", ""cod"")",FALSE,character
+general_heatmap,ediciones,,TRUE,missing
+general_heatmap,regiones,"""ALL""",FALSE,character
+general_heatmap,usar_codigos,TRUE,FALSE,logical
+general_heatmap,ordenar,"c(""ninguno"", ""por_ultimo"", ""por_promedio"")",FALSE,character
+general_heatmap,paleta,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",FALSE,character
+general_heatmap,anotar,FALSE,FALSE,logical
+general_heatmap,mostrar_leyenda,TRUE,FALSE,logical
+indc_radar,edicion,,TRUE,missing
+indc_radar,pilar,,TRUE,missing
+indc_radar,indicadores,"""ALL""",FALSE,character
+indc_radar,regiones,"""AUTO3""",FALSE,character
+indc_radar,usar_codigos,TRUE,FALSE,logical
+indc_radar,etiquetas_indicadores,"c(""codigo"", ""nombre"")",FALSE,character
+indc_radar,max_regiones,6,FALSE,numeric
+indc_radar,alpha,0.25,FALSE,numeric
+indc_radar,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+indc_radar,mostrar_puntos,TRUE,FALSE,logical
+indc_tabla,ediciones,,TRUE,missing
+indc_tabla,pilar,,TRUE,missing
+indc_tabla,indicadores,"""ALL""",FALSE,character
+indc_tabla,regiones,"""ALL""",FALSE,character
+indc_tabla,usar_codigos,TRUE,FALSE,logical
+indc_tabla,incluir_peru,FALSE,FALSE,logical
+indc_tabla,largo,FALSE,FALSE,logical
+indc_tabla,gt,FALSE,FALSE,logical
+indc_tabla,verbose,FALSE,FALSE,logical
+general_media,edicion,,TRUE,missing
+general_media,pilar,NULL,FALSE,NULL
+general_media,regiones,"""ALL""",FALSE,character
+general_media,usar_codigos,TRUE,FALSE,logical
+general_media,promedio_nacional,FALSE,FALSE,logical
+general_media,esquema,"c(""binario"", ""divergente"", ""semaforo"", ""region"", ""monocromo"")",FALSE,character
+general_media,color_arriba,"""#2C7FB8""",FALSE,character
+general_media,color_abajo,"""#D7301F""",FALSE,character
+general_media,paleta_region,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+general_media,color_mono,"""#3B5B92""",FALSE,character
+general_media,mostrar_leyenda,FALSE,FALSE,logical
+indc_media,edicion,,TRUE,missing
+indc_media,indicador,,TRUE,missing
+indc_media,regiones,"""ALL""",FALSE,character
+indc_media,usar_codigos,TRUE,FALSE,logical
+indc_media,esquema,"c(""binario"", ""divergente"", ""semaforo"", ""region"", ""monocromo"")",FALSE,character
+indc_media,color_arriba,"""#2C7FB8""",FALSE,character
+indc_media,color_abajo,"""#D7301F""",FALSE,character
+indc_media,paleta_region,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+indc_media,color_mono,"""#3B5B92""",FALSE,character
+indc_media,mostrar_leyenda,FALSE,FALSE,logical
+indc_media,subtitulo_nombre,TRUE,FALSE,logical
+traducir_codigo,x,,TRUE,missing
+traducir_codigo,dic,,TRUE,missing
+valor_distribucion,edicion,,TRUE,missing
+valor_distribucion,pilar,,TRUE,missing
+valor_distribucion,indicadores,"""ALL""",FALSE,character
+valor_distribucion,regiones,"""ALL""",FALSE,character
+valor_distribucion,usar_codigos,TRUE,FALSE,logical
+valor_distribucion,tipo,"c(""boxplot"", ""violin"")",FALSE,character
+valor_distribucion,jitter,FALSE,FALSE,logical
+valor_distribucion,paleta,"c(""blues"", ""viridis"", ""cividis"")",FALSE,character
+valor_distribucion,linea_promedio,TRUE,FALSE,logical
+valor_distribucion,mostrar_leyenda,FALSE,FALSE,logical
+valor_distribucion,incluir_peru,FALSE,FALSE,logical
+general_mapa,edicion,,TRUE,missing
+general_mapa,regiones,"""ALL""",FALSE,character
+general_mapa,usar_codigos,TRUE,FALSE,logical
+general_mapa,mapa_sf,NULL,FALSE,NULL
+general_mapa,paleta,"c(""blues"", ""greens"", ""viridis"", ""cividis"", ""divergente"")",FALSE,character
+general_mapa,simplificar,0,FALSE,numeric
+general_mapa,zoom,FALSE,FALSE,logical
+general_mapa,expand_zoom,0.04,FALSE,numeric
+general_mapa,etiquetas,"c(""repel"", ""texto"", ""ninguna"")",FALSE,character
+valor_mapa,edicion,,TRUE,missing
+valor_mapa,indicador,,TRUE,missing
+valor_mapa,pilar,NULL,FALSE,NULL
+valor_mapa,regiones,"""ALL""",FALSE,character
+valor_mapa,usar_codigos,TRUE,FALSE,logical
+valor_mapa,mapa_sf,NULL,FALSE,NULL
+valor_mapa,paleta,"c(""blues"", ""viridis"", ""cividis"", ""magma"")",FALSE,character
+valor_mapa,simplificar,0,FALSE,numeric
+valor_mapa,zoom,FALSE,FALSE,logical
+valor_mapa,expand_zoom,0.04,FALSE,numeric
+valor_mapa,etiquetas,"c(""repel"", ""texto"", ""ninguna"")",FALSE,character
+valor_mapa,subtitulo_nombre,TRUE,FALSE,logical
+indc_dispersion,edicion,,TRUE,missing
+indc_dispersion,pilar,,TRUE,missing
+indc_dispersion,regiones,"""ALL""",FALSE,character
+indc_dispersion,usar_codigos,TRUE,FALSE,logical
+indc_dispersion,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+indc_dispersion,mostrar_promedio,TRUE,FALSE,logical
+indc_dispersion,promedio_shape,23,FALSE,numeric
+indc_dispersion,promedio_size,3.5,FALSE,numeric
+indc_dispersion,promedio_color,"""black""",FALSE,character
+indc_dispersion,promedio_fill,"""white""",FALSE,character
+indc_dispersion,jitter_width,0.08,FALSE,numeric
+indc_dispersion,jitter_height,0,FALSE,numeric
+indc_dispersion,mostrar_leyenda,TRUE,FALSE,logical
+indc_barras,edicion,,TRUE,missing
+indc_barras,pilar,NULL,FALSE,NULL
+indc_barras,indicador,NULL,FALSE,NULL
+indc_barras,regiones,"""ALL""",FALSE,character
+indc_barras,usar_codigos,TRUE,FALSE,logical
+indc_barras,incluir_peru,FALSE,FALSE,logical
+indc_barras,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+indc_barras,mostrar_leyenda,FALSE,FALSE,logical
+ind_tabla,ediciones,,TRUE,missing
+ind_tabla,regiones,"""ALL""",FALSE,character
+ind_tabla,modo,"c(""general"", ""pilares"")",FALSE,character
+ind_tabla,largo,FALSE,FALSE,logical
+ind_tabla,usar_codigos,TRUE,FALSE,logical
+ind_tabla,gt,FALSE,FALSE,logical
+ind_tabla,verbose,FALSE,FALSE,logical
+mapa_peru,path,NULL,FALSE,NULL
+mapa_peru,version,"""4.1""",FALSE,character
+mapa_peru,simplificar,0,FALSE,numeric
+general_largo,ediciones,,TRUE,missing
+general_largo,regiones,"""ALL""",FALSE,character
+general_largo,usar_codigos,TRUE,FALSE,logical
+general_largo,modo,"c(""general"", ""pilares"")",FALSE,character
+general_largo,pilares,NULL,FALSE,NULL
+general_largo,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+general_largo,mostrar_puntos,TRUE,FALSE,logical
+valor_dispersion,edicion,,TRUE,missing
+valor_dispersion,pilar,,TRUE,missing
+valor_dispersion,regiones,"""ALL""",FALSE,character
+valor_dispersion,usar_codigos,TRUE,FALSE,logical
+valor_dispersion,paleta,"c(""ipe"", ""okabe_ito"", ""viridis"")",FALSE,character
+valor_dispersion,jitter_width,0.08,FALSE,numeric
+valor_dispersion,jitter_height,0,FALSE,numeric
+valor_dispersion,mostrar_leyenda,TRUE,FALSE,logical

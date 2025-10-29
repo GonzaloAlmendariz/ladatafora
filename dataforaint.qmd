@@ -6,16 +6,44 @@ format:
     toc: false
 ---
 
-La Datáfora Interactiva es una extensión digital del libro R para el Análisis de Datos, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.
+La Datáfora Interactiva es una extensión digital del libro *R para el Análisis de Datos*, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.
 
 Cada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.
 
 ```{=html}
-<div class="iframe-fullpage">
-  <iframe 
-    src="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/"
-    allowfullscreen
-    loading="lazy">
-  </iframe>
+<style>
+  .btn-ldf {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    transition: all 0.25s ease-in-out;
+  }
+  .btn-ldf:hover {
+    background-color: #a56b45;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+</style>
+
+<div class="btn-center">
+  <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/" target="_blank">
+    🌐 Abrir La Datafora Interactiva
+  </a>
 </div>
 ```
+
+
