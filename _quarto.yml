@@ -21,11 +21,11 @@ website:
       - text: "IncoreR"
         menu:
           - text: "Introducción al paquete"
-            href: incorer/intro.qmd
+            href: intro.qmd
           - text: "Manual para R"
-            href: incorer/Manual.qmd
+            href: Manual.qmd
           - text: "IncoreR en el navegador"
-            href: incorer/incorerweb.qmd
+            href: incorerweb.qmd
 
       - text: "Prosecnur"
         href: prosecnur/

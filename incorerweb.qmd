@@ -1,0 +1,49 @@
+---
+title: "IncoreR en la Web"
+page-layout: full
+format:
+  html:
+    toc: false
+---
+
+La aplicación **IncoreRWeb** permite explorar visualmente los resultados del INCORE a través de una plataforma interactiva desarrollada en Shiny. Desde la aplicación pueden consultarse puntajes e indicadores de todas las ediciones, junto con la multitud de gráficos que el paquete incorer ofrece.
+
+El paquete **IncoreR** es un paquete de código abierto en R desarrollado a mediados de 2025 para facilitar la visualización de resultados, ofreciendo una amplia variedad de gráficos para mostrar los indicadores y pilares del índice. Entre ellos se incluyen gráficos de distribución, densidad, comparaciones entre medias, mapas regionales, gráficos de radar, entre otros, todos con múltiples opciones de personalización.
+
+El objetivo de **IncoreRWeb** es habilitar estas herramientas y generar gráficos de alta calidad **sin necesidad de manejar todas las funciones de R**. Haciendo uso del paquete, la aplicación web ofrece una interfaz interactiva que permite al usuario aplicar filtros y personalizar los gráficos según sus necesidades, generando así las visualizaciones que desee y pudiendo posteriormente hacer uso de ellas.
+
+```{=html}
+<style>
+  .btn-ldf {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    transition: all 0.25s ease-in-out;
+  }
+  .btn-ldf:hover {
+    background-color: #a56b45;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+</style>
+
+<div class="btn-center">
+  <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank">
+    🌐 Explora IncoreRWeb
+  </a>
+</div>
+```
