@@ -10,6 +10,7 @@ La Datáfora Interactiva es una extensión digital del libro *R para el Análisi
 
 Cada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.
 
+
 ```{=html}
 <style>
   .btn-ldf {
@@ -41,9 +42,37 @@ Cada sección temática se encuentra organizada en la barra superior y aborda un
 
 <div class="btn-center">
   <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/" target="_blank">
-    🌐 Abrir La Datafora Interactiva
+    🌐 Explora La Datafora Interactiva
   </a>
 </div>
 ```
 
 
+``` {=html}        
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png"
+       alt="La Datáfora"
+       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+  
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
+  </div>
+  
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
+     style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
+</div>
+```

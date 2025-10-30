@@ -3,8 +3,9 @@ project:
   output-dir: docs
 
 website:
-  title: "La Datafora"
+  title: "La Datáfora"
   navbar:
+    logo: "logo.png"           
     left:
       - href: about.qmd
         text: "Sobre el proyecto"
@@ -13,7 +14,7 @@ website:
         text: "Libro"
 
       - href: dataforaint.qmd
-        text: "La Datafora Interactiva"
+        text: "La Datáfora Interactiva"
 
       - href: main_proyectos.qmd
         text: "Proyectos"
@@ -21,14 +22,16 @@ website:
       - text: "IncoreR"
         menu:
           - text: "Introducción al paquete"
-            href: intro.qmd
+            href: incorer/intro.qmd
           - text: "Manual para R"
-            href: Manual.qmd
+            href: incorer/Manual.qmd
           - text: "IncoreR en el navegador"
-            href: incorerweb.qmd
+            href: incorer/incorerweb.qmd
 
       - text: "Prosecnur"
         href: prosecnur/
+
+
 
 format:
   html:
@@ -38,3 +41,4 @@ format:
     toc-depth: 3
     toc-expand: true
     smooth-scroll: true
+  

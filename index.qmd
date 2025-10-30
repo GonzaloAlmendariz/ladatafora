@@ -1,15 +1,142 @@
----
-title: "La Datafora"
+ ---
+title: false
 page-layout: full
 format:
   html:
     toc: false
 ---
 
-This is a Quarto website.
+```{=html}
+<!-- =========================
+     HERO (logo + bienvenida)
+     ========================= -->
+<div class="hero-wrap" style="max-width:1100px;margin:0 auto;">
+  <!-- Logo (puedes usar tu URL WP si prefieres) -->
+  <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/04/cropped-logo-no-background-2.png?w=1024"
+       alt="La Datáfora" style="height:86px;display:block;margin:16px auto 10px auto;"> -->
+  <img src="logo.png" alt="La Datáfora"
+       style="height:86px;display:block;margin:16px auto 10px auto;">
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+  <h1 style="text-align:center;font-weight:800;font-size:2.05rem;margin:.25rem 0 .25rem 0;">
+    <strong>Bienvenido a La Datáfora</strong>
+  </h1>
 
-```{r}
-1 + 1
+  <p class="has-text-align-center" style="text-align:center;margin:0 0 1.2rem 0;">
+    Te doy la bienvenida a <strong>La Datáfora</strong>, un espacio creado para compartir mi trabajo, reflexiones y recursos
+    sobre análisis de datos aplicados a las ciencias sociales. Aquí podrás encontrar publicaciones, materiales didácticos,
+    ejemplos en R y Python, y avances de mis proyectos en curso.
+  </p>
+</div>
+
+<!-- utilidades mínimas locales (puedes moverlas a tu ladatafora.css si quieres) -->
+<style>
+  .ldf-section { max-width: 1100px; margin: 0 auto; }
+  .ldf-justo { text-align: justify; font-size: 1.08rem; }
+  .ldf-grid-gap { row-gap: 16px; }
+  .ldf-btn-center { display:flex; justify-content:center; }
+</style>
 ```
+
+------------------------------------------------------------------------
+
+## **R para el Análisis de Datos**
+
+``` {=html}        
+<div class="container-fluid ldf-section">
+  <div class="row ldf-grid-gap" style="align-items:center;">
+
+    <!-- Columna imagen (portada) -->
+    <div class="col-sm-6">
+      <!-- Si quieres usar la portada que tienes en WP, reemplaza el src por la URL de WP: -->
+      <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/03/portada-edited.png"
+           alt="Portada del libro" style="height:420px;object-fit:cover;border-radius:12px;
+           box-shadow:0 4px 10px rgba(0,0,0,.1);display:block;margin:0 auto;"> -->
+      <img src="portada.jpg" alt="Portada del libro" style="height:420px;object-fit:cover;border-radius:12px;
+           box-shadow:0 4px 10px rgba(0,0,0,.1);display:block;margin:0 auto;">
+    </div>
+
+    <!-- Columna texto + botón -->
+    <div class="col-sm-6">
+      <h1 class="wp-block-heading has-text-align-center" style="text-align:center;margin-top:0;">📖<br><strong>R para el Análisis de Datos</strong></h1>
+      <p class="has-text-align-center ldf-justo" style="margin-top:8px;">
+        <strong>Entiende los conceptos más importantes de la estadística descriptiva e inferencial</strong>
+        a través de <strong>9 capítulos estructurados</strong> que combinan teoría y práctica con
+        <strong>R, el lenguaje de programación más demandado en la academia</strong>.
+      </p>
+      <div class="wp-block-buttons ldf-btn-center" style="margin-top:8px;">
+        <div class="wp-block-button">
+          <!-- Usa tu clase de botón personalizada -->
+          <a class="boton-libro" href="libro.qmd">Más información</a>
+          <!-- Si prefieres el enlace de WP original: href="https://ladatafora.wordpress.com/guia-gratuita/" -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+------------------------------------------------------------------------
+
+## **Sobre el autor**
+
+``` {=html}        
+<div class="container-fluid ldf-section">
+  <div class="row ldf-grid-gap" style="align-items:center;">
+
+    <!-- Foto + nombre -->
+    <div class="col-sm-4" style="text-align:center;">
+      <!-- Si prefieres usar la imagen de WP: cambia src por tu URL -->
+      <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/03/mifoto.png?w=1024" alt="Gonzalo Almendariz Villanueva"
+           style="width:230px;height:230px;object-fit:cover;border-radius:12px;border:1px solid var(--border);
+                  box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto 10px auto;"> -->
+      <img src="autor.jpg" alt="Gonzalo Almendariz Villanueva"
+           style="width:230px;height:230px;object-fit:cover;border-radius:12px;border:1px solid var(--border);
+                  box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto 10px auto;">
+      <div class="wp-element-caption" style="font-weight:700;">Gonzalo Almendariz Villanueva</div>
+    </div>
+
+    <!-- Bio -->
+    <div class="col-sm-8">
+      <p class="ldf-justo" style="margin:0;">
+        <strong>Bachiller en Ciencia Política por la Universidad Nacional Mayor de San Marcos</strong>, con un fuerte interés en
+        <strong>la enseñanza, la divulgación y la estadística</strong>. Me especializo en <strong>el análisis de datos aplicado a las ciencias sociales</strong>
+        y disfruto hacer <strong>la estadística accesible y comprensible</strong> para todos. He enseñado
+        <strong>programación estadística en R</strong>, enfocándome en su aplicación para el análisis de datos y la visualización.
+      </p>
+    </div>
+
+  </div>
+</div>
+```
+
+
+``` {=html}        
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png"
+       alt="La Datáfora"
+       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+  
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
+  </div>
+  
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
+     style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
+</div>
+```
+

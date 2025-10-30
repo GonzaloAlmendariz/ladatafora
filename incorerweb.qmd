@@ -47,3 +47,34 @@ El objetivo de **IncoreRWeb** es habilitar estas herramientas y generar gráfico
   </a>
 </div>
 ```
+
+
+
+``` {=html}        
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png"
+       alt="La Datáfora"
+       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+  
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
+  </div>
+  
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
+     style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
+</div>
+```

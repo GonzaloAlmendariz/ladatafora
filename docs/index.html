@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>La Datafora</title>
+<title>La Datáfora</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -113,8 +79,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">La Datafora</span>
+    <span class="navbar-title">La Datáfora</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -133,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./dataforaint.html"> 
-<span class="menu-text">La Datafora Interactiva</span></a>
+<span class="menu-text">La Datáfora Interactiva</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./main_proyectos.html"> 
@@ -145,15 +114,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-incorer">    
         <li>
-    <a class="dropdown-item" href="./intro.html">
+    <a class="dropdown-item" href="./incorer/intro.qmd">
  <span class="dropdown-text">Introducción al paquete</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./Manual.html">
+    <a class="dropdown-item" href="./incorer/Manual.qmd">
  <span class="dropdown-text">Manual para R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./incorerweb.html">
+    <a class="dropdown-item" href="./incorer/incorerweb.qmd">
  <span class="dropdown-text">IncoreR en el navegador</span></a>
   </li>  
     </ul>
@@ -170,42 +139,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#r-para-el-análisis-de-datos" id="toc-r-para-el-análisis-de-datos" class="nav-link active" data-scroll-target="#r-para-el-análisis-de-datos"><strong>R para el Análisis de Datos</strong></a></li>
+  <li><a href="#sobre-el-autor" id="toc-sobre-el-autor" class="nav-link" data-scroll-target="#sobre-el-autor"><strong>Sobre el autor</strong></a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">La Datafora</h1>
+
+
+
+<!-- =========================
+     HERO (logo + bienvenida)
+     ========================= -->
+<div class="hero-wrap" style="max-width:1100px;margin:0 auto;">
+  <!-- Logo (puedes usar tu URL WP si prefieres) -->
+  <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/04/cropped-logo-no-background-2.png?w=1024"
+       alt="La Datáfora" style="height:86px;display:block;margin:16px auto 10px auto;"> -->
+  <img src="logo.png" alt="La Datáfora" style="height:86px;display:block;margin:16px auto 10px auto;">
+
+  <h1 style="text-align:center;font-weight:800;font-size:2.05rem;margin:.25rem 0 .25rem 0;">
+    <strong>Bienvenido a La Datáfora</strong>
+  </h1>
+
+  <p class="has-text-align-center" style="text-align:center;margin:0 0 1.2rem 0;">
+    Te doy la bienvenida a <strong>La Datáfora</strong>, un espacio creado para compartir mi trabajo, reflexiones y recursos
+    sobre análisis de datos aplicados a las ciencias sociales. Aquí podrás encontrar publicaciones, materiales didácticos,
+    ejemplos en R y Python, y avances de mis proyectos en curso.
+  </p>
 </div>
 
+<!-- utilidades mínimas locales (puedes moverlas a tu ladatafora.css si quieres) -->
+<style>
+  .ldf-section { max-width: 1100px; margin: 0 auto; }
+  .ldf-justo { text-align: justify; font-size: 1.08rem; }
+  .ldf-grid-gap { row-gap: 16px; }
+  .ldf-btn-center { display:flex; justify-content:center; }
+</style>
+<hr>
+<section id="r-para-el-análisis-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="r-para-el-análisis-de-datos"><strong>R para el Análisis de Datos</strong></h2>
+<div class="container-fluid ldf-section">
+  <div class="row ldf-grid-gap" style="align-items:center;">
 
+    <!-- Columna imagen (portada) -->
+    <div class="col-sm-6">
+      <!-- Si quieres usar la portada que tienes en WP, reemplaza el src por la URL de WP: -->
+      <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/03/portada-edited.png"
+           alt="Portada del libro" style="height:420px;object-fit:cover;border-radius:12px;
+           box-shadow:0 4px 10px rgba(0,0,0,.1);display:block;margin:0 auto;"> -->
+      <img src="portada.jpg" alt="Portada del libro" style="height:420px;object-fit:cover;border-radius:12px;
+           box-shadow:0 4px 10px rgba(0,0,0,.1);display:block;margin:0 auto;">
+    </div>
 
-<div class="quarto-title-meta column-page">
+    <!-- Columna texto + botón -->
+    <div class="col-sm-6">
+      <h1 class="wp-block-heading has-text-align-center" style="text-align:center;margin-top:0;">📖<br><strong>R para el Análisis de Datos</strong></h1>
+      <p class="has-text-align-center ldf-justo" style="margin-top:8px;">
+        <strong>Entiende los conceptos más importantes de la estadística descriptiva e inferencial</strong>
+        a través de <strong>9 capítulos estructurados</strong> que combinan teoría y práctica con
+        <strong>R, el lenguaje de programación más demandado en la academia</strong>.
+      </p>
+      <div class="wp-block-buttons ldf-btn-center" style="margin-top:8px;">
+        <div class="wp-block-button">
+          <!-- Usa tu clase de botón personalizada -->
+          <a class="boton-libro" href="./libro.html">Más información</a>
+          <!-- Si prefieres el enlace de WP original: href="https://ladatafora.wordpress.com/guia-gratuita/" -->
+        </div>
+      </div>
+    </div>
 
-    
+  </div>
+</div>
+<hr>
+</section>
+<section id="sobre-el-autor" class="level2">
+<h2 class="anchored" data-anchor-id="sobre-el-autor"><strong>Sobre el autor</strong></h2>
+<div class="container-fluid ldf-section">
+  <div class="row ldf-grid-gap" style="align-items:center;">
+
+    <!-- Foto + nombre -->
+    <div class="col-sm-4" style="text-align:center;">
+      <!-- Si prefieres usar la imagen de WP: cambia src por tu URL -->
+      <!-- <img src="https://ladatafora.wordpress.com/wp-content/uploads/2025/03/mifoto.png?w=1024" alt="Gonzalo Almendariz Villanueva"
+           style="width:230px;height:230px;object-fit:cover;border-radius:12px;border:1px solid var(--border);
+                  box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto 10px auto;"> -->
+      <img src="autor.jpg" alt="Gonzalo Almendariz Villanueva" style="width:230px;height:230px;object-fit:cover;border-radius:12px;border:1px solid var(--border);
+                  box-shadow:0 2px 8px rgba(0,0,0,.06);display:block;margin:0 auto 10px auto;">
+      <div class="wp-element-caption" style="font-weight:700;">Gonzalo Almendariz Villanueva</div>
+    </div>
+
+    <!-- Bio -->
+    <div class="col-sm-8">
+      <p class="ldf-justo" style="margin:0;">
+        <strong>Bachiller en Ciencia Política por la Universidad Nacional Mayor de San Marcos</strong>, con un fuerte interés en
+        <strong>la enseñanza, la divulgación y la estadística</strong>. Me especializo en <strong>el análisis de datos aplicado a las ciencias sociales</strong>
+        y disfruto hacer <strong>la estadística accesible y comprensible</strong> para todos. He enseñado
+        <strong>programación estadística en R</strong>, enfocándome en su aplicación para el análisis de datos y la visualización.
+      </p>
+    </div>
+
+  </div>
+</div>
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png" alt="La Datáfora" style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
   
-    
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
   </div>
   
-
-
-</header>
-
-
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub" style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -186,7 +186,7 @@
     "href": "dataforaint.html",
     "title": "La Datafora Interactiva",
     "section": "",
-    "text": "La Datáfora Interactiva es una extensión digital del libro R para el Análisis de Datos, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.\nCada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.\n\n\n\n  \n    🌐 Abrir La Datafora Interactiva"
+    "text": "La Datáfora Interactiva es una extensión digital del libro R para el Análisis de Datos, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.\nCada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.\n\n\n\n  \n    🌐 Explora La Datafora Interactiva"
   },
   {
     "objectID": "about.html",
@@ -198,16 +198,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "La Datafora",
+    "title": "\n    Bienvenido a La Datáfora\n  ",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Te doy la bienvenida a La Datáfora, un espacio creado para compartir mi trabajo, reflexiones y recursos\n    sobre análisis de datos aplicados a las ciencias sociales. Aquí podrás encontrar publicaciones, materiales didácticos,\n    ejemplos en R y Python, y avances de mis proyectos en curso."
   },
   {
     "objectID": "incorerweb.html",
     "href": "incorerweb.html",
     "title": "IncoreR en la Web",
     "section": "",
-    "text": "La aplicación IncoreRWeb permite explorar visualmente los resultados del INCORE a través de una plataforma interactiva desarrollada en Shiny. Desde la aplicación pueden consultarse puntajes e indicadores de todas las ediciones, junto con la multitud de gráficos que el paquete incorer ofrece.\nEl paquete IncoreR es un paquete de código abierto en R desarrollado a mediados de 2025 para facilitar la visualización de resultados, ofreciendo una amplia variedad de gráficos para mostrar los indicadores y pilares del índice. Entre ellos se incluyen gráficos de distribución, densidad, comparaciones entre medias, mapas regionales, gráficos de radar, entre otros, todos con múltiples opciones de personalización.\nEl objetivo de IncoreRWeb es habilitar estas herramientas y generar gráficos de alta calidad sin necesidad de manejar todas las funciones de R. Haciendo uso del paquete, la aplicación web ofrece una interfaz interactiva que permite al usuario aplicar filtros y personalizar los gráficos según sus necesidades, generando así las visualizaciones que desee y pudiendo posteriormente hacer uso de ellas.\n\n\n\n  \n    🌐 Explora IncoreRWeb"
+    "text": "La aplicación IncoreRWeb permite explorar visualmente los resultados del INCORE a través de una plataforma interactiva desarrollada en Shiny. Desde la aplicación pueden consultarse puntajes e indicadores de todas las ediciones, junto con la multitud de gráficos que el paquete incorer ofrece.\nEl paquete IncoreR es un paquete de código abierto en R desarrollado a mediados de 2025 para facilitar la visualización de resultados, ofreciendo una amplia variedad de gráficos para mostrar los indicadores y pilares del índice. Entre ellos se incluyen gráficos de distribución, densidad, comparaciones entre medias, mapas regionales, gráficos de radar, entre otros, todos con múltiples opciones de personalización.\nEl objetivo de IncoreRWeb es habilitar estas herramientas y generar gráficos de alta calidad sin necesidad de manejar todas las funciones de R. Haciendo uso del paquete, la aplicación web ofrece una interfaz interactiva que permite al usuario aplicar filtros y personalizar los gráficos según sus necesidades, generando así las visualizaciones que desee y pudiendo posteriormente hacer uso de ellas.\n\n\n\n  \n    🌐 Explora IncoreRWeb\n  \n\n\n\n  \n  \n  \n  \n  \n    Elaborado por Gonzalo Almendariz Villanueva"
   },
   {
     "objectID": "main_proyectos.html",
@@ -264,5 +264,68 @@
     "title": "Libro: R para el análisis de datos",
     "section": "Acceso al libro completo",
     "text": "Acceso al libro completo\nEl libro está disponible en línea, de acceso totalmente libre:\n\n  \n     📘 Leer el libro completo"
+  },
+  {
+    "objectID": "index.html#propósito",
+    "href": "index.html#propósito",
+    "title": "\n    Bienvenido(a) a La Datáfora\n  ",
+    "section": "Propósito",
+    "text": "Propósito\nLa Datáfora reúne materiales abiertos para enseñar y aprender estadística aplicada con R en ciencias sociales.\nEl enfoque prioriza interpretación, supuestos y límites de los métodos por sobre la formalización matemática, con ejemplos reproducibles."
+  },
+  {
+    "objectID": "index.html#para-quién",
+    "href": "index.html#para-quién",
+    "title": "\n    Bienvenido(a) a La Datáfora\n  ",
+    "section": "Para quién",
+    "text": "Para quién\n\nQuienes cursan o dictan asignaturas cuantitativas en ciencias sociales.\nEquipos que analizan encuestas y necesitan flujos en R reproducibles y auditables.\nPersonas que prefieren ver y manipular ideas: simulaciones, visualizaciones, y guías paso a paso."
+  },
+  {
+    "objectID": "index.html#qué-hay-en-este-sitio",
+    "href": "index.html#qué-hay-en-este-sitio",
+    "title": "\n    Bienvenido(a) a La Datáfora\n  ",
+    "section": "Qué hay en este sitio",
+    "text": "Qué hay en este sitio\n\n\n  \n    \n    \n      \n        Libro\n        \n          Nueve capítulos para fundamentos de probabilidad, inferencia, comparación de grupos y regresión,\n          con código R y ejemplos aplicados.\n        \n        \n          Ir al libro\n        \n      \n    \n\n    \n    \n      \n        La Datáfora Interactiva\n        \n          Módulos para manipular parámetros y observar cómo cambian distribuciones, TLC, intervalos, error y regresión.\n        \n        \n          Abrir explorador\n        \n      \n    \n\n    \n    \n      \n        Proyectos\n        \n          Selección de trabajos, cursos y materiales vinculados a estadística aplicada y análisis de encuestas.\n        \n        \n          Ver proyectos\n        \n      \n    \n  \n\n  \n  \n    \n      \n        IncoreR\n        \n          Utilidades para el INCORE (indicadores, catálogos y visualizaciones). La app web refleja cambios del paquete\n          al reiniciarse.\n        \n        \n          Introducción\n          Manual para R\n          IncoreR en navegador\n        \n      \n    \n\n    \n      \n        Prosecnur\n        \n          Flujo reproducible para encuestas: plantillas, reglas y reportes con R (diagnóstico, limpieza, documentación).\n        \n        \n          Ir a Prosecnur"
+  },
+  {
+    "objectID": "index.html#cómo-usar-este-sitio",
+    "href": "index.html#cómo-usar-este-sitio",
+    "title": "La Datáfora",
+    "section": "Cómo usar este sitio",
+    "text": "Cómo usar este sitio\n\nConsultar el capítulo correspondiente del libro cuando se requiera marco conceptual.\n\nAbrir el explorador interactivo para observar cómo cambian las formas al mover parámetros.\n\nReplicar el ejemplo en un script de R y adaptar las funciones a un caso propio.\n\nDocumentar supuestos, límites y decisiones del análisis."
+  },
+  {
+    "objectID": "index.html#novedades",
+    "href": "index.html#novedades",
+    "title": "\n    Bienvenido(a) a La Datáfora\n  ",
+    "section": "Novedades",
+    "text": "Novedades\n\nMódulos del explorador con estética unificada y descarga a PNG.\nMejoras en catálogos y visualizaciones de IncoreR (reflejan cambios del paquete al reiniciar la app).\nPlantillas y utilidades para flujos reproducibles de encuestas (Prosecnur)."
+  },
+  {
+    "objectID": "index.html#código-y-contacto",
+    "href": "index.html#código-y-contacto",
+    "title": "\n    Bienvenido(a) a La Datáfora\n  ",
+    "section": "Código y contacto",
+    "text": "Código y contacto\n\n  \n    El código y los materiales se mantienen públicos y versionados. Para consultas, colaboraciones o clases/talleres:\n  \n  \n    GitHub\n    Contacto\n    Escríbeme\n  \n\n\n\n\n  \n    \n  \n  \n    Elaborado por Gonzalo Almendariz Villanueva\n    \n      \n    \n  \n\nSi quieres, luego afinamos: tamaños de fuente globales en tu CSS, enlaces reales de Instagram/TikTok, y cualquier microcopia."
+  },
+  {
+    "objectID": "index.html#r-para-el-análisis-de-datos",
+    "href": "index.html#r-para-el-análisis-de-datos",
+    "title": "\n    Bienvenido a La Datáfora\n  ",
+    "section": "R para el Análisis de Datos",
+    "text": "R para el Análisis de Datos\n\n  \n\n    \n    \n      \n      \n      \n    \n\n    \n    \n      📖R para el Análisis de Datos\n      \n        Entiende los conceptos más importantes de la estadística descriptiva e inferencial\n        a través de 9 capítulos estructurados que combinan teoría y práctica con\n        R, el lenguaje de programación más demandado en la academia.\n      \n      \n        \n          \n          Más información"
+  },
+  {
+    "objectID": "index.html#sobre-el-autor",
+    "href": "index.html#sobre-el-autor",
+    "title": "\n    Bienvenido a La Datáfora\n  ",
+    "section": "Sobre el autor",
+    "text": "Sobre el autor\n\n  \n\n    \n    \n      \n      \n      \n      Gonzalo Almendariz Villanueva\n    \n\n    \n    \n      \n        Bachiller en Ciencia Política por la Universidad Nacional Mayor de San Marcos, con un fuerte interés en\n        la enseñanza, la divulgación y la estadística. Me especializo en el análisis de datos aplicado a las ciencias sociales\n        y disfruto hacer la estadística accesible y comprensible para todos. He enseñado\n        programación estadística en R, enfocándome en su aplicación para el análisis de datos y la visualización.\n      \n    \n\n  \n\n\n\n  \n  \n  \n  \n  \n    Elaborado por Gonzalo Almendariz Villanueva"
+  },
+  {
+    "objectID": "index.html#sígueme-en-redes-sociales",
+    "href": "index.html#sígueme-en-redes-sociales",
+    "title": "\n    Bienvenido a La Datáfora\n  ",
+    "section": "Sígueme en redes sociales",
+    "text": "Sígueme en redes sociales\n\n  \n\n    \n    \n      \n        \n        \n        \n        \n      \n    \n\n    \n    \n      📱Sígueme en Redes Sociales\n      \n        Si te interesa la teoría estadística, descubrir lecturas relevantes,\n        aprender programación en R de forma clara y accesible, o simplemente quieres interactuar,\n        te invito a seguirme en Instagram y TikTok. Comparto videos donde explico\n        conceptos de manera sencilla y hablo de mi día a día.\n      \n      \n        \n          \n        \n        \n          \n        \n      \n    \n\n  \n\n\n\n\n  \n    \n  \n  Elaborado por Gonzalo Almendariz Villanueva"
   }
 ]
