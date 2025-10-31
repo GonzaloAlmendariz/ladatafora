@@ -3,13 +3,9 @@ project:
   output-dir: docs
 
 website:
-  title: "La Datáfora"
   navbar:
     logo: "logo.png"           
     left:
-      - href: about.qmd
-        text: "Sobre el proyecto"
-
       - href: libro.qmd
         text: "Libro"
 
@@ -22,22 +18,20 @@ website:
       - text: "IncoreR"
         menu:
           - text: "Introducción al paquete"
-            href: incorer/intro.qmd
+            href: intro.qmd
           - text: "Manual para R"
-            href: incorer/Manual.qmd
+            href: Manual.qmd
           - text: "IncoreR en el navegador"
-            href: incorer/incorerweb.qmd
-
-      - text: "Prosecnur"
-        href: prosecnur/
-
+            href: incorerweb.qmd
+      - href: exp.qmd
+        text: "Experiencia"
 
 
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true
+    toc: false
     toc-depth: 3
     toc-expand: true
     smooth-scroll: true

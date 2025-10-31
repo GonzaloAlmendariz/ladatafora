@@ -1,0 +1,107 @@
+ ---
+title: Experiencia laboral
+page-layout: full
+format:
+  html:
+    toc: false
+---
+
+
+
+
+```{=html}
+<!-- Espaciador superior -->
+<div style="height:46px;" aria-hidden="true"></div>
+
+<!-- Botón centrado (CV) -->
+<div style="display:flex;justify-content:center;margin-bottom:28px;">
+  <a href="https://drive.google.com/file/d/1PQ-U5Q530m52OV5cB4cCCNJ_uF8zuvvG/view?usp=sharing"
+     class="boton-libro"
+     style="text-decoration:none;">
+    Acceso rápido a mi CV
+  </a>
+</div>
+
+<!-- Texto en una sola jerarquía -->
+<p class="ldf-justo">
+  Trabajo en <strong>PULSO PUCP</strong>, donde participo en estudios de alcance nacional e internacional vinculados al desarrollo social, la protección, la educación y la movilidad humana. Me ocupo del diseño y revisión de instrumentos, la limpieza y validación de bases de datos, la codificación y el análisis estadístico con R y SPSS. He trabajado en proyectos como <em>ACNUR PDM</em>, <em>Espacios de Protección</em>, <em>RMS</em> y <em>Hostigamiento PUCP</em>, desde la planificación metodológica hasta la interpretación y comunicación de resultados.
+</p>
+
+<p class="ldf-justo">
+  Soy bachiller en Ciencia Política por la Universidad Nacional Mayor de San Marcos. Me dedico al análisis de datos en proyectos de investigación social y al desarrollo de materiales para la enseñanza de estadística aplicada. Me interesa que el trabajo con datos sea claro, reproducible y útil para comprender fenómenos sociales y respaldar decisiones basadas en evidencia.
+</p>
+
+<p class="ldf-justo">
+  A lo largo de mi formación entendí que dominar herramientas cuantitativas permite construir conocimiento riguroso, sobre todo cuando los debates públicos requieren argumentos verificables. Con ese enfoque he desarrollado un perfil técnico que combina R, Python y SQL con una base teórica en investigación social y análisis político.
+</p>
+
+<p class="ldf-justo">
+  He fortalecido mi formación en programación estadística y análisis de datos de forma autodidacta y mediante certificaciones en <strong>DataCamp</strong>, donde completé los tracks <em>Data Analyst with R</em> y <em>Statistician with R</em>. Trabajo con <code>dplyr</code>, <code>ggplot2</code>, <code>infer</code> y otras librerías del ecosistema <code>tidyverse</code>, además de <code>janitor</code>, <code>mice</code>, <code>tidytext</code>, <code>spaCy</code> y <code>scikit-learn</code>. También uso <strong>Tableau</strong> y <strong>SQL</strong> para gestión y visualización. Cuento con el <strong>CAE (C1)</strong> de la Universidad de Cambridge.
+</p>
+
+<p class="ldf-justo">
+  En 2024 trabajé como analista de datos en la consulta regional <strong>“Voces para el Futuro”</strong> (PNUD y CAF). Analicé más de mil respuestas de varios países de América Latina usando R para visualizar información demográfica y realizar análisis de texto y sentimiento. Los hallazgos se presentaron en la 79.ª Asamblea General de las Naciones Unidas.
+</p>
+
+<p class="ldf-justo">
+  Mantengo una línea constante de docencia. Fui ayudante de cátedra en Metodología de la Investigación en Ciencia Política III (UNMSM), con clases prácticas y materiales centrados en R y fundamentos estadísticos. También dicté cursos en Métrica 23 —<em>Dominio R: de Datos a Decisiones Estratégicas</em> y <em>Análisis Estadístico con R</em>— orientados a estudiantes y profesionales de distintas disciplinas.
+</p>
+
+<p class="ldf-justo">
+  Diseñé talleres de análisis cuantitativo con R como facilitador del TAREP “Manuel Lorenzo de Vidaurre” (UNMSM), dirigidos a estudiantes interesados en investigación empírica. Busco reducir barreras de entrada al aprendizaje estadístico con recursos claros y aplicados.
+</p>
+
+<p class="ldf-justo">
+  Coordiné el <strong>COIRECIP 2023</strong> (Congreso Nacional e Internacional de Ciencia Política, UNMSM). Me encargué de la planificación, la convocatoria de ponencias, la logística y la coordinación académica. El evento, transmitido por Radio y Televisión San Marcos, reunió a más de 300 participantes de distintas regiones del país.
+</p>
+
+<p class="ldf-justo">
+  Desarrollé los paquetes de R <code>prosecnur</code> (flujos PPRA/Kobo) e <code>incorer</code> (análisis del Índice de Competitividad Regional del IPE). También creo aplicaciones Shiny y sitios con Quarto reunidos en <em>La Datáfora</em>, donde integro docencia, investigación y publicación abierta.
+</p>
+
+<p class="ldf-justo">
+  Escribí el libro <em>R para el Análisis de Datos</em>, pensado para estudiantes, tesistas y profesionales que buscan aplicar métodos estadísticos con R sin formación matemática especializada. El texto combina teoría, práctica, ejemplos interpretativos y código reproducible, con énfasis en la interpretación y el sentido de los datos.
+</p>
+
+<p class="ldf-justo">
+  Me interesa que el conocimiento técnico sea accesible y compartido.
+</p>
+
+<!-- Separador -->
+<hr style="border:0;height:1px;background-color:var(--border);margin:40px auto;width:80%;">
+
+<!-- Espaciador inferior -->
+<div style="height:100px;" aria-hidden="true"></div>
+```
+
+
+``` {=html}        
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png"
+       alt="La Datáfora"
+       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+  
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
+  </div>
+  
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
+     style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
+</div>
+```
+
+
