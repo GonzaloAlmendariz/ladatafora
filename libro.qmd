@@ -1,12 +1,11 @@
 ---
-title: "Libro: R para el análisis de datos"
+title: "Sobre el libro"
 page-layout: full
 format:
   html:
     toc: false
 ---
 
-## Sobre el libro
 
 ```{=html}
 <!-- spacer -->

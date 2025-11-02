@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>La Datafora Interactiva</title>
+<title>dataforaint</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="estetica.css">
 </head>
 
 <body class="nav-fixed">
@@ -90,16 +90,16 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
+    <a class="nav-link" href="./cv.html"> 
+<span class="menu-text">Contacto</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./libro.html"> 
 <span class="menu-text">Libro</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./dataforaint.html" aria-current="page"> 
 <span class="menu-text">La Datáfora Interactiva</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./main_proyectos.html"> 
-<span class="menu-text">Proyectos</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-incorer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
@@ -112,18 +112,14 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="./Manual.html">
- <span class="dropdown-text">Manual para R</span></a>
+ <span class="dropdown-text">Manual</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./incorerweb.html">
- <span class="dropdown-text">IncoreR en el navegador</span></a>
+ <span class="dropdown-text">IncoreR Web</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./exp.html"> 
-<span class="menu-text">Experiencia</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -139,82 +135,176 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">La Datafora Interactiva</h1>
-</div>
 
 
 
-<div class="quarto-title-meta column-page">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>La Datáfora Interactiva es una extensión digital del libro <em>R para el Análisis de Datos</em>, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.</p>
-<p>Cada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.</p>
+<!-- ============================================================
+     La Datáfora Interactiva — Sección principal refinada
+     ============================================================ -->
 <style>
-  .btn-ldf {
-    display: inline-block;
-    padding: 1rem 2rem;
+  .ldf-interactiva {
+    position: relative;
+    padding: clamp(70px, 9vw, 120px) 16px clamp(60px, 8vw, 100px);
+    text-align: center;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg) 97%, white 3%) 0%,
+      color-mix(in srgb, var(--bg-soft) 95%, white 5%) 100%
+    );
+    overflow: hidden;
+  }
+
+  /* Fondo con partículas suaves */
+  .ldf-interactiva::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 60%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.45) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .ldf-interactiva__inner {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .ldf-interactiva__title {
+    font-family: "Literata","Georgia",serif;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    margin-bottom: 14px;
+    letter-spacing: -0.015em;
+  }
+
+  .ldf-interactiva__subtitle {
+    font-weight: 600;
+    color: #4a4a4a;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    margin-bottom: 24px;
+  }
+
+  .ldf-interactiva__text {
+    max-width: 720px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--text);
+    text-align: justify;
+  }
+
+  /* Botón interactivo */
+  .ldf-interactiva__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     background-color: var(--accent);
     color: #fff;
+    font-weight: 600;
     font-size: 1.15rem;
-    font-weight: 500;
-    border-radius: 12px;
+    padding: 1rem 2.2rem;
+    border-radius: 14px;
     text-decoration: none;
-    box-shadow: 0 3px 8px rgba(0,0,0,.08);
-    transition: all 0.25s ease-in-out;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    transition: background-color .25s ease, transform .25s ease, box-shadow .25s ease;
   }
-  .btn-ldf:hover {
-    background-color: #a56b45;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
+  .ldf-interactiva__btn:hover,
+  .ldf-interactiva__btn:focus {
+    background-color: color-mix(in srgb, var(--accent) 90%, white 10%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(0,0,0,.15);
     color: #fff;
-    text-decoration: none;
   }
-  .btn-center {
-    display: flex;
-    justify-content: center;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+
+  /* Sutil animación de “pulso” */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(0,0,0,0); }
+    50% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(138,90,68,0.1); }
   }
+  .ldf-interactiva__btn:hover {
+    animation: pulse 1.8s infinite ease-in-out;
+  }
+
+  /* Footer */
+  .ldf-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  .ldf-footer img {
+    height: 46px;
+    margin: 0 auto 8px auto;
+    display: block;
+    opacity: 0.9;
+  }
+  .ldf-footer a img {
+    height: 18px;
+    filter: invert(35%);
+    opacity: 0.8;
+    transition: opacity .2s ease;
+  }
+  .ldf-footer a:hover img {
+    opacity: 1;
+  }
+  
+  /* Blindaje contra estilos globales de hover */
+.ldf-interactiva__btn,
+.ldf-interactiva__btn:hover,
+.ldf-interactiva__btn:focus {
+  border-radius: 14px !important;       /* mantiene el borde curvo */
+  background-color: var(--accent) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+/* Mantiene animación y elevación al hover sin cambiar color ni forma */
+.ldf-interactiva__btn:hover,
+.ldf-interactiva__btn:focus {
+  background-color: color-mix(in srgb, var(--accent) 90%, white 10%) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0,0,0,.15);
+  border-radius: 14px !important;
+}
+
+
 </style>
 
-<div class="btn-center">
-  <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/" target="_blank">
-    🌐 Explora La Datafora Interactiva
-  </a>
-</div>
-<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
-<div style="
-  margin-top: 40px;
-  padding: 22px 0 18px 0;
-  border-top: 1px solid #ddd;
-  text-align: center;
-  color: #555;
-  font-size: 0.95rem;
-">
-  <!-- Logo -->
-  <img src="logo.png" alt="La Datáfora" style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
-  
-  <!-- Texto -->
-  <div style="font-weight:500; margin-bottom:6px;">
-    Elaborado por Gonzalo Almendariz Villanueva
+<section class="ldf-interactiva" aria-labelledby="interactiva-title">
+  <div class="ldf-interactiva__inner">
+    <h1 id="interactiva-title" class="ldf-interactiva__title">La Datáfora Interactiva</h1>
+    <h2 class="ldf-interactiva__subtitle anchored">Explora, observa, comprende</h2>
+
+    <p class="ldf-interactiva__text">
+      La Datáfora Interactiva es una extensión digital del libro <em>R para el Análisis de Datos</em>, desarrollada para facilitar el aprendizaje mediante la experimentación visual. Aquí no solo se explican los conceptos estadísticos fundamentales, sino que se pueden observar en acción: distribuciones, leyes probabilísticas, inferencia, regresión y otros pilares del análisis de datos cobran vida a través de simulaciones controladas por el usuario.
+    </p>
+
+    <p class="ldf-interactiva__text">
+      Cada sección temática se encuentra organizada en la barra superior y aborda un concepto clave con un enfoque gráfico e interactivo. El recorrido puede hacerse en paralelo a la lectura del libro o de manera autónoma, y permite que quienes lo usen desarrollen una comprensión intuitiva basada en la observación, la manipulación de parámetros y la interpretación de patrones estadísticos.
+    </p>
+
+    <a class="ldf-interactiva__btn" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/dinstats/" target="_blank">
+      <span>🌐 Explora La Datáfora Interactiva</span>
+    </a>
+
+    <div class="ldf-footer">
+      <img src="logo.png" alt="La Datáfora">
+      <div>Elaborado por Gonzalo Almendariz Villanueva</div>
+      <a href="https://github.com/GonzaloAlmendariz" target="_blank" aria-label="GitHub">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
+      </a>
+    </div>
   </div>
-  
-  <!-- GitHub pequeño -->
-  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub" style="display:inline-block;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
-  </a>
-</div>
+</section>
 
 
 

@@ -6,31 +6,30 @@ website:
   navbar:
     logo: "logo.png"           
     left:
+    
+      - href: cv.qmd
+        text: "Contacto"
+        
       - href: libro.qmd
         text: "Libro"
 
       - href: dataforaint.qmd
         text: "La Datáfora Interactiva"
-
-      - href: main_proyectos.qmd
-        text: "Proyectos"
-
+        
       - text: "IncoreR"
         menu:
           - text: "Introducción al paquete"
             href: intro.qmd
-          - text: "Manual para R"
+          - text: "Manual"
             href: Manual.qmd
-          - text: "IncoreR en el navegador"
+          - text: "IncoreR Web"
             href: incorerweb.qmd
-      - href: exp.qmd
-        text: "Experiencia"
 
 
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: estetica.css
     toc: false
     toc-depth: 3
     toc-expand: true

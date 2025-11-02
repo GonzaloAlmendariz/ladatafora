@@ -6,75 +6,125 @@ format:
     toc: false
 ---
 
-La aplicación **IncoreRWeb** permite explorar visualmente los resultados del INCORE a través de una plataforma interactiva desarrollada en Shiny. Desde la aplicación pueden consultarse puntajes e indicadores de todas las ediciones, junto con la multitud de gráficos que el paquete incorer ofrece.
-
-El paquete **IncoreR** es un paquete de código abierto en R desarrollado a mediados de 2025 para facilitar la visualización de resultados, ofreciendo una amplia variedad de gráficos para mostrar los indicadores y pilares del índice. Entre ellos se incluyen gráficos de distribución, densidad, comparaciones entre medias, mapas regionales, gráficos de radar, entre otros, todos con múltiples opciones de personalización.
-
-El objetivo de **IncoreRWeb** es habilitar estas herramientas y generar gráficos de alta calidad **sin necesidad de manejar todas las funciones de R**. Haciendo uso del paquete, la aplicación web ofrece una interfaz interactiva que permite al usuario aplicar filtros y personalizar los gráficos según sus necesidades, generando así las visualizaciones que desee y pudiendo posteriormente hacer uso de ellas.
-
 ```{=html}
+<!-- ============================================================
+     IncoreR en la Web — versión refinada con imagen central
+     ============================================================ -->
 <style>
-  .btn-ldf {
+  /* Botón principal (marrón) — blindado contra a:hover global */
+  .incorerweb__btn {
     display: inline-block;
     padding: 1rem 2rem;
     background-color: var(--accent);
     color: #fff;
     font-size: 1.15rem;
-    font-weight: 500;
-    border-radius: 12px;
+    font-weight: 600;
+    border-radius: 14px;
     text-decoration: none;
-    box-shadow: 0 3px 8px rgba(0,0,0,.08);
-    transition: all 0.25s ease-in-out;
+    border: 1px solid transparent;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
   }
-  .btn-ldf:hover {
-    background-color: #a56b45;
+  /* Blindaje total */
+  .incorerweb__btn,
+  .incorerweb__btn:hover,
+  .incorerweb__btn:focus {
+    border-radius: 14px !important;
+    background-color: var(--accent) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+  .incorerweb__btn:hover,
+  .incorerweb__btn:focus {
+    background-color: color-mix(in srgb, var(--accent) 90%, white 10%) !important;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.14);
-    color: #fff;
-    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0,0,0,.14);
   }
-  .btn-center {
+
+  /* Contenedor centrado del botón */
+  .incorerweb__btn-wrap {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+    margin: 2.5rem 0;
+  }
+
+  /* Imagen central (captura) */
+  .incorerweb__img {
+    display: block;
+    margin: 2rem auto;
+    max-width: 880px;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.10);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .incorerweb__img:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.12);
+  }
+
+  /* Footer */
+  .ldf-footer {
+    margin-top: 40px;
+    padding: 22px 0 18px 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    color: #555;
+    font-size: 0.95rem;
+  }
+  .ldf-footer__logo {
+    height: 48px;
+    display: block;
+    margin: 0 auto 8px auto;
+    opacity: .9;
+  }
+  .ldf-footer__gh {
+    display: inline-block;
+    line-height: 0;
+    background: none !important;
+    border-radius: 999px !important;
+  }
+  .ldf-footer__gh:hover,
+  .ldf-footer__gh:focus {
+    background: none !important;
+    box-shadow: none !important;
+  }
+  .ldf-footer__gh img {
+    height: 18px;
+    filter: invert(35%);
+    opacity: .85;
+    display: inline-block;
   }
 </style>
 
-<div class="btn-center">
-  <a class="btn-ldf" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank">
+<p>La aplicación <strong>IncoreRWeb</strong> permite explorar visualmente los resultados del INCORE a través de una plataforma interactiva desarrollada en Shiny. Desde la aplicación pueden consultarse puntajes e indicadores de todas las ediciones, junto con la multitud de gráficos que el paquete <em>incorer</em> ofrece.</p>
+
+<p>El paquete <strong>IncoreR</strong> es un paquete de código abierto en R desarrollado a mediados de 2025 para facilitar la visualización de resultados, ofreciendo una amplia variedad de gráficos para mostrar los indicadores y pilares del índice. Entre ellos se incluyen gráficos de distribución, densidad, comparaciones entre medias, mapas regionales, gráficos de radar, entre otros, todos con múltiples opciones de personalización.</p>
+
+<p>El objetivo de <strong>IncoreRWeb</strong> es habilitar estas herramientas y generar gráficos de alta calidad <strong>sin necesidad de manejar todas las funciones de R</strong>. Haciendo uso del paquete, la aplicación web ofrece una interfaz interactiva que permite al usuario aplicar filtros y personalizar los gráficos según sus necesidades, generando así las visualizaciones que desee y pudiendo posteriormente hacer uso de ellas.</p>
+
+<!-- Imagen profesional integrada -->
+<img src="capturaincorer.png" alt="Captura de la aplicación IncoreRWeb" class="incorerweb__img">
+
+<div class="incorerweb__btn-wrap">
+  <a class="incorerweb__btn" href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank" rel="noopener">
     🌐 Explora IncoreRWeb
   </a>
 </div>
-```
 
-
-
-``` {=html}        
-<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
-<div style="
-  margin-top: 40px;
-  padding: 22px 0 18px 0;
-  border-top: 1px solid #ddd;
-  text-align: center;
-  color: #555;
-  font-size: 0.95rem;
-">
-  <!-- Logo -->
-  <img src="logo.png"
-       alt="La Datáfora"
-       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
-  
-  <!-- Texto -->
+<!-- FOOTER limpio -->
+<div class="ldf-footer">
+  <img src="logo.png" alt="La Datáfora" class="ldf-footer__logo">
   <div style="font-weight:500; margin-bottom:6px;">
     Elaborado por Gonzalo Almendariz Villanueva
   </div>
-  
-  <!-- GitHub pequeño -->
-  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
-     style="display:inline-block;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
-         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  <a class="ldf-footer__gh" href="https://github.com/gonzaloalmendariz" target="_blank" rel="noopener" aria-label="GitHub">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub">
   </a>
 </div>
 ```
+
+
+
+
+
+

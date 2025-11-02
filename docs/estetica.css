@@ -1,0 +1,355 @@
+/* ============================================================
+   La Datáfora — site.css (único) · paleta + base + componentes
+   ============================================================ */
+
+/* ---------- Paleta base y tipografía ---------- */
+:root{
+  --bg:        #f9f7f3;
+  --bg-soft:   #f6f3ef;
+  --text:      #2b2b2b;
+  --accent:    #8a5a44;
+  --accent2:   #c7a47a;
+  --link:      #4a5d68;
+  --border:    #e0dcd5;
+
+  /* Tokens UI */
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 14px;
+  --shadow-s: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-m: 0 6px 18px rgba(0,0,0,.10);
+  --shadow-l: 0 10px 26px rgba(0,0,0,.15);
+  --t-fast: .15s;
+  --t-mid:  .25s;
+
+  --font-serif: "Literata","Georgia",serif;
+}
+
+html, body{
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-family: "Inter","Source Sans Pro",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+h1,h2,h3,h4,h5{
+  font-family: var(--font-serif);
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   Enlaces / Imágenes (contenido editorial, NO UI)
+   ============================================================ */
+.page-content a:hover,
+.page-content a:focus{
+  color:#fff !important;
+  background-color: var(--accent);
+  border-radius: 4px;
+}
+.page-content img,
+.quarto-figure img{
+  display:block;
+  margin:0 auto;
+  max-width:100%;
+  height:auto;
+  border-radius:6px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.quarto-figure{ text-align:center; }
+.quarto-figure figcaption{
+  font-size:.9rem; color:#6a6a6a; font-style:italic; margin-top:.35rem;
+}
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+.navbar,.navbar-dark,.navbar-light{
+  background-color: var(--bg-soft) !important;
+  border-bottom: 1px solid var(--border);
+}
+.navbar a.nav-link{
+  color: var(--text) !important;
+  transition: color .2s ease, background-color .2s ease;
+  border-radius: 4px;
+}
+.navbar a.nav-link:hover,
+.navbar a.nav-link:focus{
+  background-color: var(--accent); color:#fff !important;
+}
+
+/* ============================================================
+   Sidebars TOC
+   ============================================================ */
+.sidebar{ background:var(--bg-soft); border-right:1px solid var(--border); }
+.sidebar nav a{
+  display:block; color:var(--text); padding:6px 10px; border-radius:6px;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.sidebar nav a:hover,.sidebar nav a.active{
+  background:var(--accent); color:#fff !important; transform: translateX(2px);
+}
+#quarto-margin-sidebar{ background:var(--bg-soft); border-left:1px solid var(--border); }
+#quarto-margin-sidebar #TOC{ padding:.75rem; }
+#quarto-margin-sidebar #TOC a{
+  display:block; color:var(--text) !important; padding:4px 8px; border-radius:6px;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+#quarto-margin-sidebar #TOC a:hover,
+#quarto-margin-sidebar #TOC a.active{
+  background:var(--accent); color:#fff !important; transform: translateX(2px);
+}
+
+/* ============================================================
+   Texto y código
+   ============================================================ */
+main.content p, .page-columns .content p, .section p{
+  text-align: justify; text-justify: inter-word; hyphens: auto;
+}
+pre.sourceCode, pre code{
+  background:#f1eee9; border-radius:8px; border:1px solid var(--border);
+  padding:1rem; font-size:.9rem;
+}
+
+/* ============================================================
+   Secciones / contenedores
+   ============================================================ */
+.section{ padding: clamp(60px, 8vw, 100px) 0; }
+.section--tight{ padding: clamp(36px, 6vw, 72px) 0; }
+.section--narrow{ max-width:900px; margin:0 auto; padding-inline:16px; }
+.section--wide{ max-width:1100px; margin:0 auto; padding-inline:16px; }
+.section h2{ margin-bottom:12px; }
+.section .section-lead{ color:#5a5a5a; max-width:70ch; margin-bottom:18px; }
+
+/* ============================================================
+   Reveal (animación sobria)
+   ============================================================ */
+.reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ transition:none !important; transform:none !important; }
+}
+
+/* ============================================================
+   Botones estándar (blindados contra hover global)
+   ============================================================ */
+.btn-main{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 28px; border-radius: var(--radius-l);
+  font-weight:600; font-size:1rem; letter-spacing:.01em;
+  background: var(--accent); color:#fff !important; border:1px solid transparent;
+  box-shadow: var(--shadow-m);
+  transition: background-color var(--t-mid) ease, box-shadow var(--t-mid) ease, transform var(--t-fast) ease;
+  text-decoration:none !important;
+}
+.btn-main:hover,.btn-main:focus{ transform: translateY(-2px); box-shadow: var(--shadow-l); }
+.btn-main:active{ transform: translateY(0); box-shadow: var(--shadow-m); }
+
+/* ============================================================
+   HERO (CV)
+   ============================================================ */
+.cv-hero{ background:var(--bg); padding-top: clamp(36px, 8vw, 84px); padding-bottom: clamp(24px, 6vw, 64px); }
+.cv-hero__title{
+  margin:0 0 .25rem 0; font-family: var(--font-serif); font-weight:700;
+  letter-spacing:-0.02em; color:var(--accent); font-size:clamp(32px,5.4vw,52px); line-height:1.15;
+}
+.cv-hero__role{ margin:0 0 1rem 0; font-weight:600; color:#4a4a4a; font-size:clamp(18px,2.5vw,21px); }
+.cv-hero__value{ max-width:860px; margin:0 0 2rem 0; color:var(--text); line-height:1.7; font-size:1.05rem; }
+.cv-hero__ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+@media (max-width:640px){ .cv-hero .container-narrow{ text-align:center; } .cv-hero__ctas{ justify-content:center; } }
+
+/* ============================================================
+   Sobre mí (2 columnas)
+   ============================================================ */
+.h-compact{ margin-top:0; margin-bottom:12px; text-align:center; }
+.about .section-lead{ text-align:center; margin-inline:auto; }
+.about-grid{
+  display:grid; grid-template-columns:1.35fr 1fr; gap:24px; align-items:center; margin-top:16px;
+}
+.about-text p{ margin:0 0 12px 0; }
+.about-photo img{
+  width:100%; height:auto; display:block; border-radius:14px; box-shadow: var(--shadow-m); object-fit:cover;
+}
+.about--photo-sm .about-photo img{ max-width:88%; margin-inline:auto; }
+@media (max-width:900px){
+  .about-grid{ grid-template-columns:1fr; gap:18px; }
+  .about .section-lead{ text-align:left; }
+  .about--photo-sm .about-photo img{ max-width:100%; }
+}
+
+/* ============================================================
+   Timeline (experiencia)
+   ============================================================ */
+.timeline{ position:relative; margin:8px 0 10px 0; padding-left:22px; }
+.timeline::before{ content:""; position:absolute; left:9px; top:0; bottom:0; width:2px; background:var(--border); }
+.timeline-item{ position:relative; padding-left:12px; margin-bottom:18px; }
+.timeline-item::before{
+  content:""; position:absolute; left:-3px; top:.5rem; width:12px; height:12px;
+  border-radius:50%; background:#fff; border:2px solid var(--accent); box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.timeline-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.45rem; }
+.timeline-role{ font-weight:700; }
+.timeline-org,.timeline-date{ color:#6b6b6b; }
+.timeline-date{ margin-left:auto; font-size:.95rem; }
+.timeline-body{ margin-top:.35rem; }
+.chips{ display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.35rem; }
+.chip{
+  font-family:"Fira Code",ui-monospace,Menlo,monospace; font-size:.85rem;
+  background:var(--bg-soft); border:1px solid var(--border); padding:.15rem .5rem; border-radius:999px; color:#334;
+}
+
+/* ============================================================
+   Navegación flotante (arriba derecha, horizontal, solo al subir)
+   ============================================================ */
+nav.floating-nav{
+  position:fixed !important; top:100px !important; right:23px !important; left:auto !important; bottom:auto !important;
+  z-index:1002; background:rgba(255,255,255,.88); border:1px solid var(--border); border-radius:14px;
+  box-shadow: var(--shadow-m); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display:flex; justify-content:center; padding:8px 12px; min-width:520px; max-width:560px;
+  opacity:0; transform: translateY(-8px); pointer-events:none; transition: opacity .22s ease, transform .22s ease;
+}
+nav.floating-nav.is-visible{ opacity:1; transform:none; pointer-events:auto; }
+.floating-nav__list{
+  display:flex !important; flex-wrap:nowrap; align-items:center; justify-content:space-between;
+  gap:8px; width:100%; margin:0; padding:0; list-style:none;
+}
+.floating-nav__link{
+  display:inline-block; padding:8px 14px; border-radius:10px; font-weight:600; font-size:.95rem;
+  color:var(--text); text-decoration:none !important; white-space:nowrap; transition: background-color .2s ease, color .2s ease;
+}
+.floating-nav__link:hover,.floating-nav__link:focus{ background:var(--bg-soft); color:var(--text); }
+.floating-nav__link.is-active{ background:var(--accent); color:#fff; box-shadow: var(--shadow-s); }
+.floating-nav__link:focus-visible{
+  outline:2px solid color-mix(in srgb, var(--accent) 65%, white 35%); outline-offset:2px;
+}
+@media (max-width:900px){
+  nav.floating-nav{ top:52px !important; right:14px !important; min-width:auto; max-width:95vw; padding:6px 8px; }
+  .floating-nav__link{ padding:7px 10px; font-size:.88rem; }
+}
+
+
+/* ============================================================
+   Libro (dos columnas sofisticadas)
+   ============================================================ */
+#libro.libro-split{
+  padding: clamp(36px, 6vw, 80px) 16px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, white 4%) 0%, color-mix(in srgb, var(--bg-soft) 92%, white 8%) 100%);
+  border-top: 1px solid var(--border);
+}
+#libro .libro-split__grid{
+  max-width:1100px; margin:0 auto;
+  display:grid !important; grid-template-columns: minmax(300px,1fr) minmax(360px,1.2fr);
+  gap: clamp(20px,3vw,40px); align-items:center;
+}
+#libro .libro-split__cover{
+  margin:0; border-radius:18px; overflow:hidden; line-height:0;
+  box-shadow:0 10px 28px rgba(0,0,0,.10); background:var(--bg-soft);
+}
+#libro .libro-split__cover img{
+  display:block; width:100%; height:clamp(360px,48vh,480px); object-fit:cover; border:0;
+}
+#libro .libro-split__content{
+  position:relative; background: color-mix(in srgb, white 88%, var(--bg-soft) 12%);
+  border:1px solid color-mix(in srgb, var(--border) 85%, white 15%);
+  border-radius:16px; box-shadow:0 12px 32px rgba(0,0,0,.08);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  padding: clamp(24px,3vw,32px) clamp(22px,3vw,34px); overflow:clip;
+}
+#libro .libro-split__content::before{
+  content:""; position:absolute; inset:0 auto 0 0; width:6px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 55%, white 45%) 0%, color-mix(in srgb, var(--accent2) 50%, white 50%) 100%);
+  border-top-left-radius:16px; border-bottom-left-radius:16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+}
+#libro .libro-split__title{
+  margin:0 0 12px 0; font-family:var(--font-serif); font-weight:700; letter-spacing:-0.01em; color:var(--accent);
+  font-size:clamp(1.6rem,3.4vw,2rem);
+}
+#libro .libro-split__subtitle{ margin:8px 0 18px 0; font-weight:700; color:#2f2f2f; font-size:1.12rem; }
+#libro .libro-split__text{ margin-bottom:18px; line-height:1.92; font-size:1.05rem; color:var(--text); }
+#libro .libro-split__cta{ margin-top:10px; display:flex; justify-content:flex-start; }
+#libro .libro-split__cta .boton-libro{
+  padding:12px 26px; border-radius:12px; font-size:1rem;
+  transition: background-color .25s ease, box-shadow .25s ease, transform .18s ease;
+}
+#libro .libro-split__cta .boton-libro:hover{
+  background-color: color-mix(in srgb, var(--accent) 90%, white 10%);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  transform: translateY(-2px);
+}
+@media (max-width:860px){
+  #libro .libro-split__grid{ grid-template-columns:1fr; }
+  #libro .libro-split__content{ margin-top:10px; }
+}
+
+/* ============================================================
+   Footer limpio (opcional)
+   ============================================================ */
+.footer-limpio{
+  margin-top:40px; padding:22px 0 18px; border-top:1px solid var(--border);
+  text-align:center; color:#555; font-size:.95rem;
+}
+.footer-limpio a{ color:inherit; background:none !important; }
+.footer-limpio a:hover{ text-decoration:underline; }
+
+
+/* ====== HERO: acciones en una MISMA fila, alineadas a la izquierda ====== */
+.cv-hero__actions{
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px 18px;
+  flex-wrap: nowrap;                 /* 🔹 no se bajan a otra línea en desktop */
+}
+.cv-hero__ctas{
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+.cv-hero__social{
+  display: inline-flex !important;
+  align-items: center;
+  gap: 12px;
+  margin-left: 6px;                  /* 🔹 un toque de aire respecto a los CTAs */
+}
+
+/* En pantallas pequeñas, sí permitimos el wrap ordenado */
+@media (max-width: 640px){
+  .cv-hero__actions{ flex-wrap: wrap; gap: 10px 12px; }
+}
+
+
+
+<style>
+.boton-libro {
+  display: inline-block;
+  background-color: var(--accent, #8a5a44) !important;
+  color: #fff !important;
+  font-family: "Inter","Source Sans Pro",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: background-color .25s ease, box-shadow .25s ease, transform .18s ease;
+}
+
+.boton-libro:hover,
+.boton-libro:focus {
+  background-color: color-mix(in srgb, var(--accent, #8a5a44) 90%, white 10%) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.14);
+}
+
+.boton-libro:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+</style>
+
+
+
