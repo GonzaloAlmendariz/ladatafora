@@ -4,34 +4,38 @@ project:
 
 website:
   navbar:
-    logo: "logo.png"           
+    logo: "logo.png"
     left:
-    
-      - href: cv.qmd
-        text: "Contacto"
-        
-      - href: libro.qmd
-        text: "Libro"
+      - text: "Contacto"
+        href: cv.qmd
 
-      - href: dataforaint.qmd
-        text: "La Datáfora Interactiva"
-        
+      - text: "R para el análisis de datos"
+        menu:
+          - text: "Sobre el libro"
+            href: libro.qmd
+          - text: "La Datáfora Interactiva"
+            href: dataforaint.qmd
+
       - text: "IncoreR"
         menu:
-          - text: "Introducción al paquete"
+          - text: "Sobre el paquete"
             href: intro.qmd
           - text: "Manual"
             href: Manual.qmd
           - text: "IncoreR Web"
             href: incorerweb.qmd
 
+      - text: "Prosecnur"
+        menu:
+          - text: "Sobre el paquete"
+            href: prosecnur.qmd
+          - text: "Manual"
+            href: Guia_Prosecnur.qmd
 
 format:
   html:
     theme: cosmo
     css: estetica.css
     toc: false
-    toc-depth: 3
-    toc-expand: true
     smooth-scroll: true
   
