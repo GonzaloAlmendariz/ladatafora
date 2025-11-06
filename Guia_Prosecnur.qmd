@@ -105,7 +105,7 @@ El objetivo general es garantizar que los datos finales mantengan la coherencia 
 
 En el fondo, **prosecnur** no busca solo procesar datos, sino **hacer visible el proceso de construcción de la información**. El usuario puede leer el instrumento, entender la lógica de cada pregunta, revisar la consistencia de las respuestas, aplicar reglas, crear plantillas de codificación y finalmente adaptar los datos y el formulario. Todo el flujo queda documentado y puede replicarse tantas veces como sea necesario, garantizando que el análisis posterior se base siempre en una versión limpia, coherente y trazable de la información.
 
-## **Flujo del paquete**
+## Flujo del paquete
 
 El flujo de trabajo del paquete **Prosecnur** puede entenderse como una secuencia que transforma dos insumos básicos en un conjunto ordenado de productos finales. Los insumos iniciales son el **instrumento de la encuesta** y la **base de datos resultante de la recolección**. A partir de ellos, el paquete conduce un proceso progresivo que atraviesa cuatro momentos fundamentales: lectura y validación del instrumento, evaluación de consistencia, codificación y adaptación.
 
