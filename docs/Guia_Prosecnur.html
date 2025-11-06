@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a>
   <ul class="collapse">
-  <li><a href="#flujo-del-paquete" id="toc-flujo-del-paquete" class="nav-link" data-scroll-target="#flujo-del-paquete"><span class="header-section-number">1.1</span> <strong>Flujo del paquete</strong></a></li>
+  <li><a href="#flujo-del-paquete" id="toc-flujo-del-paquete" class="nav-link" data-scroll-target="#flujo-del-paquete"><span class="header-section-number">1.1</span> Flujo del paquete</a></li>
   </ul></li>
   <li><a href="#consistencia-de-datos" id="toc-consistencia-de-datos" class="nav-link" data-scroll-target="#consistencia-de-datos"><span class="header-section-number">2</span> Consistencia de datos</a>
   <ul class="collapse">
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El objetivo general es garantizar que los datos finales mantengan la coherencia interna del cuestionario, que las recodificaciones sean auditables y que las decisiones puedan revisarse en cualquier momento. El paquete reúne en un mismo espacio funciones que automatizan tareas, generan plantillas editables en Excel y reproducen la estructura del formulario sin exigir conocimientos técnicos avanzados. Cada etapa puede revisarse por separado, pero todas se articulan en una secuencia lógica que refleja el modo en que se trabaja realmente con datos de encuestas.</p>
 <p>En el fondo, <strong>prosecnur</strong> no busca solo procesar datos, sino <strong>hacer visible el proceso de construcción de la información</strong>. El usuario puede leer el instrumento, entender la lógica de cada pregunta, revisar la consistencia de las respuestas, aplicar reglas, crear plantillas de codificación y finalmente adaptar los datos y el formulario. Todo el flujo queda documentado y puede replicarse tantas veces como sea necesario, garantizando que el análisis posterior se base siempre en una versión limpia, coherente y trazable de la información.</p>
 <section id="flujo-del-paquete" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="flujo-del-paquete"><span class="header-section-number">1.1</span> <strong>Flujo del paquete</strong></h2>
+<h2 data-number="1.1" class="anchored" data-anchor-id="flujo-del-paquete"><span class="header-section-number">1.1</span> Flujo del paquete</h2>
 <p>El flujo de trabajo del paquete <strong>Prosecnur</strong> puede entenderse como una secuencia que transforma dos insumos básicos en un conjunto ordenado de productos finales. Los insumos iniciales son el <strong>instrumento de la encuesta</strong> y la <strong>base de datos resultante de la recolección</strong>. A partir de ellos, el paquete conduce un proceso progresivo que atraviesa cuatro momentos fundamentales: lectura y validación del instrumento, evaluación de consistencia, codificación y adaptación.</p>
 <p>En la primera etapa, el instrumento se lee tal como fue diseñado. Se identifican las preguntas, los tipos de respuesta y las relaciones entre las partes del formulario. Esta lectura permite construir una representación estructurada del cuestionario, que luego se utilizará como referencia para todo el proceso. Básicamente, el paquete aprende cómo está construida la encuesta y cómo deben interpretarse sus columnas en los datos.</p>
 <p>En la segunda etapa, se realiza la <strong>evaluación de consistencia</strong>. Este paso consiste en revisar si las respuestas registradas por los encuestadores cumplen las reglas básicas del cuestionario. Por ejemplo, si una persona indicó que no asiste a la escuela, no debería aparecer luego una respuesta sobre el grado que cursa. Estas comparaciones se formulan como reglas automáticas que el paquete aplica sobre toda la base de datos, identificando casos inconsistentes y generando reportes que permiten decidir si es necesario corregir o mantener los valores observados. Esta fase no altera los datos originales: simplemente los revisa, los resume y los presenta de forma legible para luego ser corregidos.</p>
@@ -2123,9 +2123,9 @@ Procesamiento</code></pre>
 <h3 data-number="2.7.1" class="anchored" data-anchor-id="parámetros-de-entrada-6"><span class="header-section-number">2.7.1</span> Parámetros de entrada</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 47%">
-<col style="width: 26%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">

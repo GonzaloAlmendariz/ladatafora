@@ -1091,7 +1091,7 @@ En concreto, la función:
 ### Parámetros de entrada
 
 | **Parámetro** | **Descripción** | **Valor por defecto** |
-|-------------------|----------------------------------|-------------------|
+|----|----|----|
 | **path** | Ruta al archivo Excel que contiene el plan. | (obligatorio) |
 | **sheet** | Nombre de la hoja donde vive el plan. | "Plan" |
 
