@@ -9,7 +9,7 @@ editor: visual
 ---
 
 ```{=html}
-<!-- HERO — Bienvenida principal (centrado, limpio y con punch) -->
+<!-- HERO — Bienvenida principal  -->
 <style>
   .hero-pro{
     position:relative;
