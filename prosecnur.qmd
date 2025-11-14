@@ -1,0 +1,115 @@
+ ---
+title: false
+page-layout: full
+format:
+  html:
+    toc: false
+    smooth-scroll: true
+editor: visual
+---
+
+```{=html}
+<section id="intro-prosecnur" class="section section--narrow reveal">
+  <div class="container-narrow">
+
+    <h2 class="h-compact" style="text-align:center;color:var(--accent);">
+      Prosecnur
+    </h2>
+    
+    <p class="ldf-justo section-lead" style="max-width:760px;margin:0 auto 1.2rem auto;">
+      Muchos proyectos de levantamiento de información trabajan hoy con 
+      formularios digitales diseñados en <strong>XLSForm</strong>, una estructura 
+      basada en hojas de cálculo que permite construir cuestionarios complejos 
+      con saltos, relevancias, catálogos extensos y secciones repetidas para 
+      plataformas como <strong>KoBoToolbox</strong> u ODK. Su flexibilidad es alta, 
+      pero también produce exportes heterogéneos: múltiples hojas, variables 
+      derivadas, opciones “otros”, códigos numéricos y campos abiertos que deben 
+      organizarse antes de analizar. Sin una metodología clara, esa transición 
+      del cuestionario al archivo de trabajo puede volverse lenta y difícil de 
+      documentar.
+    </p>
+
+    <p class="section-lead ldf-justo" style="max-width:760px;margin:0 auto 1.2rem auto;">
+      <strong>Prosecnur</strong> es un sistema de procesamiento para encuestas diseñado en R. 
+      Nace de un problema común en investigación aplicada: los cuestionarios 
+      extensos en XLSForm, las bases exportadas desde KoBo u ODK, y la necesidad 
+      de organizar la limpieza, la codificación y la documentación sin perder 
+      rastro de cómo se transforman los datos.
+    </p>
+
+    <p class="ldf-justo" style="max-width:760px;margin:0 auto 1.2rem auto;">
+      El paquete reúne en un solo flujo: lectura del formulario original, identificación de las 
+      secciones del formulario, preparación de los datos en su forma cruda, creación 
+      de plantillas editables para codificar valores abiertos, verificación de 
+      inconsistencias y adaptación final tanto de los datos como del instrumento. 
+      Cada paso queda registrado de forma explícita, lo que permite reproducir el 
+      proceso, auditarlo y trasladarlo a nuevos estudios sin partir de cero.
+    </p>
+
+    <p class="ldf-justo" style="max-width:760px;margin:0 auto;">
+      Su propósito es poder ofrecer una estructura clara para trabajar con 
+      formularios complejos, respetando siempre el contenido 
+      original del cuestionario y garantizando que todas las decisiones de 
+      recodificación, limpieza o ajuste aparezcan en un entorno controlado 
+      (principalmente Excel) y puedan ser aplicadas luego de forma automática. 
+      Prosecnur no reemplaza la revisión humana; la ordena. Y permite que equipos 
+      diferentes (o la misma persona meses después) puedan seguir el rastro de 
+      cómo se pasó de los datos en bruto al conjunto final apto para análisis.
+    </p>
+
+  </div>
+</section>
+```
+
+
+
+
+```{=html}
+<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
+<div style="
+  margin-top: 40px;
+  padding: 22px 0 18px 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  color: #555;
+  font-size: 0.95rem;
+">
+  <!-- Logo -->
+  <img src="logo.png"
+       alt="La Datáfora"
+       style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+  
+  <!-- Texto -->
+  <div style="font-weight:500; margin-bottom:6px;">
+    Elaborado por Gonzalo Almendariz Villanueva
+  </div>
+  
+  <!-- GitHub pequeño -->
+  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub"
+     style="display:inline-block;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"
+         alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
+  </a>
+</div>
+```
+
+
+
+
+
+```{=html}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.reveal').forEach(function(el){
+    el.classList.add('is-visible');
+  });
+});
+</script>
+```
+
+
+
+
+
+
+

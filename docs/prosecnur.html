@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index</title>
+<title>Prosecnur</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -53,17 +53,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="estetica.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,8 +83,8 @@ ul.task-list li input[type="checkbox"] {
     <img src="./logo.png" alt="" class="navbar-logo">
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -153,347 +153,187 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-
-
-<!-- HERO — Bienvenida principal (centrado, limpio y con punch) -->
-<style>
-  .hero-pro{
-    position:relative;
-    padding:clamp(60px,10vw,120px) 16px clamp(50px,8vw,100px);
-    background:linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--bg) 98%, white 2%) 0%,
-      color-mix(in srgb, var(--bg-soft) 100%, white 5%) 100%
-    );
-    border-bottom:1px solid var(--border);
-    text-align:center;
-    overflow:hidden;
-  }
-  .hero-pro__inner{ max-width:1000px; margin:0 auto; position:relative; }
-
-  /* Logo sin sombra (respeta transparencia) */
-  .hero-pro__logo{
-    height:clamp(70px,10vw,100px);
-    width:auto;
-    display:block;
-    margin:0 auto 20px auto;
-    filter:none !important;
-    image-rendering:-webkit-optimize-contrast;
-  }
-
-  .hero-pro__title{
-    margin:0 0 12px 0;
-    font-family:"Literata","Georgia",serif;
-    font-weight:800;
-    color:var(--accent);
-    font-size:clamp(2rem,5.5vw,2.6rem);
-    letter-spacing:-0.015em;
-    line-height:1.2;
-    position:relative;
-    display:inline-block;
-  }
-  .hero-pro__title::after{
-    content:"";
-    display:block;
-    width:180px; height:2px;
-    margin:.6rem auto 0 auto;
-    background:linear-gradient(90deg,
-      color-mix(in srgb, var(--accent) 75%, white 25%) 0%,
-      transparent 90%);
-    border-radius:2px;
-  }
-
-  .hero-pro__lead{
-    margin:24px auto 0 auto;
-    max-width:740px;
-    color:var(--text);
-    font-size:clamp(1.05rem,1.8vw,1.2rem);
-    line-height:1.9;
-    text-align:center;
-  }
-
-  /* Luz suave superior (sin “sombra gris”) */
-  .hero-pro::before{
-    content:"";
-    position:absolute; inset:0;
-    background:radial-gradient(circle at 50% 10%,
-      rgba(255,255,255,.85) 0%,
-      rgba(255,255,255,.6) 28%,
-      transparent 70%);
-    pointer-events:none;
-    opacity:.7;
-  }
-
-  /* Animación reveal (opcional) */
-  .hero-pro.reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
-  .hero-pro.reveal.is-visible{ opacity:1; transform:none; }
-  @media (prefers-reduced-motion: reduce){
-    .hero-pro.reveal{ transition:none !important; transform:none !important; }
-  }
-  @media (max-width:600px){
-    .hero-pro__title::after{ width:120px; }
-    .hero-pro__lead{ font-size:1rem; }
-  }
-</style>
-
-<section class="hero-pro reveal" aria-labelledby="hero-title">
-  <div class="hero-pro__inner">
-    <img src="logo.png" alt="La Datáfora" class="hero-pro__logo">
-    <h1 id="hero-title" class="hero-pro__title">Bienvenido a La Datáfora</h1>
-    <p class="hero-pro__lead">
-      La Datáfora reúne trabajo, ideas y recursos sobre análisis de datos en ciencias sociales:
-      publicaciones, materiales didácticos y avances de proyectos en R y Python, con un enfoque
-      reproducible y aplicado.
-    </p>
-  </div>
-</section>
-<section id="conoce-el-libro" class="level1">
-<h1><strong>Conoce el libro</strong></h1>
-<!-- ============================================================
-     LIBRO — R para el Análisis de Datos (stack limpio, sin sombras)
-     ============================================================ -->
-<style>
-  .ld-libro {
-    --bg: #f9f7f3;
-    --bg-soft: #f6f3ef;
-    --text: #2b2b2b;
-    --accent: #8a5a44;
-    --accent2: #c7a47a;
-    --border: #e0dcd5;
-
-    padding: clamp(48px, 7vw, 96px) 16px;
-    background: var(--bg);                /* 🔹 fondo plano sin degradado */
-    border-top: 1px solid var(--border);
-  }
-  .ld-libro__wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  /* Portada sin sombra */
-  .ld-libro__cover {
-    margin: 0 auto 18px auto;
-    border-radius: 18px;
-    overflow: hidden;
-    line-height: 0;
-    background: var(--bg-soft);
-    max-width: 920px;
-  }
-  .ld-libro__cover img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border: 0; margin: 0; padding: 0;
-  }
-
-  /* Ficha sin sombras exteriores */
-  .ld-libro__card {
-    position: relative;
-    max-width: 920px;
-    margin: 0 auto;
-    background: color-mix(in srgb, white 92%, var(--bg-soft) 8%);
-    border: 1px solid color-mix(in srgb, var(--border) 90%, white 10%);
-    border-radius: 16px;
-    padding: clamp(24px, 3vw, 34px);
-    overflow: clip;
-    transition: border-color .25s ease, transform .18s ease;
-  }
-
-  /* Regla lateral degradada */
-  .ld-libro__card::before{
-    content:"";
-    position:absolute; inset:0 auto 0 0;
-    width: 5px;
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--accent) 58%, white 42%) 0%,
-      color-mix(in srgb, var(--accent2) 55%, white 45%) 100%
-    );
-    border-top-left-radius:16px;
-    border-bottom-left-radius:16px;
-  }
-
-  /* Hover: solo eleva un poco, sin sombra */
-  .ld-libro__card:hover{
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--accent) 30%, var(--border) 70%);
-  }
-
-  /* Tipografía */
-  .ld-libro__title{
-    margin: 0 0 8px 0;
-    font-family: "Literata","Georgia",serif;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--accent);
-    font-size: clamp(1.6rem, 3.4vw, 2rem);
-    line-height: 1.18;
-  }
-  .ld-libro__subtitle{
-    margin: 6px 0 16px 0;
-    font-weight: 700;
-    color: #2f2f2f;
-    font-size: 1.1rem;
-  }
-  .ld-libro__text{
-    margin: 0 0 16px 0;
-    line-height: 1.9;
-    font-size: 1.04rem;
-    color: var(--text);
-    text-align: justify;
-  }
-
-  /* CTA centrada */
-  .ld-libro__cta{
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
-  }
-  .ld-libro__btn {
-    background-color: var(--accent);
-    color: #fff;
-    padding: 12px 26px;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: 1px solid transparent;
-    box-shadow: none;                        /* 🔹 sin sombra */
-    transition: background-color .25s ease, transform .18s ease;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .ld-libro__btn:hover,
-  .ld-libro__btn:focus {
-    background-color: color-mix(in srgb, var(--accent) 90%, white 10%);
-    transform: translateY(-2px);
-    color: #fff;
-  }
-
-  @media (max-width: 720px){
-    .ld-libro__card{ padding: 20px; }
-  }
-</style>
-
-<section id="libro" class="ld-libro" aria-labelledby="libro-title">
-  <div class="ld-libro__wrap">
-
-    <!-- Portada -->
-    <figure class="ld-libro__cover figure">
-      <img src="portada.jpg" alt="Portada del libro R para el Análisis de Datos" class="figure-img">
-    </figure>
-
-    <!-- Ficha -->
-    <div class="ld-libro__card">
-      <h2 id="libro-title" class="ld-libro__title anchored" data-anchor-id="conoce-el-libro">R para el Análisis de Datos</h2>
-      <h3 class="ld-libro__subtitle anchored">R al alcance de todas y todos</h3>
-
-      <p class="ld-libro__text">
-        <em>R para el análisis de datos</em> es un libro y, al mismo tiempo, una propuesta.
-        Su propósito es contribuir a que el conocimiento estadístico y computacional
-        sea <strong>libre, accesible y aplicable</strong> para quienes investigan, enseñan o estudian
-        en el campo de las <strong>ciencias sociales</strong>.
-        Más que un manual técnico, constituye una guía práctica para comprender los fundamentos
-        de la <strong>estadística descriptiva e inferencial</strong> y para incorporarlos al trabajo empírico mediante
-        <strong>R, un lenguaje de programación abierto y colaborativo</strong>.
-      </p>
-
-      <p class="ld-libro__text">
-        A lo largo de <strong>nueve capítulos progresivos</strong>, el libro recorre desde los principios
-        de la medición y la exploración de datos hasta el análisis de regresión, integrando
-        teoría, práctica y visualización.
-        Cada sección incluye ejemplos aplicados, ejercicios interpretativos y fragmentos de código
-        reproducibles, pensados para fortalecer la autonomía analítica y el criterio crítico en el uso de los datos.
-      </p>
-
-      <div class="ld-libro__cta">
-        <a class="ld-libro__btn" href="./libro.html">Más información</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-<hr>
-<section id="sobre-el-autor" class="level2">
-<h2 class="anchored" data-anchor-id="sobre-el-autor"><strong>Sobre el autor</strong></h2>
-<div class="container-fluid ldf-section">
-  <div class="row ldf-grid-gap" style="align-items:center;">
-
-    <!-- Tres fotos + nombre -->
-    <div class="col-sm-4" style="text-align:center;">
-      <div class="d-flex justify-content-center flex-wrap" style="gap:16px; margin-bottom:12px;">
-
-        <img src="foto1.jpeg" alt="Gonzalo Almendariz Villanueva 1" style="width:120px;height:120px;object-fit:cover;
-                    border-radius:12px;border:1px solid var(--border);
-                    box-shadow:0 2px 8px rgba(0,0,0,.06);">
-
-        <img src="foto2.jpeg" alt="Gonzalo Almendariz Villanueva 2" style="width:120px;height:120px;object-fit:cover;
-                    border-radius:12px;border:1px solid var(--border);
-                    box-shadow:0 2px 8px rgba(0,0,0,.06);">
-
-        <img src="foto3.jpg" alt="Gonzalo Almendariz Villanueva 3" style="width:120px;height:120px;object-fit:cover;
-                    border-radius:12px;border:1px solid var(--border);
-                    box-shadow:0 2px 8px rgba(0,0,0,.06);">
-
-      </div>
-
-      <div class="wp-element-caption" style="font-weight:700;color:var(--accent);margin-top:4px;">
-        Gonzalo Almendariz Villanueva
-      </div>
-    </div>
-
-    <!-- Bio -->
-    <div class="col-sm-8">
-      <p class="ldf-justo" style="margin:0;font-size:1.05rem;line-height:1.75;color:var(--text);">
-        <strong>Bachiller en Ciencia Política por la Universidad Nacional Mayor de San Marcos</strong>, 
-        con un interés considerable en <strong>la enseñanza, la divulgación y la estadística</strong>.  
-        Me especializo en <strong>el análisis de datos aplicado a las ciencias sociales</strong> y busco promover una 
-        comprensión accesible y crítica de la estadística.  
-        He impartido cursos de <strong>programación estadística en R</strong>, orientados a fortalecer el uso 
-        del lenguaje como herramienta para el análisis, la visualización y la comunicación de resultados.
-      </p>
-    </div>
-
-  </div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prosecnur</h1>
+<p class="subtitle lead">Revisión de inconsistencia y recodificación de cuestionarios diseñados en XLSForm</p>
 </div>
-<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
-<div style="
-  margin-top: 40px;
-  padding: 22px 0 18px 0;
-  border-top: 1px solid #ddd;
-  text-align: center;
-  color: #555;
-  font-size: 0.95rem;
-">
-  <!-- Logo -->
-  <img src="logo.png" alt="La Datáfora" style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
+
+
+
+<div class="quarto-title-meta">
+
+    
   
-  <!-- Texto -->
-  <div style="font-weight:500; margin-bottom:6px;">
-    Elaborado por Gonzalo Almendariz Villanueva
+    
   </div>
   
-  <!-- GitHub pequeño -->
-  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub" style="display:inline-block;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
-  </a>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.reveal').forEach(function(el){
-    el.classList.add('is-visible');
-  });
-});
-</script>
 
 
-</section>
-</section>
+</header>
+
+
+<main id="prosecnur-page">
+
+  <!-- Hero / encabezado -->
+  <section class="section section--tight reveal">
+    <div class="container-narrow">
+      <h1 class="h-compact">prosecnur</h1>
+
+      <p class="section-lead ldf-justo">
+        <strong>prosecnur</strong> es un paquete de R diseñado para procesar encuestas construidas con 
+        <strong>XLSForm</strong> y administradas a través de plataformas como <strong>KoBoToolbox</strong> u <strong>ODK</strong>.
+        Su propósito es simplificar y ordenar el trabajo que ocurre entre la descarga de datos y el análisis:  
+        limpieza, consistencia, recodificación y documentación de decisiones.
+      </p>
+
+      <p class="ldf-justo">
+        En términos sencillos, <strong>XLSForm</strong> es un estándar para diseñar encuestas en una hoja de cálculo.
+        Allí se definen las preguntas, los tipos de variables, las opciones de respuesta, los saltos lógicos 
+        y las reglas básicas del cuestionario.  
+        <strong>KoBoToolbox</strong> y <strong>ODK</strong> utilizan ese formulario para crear un formulario digital 
+        y generar la base de datos que se descarga al finalizar el trabajo de campo.
+      </p>
+
+      <p class="ldf-justo" style="margin-bottom:0;">
+        El problema es que muchas de esas reglas —saltos, filtros, relevancias o tipos de variable— 
+        se pierden al exportar la base. <strong>prosecnur</strong> parte del XLSForm para recuperar esa información 
+        y usarla como guía durante el procesamiento, reduciendo tareas manuales y manteniendo un registro ordenado 
+        de todo lo que se hace con los datos.
+      </p>
+
+      <div class="chips" style="margin-top:1.5rem;">
+        <span class="chip">R</span><span class="chip">XLSForm</span>
+        <span class="chip">KoBo / ODK</span><span class="chip">Limpieza</span>
+        <span class="chip">Consistencia</span><span class="chip">Documentación</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué usarlo -->
+  <section class="section section--narrow reveal">
+    <div class="container-narrow">
+      <h2 class="h-compact anchored">¿Por qué usar prosecnur?</h2>
+
+      <p class="ldf-justo">
+        Procesar encuestas en KoBo suele implicar reconstruir a mano información que el XLSForm ya contiene:
+        filtros, relevancias, grupos, listas de opciones, preguntas repetidas y flujos condicionales.  
+        A esto se suma la revisión caso por caso de inconsistencias, la recodificación de variables abiertas 
+        y la necesidad de documentar decisiones para el equipo.
+      </p>
+
+      <p class="ldf-justo">
+        <strong>prosecnur</strong> automatiza esta parte del trabajo sin perder control sobre el proceso.
+        El paquete:
+      </p>
+
+      <ul class="ldf-justo">
+        <li><strong>Lee el XLSForm</strong> y construye un diccionario completo de variables y opciones.</li>
+        <li><strong>Identifica la lógica del cuestionario</strong> (saltos, relevancias, tipos, grupos).</li>
+        <li><strong>Propone un plan de limpieza</strong> editable, pensado para el equipo de análisis.</li>
+        <li><strong>Evalúa consistencias</strong> según las reglas del formulario y reporta posibles errores.</li>
+        <li><strong>Recodifica y armoniza la base</strong> según la estructura declarada en el instrumento.</li>
+        <li><strong>Genera reportes de control de calidad</strong> listos para revisión técnica.</li>
+      </ul>
+
+      <p class="ldf-justo" style="margin-bottom:0;">
+        El objetivo central es reducir el esfuerzo invertido en reconstruir la lógica del formulario, 
+        ordenar el proceso de limpieza y asegurar que todas las decisiones queden registradas de manera clara.
+      </p>
+    </div>
+  </section>
+
+  <!-- Qué resuelve en la práctica -->
+  <section class="section section--narrow reveal">
+    <div class="container-narrow">
+      <h2 class="h-compact anchored">¿Qué problema resuelve en la práctica?</h2>
+
+      <p class="ldf-justo">
+        En estudios con miles de registros, módulos condicionales o respuestas abiertas extensas, 
+        el procesamiento manual puede ser lento, propenso a errores y difícil de replicar.  
+        El formulario XLSForm contiene mucha de la información necesaria para evitar ese trabajo manual, 
+        pero rara vez se usa de forma sistemática.
+      </p>
+
+      <p class="ldf-justo" style="margin-bottom:0;">
+        <strong>prosecnur</strong> convierte el XLSForm en la pieza central del procesamiento:  
+        lo utiliza como referencia para validar la base, sugerir reglas de limpieza y guiar la estructura del análisis,
+        asegurando coherencia entre lo que se preguntó y lo que se procesa.
+      </p>
+    </div>
+  </section>
+
+  <!-- Para quién -->
+  <section class="section section--narrow reveal">
+    <div class="container-narrow">
+      <h2 class="h-compact anchored">¿Para quién está pensado?</h2>
+
+      <p class="ldf-justo">
+        El paquete es útil para equipos que trabajan con encuestas levantadas en KoBo / ODK y que necesitan
+        ordenar el procesamiento sin desarrollar un flujo propio desde cero.  
+        Es especialmente pertinente para:
+      </p>
+
+      <ul class="ldf-justo">
+        <li>Equipos que procesan encuestas con módulos condicionales o saltos complejos.</li>
+        <li>Investigación aplicada en protección, movilidad humana, educación y programas sociales.</li>
+        <li>Unidades que requieren <strong>documentación clara</strong> sobre cómo se limpió la base.</li>
+        <li>Grupos que trabajan con bases repetidas a lo largo del tiempo y buscan <strong>reproducibilidad</strong>.</li>
+        <li>Personas que procesan datos de manera habitual y quieren reducir trabajo manual.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Funcionalidades principales -->
+  <section class="section section--narrow reveal">
+    <div class="container-narrow">
+      <h2 class="h-compact anchored">Principales componentes del paquete</h2>
+
+      <p class="ldf-justo">
+        Las funciones de <strong>prosecnur</strong> se organizan en torno a tres procesos centrales:
+      </p>
+
+      <ul class="ldf-justo">
+        <li><strong>Lectura del instrumento</strong> – interpretación del XLSForm y creación del diccionario.</li>
+        <li><strong>Limpieza y consistencia</strong> – plan editable y ejecución de reglas basadas en la lógica del cuestionario.</li>
+        <li><strong>Documentación y reportes</strong> – resúmenes, tablas y notas para revisión técnica.</li>
+      </ul>
+
+      <p class="ldf-justo" style="margin-bottom:0;">
+        La página del manual contiene ejemplos completos en R y casos de uso reales.
+      </p>
+    </div>
+  </section>
+
+  <!-- Estado del proyecto -->
+  <section class="section section--narrow reveal">
+    <div class="container-narrow">
+      <h2 class="h-compact anchored">Estado del proyecto</h2>
+
+      <p class="ldf-justo">
+        <strong>prosecnur</strong> está en desarrollo activo. Nuevas funciones se incorporan a partir del trabajo en estudios reales
+        y de la retroalimentación de equipos que procesan encuestas en KoBo.  
+        La intención es mantener el paquete como una herramienta abierta y práctica, centrada en mejorar 
+        la calidad del procesamiento y la documentación.
+      </p>
+
+      <ul class="ldf-justo">
+        <li>Repositorio GitHub: <a href="#" target="_blank">enlace pendiente</a></li>
+        <li>Manual y ejemplos: <a href="#" target="_blank">enlace pendiente</a></li>
+      </ul>
+
+    </div>
+  </section>
+
+</main>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -539,12 +379,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
