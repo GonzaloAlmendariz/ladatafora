@@ -65,7 +65,7 @@
 
             <div class="foot-bottom">
               <span>© ${year} · Gonzalo Almendariz Villanueva · Lima, Perú</span>
-              <span>Hecho con HTML, CSS y atención a los detalles.</span>
+              <span>Hecho con HTML, CSS y Claude.</span>
             </div>
           </div>
         </footer>
