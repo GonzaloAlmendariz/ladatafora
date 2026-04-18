@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La Datáfora · Perfil</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style id="shared-css">
+/* ============================================================
+   La Datáfora — editorial / data-journal redesign
+   Shared tokens + components across Home / CV / Prosecnur
+   ============================================================ */
+
+:root {
+  /* Paper / ink */
+  --paper:       #F2EFE7;
+  --paper-deep:  #E9E4D6;
+  --paper-soft:  #EDE9DD;
+  --ink:         #121212;
+  --ink-soft:    #2A2826;
+  --ink-mute:    #6A665E;
+  --rule:        #1210120F; /* near-ink hairline */
+  --rule-strong: #12101233;
+
+  /* Accents — oklch, same chroma+lightness, different hue */
+  --accent:      oklch(0.58 0.14 35);   /* terracotta, richer than original brown */
+  --accent-soft: oklch(0.86 0.05 35);
+  --ink-blue:    oklch(0.48 0.09 240);  /* for charts / links */
+  --signal:      oklch(0.72 0.14 135);  /* optional data green */
+
+  /* Type */
+  --serif:  "Instrument Serif", "Fraunces", Georgia, serif;
+  --sans:   "Inter Tight", "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --mono:   "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Scale */
+  --step--1: clamp(.78rem, .75rem + .15vw, .86rem);
+  --step-0:  clamp(.95rem, .92rem + .2vw,  1.05rem);
+  --step-1:  clamp(1.1rem, 1.05rem + .35vw, 1.25rem);
+  --step-2:  clamp(1.4rem, 1.3rem + .7vw,  1.8rem);
+  --step-3:  clamp(2rem,  1.75rem + 1.6vw, 2.9rem);
+  --step-4:  clamp(2.8rem, 2.2rem + 3vw,   4.8rem);
+  --step-5:  clamp(4rem,  3rem + 6vw,      8.5rem);
+
+  /* Density (driven by Tweaks) */
+  --pad-section: clamp(64px, 8vw, 112px);
+  --pad-inline:  clamp(20px, 4vw, 44px);
+  --gutter:      clamp(16px, 2.4vw, 28px);
+}
+
+[data-density="compact"] {
+  --pad-section: clamp(44px, 5.5vw, 72px);
+  --pad-inline:  clamp(16px, 3vw, 32px);
+  --gutter:      clamp(12px, 1.8vw, 20px);
+}
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+img { max-width: 100%; display: block; }
+a  { color: inherit; text-decoration: none; }
+p  { margin: 0 0 1em 0; text-wrap: pretty; }
+hr { border: 0; border-top: 1px solid var(--rule-strong); margin: 0; }
+
+/* ---------- Utilities ---------- */
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: var(--pad-inline); }
+.wrap-narrow { max-width: 960px; margin: 0 auto; padding-inline: var(--pad-inline); }
+.rule { border-top: 1px solid var(--rule-strong); }
+.rule-soft { border-top: 1px solid var(--rule); }
+.mono { font-family: var(--mono); font-size: var(--step--1); letter-spacing: 0.01em; }
+.upper { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; }
+.num { font-variant-numeric: tabular-nums; }
+.serif { font-family: var(--serif); font-weight: 400; }
+.ital { font-style: italic; }
+
+/* ---------- Nav (masthead) ---------- */
+.masthead {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.masthead-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 0;
+}
+.mast-brand {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.mast-brand em { font-style: italic; }
+.mast-brand .vol { font-family: var(--mono); font-size: .7rem; color: var(--ink-mute); letter-spacing: 0.1em; }
+.mast-nav {
+  display: flex; gap: 28px; justify-content: center;
+  font-family: var(--sans); font-size: .88rem;
+}
+.mast-nav a {
+  position: relative;
+  padding: 6px 2px;
+  color: var(--ink-soft);
+  transition: color .2s ease;
+}
+.mast-nav a:hover { color: var(--ink); }
+.mast-nav a.active {
+  color: var(--ink);
+}
+.mast-nav a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -15px;
+  height: 2px; background: var(--ink);
+}
+.mast-meta { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); text-align: right; }
+.mast-meta .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; vertical-align: 1px; animation: pulse 2.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+
+@media (max-width: 780px) {
+  .masthead-row { grid-template-columns: 1fr auto; }
+  .mast-nav { grid-column: 1/-1; justify-content: flex-start; overflow-x: auto; padding-bottom: 8px; }
+  .mast-meta { display: none; }
+}
+
+/* ---------- Issue strip (above hero) ---------- */
+.issue-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink-mute);
+  border-bottom: 1px solid var(--rule);
+}
+.issue-strip .center { text-align: center; letter-spacing: 0.14em; text-transform: uppercase; }
+.issue-strip .right  { text-align: right; }
+
+/* ---------- Common section headers ---------- */
+.section-head {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding-top: clamp(36px, 5vw, 64px);
+  padding-bottom: clamp(18px, 3vw, 28px);
+  border-top: 1px solid var(--rule-strong);
+}
+.section-head .num-label {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+}
+.section-head h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--step-3);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.section-head .lede {
+  margin: 10px 0 0 0;
+  font-family: var(--sans);
+  color: var(--ink-soft);
+  max-width: 60ch;
+  font-size: var(--step-1);
+  font-style: normal;
+  line-height: 1.5;
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  margin-top: clamp(60px, 8vw, 110px);
+  padding: 40px 0 28px 0;
+  border-top: 1px solid var(--rule-strong);
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--ink-mute);
+}
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.foot h4 { font-family: var(--sans); font-size: .78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); margin: 0 0 10px 0; font-weight: 600; }
+.foot a { display: block; padding: 3px 0; color: var(--ink-soft); }
+.foot a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.foot-colophon { margin-top: 36px; display: flex; justify-content: space-between; padding-top: 18px; border-top: 1px solid var(--rule); font-size: .7rem; }
+.foot-mark {
+  font-family: var(--serif);
+  font-size: 12vw;
+  line-height: .85;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  margin-top: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.foot-mark em { font-style: italic; }
+@media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  font-family: var(--sans); font-size: .92rem; font-weight: 500;
+  background: var(--ink); color: var(--paper) !important;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  transition: background-color .2s, color .2s, transform .15s;
+}
+.btn:hover { background: transparent; color: var(--ink) !important; transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink) !important; }
+.btn-ghost:hover { background: var(--ink); color: var(--paper) !important; }
+.btn .arrow { transition: transform .25s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------- Tag / chip ---------- */
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  font-family: var(--mono); font-size: .72rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: transparent;
+}
+.chip-fill { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Tweaks panel ---------- */
+.tweaks {
+  position: fixed; bottom: 20px; right: 20px;
+  z-index: 80;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  padding: 14px 16px;
+  width: 260px;
+  font-family: var(--mono); font-size: .72rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.06);
+  display: none;
+}
+.tweaks.visible { display: block; }
+.tweaks h5 {
+  margin: 0 0 12px 0; font-family: var(--sans); font-size: .7rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.tweaks h5 .x { cursor: pointer; font-family: var(--mono); font-size: .85rem; color: var(--ink-mute); }
+.tweaks h5 .x:hover { color: var(--ink); }
+.tweak-row { margin: 12px 0; }
+.tweak-row label { display: block; color: var(--ink-mute); margin-bottom: 6px; letter-spacing: 0.04em; }
+.tweak-row .opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+.tweak-row .opts button,
+.tweak-row .opts.two { grid-template-columns: 1fr 1fr; }
+.tweak-row .opts button {
+  padding: 6px 4px; background: transparent;
+  border: 1px solid var(--rule-strong);
+  font-family: var(--mono); font-size: .7rem; color: var(--ink-soft);
+  cursor: pointer; transition: all .15s;
+  text-transform: lowercase;
+}
+.tweak-row .opts button:hover { border-color: var(--ink); }
+.tweak-row .opts button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+</style>
+<style>
+/* =========== CV PAGE =========== */
+
+.cv-hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--gutter);
+  padding: clamp(48px, 6vw, 88px) 0 clamp(36px, 5vw, 60px) 0;
+  border-bottom: 1px solid var(--rule-strong);
+  align-items: end;
+}
+.cv-kicker {
+  font-family: var(--mono); font-size: .72rem; color: var(--ink-mute);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-top: 1px solid var(--ink); padding-top: 10px;
+  display: flex; gap: 24px; margin-bottom: 18px;
+}
+.cv-name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(3rem, 7.5vw, 6.2rem);
+  line-height: 0.95; letter-spacing: -0.035em;
+  margin: 0;
+}
+.cv-name em { font-style: italic; color: var(--accent); }
+.cv-role { font-family: var(--mono); font-size: .9rem; color: var(--ink-mute); letter-spacing: 0.08em; margin: 16px 0 0 0; text-transform: uppercase; }
+.cv-lede { max-width: 52ch; margin: 24px 0 0 0; font-size: var(--step-1); color: var(--ink-soft); line-height: 1.5; }
+
+.cv-card {
+  border: 1px solid var(--rule-strong);
+  padding: 0;
+  align-self: stretch;
+  display: flex; flex-direction: column;
+}
+.cv-card .row {
+  display: grid; grid-template-columns: 96px 1fr;
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 12px 14px;
+  font-family: var(--mono); font-size: .78rem;
+}
+.cv-card .row:last-child { border-bottom: 0; }
+.cv-card .k { color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.08em; font-size: .68rem; padding-top: 2px; }
+.cv-card .v { color: var(--ink); }
+.cv-card .v em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.cv-card a.v:hover { color: var(--accent); }
+
+@media (max-width: 900px) { .cv-hero { grid-template-columns: 1fr; } }
+
+/* Timeline — editorial */
+.tl {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  border-top: 1px solid var(--rule-strong);
+  padding: 28px 0;
+  transition: background-color .2s;
+}
+.tl:hover { background: color-mix(in srgb, var(--paper-soft) 70%, transparent); }
+.tl:last-of-type { border-bottom: 1px solid var(--rule-strong); }
+.tl-when { font-family: var(--mono); font-size: .8rem; color: var(--ink-mute); padding-top: 6px; letter-spacing: 0.06em; }
+.tl-role { font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.15; letter-spacing: -0.015em; margin: 0; font-weight: 400; }
+.tl-role em { font-style: italic; }
+.tl-org { font-family: var(--mono); font-size: .82rem; color: var(--ink-mute); margin: 4px 0 12px 0; letter-spacing: 0.05em; }
+.tl-body { color: var(--ink-soft); max-width: 68ch; line-height: 1.6; margin: 0; }
+.tl-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+
+@media (max-width: 700px) {
+  .tl { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* Products (editorial cards with live chart hover) */
+.prods { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+.prod {
+  padding: 28px 24px;
+  border-right: 1px solid var(--rule-strong);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background-color .25s;
+  position: relative;
+}
+.prod:last-child { border-right: 0; }
+.prod:hover { background: color-mix(in srgb, var(--paper-soft) 80%, transparent); }
+.prod .kicker { font-family: var(--mono); font-size: .7rem; color: var(--ink-mute); letter-spacing: 0.12em; text-transform: uppercase; display: flex; justify-content: space-between; }
+.prod h3 { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.02; letter-spacing: -0.02em; margin: 0; }
+.prod h3 em { font-style: italic; color: var(--accent); }
+.prod .p-body { color: var(--ink-soft); font-size: .95rem; margin: 0; max-width: 40ch; }
+.prod .p-chart { height: 110px; margin-top: 6px; border-top: 1px dashed var(--rule-strong); padding-top: 12px; }
+.prod .p-foot { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: .76rem; color: var(--ink-mute); }
+.prod .p-foot a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.prod .p-foot a:hover { color: var(--accent); }
+
+.prod .scatter circle { transition: r .3s ease, opacity .3s ease, fill .25s; }
+.prod:hover .scatter circle:nth-child(3n) { fill: var(--accent); }
+
+@media (max-width: 900px) {
+  .prods { grid-template-columns: 1fr; }
+  .prod { border-right: 0; border-bottom: 1px solid var(--rule-strong); }
+  .prod:last-child { border-bottom: 0; }
+}
+
+/* Cases */
+.cases { display: grid; gap: 0; }
+.case {
+  display: grid;
+  grid-template-columns: 120px 1fr 320px;
+  gap: 30px;
+  padding: 30px 0;
+  border-top: 1px solid var(--rule-strong);
+  align-items: start;
+  transition: padding-left .25s, background-color .25s;
+}
+.case:last-of-type { border-bottom: 1px solid var(--rule-strong); }
+.case:hover { padding-left: 10px; background: color-mix(in srgb, var(--paper-soft) 65%, transparent); }
+.case .idx { font-family: var(--mono); font-size: .76rem; color: var(--ink-mute); padding-top: 12px; letter-spacing: 0.06em; }
+.case h3 { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; line-height: 1.1; letter-spacing: -0.015em; margin: 0 0 8px 0; }
+.case h3 em { font-style: italic; color: var(--accent); }
+.case p { color: var(--ink-soft); max-width: 58ch; line-height: 1.6; margin: 0; }
+.case .thumb {
+  aspect-ratio: 4/3; background: var(--paper-deep);
+  background-image:
+    linear-gradient(135deg, transparent 0 50%, rgba(18,16,18,.05) 50% 100%),
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(18,16,18,.04) 10px 11px);
+  position: relative; border: 1px solid var(--rule-strong); overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.case .thumb .tag {
+  background: var(--paper);
+  border-top: 1px solid var(--rule-strong);
+  border-right: 1px solid var(--rule-strong);
+  padding: 6px 10px;
+  font-family: var(--mono); font-size: .7rem; color: var(--ink-mute);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .case { grid-template-columns: 60px 1fr; }
+  .case .thumb { grid-column: 1 / -1; }
+}
+
+/* Contact */
+.contact {
+  margin-top: clamp(40px, 6vw, 80px);
+  padding: clamp(40px, 6vw, 80px) clamp(24px, 4vw, 60px);
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+}
+.contact h2 {
+  margin: 0;
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.95; letter-spacing: -0.03em;
+}
+.contact h2 em { font-style: italic; color: var(--accent-soft); }
+.contact p { color: color-mix(in srgb, var(--paper) 85%, transparent); max-width: 52ch; line-height: 1.55; }
+.contact .btn { background: var(--paper); color: var(--ink) !important; border-color: var(--paper); }
+.contact .btn:hover { background: transparent; color: var(--paper) !important; }
+.contact-side {
+  font-family: var(--mono);
+  font-size: .8rem;
+  display: flex; flex-direction: column; gap: 10px;
+  color: color-mix(in srgb, var(--paper) 80%, transparent);
+}
+.contact-side .row { display: grid; grid-template-columns: 90px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed rgba(242,239,231,.25); }
+.contact-side .row:last-child { border-bottom: 0; }
+.contact-side .k { color: color-mix(in srgb, var(--paper) 55%, transparent); text-transform: uppercase; letter-spacing: 0.1em; font-size: .68rem; }
+.contact-side a { color: var(--paper); }
+.contact-side a:hover { color: var(--accent-soft); }
+
+@media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-screen-label="02 Perfil">
+
+<div id="masthead-slot"></div>
+
+<main class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="cv-hero reveal">
+    <div>
+      <div class="cv-kicker">
+        <span>§ Perfil · 2026</span>
+        <span>Analista de datos · Ciencias sociales</span>
+      </div>
+      <h1 class="cv-name">Gonzalo<br>Almendariz<br><em>Villanueva</em></h1>
+      <p class="cv-role">Analista de datos · Investigación social · Docencia en R</p>
+      <p class="cv-lede">
+        Procesamiento y análisis de datos con enfoque reproducible. Automatización de tareas de limpieza,
+        consistencia y recodificación en R, y desarrollo de visualizaciones parametrizadas que integran precisión técnica y claridad comunicativa.
+      </p>
+    </div>
+
+    <aside class="cv-card" aria-label="Ficha del perfil">
+      <div class="row"><span class="k">Base</span><span class="v">Lima · Perú</span></div>
+      <div class="row"><span class="k">Educación</span><span class="v">Bachiller en <em>Ciencia Política</em> — UNMSM</span></div>
+      <div class="row"><span class="k">Actualmente</span><span class="v">Analista · <em>PULSO PUCP</em></span></div>
+      <div class="row"><span class="k">Herramientas</span><span class="v">R · tidyverse · Quarto · SQL · SPSS</span></div>
+      <div class="row"><span class="k">Idiomas</span><span class="v">Español · Inglés intermedio</span></div>
+      <div class="row"><span class="k">Disponible</span><span class="v">Colaboraciones puntuales</span></div>
+    </aside>
+  </section>
+
+  <!-- ============ SOBRE MÍ ============ -->
+  <section class="reveal" aria-labelledby="about-t">
+    <div class="section-head">
+      <div class="num-label">§ 01 / Sobre mí</div>
+      <div>
+        <h2 id="about-t">Cómo llegué a los datos</h2>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px 0 40px 0;">
+      <div>
+        <p style="color: var(--ink-soft); line-height: 1.7; font-size: 1.02rem; max-width: 56ch;">
+          Mi interés por los datos nació en la universidad, a partir de un curso que me dejó con más preguntas que respuestas.
+          Quise entender mejor cómo usar la estadística para estudiar fenómenos sociales, y eso me llevó a aprender
+          <strong>R de forma autodidacta</strong>. Al principio fue curiosidad por un lenguaje nuevo, pero pronto descubrí todo lo que podía
+          aportar a la investigación: la posibilidad de analizar, visualizar y compartir información de manera abierta y colaborativa.
+        </p>
+      </div>
+      <div>
+        <p style="color: var(--ink-soft); line-height: 1.7; font-size: 1.02rem; max-width: 56ch;">
+          Desde entonces trabajo en proyectos de análisis y procesamiento de datos, creando flujos que automatizan la limpieza,
+          la consistencia y la visualización. Ese camino terminó por convertirse en
+          <em style="color:var(--accent); font-family: var(--serif);">R para el análisis de datos</em>, un libro pensado para enseñar estadística de forma práctica
+          y accesible en español, y para seguir acercando el análisis de datos a más personas interesadas
+          en entender y trabajar con información desde cualquier campo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCIA ============ -->
+  <section class="reveal" aria-labelledby="exp-t">
+    <div class="section-head">
+      <div class="num-label">§ 02 / Experiencia</div>
+      <div>
+        <h2 id="exp-t">Trayectoria</h2>
+        <p class="lede">Proyectos aplicados y docencia — desde 2023.</p>
+      </div>
+    </div>
+
+    <article class="tl">
+      <div class="tl-when">2025 — actualidad</div>
+      <div>
+        <h3 class="tl-role"><em>Analista</em> de datos</h3>
+        <div class="tl-org">PULSO PUCP · Lima</div>
+        <p class="tl-body">Proyectos de investigación social en protección, educación y movilidad humana, en colaboración con organismos internacionales como ACNUR. Responsable del procesamiento y control de calidad de bases de datos, flujos automatizados de consistencia en R, y visualización reproducible. Participación activa en documentación metodológica y coordinación técnica.</p>
+        <div class="tl-chips">
+          <span class="chip">R</span><span class="chip">tidyverse</span><span class="chip">SPSS</span><span class="chip">SQL</span><span class="chip">Quarto</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl">
+      <div class="tl-when">2025</div>
+      <div>
+        <h3 class="tl-role"><em>Docente</em> — Análisis de Datos con R</h3>
+        <div class="tl-org">Plataforma Skill · Programa Lima Educa · Municipalidad de Lima</div>
+        <p class="tl-body">Curso <em>“Análisis de datos con R: procesamiento, visualización y métodos inferenciales”</em>, dirigido a estudiantes y profesionales en formación digital. Abordó gramática de los datos, visualización con ggplot2 e interpretación estadística bajo un enfoque práctico y reproducible.</p>
+        <div class="tl-chips">
+          <span class="chip">R</span><span class="chip">ggplot2</span><span class="chip">dplyr</span><span class="chip">Inferencia</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl">
+      <div class="tl-when">2025</div>
+      <div>
+        <h3 class="tl-role"><em>Docente</em> — Análisis Cuantitativo con R</h3>
+        <div class="tl-org">Fundación San Marcos · Centro Cultural UNMSM</div>
+        <p class="tl-body">Ocho sesiones sobre exploración, visualización, inferencia y regresión, integrando fundamentos estadísticos con ejemplos aplicados e informes reproducibles en Quarto.</p>
+        <div class="tl-chips">
+          <span class="chip">R</span><span class="chip">Estadística aplicada</span><span class="chip">Quarto</span><span class="chip">Regresión</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl">
+      <div class="tl-when">2024</div>
+      <div>
+        <h3 class="tl-role">Analista — <em>Voces para el Futuro</em></h3>
+        <div class="tl-org">PNUD · CAF</div>
+        <p class="tl-body">Análisis de la consulta regional <em>“Voces para el Futuro”</em>, sobre percepciones ciudadanas de desarrollo en LAC. Técnicas de análisis de texto y sentimiento sobre más de mil respuestas abiertas, y visualizaciones interactivas en R.</p>
+        <div class="tl-chips">
+          <span class="chip">PLN</span><span class="chip">STM</span><span class="chip">tidyverse</span><span class="chip">Shiny</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl">
+      <div class="tl-when">2024</div>
+      <div>
+        <h3 class="tl-role"><em>Docente</em> — Dominio R &amp; Análisis Estadístico</h3>
+        <div class="tl-org">Métrica 23</div>
+        <p class="tl-body">Cursos orientados a competencias en análisis estadístico y comunicación técnica, con foco en flujos reproducibles y visualización como herramienta interpretativa.</p>
+        <div class="tl-chips">
+          <span class="chip">R</span><span class="chip">Docencia</span><span class="chip">Visualización</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl">
+      <div class="tl-when">2023</div>
+      <div>
+        <h3 class="tl-role">Coordinador general — <em>COIRECIP</em></h3>
+        <div class="tl-org">UNMSM · Congreso Nacional e Internacional de Ciencia Política</div>
+        <p class="tl-body">Planificación y coordinación académica del COIRECIP 2023, con más de 300 asistentes y 40 ponencias. Gestión del equipo organizador, programación híbrida y enlace con medios institucionales.</p>
+        <div class="tl-chips">
+          <span class="chip">Gestión</span><span class="chip">Planificación</span><span class="chip">Comunicación</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ PRODUCTOS ============ -->
+  <section class="reveal" aria-labelledby="prod-t">
+    <div class="section-head">
+      <div class="num-label">§ 03 / Productos</div>
+      <div>
+        <h2 id="prod-t">Paquetes, libros y herramientas</h2>
+        <p class="lede">Pasa por cada tarjeta para ver la textura de datos en acción.</p>
+      </div>
+    </div>
+
+    <div class="prods">
+      <article class="prod">
+        <div class="kicker"><span>001 · Prosecnur</span><span>v0.3.1</span></div>
+        <h3><em>Prosecnur</em></h3>
+        <p class="p-body">Paquete R que automatiza limpieza, verificación y documentación de encuestas XLSForm (KoBo · ODK). Genera reglas de validación y reportes reproducibles.</p>
+        <div class="p-chart" id="prodChart1"></div>
+        <div class="p-foot"><span>encuestas · consistencia</span><a href="prosecnur.html">Ver página →</a></div>
+      </article>
+
+      <article class="prod">
+        <div class="kicker"><span>002 · IncoreR</span><span>2025</span></div>
+        <h3><em>IncoreR</em></h3>
+        <p class="p-body">Lectura, análisis y visualización del Índice de Competitividad Regional (IPE). Un complemento Shiny permite explorar e imprimir resultados sin programar.</p>
+        <div class="p-chart" id="prodChart2"></div>
+        <div class="p-foot"><span>competitividad · Perú</span><a href="#">Manual →</a></div>
+      </article>
+
+      <article class="prod">
+        <div class="kicker"><span>003 · Libro</span><span>9 caps</span></div>
+        <h3>R para el <em>análisis</em> de datos</h3>
+        <p class="p-body">Un manual libre para aprender estadística aplicada a las ciencias sociales, con código reproducible, ejemplos y la Datáfora interactiva como complemento.</p>
+        <div class="p-chart" id="prodChart3"></div>
+        <div class="p-foot"><span>estadística · R</span><a href="#">Leer online →</a></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section class="reveal" aria-labelledby="cases-t">
+    <div class="section-head">
+      <div class="num-label">§ 04 / Proyectos</div>
+      <div>
+        <h2 id="cases-t">Casos seleccionados</h2>
+        <p class="lede">Reportes y sesiones aplicadas publicados en RPubs u otros medios.</p>
+      </div>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="idx">CASO · 001</div>
+        <div>
+          <h3><em>Voces para el Futuro</em> — PNUD · CAF</h3>
+          <p>Consulta regional sobre percepciones de desarrollo y gobernanza en América Latina y el Caribe. Flujo reproducible en R para limpieza y normalización de texto, integración de variables demográficas y modelado con Structural Topic Model (STM).</p>
+        </div>
+        <div class="thumb"><div class="tag">PNUD · 2024</div></div>
+      </article>
+
+      <article class="case">
+        <div class="idx">CASO · 002</div>
+        <div>
+          <h3>Universidad del Pacífico — <em>manipulación</em> y visualización</h3>
+          <p>Sesión aplicada sobre gramática de datos en R (dplyr, tidyr), criterios de calidad en visualización (ggplot2) y comunicación de resultados. Ejemplos reproducibles del ciclo completo de depuración, verificación y escala.</p>
+        </div>
+        <div class="thumb"><div class="tag">UP · 2025</div></div>
+      </article>
+
+      <article class="case">
+        <div class="idx">CASO · 003</div>
+        <div>
+          <h3>Elecciones 2021 — Ley de <em>Benford</em></h3>
+          <p>Exploración de la distribución de primeros dígitos en resultados electorales y contraste con expectativas teóricas. Discusión metodológica sobre heterogeneidad, truncamiento y agregación para una lectura prudente de la integridad electoral.</p>
+        </div>
+        <div class="thumb"><div class="tag">Reporte · 2023</div></div>
+      </article>
+
+      <article class="case">
+        <div class="idx">CASO · 004</div>
+        <div>
+          <h3>Pensión 65 — <em>gráficos</em> técnicos</h3>
+          <p>Repertorio de visualizaciones para caracterizar población beneficiaria y comunicar indicadores clave. Gráficos comparables por subgrupos y regiones con énfasis en legibilidad, consistencia tipográfica y escalas homogéneas.</p>
+        </div>
+        <div class="thumb"><div class="tag">Informe · 2024</div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="reveal">
+    <div class="contact">
+      <div>
+        <h2>Conversemos,<br>con calma y <em>con datos</em>.</h2>
+        <p style="margin-top: 24px;">Trabajo en PULSO PUCP en proyectos de procesamiento y análisis. No busco una posición a tiempo completo, pero me interesa seguir colaborando en proyectos que integren investigación, visualización o formación en ciencia de datos.</p>
+        <div style="margin-top: 22px;">
+          <a href="mailto:gonzaloalmendariz@gmail.com" class="btn">Enviar correo <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="contact-side">
+        <div class="row"><span class="k">Correo</span><a href="mailto:gonzaloalmendariz@gmail.com">gonzaloalmendariz@gmail.com</a></div>
+        <div class="row"><span class="k">GitHub</span><a href="https://github.com/GonzaloAlmendariz" target="_blank" rel="noopener">@GonzaloAlmendariz</a></div>
+        <div class="row"><span class="k">LinkedIn</span><a href="#">Gonzalo A. V.</a></div>
+        <div class="row"><span class="k">RPubs</span><a href="#">Gonzalo_Almendariz</a></div>
+        <div class="row"><span class="k">Base</span><span>Lima · Perú · UTC−5</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-slot"></div>
+<div id="tweaks-slot"></div>
+
+<script>
+  window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "hero": "type",
+    "rhythm": "asymmetric",
+    "density": "compact"
+  }/*EDITMODE-END*/;
+</script>
+
+<script id="shared-js">
+// Shared layout fragments — masthead, footer, tweaks panel, reveal + mini chart helpers
+// Pure vanilla; no framework needed. v2
+
+(function () {
+  const PAGES = [
+    { href: 'index.html',     label: 'Portada',    key: 'home' },
+    { href: 'cv.html',        label: 'Perfil',     key: 'cv' },
+    { href: 'prosecnur.html', label: 'Prosecnur',  key: 'prosecnur' },
+  ];
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+  function today() {
+    const d = new Date();
+    const ms = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+    return `${String(d.getDate()).padStart(2,'0')} ${ms[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  window.LD = {
+    renderMasthead(active) {
+      const nav = PAGES.map(p =>
+        `<a href="${p.href}" class="${p.key === active ? 'active' : ''}">${p.label}</a>`
+      ).join('');
+      return `
+        <header class="masthead">
+          <div class="wrap masthead-row">
+            <a class="mast-brand" href="index.html" aria-label="La Datáfora">
+              <span>La <em>Datáfora</em></span>
+              <span class="vol">VOL. 01</span>
+            </a>
+            <nav class="mast-nav">${nav}</nav>
+            <div class="mast-meta"><span class="dot"></span>LIMA · ${today()}</div>
+          </div>
+        </header>
+        <div class="wrap">
+          <div class="issue-strip">
+            <div class="left">Gonzalo Almendariz Villanueva</div>
+            <div class="center">Un cuaderno de análisis de datos aplicado</div>
+            <div class="right">ESP · ES-PE</div>
+          </div>
+        </div>
+      `;
+    },
+
+    renderFooter() {
+      return `
+        <footer class="foot">
+          <div class="wrap">
+            <div class="foot-grid">
+              <div>
+                <h4>La Datáfora</h4>
+                <p style="color:var(--ink-soft); line-height:1.6; max-width:44ch;">
+                  Trabajo, ideas y herramientas sobre análisis de datos en ciencias sociales.
+                  Publicaciones, materiales didácticos y paquetes de R con enfoque reproducible.
+                </p>
+              </div>
+              <div>
+                <h4>Navegar</h4>
+                <a href="index.html">Portada</a>
+                <a href="cv.html">Perfil</a>
+                <a href="prosecnur.html">Prosecnur</a>
+                <a href="#">IncoreR</a>
+                <a href="#">El libro</a>
+              </div>
+              <div>
+                <h4>Producido en</h4>
+                <a href="#">R · tidyverse</a>
+                <a href="#">Quarto</a>
+                <a href="#">Shiny</a>
+                <a href="#">XLSForm · KoBo</a>
+              </div>
+              <div>
+                <h4>Contacto</h4>
+                <a href="mailto:gonzaloalmendariz@gmail.com">correo</a>
+                <a href="https://github.com/GonzaloAlmendariz" target="_blank" rel="noopener">github</a>
+                <a href="#">linkedin</a>
+                <a href="#">rpubs</a>
+              </div>
+            </div>
+
+            <div class="foot-mark" aria-hidden="true">La <em>Datáfora</em> &mdash; Vol. 01</div>
+
+            <div class="foot-colophon">
+              <span>© 2026 · Elaborado por Gonzalo Almendariz Villanueva</span>
+              <span>Compuesto en Instrument Serif, Inter Tight &amp; JetBrains Mono</span>
+            </div>
+          </div>
+        </footer>
+      `;
+    },
+
+    renderTweaks() {
+      return `
+        <aside class="tweaks" id="ldTweaks" role="region" aria-label="Tweaks">
+          <h5>
+            <span>Ajustes</span>
+            <span class="x" id="ldTweaksClose" aria-label="Cerrar">×</span>
+          </h5>
+          <div class="tweak-row">
+            <label>Hero</label>
+            <div class="opts" data-tweak="hero">
+              <button data-v="type">type</button>
+              <button data-v="data">data</button>
+              <button data-v="image">image</button>
+            </div>
+          </div>
+          <div class="tweak-row">
+            <label>Ritmo</label>
+            <div class="opts two" data-tweak="rhythm">
+              <button data-v="asymmetric">asym</button>
+              <button data-v="centered">centrado</button>
+            </div>
+          </div>
+          <div class="tweak-row">
+            <label>Densidad</label>
+            <div class="opts two" data-tweak="density">
+              <button data-v="airy">airy</button>
+              <button data-v="compact">compact</button>
+            </div>
+          </div>
+        </aside>
+      `;
+    },
+
+    mountChrome(active) {
+      document.getElementById('masthead-slot').innerHTML = this.renderMasthead(active);
+      document.getElementById('footer-slot').innerHTML   = this.renderFooter();
+      document.getElementById('tweaks-slot').innerHTML   = this.renderTweaks();
+      this.wireReveal();
+      this.wireTweaks();
+    },
+
+    wireReveal() {
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    },
+
+    wireTweaks() {
+      const root = document.documentElement;
+      const tw   = document.getElementById('ldTweaks');
+      const defaults = window.TWEAK_DEFAULTS || { hero: 'data', rhythm: 'asymmetric', density: 'airy' };
+      const state = Object.assign({}, defaults);
+
+      const apply = () => {
+        root.setAttribute('data-hero',    state.hero);
+        root.setAttribute('data-rhythm',  state.rhythm);
+        root.setAttribute('data-density', state.density);
+        tw.querySelectorAll('.opts').forEach(group => {
+          const key = group.dataset.tweak;
+          group.querySelectorAll('button').forEach(b => {
+            b.classList.toggle('on', b.dataset.v === state[key]);
+          });
+        });
+      };
+      apply();
+
+      tw.addEventListener('click', (e) => {
+        const b = e.target.closest('button[data-v]');
+        if (!b) return;
+        const key = b.parentElement.dataset.tweak;
+        state[key] = b.dataset.v;
+        apply();
+        try {
+          window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: state[key] } }, '*');
+        } catch(_) {}
+      });
+
+      document.getElementById('ldTweaksClose').addEventListener('click', () => {
+        tw.classList.remove('visible');
+        try { window.parent.postMessage({ type: '__edit_mode_deactivated' }, '*'); } catch(_) {}
+      });
+
+      // host protocol
+      window.addEventListener('message', (e) => {
+        const d = e && e.data;
+        if (!d || typeof d !== 'object') return;
+        if (d.type === '__activate_edit_mode')   tw.classList.add('visible');
+        if (d.type === '__deactivate_edit_mode') tw.classList.remove('visible');
+      });
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(_) {}
+    },
+
+    // ---------- Tiny SVG charts that react to hover ----------
+
+    // Sparkline given values 0..1
+    sparkline(values, { width=240, height=48, stroke='var(--ink)' } = {}) {
+      const step = width / (values.length - 1);
+      const pts  = values.map((v,i) => `${(i*step).toFixed(1)},${(height - v*height).toFixed(1)}`).join(' ');
+      return `
+        <svg class="sparkline" viewBox="0 0 ${width} ${height}" width="100%" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="${stroke}" stroke-width="1.25" points="${pts}" />
+          <circle class="sparkline-dot" r="3" fill="${stroke}" cx="${(width - 1).toFixed(1)}" cy="${(height - values[values.length-1]*height).toFixed(1)}"/>
+        </svg>
+      `;
+    },
+
+    // Tiny bars
+    bars(values, { width=240, height=48, fill='var(--ink)' } = {}) {
+      const gap = 2;
+      const n = values.length;
+      const bw = (width - gap*(n-1)) / n;
+      return `
+        <svg class="barchart" viewBox="0 0 ${width} ${height}" width="100%" preserveAspectRatio="none" aria-hidden="true">
+          ${values.map((v,i) => {
+            const h = v * height;
+            const x = i * (bw + gap);
+            return `<rect x="${x.toFixed(1)}" y="${(height-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="${fill}"/>`;
+          }).join('')}
+        </svg>
+      `;
+    },
+
+    // Scatter for hover interaction
+    scatter(points, { width=240, height=140 } = {}) {
+      return `
+        <svg class="scatter" viewBox="0 0 ${width} ${height}" width="100%" aria-hidden="true">
+          ${points.map(p => `<circle cx="${(p.x*width).toFixed(1)}" cy="${((1-p.y)*height).toFixed(1)}" r="${p.r||2.8}" fill="var(--ink)" opacity="${p.o||0.72}"/>`).join('')}
+        </svg>
+      `;
+    },
+
+    // Animate sparklines on hover within a root
+    animateOnHover(rootSel) {
+      document.querySelectorAll(rootSel).forEach(root => {
+        root.addEventListener('mouseenter', () => root.classList.add('is-live'));
+        root.addEventListener('mouseleave', () => root.classList.remove('is-live'));
+      });
+    }
+  };
+})();
+
+</script>
+<script>
+  LD.mountChrome('cv');
+
+  // Prod charts (scatter fields for texture)
+  function rndScatter(n, seed) {
+    const pts = [];
+    let s = seed;
+    const rand = () => { s = (s*9301 + 49297) % 233280; return s/233280; };
+    for (let i=0;i<n;i++) pts.push({ x: rand()*0.95+0.025, y: rand()*0.9+0.05, r: 1.5 + rand()*2.2, o: 0.4 + rand()*0.5 });
+    return pts;
+  }
+  document.getElementById('prodChart1').innerHTML = LD.scatter(rndScatter(42, 7), { height: 110 });
+  document.getElementById('prodChart2').innerHTML = LD.bars([.5,.6,.7,.45,.85,.65,.9,.72,.8,.95,.85,1], { height: 110 });
+  document.getElementById('prodChart3').innerHTML = LD.sparkline([.1,.18,.14,.3,.42,.38,.55,.62,.6,.78,.72,.85,.92,.88,.96], { height: 110, stroke: 'var(--accent)' });
+</script>
+
+</body>
+</html>

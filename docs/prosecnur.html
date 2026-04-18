@@ -1,672 +1,340 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<!doctype html>
+<html lang="es">
+<head>
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>prosecnur</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-</style>
-
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-
-<link rel="stylesheet" href="estetica.css">
+<title>Prosecnur — La Datáfora</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Prosecnur — paquete de R para organizar el ciclo de una encuesta: codificación por familias, entregables estandarizados y plan visual para PPT/Word.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 </head>
+<body>
 
-<body class="nav-fixed fullcontent">
+<div id="masthead-slot"></div>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo.png" alt="" class="navbar-logo">
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./cv.html"> 
-<span class="menu-text">Contacto</span></a>
-  </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-r-para-el-análisis-de-datos" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">R para el análisis de datos</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-r-para-el-análisis-de-datos">    
-        <li>
-    <a class="dropdown-item" href="./libro.html">
- <span class="dropdown-text">Sobre el libro</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./dataforaint.html">
- <span class="dropdown-text">La Datáfora Interactiva</span></a>
-  </li>  
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="pkg-hero reveal">
+    <div>
+      <div class="eyebrow">
+        <span class="chip chip-primary">Paquete R</span>
+        <span>ACNUR · PPRA · XLSForm</span>
+      </div>
+      <h1 class="pkg-title">Prose<em>cnur</em></h1>
+      <p class="pkg-sub">El ciclo de una encuesta, en un solo paquete.</p>
+      <p class="pkg-lede">
+        Tres etapas: <em>codificar</em> el instrumento y la base en sincronía, producir
+        <em>entregables</em> (codebook, SPSS, frecuencias, cruces) y armar un
+        <em>plan visual</em> que sale igual a PowerPoint o a Word. Escrito mientras trabajaba
+        con el equipo de ACNUR PPRA.
+      </p>
+
+      <div class="pkg-actions">
+        <a href="guia-prosecnur.html" class="btn">Leer la guía <span class="arrow">→</span></a>
+        <a href="#instalar" class="btn btn-ghost">Instalar</a>
+      </div>
+    </div>
+
+    <aside class="spec-card" aria-label="Ficha técnica">
+      <div class="ver"><span class="k">Versión</span><span class="v">v0.1.0</span></div>
+      <div class="row"><span class="k">Lenguaje</span><span class="v"><em>R</em> ≥ 4.1</span></div>
+      <div class="row"><span class="k">Licencia</span><span class="v">MIT</span></div>
+      <div class="row"><span class="k">Origen</span><span class="v">ACNUR · PPRA · Perú</span></div>
+      <div class="row"><span class="k">Depende</span><span class="v">dplyr · ggplot2 · officer · haven</span></div>
+      <div class="row"><span class="k">Entrada</span><span class="v">XLSForm · KoBo · ODK · SurveyMonkey</span></div>
+      <div class="row"><span class="k">Salida</span><span class="v">PPTX · Word · SPSS · XLSX · Shiny</span></div>
+    </aside>
+  </section>
+
+  <!-- FLUJO -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Flujo</div>
+      <h2>Cómo se usa, de <em>punta a punta</em></h2>
+    </div>
+
+    <div class="flow">
+      <div class="node">
+        <span class="tick">A</span>
+        <div class="n">01 · Instrumento</div>
+        <h4><em>XLSForm</em></h4>
+        <p>Se lee primero el formulario y después la base. El orden importa.</p>
+      </div>
+      <div class="node">
+        <span class="tick">B</span>
+        <div class="n">02 · Codificación</div>
+        <h4>Por <em>familias</em></h4>
+        <p>Plantilla en Excel para que el equipo decida qué recodificar. El código aplica los cambios después.</p>
+      </div>
+      <div class="node">
+        <span class="tick">C</span>
+        <div class="n">03 · Entregables</div>
+        <h4>Estándar</h4>
+        <p>Codebook, SPSS, frecuencias, cruces y reporte por enumerador desde un solo objeto.</p>
+      </div>
+      <div class="node">
+        <span class="tick">D</span>
+        <div class="n">04 · Gráficos</div>
+        <h4>Piezas <em>p_*</em></h4>
+        <p>Funciones de gráfico (barras, pie, radar, media-rango) con presets reutilizables.</p>
+      </div>
+      <div class="node">
+        <span class="tick">E</span>
+        <div class="n">05 · Presentación</div>
+        <h4>Plan <em>visual</em></h4>
+        <p>Un mismo plan sale a PPT o a Word. No hay que armar el informe dos veces.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ HACE -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Qué hace</div>
+      <h2>Cuatro <em>bloques</em></h2>
+    </div>
+
+    <div class="feat-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <article class="feat-card">
+        <div class="n">01</div>
+        <h3>Codificar por <em>familias</em></h3>
+        <p>Una familia agrupa columnas alrededor de una variable padre. El equipo edita una plantilla en Excel y el paquete aplica esas decisiones a la base <em>y</em> al instrumento a la vez — porque si solo cambias la base, las etiquetas después no calzan.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">02</div>
+        <h3>Entregables estándar</h3>
+        <p><code>reporte_instrumento()</code> y <code>reporte_data()</code> preparan la base una sola vez. De ahí salen codebook, SPSS (<code>.sav</code> + <code>.sps</code>), frecuencias, cruces y reporte por enumerador.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">03</div>
+        <h3>Plan visual <em>reutilizable</em></h3>
+        <p>Presets (<code>p_presets</code>), piezas gráficas (<code>p_barras_*</code>, <code>p_pie</code>, <code>p_donut</code>), layouts de slides y composición con <code>diapo()</code>. El mismo plan se exporta a PPT o a Word.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">04</div>
+        <h3>Validación &amp; <em>índices</em></h3>
+        <p>Plan de consistencia editable en Excel (<code>cargar_plan_excel</code>, <code>evaluar_consistencia</code>) y un DSL para índices compuestos: <code>indicador()</code>, <code>nivel()</code>, <code>indice()</code>.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CÓDIGO -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">En código</div>
+      <h2>Cómo se <em>usa</em></h2>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-side">
+        <h3>Tres guías, en <em>orden</em>.</h3>
+        <p>Primero organizas el instrumento; después, la base. Recién ahí sacas entregables. El plan visual se arma una vez y se exporta a PPT o Word sin duplicar código.</p>
+        <ul>
+          <li><code>leer_instrumento_xlsform()</code> · <code>leer_datos()</code></li>
+          <li><code>construir_plantilla_desde_familias()</code></li>
+          <li><code>ppra_adaptar_data()</code> · <code>ppra_adaptar_instrumento()</code></li>
+          <li><code>reporte_instrumento()</code> · <code>reporte_data()</code></li>
+          <li><code>reporte_codebook</code> · <code>_spss</code> · <code>_frecuencias</code> · <code>_cruces</code></li>
+          <li><code>p_presets()</code> · <code>diapo()</code> · <code>reporte_ppt_plan()</code></li>
+        </ul>
+      </div>
+
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · prosecnur.R</span><span>v0.1.0</span></div>
+<pre><span class="com"># Guía 1 · Codificación — adaptar instrumento y base</span>
+<span class="kw">library</span>(<span class="fn">prosecnur</span>)
+inst  <span class="op">&lt;-</span> <span class="fn">leer_instrumento_xlsform</span>(<span class="str">"cuestionario.xlsx"</span>)
+datos <span class="op">&lt;-</span> <span class="fn">leer_datos</span>(<span class="str">"respuestas.xlsx"</span>, inst)
+
+fam   <span class="op">&lt;-</span> <span class="fn">leer_familias_clasificar</span>(<span class="str">"familias.xlsx"</span>)
+plant <span class="op">&lt;-</span> <span class="fn">construir_plantilla_desde_familias</span>(datos, inst, fam)
+datos <span class="op">&lt;-</span> <span class="fn">ppra_adaptar_data</span>(datos, plant)
+inst  <span class="op">&lt;-</span> <span class="fn">ppra_adaptar_instrumento</span>(inst,  plant)
+
+<span class="com"># Guía 2 · Entregables — una preparación, cinco salidas</span>
+rp_inst <span class="op">&lt;-</span> <span class="fn">reporte_instrumento</span>(inst)
+rp_data <span class="op">&lt;-</span> <span class="fn">reporte_data</span>(datos, rp_inst)
+
+<span class="fn">reporte_codebook</span>   (rp_data, rp_inst, <span class="str">"codebook.xlsx"</span>)
+<span class="fn">reporte_spss</span>       (rp_data, rp_inst, <span class="str">"base.sav"</span>)
+<span class="fn">reporte_frecuencias</span>(rp_data, rp_inst, <span class="str">"freq.xlsx"</span>)
+
+<span class="com"># Guía 3 · PPT plan — mismo plan, dos salidas</span>
+presets <span class="op">&lt;-</span> <span class="fn">p_presets</span>(tema <span class="op">=</span> <span class="str">"editorial"</span>)
+
+<span class="fn">diapo</span>(<span class="fn">p_slide_portada</span>(<span class="str">"Informe · ACNUR · PPRA"</span>)) <span class="op">|&gt;</span>
+  <span class="fn">diapo</span>(<span class="fn">p_slide_2_graficos</span>(
+    <span class="fn">p_barras_apiladas</span>(rp_data, preg <span class="op">=</span> <span class="str">"p3"</span>),
+    <span class="fn">p_pie</span>(rp_data, preg <span class="op">=</span> <span class="str">"p7"</span>), presets <span class="op">=</span> presets))
+
+<span class="fn">reporte_ppt_plan</span>(plantilla <span class="op">=</span> <span class="str">"plantilla_16_9.pptx"</span>)</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUÍAS -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Guías aplicadas</div>
+      <h2>Las tres <em>guías</em></h2>
+      <p class="lede">La documentación vive en tres <code>.qmd</code> aplicados. Cada guía resuelve un tramo del ciclo.</p>
+    </div>
+
+    <ul class="rules">
+      <li class="rule-row">
+        <span class="n">Guía 1</span>
+        <span class="ttl"><em>Codificación</em> aplicada</span>
+        <span class="desc">Familias, plantilla editable y <code>ppra_adaptar_*</code>: separa decisiones de la ejecución mecánica.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">Guía 2</span>
+        <span class="ttl"><em>Entregables</em> estandarizados</span>
+        <span class="desc">Codebook · SPSS · frecuencias · cruces · producción de enumeradores, desde una única preparación.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">Guía 3</span>
+        <span class="ttl">PPT <em>plan</em> aplicado</span>
+        <span class="desc">Presets · piezas <code>p_*</code> · layouts <code>p_slide_*</code> · <code>diapo()</code>. Mismo plan → PPT o Word.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
     </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-incorer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">IncoreR</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-incorer">    
-        <li>
-    <a class="dropdown-item" href="./intro.html">
- <span class="dropdown-text">Sobre el paquete</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Manual.html">
- <span class="dropdown-text">Manual</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./incorerweb.html">
- <span class="dropdown-text">IncoreR Web</span></a>
-  </li>  
+  </section>
+
+  <!-- REGLAS -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Reglas de validación</div>
+      <h2>Qué se verifica por <em>defecto</em></h2>
+      <p class="lede">El plan se edita en Excel y convive con reglas propias en R, versionables con el proyecto.</p>
+    </div>
+
+    <ul class="rules">
+      <li class="rule-row">
+        <span class="n">R·01</span>
+        <span class="ttl"><em>Tipo</em> y codificación</span>
+        <span class="desc">select_one · select_multiple · numeric · date — resuelve dummies y repeats</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·02</span>
+        <span class="ttl"><em>Rango</em> numérico</span>
+        <span class="desc">min / max del XLSForm + outliers por módulo (z-score e IQR configurables)</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·03</span>
+        <span class="ttl">Obligatoriedad</span>
+        <span class="desc">required = yes → no puede estar vacío; <code>expr_not_empty()</code></span>
+        <span class="st err">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·04</span>
+        <span class="ttl">Saltos · <em>relevance</em></span>
+        <span class="desc">respuesta solo si la condición se cumple; separa N/A válido de error</span>
+        <span class="st err">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·05</span>
+        <span class="ttl">Constraint de XLSForm</span>
+        <span class="desc">evalúa expresiones declaradas en el formulario, incluyendo repeats</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·06</span>
+        <span class="ttl">Plan <em>Excel</em> editable</span>
+        <span class="desc"><code>cargar_plan_excel()</code> · reglas nombradas, documentadas y versionables</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·07</span>
+        <span class="ttl"><em>Other</em> y texto abierto</span>
+        <span class="desc">coherencia "otro → texto" con predicados <code>expr_other_implies_text</code></span>
+        <span class="st warn">soft</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·08</span>
+        <span class="ttl">Consistencia <em>entre</em> preguntas</span>
+        <span class="desc">expresiones R por fila; <code>auditar_regla()</code> · <code>observaciones_regla()</code></span>
+        <span class="st warn">soft</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·09</span>
+        <span class="ttl">Trazabilidad por <em>enumerador</em></span>
+        <span class="desc"><code>reporte_enumeradores()</code> — duración, geolocalización, patrones de error</span>
+        <span class="st warn">soft</span>
+      </li>
     </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-prosecnur" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Prosecnur</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-prosecnur">    
-        <li>
-    <a class="dropdown-item" href="./prosecnur.html">
- <span class="dropdown-text">Sobre el paquete</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./Guia_Prosecnur.html">
- <span class="dropdown-text">Manual</span></a>
-  </li>  
-    </ul>
-  </li>
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content" id="quarto-document-content">
+  </section>
 
+  <!-- INSTALAR -->
+  <section id="instalar" class="reveal">
+    <div class="install">
+      <div>
+        <h2>Instalación.</h2>
+        <p style="margin-top: 16px;">Se distribuye desde GitHub. La guía completa está en este sitio, y el repo incluye una plantilla PPTX de referencia y ejemplos de planes.</p>
+        <div class="cta-row">
+          <a href="guia-prosecnur.html" class="btn">Leer la guía</a>
+          <a href="https://github.com/GonzaloAlmendariz/Prosecnur" target="_blank" rel="noopener" class="btn">Repo GitHub</a>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · install</span><span>github</span></div>
+<pre><span class="com"># Instalar desde GitHub</span>
+<span class="kw">install.packages</span>(<span class="str">"devtools"</span>)
+<span class="fn">devtools</span>::<span class="fn">install_github</span>(<span class="str">"GonzaloAlmendariz/Prosecnur"</span>)
 
+<span class="kw">library</span>(<span class="fn">prosecnur</span>)
+<span class="fn">?prosecnur</span>    <span class="com"># abre el manual</span></pre>
+      </div>
+    </div>
+  </section>
 
+  <!-- FAQ -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Preguntas</div>
+      <h2>Dudas <em>frecuentes</em></h2>
+    </div>
 
-<section id="intro-prosecnur" class="section section--narrow reveal">
-  <div class="container-narrow">
+    <div class="faq">
+      <details>
+        <summary>¿Funciona con formularios que <em>no</em> vienen de KoBo?</summary>
+        <p>Sí. Mientras el formulario siga el estándar XLSForm (columnas <code>survey</code>, <code>choices</code>, <code>settings</code>), <code>leer_instrumento_xlsform()</code> lo lee. Está probado con KoBoToolbox, ODK y la plataforma PPRA de ACNUR. Para SurveyMonkey hay adaptadores dedicados.</p>
+      </details>
+      <details>
+        <summary>¿El plan de validación se edita en <em>Excel</em> o se escribe en R?</summary>
+        <p>Las dos cosas. <code>generar_plan_limpieza()</code> arma un plan inicial en Excel a partir del XLSForm; lo abres, revisas y editas con el equipo; lo vuelves a cargar con <code>cargar_plan_excel()</code>. Encima del plan puedes sumar reglas ad-hoc en R.</p>
+      </details>
+      <details>
+        <summary>¿Qué produce exactamente el paquete?</summary>
+        <p>Seis salidas sobre la misma base: PPTX con <code>reporte_ppt_plan()</code>, Word con <code>reporte_word_plan()</code>, SPSS <code>.sav</code> + syntax <code>.sps</code>, libros Quarto, XLSX (codebook, frecuencias, cruces) y un tablero Shiny interactivo.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se definen <em>indicadores</em> e índices compuestos?</summary>
+        <p>Con un DSL mínimo: <code>indicador()</code>, <code>nivel()</code>, <code>indice()</code>, <code>subindice()</code> y predicados <code>ind_alguna</code>, <code>ind_todas</code>, <code>ind_es</code>, <code>ind_en</code>, <code>ind_ninguna</code>. Se visualizan con funciones <code>graficar_*_dimensiones</code>.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa con los datos <em>sensibles</em>?</summary>
+        <p>Prosecnur corre 100 % en local. No envía datos fuera del entorno de R y los reportes se renderizan en tu máquina. Puedes decidir qué columnas exportar en cada reporte y qué variables sensibles omitir del tablero Shiny.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se integra con una plantilla <em>PowerPoint</em> corporativa?</summary>
+        <p>Pasas tu <code>.pptx</code> como <code>plantilla</code> en <code>reporte_ppt_plan()</code> o armas la presentación a mano con <code>diapo()</code> y los layouts <code>p_slide_*</code>. El paquete incluye <code>inst/plantillas/plantilla_16_9.pptx</code> como referencia.</p>
+      </details>
+    </div>
+  </section>
 
-    <h2 class="h-compact anchored" style="text-align:center;color:var(--accent);">
-      Prosecnur
-    </h2>
-    
-    <p class="ldf-justo section-lead" style="max-width:760px;margin:0 auto 1.2rem auto;">
-      Muchos proyectos de levantamiento de información trabajan hoy con 
-      formularios digitales diseñados en <strong>XLSForm</strong>, una estructura 
-      basada en hojas de cálculo que permite construir cuestionarios complejos 
-      con saltos, relevancias, catálogos extensos y secciones repetidas para 
-      plataformas como <strong>KoBoToolbox</strong> u ODK. Su flexibilidad es alta, 
-      pero también produce exportes heterogéneos: múltiples hojas, variables 
-      derivadas, opciones “otros”, códigos numéricos y campos abiertos que deben 
-      organizarse antes de analizar. Sin una metodología clara, esa transición 
-      del cuestionario al archivo de trabajo puede volverse lenta y difícil de 
-      documentar.
-    </p>
+</main>
 
-    <p class="section-lead ldf-justo" style="max-width:760px;margin:0 auto 1.2rem auto;">
-      <strong>Prosecnur</strong> es un sistema de procesamiento para encuestas diseñado en R. 
-      Nace de un problema común en investigación aplicada: los cuestionarios 
-      extensos en XLSForm, las bases exportadas desde KoBo u ODK, y la necesidad 
-      de organizar la limpieza, la codificación y la documentación sin perder 
-      rastro de cómo se transforman los datos.
-    </p>
+<div id="footer-slot"></div>
 
-    <p class="ldf-justo" style="max-width:760px;margin:0 auto 1.2rem auto;">
-      El paquete reúne en un solo flujo: lectura del formulario original, identificación de las 
-      secciones del formulario, preparación de los datos en su forma cruda, creación 
-      de plantillas editables para codificar valores abiertos, verificación de 
-      inconsistencias y adaptación final tanto de los datos como del instrumento. 
-      Cada paso queda registrado de forma explícita, lo que permite reproducir el 
-      proceso, auditarlo y trasladarlo a nuevos estudios sin partir de cero.
-    </p>
-
-    <p class="ldf-justo" style="max-width:760px;margin:0 auto;">
-      Su propósito es poder ofrecer una estructura clara para trabajar con 
-      formularios complejos, respetando siempre el contenido 
-      original del cuestionario y garantizando que todas las decisiones de 
-      recodificación, limpieza o ajuste aparezcan en un entorno controlado 
-      (principalmente Excel) y puedan ser aplicadas luego de forma automática. 
-      Prosecnur no reemplaza la revisión humana; la ordena. Y permite que equipos 
-      diferentes (o la misma persona meses después) puedan seguir el rastro de 
-      cómo se pasó de los datos en bruto al conjunto final apto para análisis.
-    </p>
-
-  </div>
-</section>
-<!-- FOOTER limpio: logo arriba, autor y GitHub debajo -->
-<div style="
-  margin-top: 40px;
-  padding: 22px 0 18px 0;
-  border-top: 1px solid #ddd;
-  text-align: center;
-  color: #555;
-  font-size: 0.95rem;
-">
-  <!-- Logo -->
-  <img src="logo.png" alt="La Datáfora" style="height:48px; display:block; margin:0 auto 8px auto; opacity:0.9;">
-  
-  <!-- Texto -->
-  <div style="font-weight:500; margin-bottom:6px;">
-    Elaborado por Gonzalo Almendariz Villanueva
-  </div>
-  
-  <!-- GitHub pequeño -->
-  <a href="https://github.com/gonzaloalmendariz" target="_blank" aria-label="GitHub" style="display:inline-block;">
-    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" style="height:18px; filter:invert(35%); opacity:0.8;">
-  </a>
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.reveal').forEach(function(el){
-    el.classList.add('is-visible');
-  });
-});
-</script>
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
-      });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
-
-
-
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
-</body></html>
+<script src="shared.js"></script>
+<script>LD.mountChrome('prosecnur');</script>
+</body>
+</html>

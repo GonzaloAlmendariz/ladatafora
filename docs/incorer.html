@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>IncoreR — La Datáfora</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="IncoreR — paquete de R para analizar y visualizar el Índice de Competitividad Regional (INCORE) del IPE, con un complemento Shiny interactivo.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<div id="masthead-slot"></div>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="pkg-hero reveal">
+    <div>
+      <div class="eyebrow">
+        <span class="chip chip-primary">Paquete R</span>
+        <span>INCORE · IPE · Perú</span>
+      </div>
+      <h1 class="pkg-title">Incore<em>R</em></h1>
+      <p class="pkg-sub">El INCORE del IPE, desde R.</p>
+      <p class="pkg-lede">
+        <em>IncoreR</em> carga las bases oficiales del Índice de Competitividad Regional y genera
+        tablas, mapas y radares listos para usar. Para quienes no usan R, el complemento
+        <em>IncoreR Web</em> hace lo mismo con sliders y menús.
+      </p>
+
+      <div class="pkg-actions">
+        <a href="manual-incorer.html" class="btn">Leer el manual <span class="arrow">→</span></a>
+        <a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank" rel="noopener" class="btn btn-ghost">Abrir IncoreR Web</a>
+      </div>
+    </div>
+
+    <aside class="spec-card" aria-label="Ficha técnica">
+      <div class="ver"><span class="k">Versión</span><span class="v">2025</span></div>
+      <div class="row"><span class="k">Lenguaje</span><span class="v"><em>R</em> ≥ 4.1</span></div>
+      <div class="row"><span class="k">Licencia</span><span class="v">MIT</span></div>
+      <div class="row"><span class="k">Fuente</span><span class="v">INCORE · <em>IPE</em></span></div>
+      <div class="row"><span class="k">Depende</span><span class="v">dplyr · ggplot2 · sf · shiny · plotly</span></div>
+      <div class="row"><span class="k">Entrada</span><span class="v">Bases oficiales</span></div>
+      <div class="row"><span class="k">Salida</span><span class="v">Tablas · mapas · app Shiny</span></div>
+    </aside>
+  </section>
+
+  <!-- SCREENSHOT -->
+  <section class="reveal">
+    <div class="shot">
+      <figure>
+        <img src="capturaincorer.png" alt="Captura de la aplicación IncoreR Web">
+        <figcaption>IncoreR Web — filtros, personalización y descarga de visualizaciones</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- QUÉ HACE -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Qué hace</div>
+      <h2>Seis tipos de <em>gráfico</em></h2>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat-card">
+        <div class="n">01</div>
+        <h3>Distribución</h3>
+        <p>Histogramas, densidades y boxplots de puntajes por pilar e indicador.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">02</div>
+        <h3>Comparación entre <em>regiones</em></h3>
+        <p>Barras y líneas con intervalos, con opción de contrastar contra un promedio nacional.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">03</div>
+        <h3>Mapas</h3>
+        <p>Coropletas por región con escalas de color pensadas para informes impresos.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">04</div>
+        <h3>Radar</h3>
+        <p>Perfiles comparativos de los seis pilares del INCORE para varias regiones.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">05</div>
+        <h3>Series temporales</h3>
+        <p>Evolución del índice o de un indicador específico a lo largo de las ediciones.</p>
+      </article>
+      <article class="feat-card">
+        <div class="n">06</div>
+        <h3>Rankings</h3>
+        <p>Tablas ordenadas y formateadas, exportables a Word o PDF con Quarto.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- INCORER WEB -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">IncoreR Web</div>
+      <h2>La <em>versión</em> sin código</h2>
+      <p class="lede">El mismo paquete detrás, con una interfaz Shiny para quienes no programan.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 16px;">
+      <p style="color: var(--ink-soft); line-height: 1.7; max-width: 58ch;">
+        Consultas puntajes e indicadores de cualquier edición del INCORE, filtras por región,
+        pilar o indicador, y obtienes el gráfico en segundos.
+      </p>
+      <p style="color: var(--ink-soft); line-height: 1.7; max-width: 58ch;">
+        Los gráficos se descargan en alta resolución (PNG, PDF, SVG) y se pueden usar
+        directamente en informes, tesis o presentaciones.
+      </p>
+    </div>
+
+    <div style="text-align:center; margin: 40px 0 20px 0;">
+      <a href="https://np6xsv-gonzalo-almendariz.shinyapps.io/IcorerRWeb/" target="_blank" rel="noopener" class="btn">Abrir IncoreR Web <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- CÓDIGO -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">En código</div>
+      <h2>Cómo se <em>usa</em></h2>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-side">
+        <h3>Tres funciones, <em>básicamente</em>.</h3>
+        <p>
+          Cargas una edición del INCORE con <code>incore_leer()</code>, eliges el pilar o
+          indicador, y llamas a la función <code>graficar_*</code> que necesites. Cada una acepta
+          ajustes de tema, escala y anotaciones.
+        </p>
+        <ul>
+          <li><code>incore_leer()</code> · <code>incore_pilar()</code></li>
+          <li><code>graficar_ranking()</code> · <code>graficar_mapa()</code></li>
+          <li><code>graficar_radar()</code> · <code>graficar_serie()</code></li>
+          <li><code>tema_incore()</code> — presets tipográficos</li>
+        </ul>
+      </div>
+
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · incorer.R</span><span>2025</span></div>
+<pre><span class="com"># Cargar IncoreR y visualizar pilares</span>
+<span class="kw">library</span>(<span class="fn">incorer</span>)
+
+datos <span class="op">&lt;-</span> <span class="fn">incore_leer</span>(edicion <span class="op">=</span> <span class="str">"2025"</span>)
+
+<span class="com"># Ranking del pilar Instituciones</span>
+<span class="fn">graficar_ranking</span>(
+  datos,
+  pilar <span class="op">=</span> <span class="str">"Instituciones"</span>,
+  destacar <span class="op">=</span> <span class="str">"Lima"</span>
+)
+
+<span class="com"># Mapa regional con coropleta</span>
+<span class="fn">graficar_mapa</span>(
+  datos,
+  indicador <span class="op">=</span> <span class="str">"Educacion"</span>,
+  paleta <span class="op">=</span> <span class="str">"viridis"</span>
+)
+
+<span class="com"># Radar comparativo por región</span>
+<span class="fn">graficar_radar</span>(
+  datos,
+  regiones <span class="op">=</span> <span class="fn">c</span>(<span class="str">"Arequipa"</span>, <span class="str">"Cusco"</span>, <span class="str">"Piura"</span>)
+)</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALAR -->
+  <section class="reveal">
+    <div class="install">
+      <div>
+        <h2>Instalación.</h2>
+        <p style="margin-top: 16px;">Se distribuye desde GitHub. El manual completo está en este sitio, y la app Shiny en shinyapps.io.</p>
+        <div class="cta-row">
+          <a href="manual-incorer.html" class="btn">Leer el manual</a>
+          <a href="https://github.com/GonzaloAlmendariz/incorer" target="_blank" rel="noopener" class="btn">Repo GitHub</a>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · install</span><span>github</span></div>
+<pre><span class="com"># Instalar desde GitHub</span>
+<span class="kw">install.packages</span>(<span class="str">"devtools"</span>)
+<span class="fn">devtools</span>::<span class="fn">install_github</span>(<span class="str">"GonzaloAlmendariz/incorer"</span>)
+
+<span class="kw">library</span>(<span class="fn">incorer</span>)
+<span class="fn">?incorer</span>   <span class="com"># abre la documentación</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="reveal">
+    <div class="section-head">
+      <div class="eyebrow">Preguntas</div>
+      <h2>Dudas <em>frecuentes</em></h2>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>¿Qué es el <em>INCORE</em>?</summary>
+        <p>El Índice de Competitividad Regional (INCORE) es elaborado anualmente por el Instituto Peruano de Economía (IPE). Evalúa la competitividad de las 24 regiones del Perú a través de seis pilares: Entorno Económico, Infraestructura, Salud, Educación, Laboral e Instituciones. IncoreR consume directamente estas bases públicas.</p>
+      </details>
+      <details>
+        <summary>¿Necesito programar en R para usar los <em>gráficos</em>?</summary>
+        <p>No necesariamente. IncoreR Web (la app Shiny) habilita todas las visualizaciones sin escribir código. Si ya usas R, el paquete te da control total sobre el tema, escalas, anotaciones y exportación.</p>
+      </details>
+      <details>
+        <summary>¿Puedo descargar los <em>gráficos</em> en alta calidad?</summary>
+        <p>Sí. Tanto desde el paquete como desde la app web puedes exportar los gráficos en PNG, PDF o SVG con resolución adecuada para informes, tesis o presentaciones institucionales.</p>
+      </details>
+      <details>
+        <summary>¿El paquete se <em>actualiza</em> con cada nueva edición del INCORE?</summary>
+        <p>Sí. Cada edición nueva del INCORE se incorpora al paquete y a la app web, manteniendo compatibilidad con ediciones anteriores para series históricas y comparaciones temporales.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-slot"></div>
+
+<script src="shared.js"></script>
+<script>LD.mountChrome('incorer');</script>
+</body>
+</html>

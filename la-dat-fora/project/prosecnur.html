@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La Datáfora · Prosecnur</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style id="shared-css">
+/* ============================================================
+   La Datáfora — editorial / data-journal redesign
+   Shared tokens + components across Home / CV / Prosecnur
+   ============================================================ */
+
+:root {
+  /* Paper / ink */
+  --paper:       #F2EFE7;
+  --paper-deep:  #E9E4D6;
+  --paper-soft:  #EDE9DD;
+  --ink:         #121212;
+  --ink-soft:    #2A2826;
+  --ink-mute:    #6A665E;
+  --rule:        #1210120F; /* near-ink hairline */
+  --rule-strong: #12101233;
+
+  /* Accents — oklch, same chroma+lightness, different hue */
+  --accent:      oklch(0.58 0.14 35);   /* terracotta, richer than original brown */
+  --accent-soft: oklch(0.86 0.05 35);
+  --ink-blue:    oklch(0.48 0.09 240);  /* for charts / links */
+  --signal:      oklch(0.72 0.14 135);  /* optional data green */
+
+  /* Type */
+  --serif:  "Instrument Serif", "Fraunces", Georgia, serif;
+  --sans:   "Inter Tight", "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --mono:   "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Scale */
+  --step--1: clamp(.78rem, .75rem + .15vw, .86rem);
+  --step-0:  clamp(.95rem, .92rem + .2vw,  1.05rem);
+  --step-1:  clamp(1.1rem, 1.05rem + .35vw, 1.25rem);
+  --step-2:  clamp(1.4rem, 1.3rem + .7vw,  1.8rem);
+  --step-3:  clamp(2rem,  1.75rem + 1.6vw, 2.9rem);
+  --step-4:  clamp(2.8rem, 2.2rem + 3vw,   4.8rem);
+  --step-5:  clamp(4rem,  3rem + 6vw,      8.5rem);
+
+  /* Density (driven by Tweaks) */
+  --pad-section: clamp(64px, 8vw, 112px);
+  --pad-inline:  clamp(20px, 4vw, 44px);
+  --gutter:      clamp(16px, 2.4vw, 28px);
+}
+
+[data-density="compact"] {
+  --pad-section: clamp(44px, 5.5vw, 72px);
+  --pad-inline:  clamp(16px, 3vw, 32px);
+  --gutter:      clamp(12px, 1.8vw, 20px);
+}
+
+/* ---------- Reset ---------- */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+img { max-width: 100%; display: block; }
+a  { color: inherit; text-decoration: none; }
+p  { margin: 0 0 1em 0; text-wrap: pretty; }
+hr { border: 0; border-top: 1px solid var(--rule-strong); margin: 0; }
+
+/* ---------- Utilities ---------- */
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: var(--pad-inline); }
+.wrap-narrow { max-width: 960px; margin: 0 auto; padding-inline: var(--pad-inline); }
+.rule { border-top: 1px solid var(--rule-strong); }
+.rule-soft { border-top: 1px solid var(--rule); }
+.mono { font-family: var(--mono); font-size: var(--step--1); letter-spacing: 0.01em; }
+.upper { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; }
+.num { font-variant-numeric: tabular-nums; }
+.serif { font-family: var(--serif); font-weight: 400; }
+.ital { font-style: italic; }
+
+/* ---------- Nav (masthead) ---------- */
+.masthead {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.masthead-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 0;
+}
+.mast-brand {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.mast-brand em { font-style: italic; }
+.mast-brand .vol { font-family: var(--mono); font-size: .7rem; color: var(--ink-mute); letter-spacing: 0.1em; }
+.mast-nav {
+  display: flex; gap: 28px; justify-content: center;
+  font-family: var(--sans); font-size: .88rem;
+}
+.mast-nav a {
+  position: relative;
+  padding: 6px 2px;
+  color: var(--ink-soft);
+  transition: color .2s ease;
+}
+.mast-nav a:hover { color: var(--ink); }
+.mast-nav a.active {
+  color: var(--ink);
+}
+.mast-nav a.active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -15px;
+  height: 2px; background: var(--ink);
+}
+.mast-meta { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); text-align: right; }
+.mast-meta .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); margin-right: 6px; vertical-align: 1px; animation: pulse 2.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .35; } }
+
+@media (max-width: 780px) {
+  .masthead-row { grid-template-columns: 1fr auto; }
+  .mast-nav { grid-column: 1/-1; justify-content: flex-start; overflow-x: auto; padding-bottom: 8px; }
+  .mast-meta { display: none; }
+}
+
+/* ---------- Issue strip (above hero) ---------- */
+.issue-strip {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink-mute);
+  border-bottom: 1px solid var(--rule);
+}
+.issue-strip .center { text-align: center; letter-spacing: 0.14em; text-transform: uppercase; }
+.issue-strip .right  { text-align: right; }
+
+/* ---------- Common section headers ---------- */
+.section-head {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding-top: clamp(36px, 5vw, 64px);
+  padding-bottom: clamp(18px, 3vw, 28px);
+  border-top: 1px solid var(--rule-strong);
+}
+.section-head .num-label {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+}
+.section-head h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--step-3);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.section-head .lede {
+  margin: 10px 0 0 0;
+  font-family: var(--sans);
+  color: var(--ink-soft);
+  max-width: 60ch;
+  font-size: var(--step-1);
+  font-style: normal;
+  line-height: 1.5;
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  margin-top: clamp(60px, 8vw, 110px);
+  padding: 40px 0 28px 0;
+  border-top: 1px solid var(--rule-strong);
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--ink-mute);
+}
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; }
+.foot h4 { font-family: var(--sans); font-size: .78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); margin: 0 0 10px 0; font-weight: 600; }
+.foot a { display: block; padding: 3px 0; color: var(--ink-soft); }
+.foot a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.foot-colophon { margin-top: 36px; display: flex; justify-content: space-between; padding-top: 18px; border-top: 1px solid var(--rule); font-size: .7rem; }
+.foot-mark {
+  font-family: var(--serif);
+  font-size: 12vw;
+  line-height: .85;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  margin-top: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.foot-mark em { font-style: italic; }
+@media (max-width: 780px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  font-family: var(--sans); font-size: .92rem; font-weight: 500;
+  background: var(--ink); color: var(--paper) !important;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  transition: background-color .2s, color .2s, transform .15s;
+}
+.btn:hover { background: transparent; color: var(--ink) !important; transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink) !important; }
+.btn-ghost:hover { background: var(--ink); color: var(--paper) !important; }
+.btn .arrow { transition: transform .25s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------- Tag / chip ---------- */
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  font-family: var(--mono); font-size: .72rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: transparent;
+}
+.chip-fill { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- Reveal ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Tweaks panel ---------- */
+.tweaks {
+  position: fixed; bottom: 20px; right: 20px;
+  z-index: 80;
+  background: var(--paper);
+  border: 1px solid var(--rule-strong);
+  padding: 14px 16px;
+  width: 260px;
+  font-family: var(--mono); font-size: .72rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.14), 0 2px 8px rgba(0,0,0,.06);
+  display: none;
+}
+.tweaks.visible { display: block; }
+.tweaks h5 {
+  margin: 0 0 12px 0; font-family: var(--sans); font-size: .7rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.tweaks h5 .x { cursor: pointer; font-family: var(--mono); font-size: .85rem; color: var(--ink-mute); }
+.tweaks h5 .x:hover { color: var(--ink); }
+.tweak-row { margin: 12px 0; }
+.tweak-row label { display: block; color: var(--ink-mute); margin-bottom: 6px; letter-spacing: 0.04em; }
+.tweak-row .opts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+.tweak-row .opts button,
+.tweak-row .opts.two { grid-template-columns: 1fr 1fr; }
+.tweak-row .opts button {
+  padding: 6px 4px; background: transparent;
+  border: 1px solid var(--rule-strong);
+  font-family: var(--mono); font-size: .7rem; color: var(--ink-soft);
+  cursor: pointer; transition: all .15s;
+  text-transform: lowercase;
+}
+.tweak-row .opts button:hover { border-color: var(--ink); }
+.tweak-row .opts button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+</style>
+<style>
+.ph {
+  padding: clamp(48px, 6vw, 88px) 0 clamp(32px, 4vw, 56px) 0;
+  display: grid; grid-template-columns: 1fr 380px; gap: var(--gutter);
+  align-items: end;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.ph-kick { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); letter-spacing: 0.14em; text-transform: uppercase; border-top: 1px solid var(--ink); padding-top: 10px; margin-bottom: 16px; display:flex; gap: 24px; }
+.ph-title { font-family: var(--serif); font-weight: 400; font-size: clamp(3.4rem, 8vw, 7.2rem); line-height: .92; letter-spacing: -0.035em; margin: 0; }
+.ph-title em { font-style: italic; color: var(--accent); }
+.ph-sub { font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--ink-mute); margin: 14px 0 0 0; }
+.ph-lede { max-width: 54ch; margin: 24px 0 0 0; font-size: var(--step-1); color: var(--ink-soft); line-height: 1.5; }
+
+.spec {
+  border: 1px solid var(--rule-strong);
+  padding: 0;
+}
+.spec .row { display: grid; grid-template-columns: 100px 1fr; padding: 11px 14px; border-bottom: 1px solid var(--rule-strong); font-family: var(--mono); font-size: .78rem; }
+.spec .row:last-child { border-bottom: 0; }
+.spec .k { color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.08em; font-size: .68rem; padding-top: 2px; }
+.spec .v em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.spec .ver { background: var(--ink); color: var(--paper); }
+.spec .ver .k, .spec .ver .v { color: var(--paper); }
+.spec .ver .v { font-family: var(--serif); font-style: italic; font-size: 1.6rem; line-height: 1; }
+
+@media (max-width: 900px) { .ph { grid-template-columns: 1fr; } }
+
+/* Hero schematic */
+.schematic {
+  padding: 30px 0 60px 0;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.schematic-label { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; display: flex; justify-content: space-between; }
+.flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  position: relative;
+}
+.flow .node {
+  padding: 28px 18px;
+  border-right: 1px solid var(--rule-strong);
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 180px;
+  position: relative;
+  transition: background-color .25s;
+}
+.flow .node:last-child { border-right: 0; }
+.flow .node:hover { background: var(--paper-soft); }
+.flow .node .n { font-family: var(--mono); font-size: .7rem; color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase; }
+.flow .node h4 { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.015em; margin: 0; }
+.flow .node h4 em { font-style: italic; color: var(--accent); }
+.flow .node p { font-family: var(--sans); font-size: .84rem; color: var(--ink-mute); line-height: 1.5; margin: 0; }
+.flow .node .tick {
+  position: absolute; top: 14px; right: 16px;
+  width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: .7rem; color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 50%;
+}
+.flow .node:hover .tick { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+@media (max-width: 900px) {
+  .flow { grid-template-columns: 1fr 1fr; }
+  .flow .node { border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+  .flow .node:nth-child(2n) { border-right: 0; }
+}
+
+/* What it does — feature blocks */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+}
+.feat {
+  padding: 34px;
+  border-right: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 260px;
+  transition: background-color .25s;
+}
+.feat:nth-child(2n) { border-right: 0; }
+.feat:nth-last-child(-n+2) { border-bottom: 0; }
+.feat:hover { background: var(--paper-soft); }
+.feat .n {
+  font-family: var(--serif); font-size: 2.4rem; font-style: italic; color: var(--accent); line-height: 1;
+  letter-spacing: -0.02em;
+}
+.feat h3 { font-family: var(--serif); font-weight: 400; font-size: 1.7rem; line-height: 1.1; letter-spacing: -0.015em; margin: 0; }
+.feat h3 em { font-style: italic; }
+.feat p { color: var(--ink-soft); line-height: 1.55; max-width: 50ch; margin: 0; }
+
+@media (max-width: 900px) {
+  .features { grid-template-columns: 1fr; }
+  .feat { border-right: 0; }
+}
+
+/* Code snippet (editorial style) */
+.code-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  padding: 40px 0 60px 0;
+}
+.code-side .num-label { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+.code-side h3 { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px 0; }
+.code-side h3 em { font-style: italic; color: var(--accent); }
+.code-side p { color: var(--ink-soft); line-height: 1.65; max-width: 52ch; }
+
+.code-block {
+  background: var(--ink); color: var(--paper);
+  padding: 24px 28px;
+  font-family: var(--mono); font-size: .82rem; line-height: 1.75;
+  position: relative;
+  overflow: auto;
+}
+.code-block .ck-head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .7rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--paper) 55%, transparent);
+  border-bottom: 1px solid rgba(242,239,231,.15);
+  padding-bottom: 10px; margin-bottom: 16px;
+}
+.code-block .ck-head .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); display: inline-block; margin-right: 6px; vertical-align: 1px; }
+.code-block pre { margin: 0; font-family: inherit; white-space: pre; color: color-mix(in srgb, var(--paper) 92%, transparent); }
+.code-block .kw  { color: var(--accent-soft); }
+.code-block .fn  { color: var(--paper); font-weight: 500; }
+.code-block .str { color: #cbd6a0; }
+.code-block .com { color: color-mix(in srgb, var(--paper) 42%, transparent); font-style: italic; }
+.code-block .out { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+
+@media (max-width: 900px) { .code-wrap { grid-template-columns: 1fr; } }
+
+/* Report sample — editorial report card */
+.report {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  padding: 40px 0 20px 0;
+}
+.report-legend { font-family: var(--mono); font-size: .78rem; color: var(--ink-mute); line-height: 1.8; }
+.report-legend h4 { font-family: var(--sans); font-size: .7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink); margin: 0 0 10px 0; font-weight: 600; }
+.report-legend .k { display: inline-block; width: 12px; height: 12px; margin-right: 8px; vertical-align: -1px; border: 1px solid var(--rule-strong); }
+.report-legend .k.ok { background: var(--signal); }
+.report-legend .k.warn { background: var(--accent); }
+.report-legend .k.err { background: var(--ink); }
+.report-legend .k.miss { background: var(--paper-deep); }
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 2px;
+  padding: 20px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule-strong);
+}
+.report-grid .cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--rule);
+  transition: transform .15s;
+  position: relative;
+  cursor: pointer;
+}
+.report-grid .cell:hover { transform: scale(1.3); z-index: 2; border-color: var(--ink); }
+.report-grid .ok   { background: color-mix(in srgb, var(--signal) 80%, white 20%); border-color: var(--signal); }
+.report-grid .warn { background: color-mix(in srgb, var(--accent) 80%, white 20%); border-color: var(--accent); }
+.report-grid .err  { background: var(--ink); border-color: var(--ink); }
+.report-grid .miss { background: var(--paper); }
+
+.report-summary {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--rule-strong);
+}
+.report-summary .s { padding: 14px 16px; border-right: 1px solid var(--rule-strong); }
+.report-summary .s:last-child { border-right: 0; }
+.report-summary .s .lbl { font-family: var(--mono); font-size: .68rem; color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase; }
+.report-summary .s .big { font-family: var(--serif); font-style: italic; font-size: 2rem; line-height: 1; color: var(--ink); display: block; margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .report { grid-template-columns: 1fr; }
+}
+
+/* Rules sample */
+.rules-list { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--rule-strong); }
+.rule-row {
+  display: grid; grid-template-columns: 60px 2fr 1.5fr auto; gap: 20px;
+  padding: 18px 8px;
+  border-bottom: 1px solid var(--rule-strong);
+  align-items: center;
+  transition: background-color .2s, padding-left .25s;
+}
+.rule-row:hover { background: var(--paper-soft); padding-left: 16px; }
+.rule-row .n { font-family: var(--mono); font-size: .72rem; color: var(--ink-mute); }
+.rule-row .ttl { font-family: var(--serif); font-size: 1.2rem; line-height: 1.2; letter-spacing: -0.01em; }
+.rule-row .ttl em { font-style: italic; color: var(--accent); }
+.rule-row .desc { font-family: var(--mono); font-size: .76rem; color: var(--ink-mute); }
+.rule-row .st {
+  font-family: var(--mono); font-size: .7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--rule-strong);
+}
+.rule-row .st.ok   { color: var(--signal); border-color: var(--signal); }
+.rule-row .st.warn { color: var(--accent); border-color: var(--accent); }
+.rule-row .st.err  { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* Install strip */
+.install {
+  padding: 56px 48px;
+  background: var(--ink); color: var(--paper);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  align-items: center;
+}
+.install h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1; letter-spacing: -0.025em; margin: 0; }
+.install h2 em { font-style: italic; color: var(--accent-soft); }
+.install p { color: color-mix(in srgb, var(--paper) 75%, transparent); line-height: 1.55; max-width: 46ch; }
+.install .cta-row { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+.install .btn { background: var(--paper); color: var(--ink) !important; border-color: var(--paper); }
+.install .btn:hover { background: transparent; color: var(--paper) !important; }
+.install .code-block { background: #0a0a0a; }
+@media (max-width: 900px) { .install { grid-template-columns: 1fr; padding: 36px 24px; } }
+
+/* FAQ */
+.faq { border-top: 1px solid var(--rule-strong); }
+.faq details {
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 20px 0;
+  transition: background-color .2s;
+}
+.faq details[open] { background: color-mix(in srgb, var(--paper-soft) 80%, transparent); padding-inline: 12px; }
+.faq summary {
+  cursor: pointer;
+  font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; letter-spacing: -0.015em;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary em { font-style: italic; color: var(--accent); }
+.faq summary::after { content: "+"; font-family: var(--mono); font-size: 1.4rem; color: var(--ink-mute); transition: transform .2s; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 14px 0 0 0; color: var(--ink-soft); max-width: 68ch; line-height: 1.65; }
+</style>
+</head>
+<body data-screen-label="03 Prosecnur">
+
+<div id="masthead-slot"></div>
+
+<main class="wrap">
+
+  <!-- ============ HEADER ============ -->
+  <section class="ph reveal">
+    <div>
+      <div class="ph-kick">
+        <span>§ Paquete · R</span>
+        <span>instrumento · plan · indicadores · reportes</span>
+      </div>
+      <h1 class="ph-title">Prose<em>cnur</em></h1>
+      <p class="ph-sub">Separar las decisiones de contenido de la ejecución mecánica.</p>
+      <p class="ph-lede">
+        Paquete de R que organiza el ciclo de una encuesta en tres guías aplicadas:
+        <em>codificación</em> (adaptar instrumento y base), <em>entregables</em>
+        (codebook, SPSS, frecuencias, cruces, enumeradores) y <em>PPT plan</em> (presets,
+        piezas y <em>layouts</em> que producen el mismo plan visual en PowerPoint o Word).
+        Nacido con el equipo de <em>ACNUR · PPRA</em> y abierto a XLSForm, ODK, KoBo y SurveyMonkey.
+      </p>
+
+      <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="#instalar" class="btn">Instalar desde GitHub <span class="arrow">→</span></a>
+        <a href="#" class="btn btn-ghost">Leer el manual</a>
+      </div>
+    </div>
+
+    <aside class="spec" aria-label="Ficha técnica">
+      <div class="row ver"><span class="k">Versión</span><span class="v">v0.1.0</span></div>
+      <div class="row"><span class="k">Lenguaje</span><span class="v"><em>R</em> ≥ 4.1</span></div>
+      <div class="row"><span class="k">Licencia</span><span class="v">MIT</span></div>
+      <div class="row"><span class="k">Origen</span><span class="v">ACNUR · PPRA · Perú</span></div>
+      <div class="row"><span class="k">Depende</span><span class="v">dplyr · ggplot2 · officer · haven · shiny</span></div>
+      <div class="row"><span class="k">Entrada</span><span class="v">XLSForm · KoBo · ODK · SurveyMonkey · SPSS</span></div>
+      <div class="row"><span class="k">Salida</span><span class="v">PPTX · Word · SPSS · Quarto · XLSX · Shiny</span></div>
+    </aside>
+  </section>
+
+  <!-- ============ SCHEMATIC ============ -->
+  <section class="schematic reveal">
+    <div class="schematic-label"><span>Diagrama de flujo · 001</span><span>instrumento → codificación → entregables → gráficos → presentación</span></div>
+    <div class="flow">
+      <div class="node">
+        <span class="n">01 · Instrumento</span>
+        <span class="tick">A</span>
+        <h4><em>XLSForm</em></h4>
+        <p><code>leer_instrumento_xlsform()</code> + <code>leer_datos()</code>. Primero se organiza el instrumento, después la base, y recién ahí se generan los entregables.</p>
+      </div>
+      <div class="node">
+        <span class="n">02 · Codificación</span>
+        <span class="tick">B</span>
+        <h4>Por <em>familias</em></h4>
+        <p>Plantilla editable que separa decisiones (qué recodificar) de la ejecución. <code>construir_plantilla_desde_familias()</code>, <code>leer_familias_clasificar()</code>, <code>ppra_adaptar_data()</code>.</p>
+      </div>
+      <div class="node">
+        <span class="n">03 · Entregables</span>
+        <span class="tick">C</span>
+        <h4>Estandarizados</h4>
+        <p><code>reporte_instrumento()</code> + <code>reporte_data()</code> alimentan codebook, SPSS, frecuencias, cruces y reporte de enumeradores.</p>
+      </div>
+      <div class="node">
+        <span class="n">04 · Gráficos</span>
+        <span class="tick">D</span>
+        <h4><em>Piezas</em> p_*</h4>
+        <p><code>p_presets()</code> + <code>p_barras_*</code>, <code>p_pie</code>, <code>p_donut</code>, <code>p_media_rango</code>, <code>p_radar_tabla</code>, <code>p_numerico</code>, <code>p_text</code>.</p>
+      </div>
+      <div class="node">
+        <span class="n">05 · Presentación</span>
+        <span class="tick">E</span>
+        <h4><em>Plan</em> visual</h4>
+        <p><code>diapo()</code> arma el plan con <em>layouts</em> <code>p_slide_*</code>. El mismo plan sale a PPT (<code>reporte_ppt_plan()</code>) o a Word (<code>reporte_word_plan()</code>).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="reveal" aria-labelledby="feats-t">
+    <div class="section-head">
+      <div class="num-label">§ 01 / Qué hace</div>
+      <div>
+        <h2 id="feats-t">Cuatro movimientos</h2>
+        <p class="lede">Del instrumento crudo a la narrativa final, cada módulo cubre una etapa del ciclo.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <article class="feat">
+        <span class="n">01</span>
+        <h3>Codificación por <em>familias</em>.</h3>
+        <p>Una familia agrupa columnas alrededor de una variable padre. La plantilla es el archivo donde el equipo trabaja celda por celda; el paquete aplica las decisiones a la base <em>y</em> al instrumento en sincronía — porque si se adapta solo la base, las etiquetas posteriores no coinciden.</p>
+      </article>
+      <article class="feat">
+        <span class="n">02</span>
+        <h3>Entregables <em>estandarizados</em>.</h3>
+        <p><code>reporte_instrumento()</code> y <code>reporte_data()</code> dejan todo listo para producir codebook, base SPSS (<code>.sav</code> + <code>.sps</code>), tabla de frecuencias, cruces y reporte de producción de enumeradores sin volver a preparar la base para cada salida.</p>
+      </article>
+      <article class="feat">
+        <span class="n">03</span>
+        <h3>Piezas, layouts y <em>plan</em> visual.</h3>
+        <p>Cuatro capas: <code>p_presets()</code> (colores, tipografía, proporciones), piezas <code>p_barras_*</code>, <code>p_pie</code>, <code>p_donut</code>, <code>p_media_rango</code>, <code>p_radar_tabla</code>, <em>layouts</em> <code>p_slide_*</code> y composición con <code>diapo()</code>. El mismo plan produce PPT o Word.</p>
+      </article>
+      <article class="feat">
+        <span class="n">04</span>
+        <h3>Validación &amp; <em>dimensiones</em>.</h3>
+        <p>En paralelo: plan de consistencia desde Excel (<code>cargar_plan_excel</code>, <code>evaluar_consistencia</code>, <code>auditar_consistencia_corpus</code>) e índices compuestos por dimensiones con el DSL <code>indicador()</code>, <code>nivel()</code>, <code>indice()</code>, <code>subindice()</code>.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CODE ============ -->
+  <section class="reveal" aria-labelledby="code-t">
+    <div class="section-head">
+      <div class="num-label">§ 02 / En código</div>
+      <div>
+        <h2 id="code-t">Cómo se usa</h2>
+      </div>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-side">
+        <div class="num-label">Las tres guías, en código</div>
+        <h3>Instrumento → <em>codificación</em> → entregables → presentación.</h3>
+        <p>Tres movimientos, uno por guía aplicada. Primero se organiza el instrumento, después la base; recién ahí empiezan los entregables. El mismo plan visual se reaprovecha entre PPT y Word.</p>
+        <ul style="font-family: var(--mono); font-size: .82rem; color: var(--ink-soft); padding-left: 18px; line-height: 1.85;">
+          <li><code>leer_instrumento_xlsform()</code> · <code>leer_datos()</code></li>
+          <li><code>construir_plantilla_desde_familias()</code></li>
+          <li><code>leer_familias_clasificar()</code> · <code>ppra_adaptar_data()</code></li>
+          <li><code>reporte_instrumento()</code> · <code>reporte_data()</code></li>
+          <li><code>reporte_codebook</code> · <code>_spss</code> · <code>_frecuencias</code> · <code>_cruces</code> · <code>_enumeradores</code></li>
+          <li><code>p_presets()</code> · <code>diapo()</code> · <code>reporte_ppt_plan()</code> · <code>reporte_word_plan()</code></li>
+        </ul>
+      </div>
+
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · prosecnur.R</span><span>v0.1.0</span></div>
+<pre><span class="com"># Guía 1 · Codificación — adaptar instrumento y base</span>
+<span class="kw">library</span>(<span class="fn">prosecnur</span>)
+inst  &lt;- <span class="fn">leer_instrumento_xlsform</span>(<span class="str">"cuestionario.xlsx"</span>)
+datos &lt;- <span class="fn">leer_datos</span>(<span class="str">"respuestas.xlsx"</span>, inst)
+
+fam   &lt;- <span class="fn">leer_familias_clasificar</span>(<span class="str">"familias.xlsx"</span>)
+plant &lt;- <span class="fn">construir_plantilla_desde_familias</span>(datos, inst, fam)
+datos &lt;- <span class="fn">ppra_adaptar_data</span>(datos, plant)
+inst  &lt;- <span class="fn">ppra_adaptar_instrumento</span>(inst,  plant)
+
+<span class="com"># Guía 2 · Entregables — una preparación, cinco salidas</span>
+rp_inst &lt;- <span class="fn">reporte_instrumento</span>(inst)
+rp_data &lt;- <span class="fn">reporte_data</span>(datos, rp_inst)
+
+<span class="fn">reporte_codebook</span>    (rp_data, rp_inst, <span class="str">"codebook.xlsx"</span>)
+<span class="fn">reporte_spss</span>        (rp_data, rp_inst, <span class="str">"base.sav"</span>)
+<span class="fn">reporte_frecuencias</span> (rp_data, rp_inst, <span class="str">"freq.xlsx"</span>)
+<span class="fn">reporte_cruces</span>      (rp_data, rp_inst, <span class="str">"cruces.xlsx"</span>)
+<span class="fn">reporte_enumeradores</span>(rp_data, rp_inst, <span class="str">"prod.pdf"</span>)
+
+<span class="com"># Guía 3 · PPT plan — mismo plan sale a PPT o Word</span>
+presets &lt;- <span class="fn">p_presets</span>(tema = <span class="str">"editorial"</span>)
+
+<span class="fn">diapo</span>(<span class="fn">p_slide_portada</span>(<span class="str">"Informe · ACNUR · PPRA"</span>)) |&gt;
+  <span class="fn">diapo</span>(<span class="fn">p_slide_2_graficos</span>(
+    <span class="fn">p_barras_apiladas</span>(rp_data, preg = <span class="str">"p3"</span>),
+    <span class="fn">p_pie</span>(rp_data, preg = <span class="str">"p7"</span>), presets = presets))
+
+<span class="fn">reporte_ppt_plan</span>(plantilla = <span class="str">"plantilla_16_9.pptx"</span>)
+<span class="fn">reporte_word_plan</span>(presets = <span class="fn">w_presets</span>())</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THREE GUIDES ============ -->
+  <section class="reveal" aria-labelledby="guides-t">
+    <div class="section-head">
+      <div class="num-label">§ 03 / Guías aplicadas</div>
+      <div>
+        <h2 id="guides-t">Las tres guías</h2>
+        <p class="lede">La documentación vive en tres <code>.qmd</code> aplicados dentro de <code>manuales/</code>. Cada guía resuelve un tramo del ciclo y supone el anterior preparado.</p>
+      </div>
+    </div>
+
+    <ul class="rules-list">
+      <li class="rule-row">
+        <span class="n">Guía 1</span>
+        <span class="ttl"><em>Codificación</em> aplicada</span>
+        <span class="desc">Familias, plantilla editable y <code>ppra_adaptar_*</code>: separa decisiones de la ejecución mecánica.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">Guía 2</span>
+        <span class="ttl"><em>Entregables</em> estandarizados</span>
+        <span class="desc">Codebook · SPSS · frecuencias · cruces · producción de enumeradores, desde una única preparación.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">Guía 3</span>
+        <span class="ttl">PPT <em>plan</em> aplicado</span>
+        <span class="desc">Presets · piezas <code>p_*</code> · layouts <code>p_slide_*</code> · <code>diapo()</code>. Mismo plan → PPT o Word.</span>
+        <span class="st ok">.qmd · pdf</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ REPORT SAMPLE ============ -->
+  <section class="reveal" aria-labelledby="rep-t">
+    <div class="section-head">
+      <div class="num-label">§ 04 / El entregable</div>
+      <div>
+        <h2 id="rep-t">Una muestra del reporte</h2>
+        <p class="lede">Cada celda representa una regla del plan sobre una fila de la base. El mismo corpus alimenta también el codebook, las frecuencias, los cruces y la producción de enumeradores sin volver a prepararse.</p>
+      </div>
+    </div>
+
+    <div class="report">
+      <aside class="report-legend">
+        <h4>Leyenda</h4>
+        <div><span class="k ok"></span>OK · pasa todas las reglas</div>
+        <div><span class="k warn"></span>Soft · fuera de patrón (outlier · z / IQR)</div>
+        <div><span class="k err"></span>Hard · incumple <em>required</em>, <em>constraint</em> o salto</div>
+        <div><span class="k miss"></span>N/A · <em>relevance</em> falso</div>
+
+        <h4 style="margin-top: 26px;">Proyecto</h4>
+        <div>ACNUR · PPRA — Perú</div>
+        <div>Trabajo de campo · 2025</div>
+        <div>1,243 encuestas · 12 enumeradores</div>
+      </aside>
+
+      <div>
+        <div class="report-grid" id="reportGrid" aria-hidden="true"></div>
+
+        <div class="report-summary">
+          <div class="s"><span class="lbl">Filas</span><span class="big">1,243</span></div>
+          <div class="s"><span class="lbl">Reglas</span><span class="big">184</span></div>
+          <div class="s"><span class="lbl">OK</span><span class="big">95.4%</span></div>
+          <div class="s"><span class="lbl">Errores</span><span class="big" style="color:var(--accent)">1.4%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RULES ============ -->
+  <section class="reveal" aria-labelledby="rules-t">
+    <div class="section-head">
+      <div class="num-label">§ 05 / Reglas</div>
+      <div>
+        <h2 id="rules-t">Qué se verifica, por defecto</h2>
+        <p class="lede">Familias de reglas que el paquete genera o ejecuta. El plan se edita en Excel y convive con reglas propias en R, versionables con el proyecto.</p>
+      </div>
+    </div>
+
+    <ul class="rules-list">
+      <li class="rule-row">
+        <span class="n">R·01</span>
+        <span class="ttl"><em>Tipo</em> y codificación</span>
+        <span class="desc">select_one · select_multiple · numeric · date — resuelve dummies y repeats</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·02</span>
+        <span class="ttl"><em>Rango</em> numérico</span>
+        <span class="desc">min / max del XLSForm + outliers por módulo (z-score e IQR configurables)</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·03</span>
+        <span class="ttl">Obligatoriedad</span>
+        <span class="desc">required = yes → no puede estar vacío; <code>expr_not_empty()</code></span>
+        <span class="st err">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·04</span>
+        <span class="ttl">Saltos · <em>relevance</em></span>
+        <span class="desc">respuesta solo si la condición se cumple; separa N/A válido de error</span>
+        <span class="st err">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·05</span>
+        <span class="ttl">Constraint de XLSForm</span>
+        <span class="desc">evalúa expresiones declaradas en el formulario, incluyendo repeats</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·06</span>
+        <span class="ttl">Plan <em>Excel</em> editable</span>
+        <span class="desc"><code>cargar_plan_excel()</code> · reglas nombradas, documentadas y versionables</span>
+        <span class="st ok">hard</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·07</span>
+        <span class="ttl"><em>Other</em> y texto abierto</span>
+        <span class="desc"><code>expr_other_implies_text</code> · <code>expr_no_other_no_text</code> — coherencia "otro → texto"</span>
+        <span class="st warn">soft</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·08</span>
+        <span class="ttl">Consistencia <em>entre</em> preguntas</span>
+        <span class="desc">expresiones R por fila; <code>auditar_regla()</code> · <code>observaciones_regla()</code></span>
+        <span class="st warn">soft</span>
+      </li>
+      <li class="rule-row">
+        <span class="n">R·09</span>
+        <span class="ttl">Trazabilidad por <em>enumerador</em></span>
+        <span class="desc"><code>reporte_enumeradores()</code> — duración, geolocalización, patrones de error</span>
+        <span class="st warn">soft</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ FAMILIES ============ -->
+  <section class="reveal" aria-labelledby="mods-t">
+    <div class="section-head">
+      <div class="num-label">§ 06 / Familias</div>
+      <div>
+        <h2 id="mods-t">Ocho familias, un paquete</h2>
+        <p class="lede">El código dentro de <code>R/</code> está agrupado por prefijos. Cada familia resuelve un tramo: podés usar todo el pipeline o enchufar una sola familia a un flujo existente.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <article class="feat">
+        <span class="n">F · 01 — reporte_*</span>
+        <h3>Reportes <em>(18 archivos)</em></h3>
+        <p>La familia más grande. Prepara (<code>reporte_instrumento</code>, <code>reporte_data</code>) y produce codebook, SPSS, frecuencias, cruces, enumeradores, bloques kable; y dos motores de plan: <code>reporte_ppt_plan</code> y <code>reporte_word_plan</code>. Helpers de modalidad, pivot y typst se reusan entre todos.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 02 — graficador_*</span>
+        <h3>Gráficos <em>(10)</em></h3>
+        <p><code>graficar_barras_agrupadas/apiladas/numericas</code>, <code>graficar_boxplot</code>, <code>graficar_pie</code>, <code>graficar_media_rango</code>, <code>graficar_radar</code>, <code>graficar_dimensiones</code> (FODA, heatmap, radar-tabla, radar-bar comparativo). Un motor base (<code>graficar_ppt</code>) los ensambla sobre plantilla.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 03 — validacion_*</span>
+        <h3>Consistencia <em>(9)</em></h3>
+        <p>Construcción y exportación de plan (<code>construir_plan</code>, <code>export_plan</code>), lector del Excel (<code>lector_limpieza</code>), evaluación sobre datos (<code>evaluacion_data</code>), auditoría (<code>auditar_consistencia_corpus</code>, <code>auditar_limpieza</code>), fábrica de reglas (<code>rule_factory</code>) y lector del XLSForm (<code>read_xlsform</code>).</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 04 — interactivo_*</span>
+        <h3>Shiny <em>(6)</em></h3>
+        <p>Dashboard reproducible con <code>reporte_interactivo()</code>. Módulos de resumen, base de datos navegable, relación entre variables, dimensiones y estética. Usa DT y plotly; sirve para devolver resultados al equipo de campo sin compilar nada externo.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 05 — indicador_*</span>
+        <h3>Dimensiones <em>(4)</em></h3>
+        <p>DSL declarativo: <code>indicador()</code>, <code>nivel()</code>, <code>indice()</code>, <code>subindice()</code>, <code>grupo()</code> y predicados <code>ind_alguna</code>, <code>ind_todas</code>, <code>ind_en</code>, <code>ind_es</code>, <code>ind_ninguna</code>. Métricas y helpers dimensionales compartidos con los gráficos radar/FODA/heatmap.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 06 — codificacion_*</span>
+        <h3>Codificación <em>(4)</em></h3>
+        <p>Flujo híbrido: aplicar decisiones de codificación al instrumento y a la base en simultáneo. <code>codificacion_aplicar_data</code>, <code>codificacion_aplicar_instrumento</code>, <code>codificacion_instrumento_data_label</code>, <code>codificacion_flujo_hibrido</code>.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 07 — surveymonkey_*</span>
+        <h3>SurveyMonkey</h3>
+        <p>Traductor del formato SurveyMonkey al modelo XLSForm esperado por el resto del paquete: <code>surveymonkey_leer()</code>, <code>surveymonkey_data()</code>, <code>surveymonkey_xlsform()</code>. Permite reutilizar exactamente el mismo pipeline que para KoBo u ODK.</p>
+      </article>
+      <article class="feat">
+        <span class="n">F · 08 — familias &amp; plantilla</span>
+        <h3>Plantilla <em>PPT</em> y familias</h3>
+        <p><code>familias_paquete</code> describe el mapa de familias que usa la codificación; <code>construir_plantilla_ppt</code> toma una plantilla <code>.pptx</code> (p. ej. <code>inst/plantillas/plantilla_16_9.pptx</code>) y la expande al esquema de piezas y <em>layouts</em> que espera <code>diapo()</code>.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ INSTALL ============ -->
+  <section id="instalar" class="reveal" style="margin-top: 60px;">
+    <div class="install">
+      <div>
+        <h2>Instalalo en un <em>minuto</em>.</h2>
+        <p style="margin-top: 16px;">Se distribuye desde GitHub. El manual completo vive en RPubs, y dentro del repo encontrás una plantilla PPTX de referencia en <code>inst/plantillas/plantilla_16_9.pptx</code> y ejemplos de planes en <code>manuales/</code>.</p>
+        <div class="cta-row">
+          <a href="https://github.com/GonzaloAlmendariz/Prosecnur" target="_blank" rel="noopener" class="btn">Repo GitHub</a>
+          <a href="https://rpubs.com/Gonzalo_Almendariz/Prosecnur" target="_blank" rel="noopener" class="btn">Manual RPubs</a>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="ck-head"><span><span class="dot"></span>R · install</span><span>github</span></div>
+<pre><span class="com"># Instalar desde GitHub</span>
+<span class="kw">install.packages</span>(<span class="str">"devtools"</span>)
+<span class="fn">devtools</span>::<span class="fn">install_github</span>(<span class="str">"GonzaloAlmendariz/Prosecnur"</span>)
+
+<span class="kw">library</span>(<span class="fn">prosecnur</span>)
+<span class="fn">?prosecnur</span>    <span class="com"># abre el manual</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="reveal" aria-labelledby="faq-t">
+    <div class="section-head">
+      <div class="num-label">§ 07 / Preguntas</div>
+      <div>
+        <h2 id="faq-t">Dudas frecuentes</h2>
+      </div>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>¿Funciona con formularios que <em>no</em> vienen de KoBo?</summary>
+        <p>Sí. Mientras el formulario siga el estándar XLSForm (columnas <code>survey</code>, <code>choices</code>, <code>settings</code>), <code>leer_instrumento_xlsform()</code> lo lee. Está probado con KoBoToolbox, ODK y la plataforma PPRA de ACNUR. Para SurveyMonkey hay adaptadores dedicados (<code>surveymonkey_xlsform()</code>, <code>surveymonkey_data()</code>).</p>
+      </details>
+      <details>
+        <summary>¿El plan de validación se edita en <em>Excel</em> o se escribe en R?</summary>
+        <p>Las dos cosas. <code>generar_plan_limpieza()</code> arma un plan inicial en Excel a partir del XLSForm; lo abrís, revisás y editás con el equipo; lo volvés a cargar con <code>cargar_plan_excel()</code>. Encima del plan podés sumar reglas ad-hoc en R (<code>expr_between_num</code>, <code>expr_other_implies_text</code>, predicados propios).</p>
+      </details>
+      <details>
+        <summary>¿Qué produce exactamente el paquete?</summary>
+        <p>Seis salidas sobre la misma base: PPTX con <code>reporte_ppt_plan()</code> (gráficos inyectados en plantilla vía <code>officer</code>), Word con <code>reporte_word_plan()</code>, SPSS <code>.sav</code> + syntax <code>.sps</code> (<code>reporte_spss</code>, <code>generar_spss_niveles</code>), libros Quarto (<code>exportar_manuales_qmd</code>), XLSX (codebook, frecuencias, cruces) y un tablero Shiny interactivo (<code>reporte_interactivo()</code>).</p>
+      </details>
+      <details>
+        <summary>¿Cómo se definen <em>indicadores</em> e índices compuestos?</summary>
+        <p>Con un DSL mínimo: <code>indicador()</code>, <code>nivel()</code>, <code>indice()</code>, <code>subindice()</code> y los predicados <code>ind_alguna</code>, <code>ind_todas</code>, <code>ind_es</code>, <code>ind_en</code>, <code>ind_ninguna</code>. Los indicadores viven como código versionable y se visualizan en <code>graficar_radar_dimensiones()</code>, <code>graficar_foda_dimensiones()</code> o <code>graficar_heatmap_dimensiones()</code>.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa con los datos <em>sensibles</em>?</summary>
+        <p>Prosecnur corre 100 % en local. No envía datos fuera del entorno de R y los reportes se renderizan en tu máquina. Podés decidir qué columnas exportar en cada reporte (codebook, SPSS, cruces) y qué variables sensibles omitir del tablero Shiny.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se integra con una plantilla <em>PowerPoint</em> corporativa?</summary>
+        <p>Pasás tu <code>.pptx</code> como <code>plantilla</code> en <code>reporte_ppt_plan()</code> o armás la presentación a mano con <code>diapo()</code> y los layouts <code>p_slide_portada</code>, <code>p_slide_1_grafico</code>, <code>p_slide_2_graficos</code>, <code>p_slide_4_graficos</code>, <code>p_slide_5/6_graficos_poblacion</code>, entre otros. El paquete incluye <code>inst/plantillas/plantilla_16_9.pptx</code> como referencia.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-slot"></div>
+<div id="tweaks-slot"></div>
+
+<script>
+  window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "hero": "data",
+    "rhythm": "asymmetric",
+    "density": "airy"
+  }/*EDITMODE-END*/;
+</script>
+
+<script id="shared-js">
+// Shared layout fragments — masthead, footer, tweaks panel, reveal + mini chart helpers
+// Pure vanilla; no framework needed. v2
+
+(function () {
+  const PAGES = [
+    { href: 'index.html',     label: 'Portada',    key: 'home' },
+    { href: 'cv.html',        label: 'Perfil',     key: 'cv' },
+    { href: 'prosecnur.html', label: 'Prosecnur',  key: 'prosecnur' },
+  ];
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
+
+  function today() {
+    const d = new Date();
+    const ms = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+    return `${String(d.getDate()).padStart(2,'0')} ${ms[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  window.LD = {
+    renderMasthead(active) {
+      const nav = PAGES.map(p =>
+        `<a href="${p.href}" class="${p.key === active ? 'active' : ''}">${p.label}</a>`
+      ).join('');
+      return `
+        <header class="masthead">
+          <div class="wrap masthead-row">
+            <a class="mast-brand" href="index.html" aria-label="La Datáfora">
+              <span>La <em>Datáfora</em></span>
+              <span class="vol">VOL. 01</span>
+            </a>
+            <nav class="mast-nav">${nav}</nav>
+            <div class="mast-meta"><span class="dot"></span>LIMA · ${today()}</div>
+          </div>
+        </header>
+        <div class="wrap">
+          <div class="issue-strip">
+            <div class="left">Gonzalo Almendariz Villanueva</div>
+            <div class="center">Un cuaderno de análisis de datos aplicado</div>
+            <div class="right">ESP · ES-PE</div>
+          </div>
+        </div>
+      `;
+    },
+
+    renderFooter() {
+      return `
+        <footer class="foot">
+          <div class="wrap">
+            <div class="foot-grid">
+              <div>
+                <h4>La Datáfora</h4>
+                <p style="color:var(--ink-soft); line-height:1.6; max-width:44ch;">
+                  Trabajo, ideas y herramientas sobre análisis de datos en ciencias sociales.
+                  Publicaciones, materiales didácticos y paquetes de R con enfoque reproducible.
+                </p>
+              </div>
+              <div>
+                <h4>Navegar</h4>
+                <a href="index.html">Portada</a>
+                <a href="cv.html">Perfil</a>
+                <a href="prosecnur.html">Prosecnur</a>
+                <a href="#">IncoreR</a>
+                <a href="#">El libro</a>
+              </div>
+              <div>
+                <h4>Producido en</h4>
+                <a href="#">R · tidyverse</a>
+                <a href="#">Quarto</a>
+                <a href="#">Shiny</a>
+                <a href="#">XLSForm · KoBo</a>
+              </div>
+              <div>
+                <h4>Contacto</h4>
+                <a href="mailto:gonzaloalmendariz@gmail.com">correo</a>
+                <a href="https://github.com/GonzaloAlmendariz" target="_blank" rel="noopener">github</a>
+                <a href="#">linkedin</a>
+                <a href="#">rpubs</a>
+              </div>
+            </div>
+
+            <div class="foot-mark" aria-hidden="true">La <em>Datáfora</em> &mdash; Vol. 01</div>
+
+            <div class="foot-colophon">
+              <span>© 2026 · Elaborado por Gonzalo Almendariz Villanueva</span>
+              <span>Compuesto en Instrument Serif, Inter Tight &amp; JetBrains Mono</span>
+            </div>
+          </div>
+        </footer>
+      `;
+    },
+
+    renderTweaks() {
+      return `
+        <aside class="tweaks" id="ldTweaks" role="region" aria-label="Tweaks">
+          <h5>
+            <span>Ajustes</span>
+            <span class="x" id="ldTweaksClose" aria-label="Cerrar">×</span>
+          </h5>
+          <div class="tweak-row">
+            <label>Hero</label>
+            <div class="opts" data-tweak="hero">
+              <button data-v="type">type</button>
+              <button data-v="data">data</button>
+              <button data-v="image">image</button>
+            </div>
+          </div>
+          <div class="tweak-row">
+            <label>Ritmo</label>
+            <div class="opts two" data-tweak="rhythm">
+              <button data-v="asymmetric">asym</button>
+              <button data-v="centered">centrado</button>
+            </div>
+          </div>
+          <div class="tweak-row">
+            <label>Densidad</label>
+            <div class="opts two" data-tweak="density">
+              <button data-v="airy">airy</button>
+              <button data-v="compact">compact</button>
+            </div>
+          </div>
+        </aside>
+      `;
+    },
+
+    mountChrome(active) {
+      document.getElementById('masthead-slot').innerHTML = this.renderMasthead(active);
+      document.getElementById('footer-slot').innerHTML   = this.renderFooter();
+      document.getElementById('tweaks-slot').innerHTML   = this.renderTweaks();
+      this.wireReveal();
+      this.wireTweaks();
+    },
+
+    wireReveal() {
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    },
+
+    wireTweaks() {
+      const root = document.documentElement;
+      const tw   = document.getElementById('ldTweaks');
+      const defaults = window.TWEAK_DEFAULTS || { hero: 'data', rhythm: 'asymmetric', density: 'airy' };
+      const state = Object.assign({}, defaults);
+
+      const apply = () => {
+        root.setAttribute('data-hero',    state.hero);
+        root.setAttribute('data-rhythm',  state.rhythm);
+        root.setAttribute('data-density', state.density);
+        tw.querySelectorAll('.opts').forEach(group => {
+          const key = group.dataset.tweak;
+          group.querySelectorAll('button').forEach(b => {
+            b.classList.toggle('on', b.dataset.v === state[key]);
+          });
+        });
+      };
+      apply();
+
+      tw.addEventListener('click', (e) => {
+        const b = e.target.closest('button[data-v]');
+        if (!b) return;
+        const key = b.parentElement.dataset.tweak;
+        state[key] = b.dataset.v;
+        apply();
+        try {
+          window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: state[key] } }, '*');
+        } catch(_) {}
+      });
+
+      document.getElementById('ldTweaksClose').addEventListener('click', () => {
+        tw.classList.remove('visible');
+        try { window.parent.postMessage({ type: '__edit_mode_deactivated' }, '*'); } catch(_) {}
+      });
+
+      // host protocol
+      window.addEventListener('message', (e) => {
+        const d = e && e.data;
+        if (!d || typeof d !== 'object') return;
+        if (d.type === '__activate_edit_mode')   tw.classList.add('visible');
+        if (d.type === '__deactivate_edit_mode') tw.classList.remove('visible');
+      });
+      try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(_) {}
+    },
+
+    // ---------- Tiny SVG charts that react to hover ----------
+
+    // Sparkline given values 0..1
+    sparkline(values, { width=240, height=48, stroke='var(--ink)' } = {}) {
+      const step = width / (values.length - 1);
+      const pts  = values.map((v,i) => `${(i*step).toFixed(1)},${(height - v*height).toFixed(1)}`).join(' ');
+      return `
+        <svg class="sparkline" viewBox="0 0 ${width} ${height}" width="100%" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="${stroke}" stroke-width="1.25" points="${pts}" />
+          <circle class="sparkline-dot" r="3" fill="${stroke}" cx="${(width - 1).toFixed(1)}" cy="${(height - values[values.length-1]*height).toFixed(1)}"/>
+        </svg>
+      `;
+    },
+
+    // Tiny bars
+    bars(values, { width=240, height=48, fill='var(--ink)' } = {}) {
+      const gap = 2;
+      const n = values.length;
+      const bw = (width - gap*(n-1)) / n;
+      return `
+        <svg class="barchart" viewBox="0 0 ${width} ${height}" width="100%" preserveAspectRatio="none" aria-hidden="true">
+          ${values.map((v,i) => {
+            const h = v * height;
+            const x = i * (bw + gap);
+            return `<rect x="${x.toFixed(1)}" y="${(height-h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" fill="${fill}"/>`;
+          }).join('')}
+        </svg>
+      `;
+    },
+
+    // Scatter for hover interaction
+    scatter(points, { width=240, height=140 } = {}) {
+      return `
+        <svg class="scatter" viewBox="0 0 ${width} ${height}" width="100%" aria-hidden="true">
+          ${points.map(p => `<circle cx="${(p.x*width).toFixed(1)}" cy="${((1-p.y)*height).toFixed(1)}" r="${p.r||2.8}" fill="var(--ink)" opacity="${p.o||0.72}"/>`).join('')}
+        </svg>
+      `;
+    },
+
+    // Animate sparklines on hover within a root
+    animateOnHover(rootSel) {
+      document.querySelectorAll(rootSel).forEach(root => {
+        root.addEventListener('mouseenter', () => root.classList.add('is-live'));
+        root.addEventListener('mouseleave', () => root.classList.remove('is-live'));
+      });
+    }
+  };
+})();
+
+</script>
+<script>
+  LD.mountChrome('prosecnur');
+
+  // Build a 24 x 8 report grid with a realistic-looking distribution
+  const grid = document.getElementById('reportGrid');
+  const total = 24 * 8;
+  let seed = 17;
+  const rand = () => { seed = (seed*9301 + 49297) % 233280; return seed/233280; };
+  let html = '';
+  for (let i = 0; i < total; i++) {
+    const r = rand();
+    let cls;
+    if (r < 0.78) cls = 'ok';
+    else if (r < 0.90) cls = 'miss';
+    else if (r < 0.97) cls = 'warn';
+    else cls = 'err';
+    html += `<div class="cell ${cls}" title="fila ${Math.floor(i/24)+1} · pregunta ${(i%24)+1}"></div>`;
+  }
+  grid.innerHTML = html;
+</script>
+
+</body>
+</html>
